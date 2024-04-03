@@ -1,0 +1,8 @@
+.board-list-container {
+
+    & ul {
+        list-style: none;
+        flex-wrap: wrap;
+        margin-top: 24px;
+    }
+}
