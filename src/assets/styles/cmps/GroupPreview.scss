@@ -1,0 +1,41 @@
+.group-preview {
+    width: rem(272px);
+    background-color: rgb(223, 213, 194);
+    padding: rem(8px);
+    box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px 0px, rgba(9, 30, 66, 0.31) 0px 0px 1px 0px;
+    border-radius: rem(12px);
+
+    .group-header {
+        display: grid;
+        grid-template-columns: rem(192px) rem(32px) rem(32px);
+
+        h2 {
+            font-weight: 600;
+            padding: 6px 8px 6px 12px;
+        }
+    }
+    
+    .add {
+        display: grid;
+        grid-template-columns: rem(220px) rem(32px);
+        gap: 4px;
+        
+
+        .add-task {
+            display: flex;
+            align-items: center;
+            width: 100%;
+
+            span {
+                margin-inline-end: rem(8px);
+            }
+        }
+    }
+
+    button {
+        height: rem(32px);
+        width: rem(32px);
+        background-color: transparent;
+        border: none;
+    }
+}
