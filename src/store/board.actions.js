@@ -76,20 +76,6 @@ export function updateBoard(board) {
         })
 }
 
-export function addToBoardt(board) {
-    store.dispatch({
-        type: ADD_TO_BOARDT,
-        board
-    })
-}
-
-export function removeFromBoardt(boardId) {
-    store.dispatch({
-        type: REMOVE_FROM_BOARDT,
-        boardId
-    })
-}
-
 export async function checkout(total) {
     try {
         const score = await userService.changeScore(-total)

@@ -1,6 +1,6 @@
 
-export function GroupPreview() {
+export function GroupPreview(group) {
     return (
-        <div></div>
+        <li><pre>{JSON.stringify(group)}</pre></li>
     )
 }

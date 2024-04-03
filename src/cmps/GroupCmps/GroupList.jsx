@@ -1,6 +1,11 @@
+import { GroupPreview } from "./GroupPreview"
 
-export function GroupList() {
-    return(
-        <div></div>
+export function GroupList({ groups }) {
+    return (
+        <ul>
+            {groups.map(group => {
+                return <GroupPreview key={group.id} group={group} />             
+            })}
+        </ul>
     )
 }
