@@ -8,18 +8,14 @@
 @import "basics/helpers";
 @import "basics/layout";
 @import "basics/base";
-@import "basics/links";
-@import "basics/forms";
-
 
 // Views
-@import "views/AboutUs";
 @import "views/HomePage";
 @import "views/BoardIndex";
-@import "views/TaskIndex";
 @import "views/UserDetails";
 
 // Components
+@import "cmps/TaskIndex";
 @import "cmps/AppHeader";
 @import "cmps/AppFooter";
 @import "cmps/UserMsg";
