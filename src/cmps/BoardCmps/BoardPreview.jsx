@@ -1,6 +1,6 @@
 import { Link, NavLink } from 'react-router-dom'
-import star from '../../assets/img/star.svg'
-import star_outline from '../../assets/img/star_outline.svg'
+import { star, star_outline } from '../UtilCmps/SVGs'
+
 
 export function BoardPreview({ board }) {
 
@@ -12,10 +12,10 @@ export function BoardPreview({ board }) {
     return (
         <Link to={`/board/${board._id}`}>
             {/* <pre>{JSON.stringify(board)}</pre> */}
-            <article className='board-preview'>
-                <img src={board.style.backgroundImage} alt="" />
+            <article className='board-preview' style={{ backgroundImage: `url(${board.style.backgroundImage})` }}>
+                {/* <img src={board.style.backgroundImage} alt="" /> */}
                 <h3>{board.title}</h3>
-                <button onClick={onToggleStar}><img src={board.isStarred ? star : star_outline} alt="" /></button>
+                <button onClick={onToggleStar}>{board.isStarred ? star : star_outline}</button>
             </article>
         </Link>
     )
