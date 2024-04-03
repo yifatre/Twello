@@ -11,7 +11,7 @@ export const boardsDemoData = [
             "imgUrl": "http://some-img"
         },
         style: {
-            backgroundImage: ""
+            backgroundImage: "https://trello-backgrounds.s3.amazonaws.com/SharedBackground/1280x1920/1454636af11dff5041c580f6ca325ace/photo-1711522676532-d6dce8a42335.jpg"
         },
         labels: [
             {

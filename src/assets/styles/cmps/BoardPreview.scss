@@ -1,0 +1,33 @@
+.board-preview {
+    display: grid;
+    grid-template-areas:
+        "h"
+        "star";
+
+    height: rem(96px);
+    width: rem(193px);
+    background-size: cover;
+    background-position: 50%;
+
+    color: white;
+
+    h3 {
+        grid-area: h;
+    }
+
+    button {
+        grid-area: star;
+        border: none;
+        background: none;
+
+        svg path {
+            fill: white;
+        }
+    }
+
+    button.starred svg path {
+        fill: #e2b203;
+    }
+
+
+}
