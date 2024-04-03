@@ -1,10 +1,10 @@
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import { loadBoards, addBoard, updateBoard, removeBoard, addToBoardt } from '../store/board.actions.js'
+import { loadBoards, addBoard, updateBoard, removeBoard } from '../store/board.actions.js'
 
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
-import { userService } from '../services/user.service.js'
 import { boardService } from '../services/board.service.js'
+import { BoardList } from '../cmps/BoardCmps/BoardList.jsx'
 
 export function BoardIndex() {
 
@@ -37,11 +37,9 @@ export function BoardIndex() {
     return (
         <div>
             <h3>Boards App</h3>
-            <main>
                 <button onClick={onAddBoard}>Add Board</button>
-                <ul className="board-list">
-                  
-                </ul>
+            <main>
+                <BoardList boards={boards}/>
             </main>
         </div>
     )

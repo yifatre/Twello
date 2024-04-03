@@ -2,9 +2,10 @@
 import { storageService } from './async-storage.service.js'
 import { utilService } from './util.service.js'
 import { userService } from './user.service.js'
+import { boardsDemoData } from './demo-data.js'
 
-const STORAGE_KEY = 'board'
-
+const STORAGE_KEY = 'boardDB'
+_createBoards()
 export const boardService = {
     query,
     getById,
@@ -70,6 +71,11 @@ function getEmptyBoard() {
         vendor: 'Susita-' + (Date.now() % 1000),
         price: utilService.getRandomIntInclusive(1000, 9000),
     }
+}
+
+function _createBoards() {
+    const boards = utilService.loadFromStorage(STORAGE_KEY)
+    if (!boards) utilService.saveToStorage(STORAGE_KEY, boardsDemoData)
 }
 
 

@@ -11,7 +11,7 @@ export function BoardPreview({ board }) {
 
     return (
         <Link to={`/board/${board._id}`}>
-            <pre>{JSON.stringify(board)}</pre>
+            {/* <pre>{JSON.stringify(board)}</pre> */}
             <article className='board-preview'>
                 <img src={board.style.backgroundImage} alt="" />
                 <h3>{board.title}</h3>
