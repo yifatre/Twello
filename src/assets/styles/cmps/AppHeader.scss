@@ -1,7 +1,9 @@
 .app-header {
-    background-color: $clr4;
-    padding: 10px;
-
+    background-color: white;
+    max-height: 48px;
+    padding: 8px;
+    border-bottom: 1px solid;
+    border-bottom-color: hsla(218, 54%, 19.6%, 0.16);
 
     .user-info {
         // background-color: $clr2;
