@@ -128,132 +128,260 @@ export const boardsDemoData = [
         ],
     },
     {
-        _id: "b102",
-        title: "Robot dev proj",
-        isStarred: false,
-        archivedAt: 1589983468418,
-        createdBy: {
-            "_id": "u101",
-            "fullname": "Abi Abambi",
-            "imgUrl": "http://some-img"
+        "_id": "b104",
+        "title": "AI Development Project",
+        "isStarred": false,
+        "archivedAt": 1623465068418,
+        "createdBy": {
+            "_id": "u103",
+            "fullname": "Alice Johnson",
+            "imgUrl": "http://random-img"
         },
-        style: {
-            backgroundImage: ""
+        "style": {
+            "backgroundImage": "url('http://random-bg-img')"
         },
-        labels: [
+        "labels": [
             {
-                "id": "l101",
-                "title": "Done",
-                "color": "#61bd4f"
+                "id": "l103",
+                "title": "Pending",
+                "color": "#ff0000"
             },
             {
-                "id": "l102",
-                "title": "Progress",
-                "color": "#61bd33"
+                "id": "l104",
+                "title": "Review",
+                "color": "#0000ff"
             }
         ],
-        members: [
+        "members": [
             {
-                "_id": "u101",
-                "fullname": "Tal Tarablus",
-                "imgUrl": "https://www.google.com"
+                "_id": "u103",
+                "fullname": "Alice Johnson",
+                "imgUrl": "https://www.random-example.com"
             }
         ],
-        groups: [
+        "groups": [
             {
-                "id": "g101",
-                "title": "Group 1",
+                "id": "g103",
+                "title": "Development Team",
                 "archivedAt": 1589983468418,
                 "tasks": [
                     {
-                        "id": "c101",
-                        "title": "Replace logo"
+                        "id": "c105",
+                        "title": "Implement Neural Networks"
                     },
                     {
-                        "id": "c102",
-                        "title": "Add Samples"
+                        "id": "c106",
+                        "title": "Optimize Algorithms"
                     }
                 ],
                 "style": {}
             },
             {
-                "id": "g102",
-                "title": "Group 2",
+                "id": "g104",
+                "title": "QA Team",
                 "tasks": [
                     {
-                        "id": "c103",
-                        "title": "Do that",
+                        "id": "c107",
+                        "title": "Test Model Accuracy",
                         "archivedAt": 1589983468418,
                     },
                     {
-                        "id": "c104",
-                        "title": "Help me",
-                        "status": "in-progress", // monday
+                        "id": "c108",
+                        "title": "Bug Fixes",
+                        "status": "in-progress",
                         "priority": "high",
-                        "description": "description",
+                        "description": "Perform thorough testing and debugging",
                         "comments": [
                             {
-                                "id": "ZdPnm",
-                                "txt": "also @yaronb please CR this",
+                                "id": "RfOpq",
+                                "txt": "Please review ASAP",
                                 "createdAt": 1590999817436,
                                 "byMember": {
-                                    "_id": "u101",
-                                    "fullname": "Tal Tarablus",
-                                    "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
+                                    "_id": "u103",
+                                    "fullname": "Alice Johnson",
+                                    "imgUrl": "http://random-image.jpg"
                                 }
                             }
                         ],
                         "checklists": [
                             {
-                                "id": "YEhmF",
-                                "title": "Checklist",
+                                "id": "AoBnG",
+                                "title": "Bug Checklist",
                                 "todos": [
                                     {
-                                        "id": "212jX",
-                                        "title": "To Do 1",
+                                        "id": "312kY",
+                                        "title": "Check for memory leaks",
                                         "isDone": false
                                     }
                                 ]
                             }
                         ],
-                        "memberIds": ["u101"],
-                        "labelIds": ["l101", "l102"],
+                        "memberIds": ["u103"],
+                        "labelIds": ["l103", "l104"],
                         "dueDate": 16156215211,
                         "byMember": {
-                            "_id": "u101",
-                            "username": "Tal",
-                            "fullname": "Tal Tarablus",
-                            "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
+                            "_id": "u103",
+                            "username": "Alice",
+                            "fullname": "Alice Johnson",
+                            "imgUrl": "http://random-image.jpg"
                         },
                         "style": {
-                            "backgroundColor": "#26de81"
+                            "backgroundColor": "#ffa500"
                         }
                     }
                 ],
                 "style": {}
             }
         ],
-        activities: [
+        "activities": [
             {
-                "id": "a101",
-                "txt": "Changed Color",
+                "id": "a102",
+                "txt": "Updated Model Architecture",
                 "createdAt": 154514,
                 "byMember": {
-                    "_id": "u101",
-                    "fullname": "Abi Abambi",
-                    "imgUrl": "http://some-img"
+                    "_id": "u103",
+                    "fullname": "Alice Johnson",
+                    "imgUrl": "http://random-img"
                 },
                 "group": {
-                    "id": "g101",
-                    "title": "Urgent Stuff"
+                    "id": "g103",
+                    "title": "Development Team"
                 },
                 "task": {
-                    "id": "c101",
-                    "title": "Replace Logo"
+                    "id": "c105",
+                    "title": "Implement Neural Networks"
                 }
             }
+        ]
+    },
+    {
+        "_id": "b105",
+        "title": "Machine Learning Project",
+        "isStarred": true,
+        "archivedAt": 1607341068418,
+        "createdBy": {
+            "_id": "u104",
+            "fullname": "Bob Smith",
+            "imgUrl": "http://some-random-image"
+        },
+        "style": {
+            "backgroundImage": "url('http://random-background')"
+        },
+        "labels": [
+            {
+                "id": "l105",
+                "title": "Backlog",
+                "color": "#ff6600"
+            },
+            {
+                "id": "l106",
+                "title": "Review",
+                "color": "#9900cc"
+            }
         ],
+        "members": [
+            {
+                "_id": "u104",
+                "fullname": "Bob Smith",
+                "imgUrl": "https://www.example-random.com"
+            }
+        ],
+        "groups": [
+            {
+                "id": "g105",
+                "title": "Research Team",
+                "archivedAt": 1589983468418,
+                "tasks": [
+                    {
+                        "id": "c109",
+                        "title": "Literature Review"
+                    },
+                    {
+                        "id": "c110",
+                        "title": "Data Collection"
+                    }
+                ],
+                "style": {}
+            },
+            {
+                "id": "g106",
+                "title": "Data Science Team",
+                "tasks": [
+                    {
+                        "id": "c111",
+                        "title": "Feature Engineering",
+                        "archivedAt": 1589983468418,
+                    },
+                    {
+                        "id": "c112",
+                        "title": "Model Training",
+                        "status": "in-progress",
+                        "priority": "high",
+                        "description": "Train ML models on collected data",
+                        "comments": [
+                            {
+                                "id": "TqXvW",
+                                "txt": "This is important!",
+                                "createdAt": 1590999817436,
+                                "byMember": {
+                                    "_id": "u104",
+                                    "fullname": "Bob Smith",
+                                    "imgUrl": "http://random-image.jpg"
+                                }
+                            }
+                        ],
+                        "checklists": [
+                            {
+                                "id": "JpQsL",
+                                "title": "Model Checklist",
+                                "todos": [
+                                    {
+                                        "id": "123mZ",
+                                        "title": "Check model performance metrics",
+                                        "isDone": false
+                                    }
+                                ]
+                            }
+                        ],
+                        "memberIds": ["u104"],
+                        "labelIds": ["l105", "l106"],
+                        "dueDate": 16156215211,
+                        "byMember": {
+                            "_id": "u104",
+                            "username": "Bob",
+                            "fullname": "Bob Smith",
+                            "imgUrl": "http://random-image.jpg"
+                        },
+                        "style": {
+                            "backgroundColor": "#cc0066"
+                        }
+                    }
+                ],
+                "style": {}
+            }
+        ],
+        "activities": [
+            {
+                "id": "a103",
+                "txt": "Completed Literature Review",
+                "createdAt": 154514,
+                "byMember": {
+                    "_id": "u104",
+                    "fullname": "Bob Smith",
+                    "imgUrl": "http://some-random-image"
+                },
+                "group": {
+                    "id": "g105",
+                    "title": "Research Team"
+                },
+                "task": {
+                    "id": "c109",
+                    "title": "Literature Review"
+                }
+            }
+        ]
     }
+
 ]
 
 export const userDemoData = [
