@@ -13,8 +13,9 @@ const SOCKET_EMIT_LOGIN = 'set-user-socket'
 const SOCKET_EMIT_LOGOUT = 'unset-user-socket'
 
 
-const baseUrl = (process.env.NODE_ENV === 'production') ? '' : '//localhost:3030'
+// const baseUrl = (process.env.NODE_ENV === 'production') ? '' : '//localhost:3030'
 // export const socketService = createSocketService()
+
 export const socketService = createDummySocketService()
 
 // for debugging from console
@@ -28,7 +29,7 @@ function createSocketService() {
   const socketService = {
     setup() {
       socket = io(baseUrl)
-      const user = userService.getLoggedinUser()
+      const user = userService.getLoggedInUser()
       if (user) this.login(user._id)
     },
     on(eventName, cb) {
@@ -97,7 +98,7 @@ function createDummySocketService() {
       this.emit(SOCKET_EVENT_ADD_MSG, { from: 'Someone', txt: 'Aha it worked!' })
     },
     testUserUpdate() {
-      this.emit(SOCKET_EVENT_USER_UPDATED, { ...userService.getLoggedinUser(), score: 555 })
+      this.emit(SOCKET_EVENT_USER_UPDATED, { ...userService.getLoggedInUser(), score: 555 })
     }
   }
   window.listenersMap = listenersMap

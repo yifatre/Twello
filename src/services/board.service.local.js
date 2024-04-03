@@ -43,7 +43,7 @@ async function save(board) {
         savedBoard = await storageService.put(STORAGE_KEY, board)
     } else {
         // Later, owner is set by the backend
-        board.owner = userService.getLoggedinUser()
+        board.owner = userService.getLoggedInUser()
         savedBoard = await storageService.post(STORAGE_KEY, board)
     }
     return savedBoard
@@ -56,7 +56,7 @@ async function addBoardMsg(boardId, txt) {
 
     const msg = {
         id: utilService.makeId(),
-        by: userService.getLoggedinUser(),
+        by: userService.getLoggedInUser(),
         txt
     }
     board.msgs.push(msg)

@@ -1,6 +1,6 @@
-import { eventBus, showSuccessMsg } from "../services/event-bus.service.js"
+import { eventBus, showSuccessMsg } from "../../services/event-bus.service.js"
 import { useState, useEffect, useRef } from 'react'
-import { socketService, SOCKET_EVENT_TASK_ABOUT_YOU } from "../services/socket.service.js"
+import { socketService, SOCKET_EVENT_TASK_ABOUT_YOU } from "../../services/socket.service.js"
 
 export function UserMsg() {
 

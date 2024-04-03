@@ -1,8 +1,8 @@
 import { Link, NavLink } from 'react-router-dom'
 import {useSelector} from 'react-redux'
-import routes from '../routes'
-import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
-import { login, logout, signup } from '../store/user.actions.js'
+import routes from '../../routes.jsx'
+import { showErrorMsg, showSuccessMsg } from '../../services/event-bus.service.js'
+import { login, logout, signup } from '../../store/user.actions.js'
 import { LoginSignup } from './LoginSignup.jsx'
 
 export function AppHeader() {
