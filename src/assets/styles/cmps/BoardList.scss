@@ -3,6 +3,23 @@
     & ul {
         list-style: none;
         flex-wrap: wrap;
-        margin-top: 24px;
+        margin-top: rem(24px);
+    }
+
+    & .new-board{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+
+        &:hover{
+            cursor: pointer;
+            background-color: #091e4224;
+        }
+
+        color: #172B4D;
+        background-color: #091E420F;
+        text-align: center;
+        
     }
 }
