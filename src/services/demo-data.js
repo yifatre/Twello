@@ -40,11 +40,44 @@ export const boardsDemoData = [
                 "tasks": [
                     {
                         "id": "c101",
-                        "title": "Replace logo"
+                        "title": "Replace logo",
+                        "style": {},
+                        "checklists": [
+                            {
+                                "id": "YesdmF",
+                                "title": "Checklist",
+                                "todos": [
+                                    {
+                                        "id": "2dsX",
+                                        "title": "To Do 1",
+                                        "isDone": true
+                                    }
+                                ]
+                            }
+                        ],
                     },
                     {
                         "id": "c102",
-                        "title": "Add Samples"
+                        "title": "Add Samples",
+                        "style": {},
+                        "checklists": [
+                            {
+                                "id": "YEhhmF",
+                                "title": "Checklist",
+                                "todos": [
+                                    {
+                                        "id": "21a2jX",
+                                        "title": "To Do 1",
+                                        "isDone": true
+                                    },
+                                    {
+                                        "id": "2124jX",
+                                        "title": "To Do 1",
+                                        "isDone": true
+                                    }
+                                ]
+                            }
+                        ],
                     }
                 ],
                 "style": {}
@@ -57,6 +90,7 @@ export const boardsDemoData = [
                         "id": "c103",
                         "title": "Do that",
                         "archivedAt": 1589983468418,
+                        "style": {}
                     },
                     {
                         "id": "c104",
@@ -184,6 +218,9 @@ export const boardsDemoData = [
                         "id": "c107",
                         "title": "Test Model Accuracy",
                         "archivedAt": 1589983468418,
+                        "style": {
+                            "backgroundColor": "#ffffff",
+                        }
                     },
                     {
                         "id": "c108",

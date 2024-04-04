@@ -1,0 +1,29 @@
+.task-add-form {
+    
+    textarea {
+        width: 100%;
+        resize: none;
+        border: none;
+        outline: none;
+        padding: rem(8px) rem(12px) rem(24px);
+    }
+
+    .btn-actions-container{
+        display: flex;
+        align-items: center;
+        margin-block-start: rem(8px);
+
+        button {
+            border-radius: $btn-border-radius;
+            span {
+                width: 20px;
+                height: 20px;
+            }
+        }
+        .add-btn {
+            background-color: $add-btn-bcg;
+            width: rem(83.5px);
+            color: white;
+        }
+    }
+}
