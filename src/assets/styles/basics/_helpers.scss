@@ -31,6 +31,16 @@
     list-style-type: none;
 }
 
+.svg-container {
+    display: inline-block;
+    width: rem(16px);
+    height: rem(16px);
+
+    svg {
+        max-width: 100%
+    }
+}
+
 // Media helpers
 .square-ratio {
     @include aspect-ratio(1, 1);
