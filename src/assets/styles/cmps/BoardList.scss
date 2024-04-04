@@ -1,9 +1,20 @@
 .board-list-container {
+    margin-left: rem(8px);
+    margin-block-start: rem(33px);
+
+    &>h3 {
+        font-size: rem(16px);
+
+        & span {
+            @include svg-container(24px);
+            margin-right: rem(8px);
+        }
+    }
 
     & ul {
         list-style: none;
         flex-wrap: wrap;
-        margin-top: rem(24px);
+        margin-top: rem(11px);
 
         & li {
             margin-right: rem(17px);
