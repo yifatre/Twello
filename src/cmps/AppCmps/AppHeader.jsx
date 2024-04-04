@@ -1,4 +1,5 @@
 import { Link, useLocation } from 'react-router-dom'
+import { arrow_down, more_icon } from '../UtilCmps/SVGs';
 
 export function AppHeader() {
     const { pathname } = useLocation();
@@ -22,14 +23,17 @@ export function AppHeader() {
     )
     return (
         <header className="app-header flex">
+            <button className='main-nav-btn arrow-down more-btn'>{more_icon}</button>
         <div className='logo'>
         <Link to='/board'>
         Twello
         </Link>
         </div>
-        <nav>
-        <Link></Link>
-        </nav>
+        <button className='main-nav-btn'>Workspaces <span className='arrow-down'>{arrow_down}</span></button>
+        <button className='main-nav-btn'>Recent <span className='arrow-down'>{arrow_down}</span></button>
+        <button className='main-nav-btn'>Starred <span className='arrow-down'>{arrow_down}</span></button>
+        <button className='main-nav-btn'>Templates <span className='arrow-down'>{arrow_down}</span></button>
+        <button className='create-btn'>create</button>
         </header>
         
         )
