@@ -1,4 +1,6 @@
 .board-preview {
+    margin-right:rem(16.5px);
+    border-radius: rem(3px);
     display: grid;
     grid-template-areas:
         "h"
