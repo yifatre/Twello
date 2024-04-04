@@ -72,7 +72,8 @@
                 color: rgb(255, 255, 255) !important;
                 font-size: 1rem;
                 font-family: 'charlie-display';
-                &:hover{
+
+                &:hover {
                     cursor: pointer;
                 }
             }
@@ -92,5 +93,29 @@
 
 
         }
+        & .home-page-middle {
+            background: linear-gradient(0deg, rgb(230, 252, 255), rgb(255, 255, 255)) 0% 0% / auto repeat scroll padding-box border-box rgb(178, 212, 255);
+            background-blend-mode: normal;
+            color: rgb(9, 30, 66);
+    
+            &.explain-head-container {
+                align-items: flex-start;
+                -webkit-box-pack: start;
+                justify-content: flex-start;
+                display: flex;
+                flex-wrap: wrap;
+                margin-left: -1rem;
+                margin-right: -1rem;
+                
+                @media (min-width: 768px) {
+                    text-align: left;
+                    order: 1;
+                    display: block;
+                    flex: 0 0 auto;
+                    width: 58.3333%;
+                }
+            }
+        }
     }
+
 }
