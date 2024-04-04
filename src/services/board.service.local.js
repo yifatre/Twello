@@ -12,7 +12,8 @@ export const boardService = {
     save,
     remove,
     getEmptyBoard,
-    addBoardMsg
+    addBoardMsg,
+    getEmptyTask
 }
 window.cs = boardService
 
@@ -68,8 +69,13 @@ async function addBoardMsg(boardId, txt) {
 
 function getEmptyBoard() {
     return {
-        vendor: 'Susita-' + (Date.now() % 1000),
-        price: utilService.getRandomIntInclusive(1000, 9000),
+       
+    }
+}
+
+function getEmptyTask() {
+    return {
+      title: '' 
     }
 }
 
