@@ -10,7 +10,6 @@ export function BoardPreview({ board }) {
         //TODO: add edit function here
     }
 
-
     return (
         <Link className='board-preview' to={`/board/${board._id}`}>
             {/* <pre>{JSON.stringify(board)}</pre> */}

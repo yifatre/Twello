@@ -13,18 +13,26 @@
 
     display: flex;
 
-    > *.full {
+    >*.full {
         flex: 1;
     }
+
     &.column {
         flex-direction: column;
     }
+
     &.justify-center {
         justify-content: center;
     }
+
     &.justify-space-between {
         justify-content: space-between;
     }
+
+    &.justify-start {
+        justify-content: start;
+    }
+
     &.align-center {
         align-items: center;
     }
@@ -32,6 +40,8 @@
 
 .clean-list {
     list-style-type: none;
+    margin: 0;
+    padding: 0;
 }
 
 .svg-container {
@@ -48,9 +58,11 @@
 .square-ratio {
     @include aspect-ratio(1, 1);
 }
+
 .video-ratio {
     @include aspect-ratio(16, 9);
 }
+
 .portrait-ratio {
     @include aspect-ratio(9, 16);
 }
