@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom'
-import { arrow_down, more_icon } from '../UtilCmps/SVGs';
+import { arrow_down, more_icon, search_icon } from '../UtilCmps/SVGs';
 
 export function AppHeader() {
     const { pathname } = useLocation();
@@ -34,6 +34,14 @@ export function AppHeader() {
         <button className='main-nav-btn'>Starred <span className='arrow-down'>{arrow_down}</span></button>
         <button className='main-nav-btn'>Templates <span className='arrow-down'>{arrow_down}</span></button>
         <button className='create-btn'>create</button>
+        {/* <div>
+        <div className='input-container'>
+            <button>{search_icon}</button>
+        <input className='search-input' type="text" />
+
+        </div>
+        </div> */}
+
         </header>
         
         )
