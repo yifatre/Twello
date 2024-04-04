@@ -41,12 +41,43 @@ export const boardsDemoData = [
                     {
                         "id": "c101",
                         "title": "Replace logo",
-                        "style": {}
+                        "style": {},
+                        "checklists": [
+                            {
+                                "id": "YesdmF",
+                                "title": "Checklist",
+                                "todos": [
+                                    {
+                                        "id": "2dsX",
+                                        "title": "To Do 1",
+                                        "isDone": true
+                                    }
+                                ]
+                            }
+                        ],
                     },
                     {
                         "id": "c102",
                         "title": "Add Samples",
-                        "style": {}
+                        "style": {},
+                        "checklists": [
+                            {
+                                "id": "YEhhmF",
+                                "title": "Checklist",
+                                "todos": [
+                                    {
+                                        "id": "21a2jX",
+                                        "title": "To Do 1",
+                                        "isDone": true
+                                    },
+                                    {
+                                        "id": "2124jX",
+                                        "title": "To Do 1",
+                                        "isDone": true
+                                    }
+                                ]
+                            }
+                        ],
                     }
                 ],
                 "style": {}
