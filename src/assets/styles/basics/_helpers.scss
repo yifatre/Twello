@@ -22,6 +22,14 @@
     &.justify-center {
         justify-content: center;
     }
+<<<<<<< Updated upstream
+    &.justify-space-between {
+        justify-content: space-between;
+=======
+    &.justify-start {
+        justify-content: start;
+>>>>>>> Stashed changes
+    }
     &.align-center {
         align-items: center;
     }
@@ -29,6 +37,8 @@
 
 .clean-list {
     list-style-type: none;
+    margin: 0;
+    padding: 0;
 }
 
 .svg-container {
