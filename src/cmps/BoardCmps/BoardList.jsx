@@ -17,9 +17,9 @@ export function BoardList({ boards }) {
 
                     })
                 }
-                <li>
+                <li className="board-preview">
 
-                    <article className='board-preview new-board ' onClick={()=> addBoard()}>
+                    <article className='new-board ' onClick={()=> addBoard()}>
                         <p>Create new board</p>
                     </article>
                 </li>
