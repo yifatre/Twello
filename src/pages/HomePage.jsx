@@ -3,7 +3,7 @@ import { bcg_wave } from "../cmps/UtilCmps/SVGs";
 
 export function HomePage() {
 
-    return (
+    return (<>
         <section className="home-page-container">
             <div className="home-page-top">
                 <div className="top-left-container">
@@ -21,5 +21,15 @@ export function HomePage() {
                 </div>
             </div>
         </section >
+        {/* <section className="home-page-middle">
+            <div className="home-page-top">
+                <div className="explain-head-container">
+                    <p>Twello 101</p>
+                    <h2>A productivity powerhouse</h2>
+                    <p>Simple, flexible, and powerful. All it takes are boards, lists, and cards to get a clear view of who’s doing what and what needs to get done. Learn more in our guide for getting started.</p>
+                </div>
+            </div>
+        </section> */}
+    </>
     )
 }
