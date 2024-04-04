@@ -138,7 +138,7 @@ export const boardsDemoData = [
             "imgUrl": "http://random-img"
         },
         "style": {
-            "backgroundImage": "url('http://random-bg-img')"
+            "backgroundImage": "https://trello-backgrounds.s3.amazonaws.com/SharedBackground/480x320/efcafb84d2e8f00d6d79bc9cf2830b06/photo-1712107063586-a282f12c3973.jpg"
         },
         "labels": [
             {

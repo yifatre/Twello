@@ -1,35 +1,68 @@
 .board-preview {
-    margin-right:rem(16.5px);
-    border-radius: rem(3px);
-    display: grid;
-    grid-template-areas:
-        "h"
-        "star";
-
-    height: rem(96px);
-    width: rem(193px);
-    background-size: cover;
-    background-position: 50%;
-
-    color: white;
-
-    h3 {
-        grid-area: h;
+    
+    display: block;
+    .board-preview-fade {
+        background-color: #000000;
+        opacity: 0.15;
+        width: 100%;
+        height: 100%;
+        border-radius: rem(3px);
     }
+    
+    &:hover .board-preview-fade {
+        opacity: 0.25;
+        z-index: 10;
+    }
+    
+    article {
+        border-radius: rem(3px);
+        position: relative;
 
-    button {
-        grid-area: star;
-        border: none;
-        background: none;
+        margin-block-end: rem(17px);
 
-        svg path {
-            fill: white;
+        height: rem(96px);
+        width: rem(193px);
+        background-size: cover;
+        background-position: 50%;
+        color: white;
+
+
+        h3 {
+            position: absolute;
+            inset: rem(8px);
+            font-weight: 700;
+            line-height: 1;
         }
+
+        span {
+            // grid-area: star;
+            position: absolute;
+            right: rem(10px);
+            bottom: rem(9px);
+
+            @include svg-container(14px);
+            transition: transform 150ms;
+
+        }
+
+        span:not(.starred) {
+            transform: translateX(200%);
+        }
+
+        &:hover {
+            span {
+                transform: translateX(0);
+
+                &:hover {
+                    transform: translateX(0) scale(1.2);
+                }
+            }
+        }
+
+        span.starred {
+            color: $clr-starred;
+        }
+
+
     }
-
-    button.starred svg path {
-        fill: #e2b203;
-    }
-
-
 }
