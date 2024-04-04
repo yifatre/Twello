@@ -1,8 +1,12 @@
 import { TaskList } from '../TaskCmps/TaskList'
 import { collapse_icon, ellipsis_icon, plus_icon, create_icon} from '../UtilCmps/SVGs'
 
+import { useEffect, useState } from 'react'
+import { TaskAdd } from '../TaskCmps/TaskAdd'
+
 export function GroupPreview({ group }) {
-    console.log(group)
+    const [isAddMode, setIsAddMode] = useState(false)
+
     return (
         // <li><pre>{JSON.stringify(group)}</pre></li>
         <li className="group-preview">
@@ -14,10 +18,11 @@ export function GroupPreview({ group }) {
             <div className="tasks-container">
                 <TaskList tasks={group.tasks}/>
             </div>
-            <div className='add'>
-                <button className="add-task">{plus_icon}Add a card</button>
+            {!isAddMode && <div className='add'>
+                <button className="add-task" onClick={()=> setIsAddMode(true)}>{plus_icon}Add a card</button>
                 <button className="create-from-template">{create_icon}</button>
-            </div>
+            </div>}
+            {isAddMode && <TaskAdd setIsAddMode={setIsAddMode}/>}
         </li>
     )
 }
