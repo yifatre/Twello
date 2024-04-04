@@ -1,0 +1,38 @@
+
+.task-preview {
+    position: relative;
+    box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px 0px, rgba(9, 30, 66, 0.31) 0px 0px 1px 0px;
+    padding: rem(8px) rem(12px) rem(4px);
+    border-radius: $border-radius;
+
+    & >*{
+        display: block;
+        margin-block-end: rem(4px);
+    }
+
+    // &:focus {
+    //     outline: 2px solid -webkit-focus-ring-color;
+    // }
+
+    &:hover {
+        outline: 2px solid -webkit-focus-ring-color;
+        .edit-icon{
+            opacity: 1;
+        }
+    }
+
+    .edit-icon {
+        opacity: 0;
+        position: absolute;
+        right: 2px;
+        top: 2px;
+        border-radius: 50%;
+        padding: rem(8px);
+        height: rem(32px);
+
+        &:hover{
+            background-color: $task-edit-hover-bcg;
+        }
+    }
+
+}

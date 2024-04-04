@@ -1,4 +1,5 @@
-import { collapse_icon, ellipsis_icon, plus_icon, create_icon } from '../UtilCmps/SVGs'
+import { TaskList } from '../TaskCmps/TaskList'
+import { collapse_icon, ellipsis_icon, plus_icon, create_icon} from '../UtilCmps/SVGs'
 
 export function GroupPreview({ group }) {
     console.log(group)
@@ -11,10 +12,10 @@ export function GroupPreview({ group }) {
                 <button className="options">{ellipsis_icon}</button>
             </div>
             <div className="tasks-container">
-
+                <TaskList tasks={group.tasks}/>
             </div>
             <div className='add'>
-                <button className="add-task"><span>{plus_icon}</span>Add a card</button>
+                <button className="add-task">{plus_icon}Add a card</button>
                 <button className="create-from-template">{create_icon}</button>
             </div>
         </li>

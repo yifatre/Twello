@@ -40,11 +40,13 @@ export const boardsDemoData = [
                 "tasks": [
                     {
                         "id": "c101",
-                        "title": "Replace logo"
+                        "title": "Replace logo",
+                        "style": {}
                     },
                     {
                         "id": "c102",
-                        "title": "Add Samples"
+                        "title": "Add Samples",
+                        "style": {}
                     }
                 ],
                 "style": {}
@@ -57,6 +59,7 @@ export const boardsDemoData = [
                         "id": "c103",
                         "title": "Do that",
                         "archivedAt": 1589983468418,
+                        "style": {}
                     },
                     {
                         "id": "c104",
@@ -184,6 +187,9 @@ export const boardsDemoData = [
                         "id": "c107",
                         "title": "Test Model Accuracy",
                         "archivedAt": 1589983468418,
+                        "style": {
+                            "backgroundColor": "#ffffff",
+                        }
                     },
                     {
                         "id": "c108",
