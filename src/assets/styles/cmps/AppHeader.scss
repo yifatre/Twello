@@ -3,7 +3,7 @@
     max-height: 48px;
     padding: 8px;
     border-bottom: 1px solid;
-    border-bottom-color: hsla(218, 54%, 19.6%, 0.16);
+    border-bottom-color: var(--dynamic-text-transparent);
 
     & .main-nav-btn {
         background-color: transparent;
