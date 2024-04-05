@@ -2,7 +2,7 @@
 export const boardsDemoData = [
     {
         _id: "b101",
-        title: "Robot dev proj",
+        title: "Demo Data",
         isStarred: false,
         archivedAt: 1589983468418,
         createdBy: {
