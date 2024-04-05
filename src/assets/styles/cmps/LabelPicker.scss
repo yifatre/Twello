@@ -22,7 +22,11 @@
     }
 
     & .ul-labels {
-        padding: 8px 4px;
+        padding-bottom: 8px;
+
+        & li {
+            padding: 0 0 4px 1px;
+        }
     }
 
     & .checkbox {
@@ -49,6 +53,10 @@
         border-radius: rem(3px);
         margin-left: 4px;
 
+        & span {
+            @include svg-container
+        }
+
         &:hover {
             background-color: rgba(9, 30, 66, 0.137254902);
         }
@@ -58,6 +66,11 @@
         margin: 4px 0;
         width: 100%;
         text-size-adjust: 100%;
+    }
+
+    & .enable-colorblind {
+        margin: 0;
+        margin-top: 4px;
     }
 
     & .between-btn {
@@ -73,6 +86,7 @@
         gap: 4px;
         margin-bottom: 8px;
 
+       
         & .color-container {
             position: relative;
             border-radius: 3px;
@@ -88,13 +102,24 @@
                 height: 100%;
                 cursor: pointer;
 
-               &:hover{
-                opacity: 0.7;
-               }
+                &:hover {
+                    opacity: 0.7;
+                }
             }
         }
     }
-    & span{
+
+    & .outsideLine{
+        border: 2px solid #0c66e4 !important;
+
+         & .outsideLine-white{
+            border: 2px  #ffffff solid !important;
+            border-radius: none !important;
+         }
+    }
+    
+
+    & span {
         margin-right: 8px;
     }
 
@@ -127,3 +152,4 @@
 
 
 }
+

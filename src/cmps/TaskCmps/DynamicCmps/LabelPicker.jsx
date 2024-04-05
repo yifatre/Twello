@@ -10,28 +10,39 @@ const pallet = ['#baf3db', '#f8e6a0', '#fedec8', '#ffd5d2', '#dfd8fd',
 
 // todo connect btn's and add the on update 
 
-export function LabelPicker({ info, onUpdate }) {
+export function LabelPicker({ labels, onUpdate }) {
+    console.log(labels);
     const [toggle, setToggle] = useState(false)
     const [currentColor, setCurrentColor] = useState('#4bce97')
     const [labelContent, setLabelContent] = useState('')
+    const [dark, setDark] = useState(new Array(pallet.length).fill(false));
 
+    const handleSelectCategory = (category, index) => {
+        let result = [...dark].fill();
+        result[index] = !result[index];
+        setDark(result);
+    }
 
     function toggleBtn() {
         setToggle(!toggle)
     }
 
-    function colorChange(color) {
+    function colorChange(color, index) {
+        let result = [...dark].fill(false)
+        result[index] = !result[index];
+        setDark(result);
+        console.log('dark',dark);
         setCurrentColor(color)
     }
-    
+
     function handleChange(ev) {
         let { value, name: field, type } = ev.target
         if (type === 'number') value = +value
         setLabelContent(value)
-        
+
     }
 
-    function removeColor(){
+    function removeColor() {
         setCurrentColor('hsla(218, 54%, 19.6%, 0.16)')
     }
 
@@ -50,17 +61,19 @@ export function LabelPicker({ info, onUpdate }) {
                 />
                 <p>Labels</p>
                 <ul className="clean-list ul-labels">
-                    {/* // todo when info connect make a map for the labels and dont forget to do the color change */}
-                    <li className="flex align-center">
-                        <input className="checkbox" type="checkBox" id="checkbox1" />
-                        <label htmlFor="checkbox1"> <div style={{ backgroundColor: 'rgb(245, 205, 71)' }} className="label-picker"> Design Team</div></label>
-                        <button className="edit-label">{edit_icon}</button>
-                    </li>
+                    {labels.map((label, index) => {
+
+                        return <li key={label.id} className="flex align-center">
+                            <input className="checkbox" type="checkBox" id={label.id} />
+                            <label htmlFor={label.id}> <div style={{ backgroundColor: label.color }} className="label-picker"> {label.title}</div></label>
+                            <button className="edit-label">{edit_icon}</button>
+                        </li>
+                    })}
                 </ul>
 
                 <button onClick={() => toggleBtn()} className="tasks-btn labels-btn">Create a new label</button>
                 <hr className="between-btn" />
-                <button className="tasks-btn labels-btn">Enable colorblind friendly mode </button>
+                <button className="tasks-btn labels-btn enable-colorblind">Enable colorblind friendly mode </button>
             </section>
         </>
 
@@ -84,16 +97,15 @@ export function LabelPicker({ info, onUpdate }) {
                 />
                 <p>Select a color</p>
                 <div className="color-pallet">
-                    {pallet.map(color => {
-                        console.log(color);
-                        return <div className="color-container">
-                            <div onClick={() => colorChange(color)} style={{ backgroundColor: color }} className="color"></div>
+                    {pallet.map((color, index) => {
+                        return <div key={color} className={`color-container ${dark[index] ? 'outsideLine' : ''}`}>
+                            <div onClick={() => colorChange(color, index)} style={{ backgroundColor: color }} className={`color ${dark[index] ? 'outsideLine-white' : ''}`}></div>
                         </div>
                     })}
                 </div>
 
 
-                <button onClick={()=>removeColor()} className="tasks-btn labels-btn">{x_icon}Remove color</button>
+                <button onClick={() => removeColor()} className="tasks-btn labels-btn ">{x_icon}Remove color</button>
                 <hr className="between-btn" />
                 <button className='create-btn'>create</button>
             </section>
