@@ -70,16 +70,16 @@
     }
 }
 
-@mixin reg-btn($width: 32px) {
-    // display: grid;
-    // place-items: center;
+@mixin reg-btn($width: 32px, $padding: 8px) {
+    display: grid;
+    place-items: center;
     width: rem(32px);
     height: rem($width);
     background-color: transparent;
     border: none;
     border-radius: rem(8px);
     color: inherit;
-    padding: rem(8px);
+    padding: rem($padding);
     font-weight: 500;
     font-size: rem(14px);
 }

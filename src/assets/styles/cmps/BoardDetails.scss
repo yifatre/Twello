@@ -1,0 +1,15 @@
+.board-details {
+    width: 100%;
+    height: calc(100vh - 48px);
+    background-position-y: 50%;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    display: grid;
+    grid-template-areas:
+        "sidebar head"
+        "sidebar body";
+
+    grid-template-rows: max-content 1fr;
+    grid-template-columns: max-content 1fr;
+}

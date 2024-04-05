@@ -388,6 +388,16 @@
     --ds-opacity-loading: 0.2;
     --ds-UNSAFE-transparent: transparent;
     --ds-elevation-surface-current: #FFFFFF;
+
+
+    //board header vars 
+    --dynamic-button: transparent;
+    --dynamic-button-hovered: #A6C5E229;
+    --dynamic-button-pressed: #BFDBF847;
+    --dynamic-button-highlighted: #DFE1E6;
+    --dynamic-button-highlighted-text: #172B4D;
+    --dynamic-button-highlighted-hovered: #FFFFFF;
+    --dynamic-text-transparent: hsla(0, 0%, 100%, 0.16);
 }
 
 .lime {
