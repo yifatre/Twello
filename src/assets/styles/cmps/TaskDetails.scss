@@ -1,3 +1,140 @@
-.task-details{
-    border-radius: $bo;
+.task-details-backdrop {
+    background-color: #000000bf;
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.task-details {
+    border-radius: rem(12px);
+    margin: rem(48px) auto;
+    // position: absolute;
+    background-color: #F1F2F4;
+    width: rem(768px);
+    display: grid;
+    grid-template-areas:
+        "cover cover"
+        "title title"
+        "shorts actions"
+        "desc actions"
+        "attach actions"
+        "checklist actions"
+    ;
+    grid-template-columns: 1fr max-content;
+
+    color: #172b4d;
+
+    h3 {
+        font-size: rem(12px);
+        line-height: rem(20px);
+        font-weight: normal;
+    }
+
+    .cover {
+        grid-area: cover;
+        border-start-end-radius: rem(12px);
+        border-start-start-radius: rem(12px);
+        height: rem(116px);
+        background-color: goldenrod;
+    }
+
+    .icon-span {
+        position: absolute;
+        left: rem(15px);
+        top: rem(15px);
+        span {
+            @include svg-container(17px, 18px);
+        }
+
+        padding: rem(8px);
+
+    }
+
+    .title {
+        grid-area: title;
+        min-height: rem(32px);
+        height: rem(89px);
+        position: relative;
+        padding: 8px 52px 8px 56px;
+
+
+        div {
+
+            padding-top: rem(12px);
+
+            h2,
+            textarea {
+                font-size: rem(20px);
+                font-weight: 600;
+                line-height: rem(24px);
+                min-height: rem(24px);
+                height: rem(37px);
+                width: 100%;
+            }
+
+            textarea {
+                background: none;
+                background: pink;
+                border: none;
+                border-radius: rem(4px);
+                color: inherit;
+                margin: rem(-6px) rem(-10px);
+                padding: rem(6px) rem(10px);
+                resize: none;
+                display: block;
+                outline: none;
+                transition-duration: 85ms;
+                transition-property: background-color, border-color, box-shadow;
+                transition-timing-function: ease;
+                overflow: hidden;
+                overflow-wrap: break-word;
+            }
+        }
+
+        p{
+            margin: rem(4px) rem(8px) rem(4px) rem(2px);
+            display: inline-block;
+            a{
+                text-decoration: underline;
+            }
+        }
+
+
+    }
+
+    .shorts {
+        grid-area: shorts;
+    }
+
+    .description {
+        grid-area: desc;
+    }
+
+    .actions {
+        border-end-end-radius: rem(12px);
+        width: rem(192px);
+        grid-area: actions;
+        // background-color: palevioletred;
+        padding: 0 rem(16px) rem(8px) rem(9px);
+
+        h3 {
+            margin-bottom: rem(4px);
+        }
+
+        a {
+            display: flex;
+            gap: 9px;
+            border-radius: rem(3px);
+            background-color: #091e420f;
+            height: rem(32px);
+            font-weight: 500;
+            padding: rem(6px) rem(7px);
+            margin-bottom: rem(8px);
+
+            span {
+                @include svg-container
+            }
+        }
+    }
 }

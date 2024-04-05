@@ -25,8 +25,8 @@ export function TaskPreview({ task }) {
     return (
         <li className="task-preview"
             style={{
-                backgroundColor: style.backgroundColor || '#ffffff',
-                backgroundImage: `url(${style.backgroundImage})`
+                backgroundColor: style?.backgroundColor || '#ffffff',
+                backgroundImage: `url(${style?.backgroundImage})`
             }}>
             <i className="edit-icon">{edit_icon}</i>
             <a>{title}</a>
