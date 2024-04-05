@@ -20,8 +20,9 @@ export function taskReducer(state = initialState, action = {}) {
         ...state,
         tasks: state.tasks.map(task =>
           task._id === action.task._id ? action.task : task
-        )}
-    default:
+        )
+      }
+    default: return state
       return state
   }
 }

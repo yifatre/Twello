@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { bcg_wave } from "../cmps/UtilCmps/SVGs";
+import { DynamicCmp, LABELS } from "../cmps/TaskCmps/DynamicCmps/DynamicCmp";
 
 export function HomePage() {
 
@@ -21,7 +22,8 @@ export function HomePage() {
                 </div>
             </div>
         </section >
-        {/* <section className="home-page-middle">
+        <section className="home-page-middle">
+            <DynamicCmp cmp={LABELS}/>
             <div className="home-page-top">
                 <div className="explain-head-container">
                     <p>Twello 101</p>
@@ -29,7 +31,7 @@ export function HomePage() {
                     <p>Simple, flexible, and powerful. All it takes are boards, lists, and cards to get a clear view of who’s doing what and what needs to get done. Learn more in our guide for getting started.</p>
                 </div>
             </div>
-        </section> */}
+        </section>
     </>
     )
 }
