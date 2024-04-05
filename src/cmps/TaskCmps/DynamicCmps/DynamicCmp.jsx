@@ -43,9 +43,6 @@ export function DynamicCmp({ cmp, info, onUpdate }) {
             break
     }
     return <div className={`dynamic-cmp ${cmp.toLowerCase()}`}>
-        <header className="dynamic-head-container">
-            <h2>{topHead}</h2>
-        </header>
         {cmpType}
     </div>
 }

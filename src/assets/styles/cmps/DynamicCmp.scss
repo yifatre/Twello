@@ -33,75 +33,36 @@
             grid-row: 1;
         }
 
-    }
-
-    & .picker-container {
-        padding: 0 12px 12px 12px;
-
-        & input {
-            width: 100%;
-            border: 2px solid rgba(9, 30, 66, 0.137254902);
-            border-radius: 2px;
-            padding: 6px 12px;
-            line-height: 20px;
-
-            &:focus {
-                outline: none !important;
-                border-color: #719ECE;
-            }
-        }
-
-        & p {
-            margin-top: rem(12px);
-            margin-bottom: rem(8px);
-            font-size: rem(12px);
-            font-weight: 600;
-        }
-
-       & .ul-labels{
-        padding: 8px 4px;
-       }
-
-        & .checkbox {
-            height: 16px;
-            width: 16px;
-        }
-
-        & .label-picker {
-            width: rem(212px);
-            height: rem(32px);
-            padding: 0 rem(12px);
-            // text-align: center;
-            line-height: rem(32px);
-            border-radius: rem(3px);
-            margin-left: rem(12px);
-        }
-
-        & .edit-label {
-            width: rem(32px);
-            height: rem(32px);
-            padding: rem(8px);
+        & .close-btn,
+        .back-btn {
+            
+            z-index: 2;
             background-color: transparent;
-            border: none;
-            border-radius: rem(3px);
-            margin-left: 4px;
+
+            padding: 8px 0;
 
             &:hover {
-                background-color: rgba(9, 30, 66, 0.137254902);
+                background-color: #091E4224;
             }
+
+            & span {
+                @include svg-container
+            }
+
         }
 
-        & .labels-btn{
-            margin: 4px 0;
-            width: 100%;
-            text-size-adjust: 100%;
+        & .close-btn{
+            grid-column: 3;
+            grid-row: 1;
         }
 
-        & .between-btn{
-            margin: 8px 0 ;
-           background-color:  #091e422f;
-           height: 1px;
-           border: none;
+        &  .back-btn {
+            grid-column: 1;
+            grid-row: 1;
+            transform: rotate(90deg)
         }
+
     }
+
+
 }
