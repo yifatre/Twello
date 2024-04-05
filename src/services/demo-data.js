@@ -80,7 +80,11 @@ export const boardsDemoData = [
                         ],
                     }
                 ],
-                "style": {}
+                "style": {
+                    
+                        "themeColor": "lime"
+                    
+                }
             },
             {
                 "id": "g102",
@@ -133,7 +137,7 @@ export const boardsDemoData = [
                             "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
                         },
                         "style": {
-                            "backgroundColor": "#26de81"
+                            
                         }
                     }
                 ],

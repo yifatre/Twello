@@ -6,6 +6,9 @@
         border: none;
         outline: none;
         padding: rem(8px) rem(12px) rem(24px);
+        &:hover {
+            outline: none;
+        }
     }
 
     .btn-actions-container{
