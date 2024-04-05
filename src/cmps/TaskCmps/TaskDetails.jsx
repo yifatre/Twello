@@ -1,6 +1,7 @@
 import { useParams } from "react-router"
 import { DescriptionEdit } from "./DescriptionEdit"
-import { checked_icon, clock_icon, eye_icon, label_icon, member_icon, paperclip_icon, plus_icon, window_icon } from "../UtilCmps/SVGs"
+import { arrow_down, bars_icon, box_icon, check_icon, checked_icon, clock_icon, eye_icon, label_icon, member_icon, paperclip_icon, plus_icon, window_icon } from "../UtilCmps/SVGs"
+import { utilService } from "../../services/util.service"
 
 
 export function TaskDetails({ }) {//task }) {
@@ -70,22 +71,38 @@ export function TaskDetails({ }) {//task }) {
                 </div>
                 {/* {task.title} */}
             </section>
-            <div className="data">
-                <section className="members">
+            <section className="data">
+                <div className="members">
                     <h3>Members</h3>
-                    <div className="flex">
+                    <div className="">
                         {task.memberIds.map(memberId => <div key={memberId} className="avatar"></div>)}
                         <button className="avatar" onClick={onAddMember}>{plus_icon}</button>
                     </div>
-                </section>
-                <section className="labels">
-                    {task.labelIds.map(labelId => <div>{labelId}</div>)}
-                    <button onClick={onAddLabel}>+</button>
+                </div>
+                <div className="labels">
+                    <h3>Labels</h3>
+                    <div className="">
+                        {task.labelIds.map(labelId => <div key={labelId} className="label">{labelId}</div>)}
+                        <button className="label" onClick={onAddLabel}>{plus_icon}</button>
+                    </div>
 
-                </section>
+                </div>
+                <div className="due-date">
+                    <h3>Due date</h3>
+                    <div className="">
+                        <span className="box">
+                            {check_icon}
+                        </span>
+                        <button>{utilService.getFormattedTime(new Date('April 25, 2024 20:20:00'))}{arrow_down}</button>
+                    </div>
+
+                </div>
                 {/* <section className="notifications"></section> */}
-            </div>
+            </section>
             <section className="description">
+                <span className="icon-span">{bars_icon}</span>
+                <h3>Description</h3>
+
                 <DescriptionEdit />
             </section>
 
