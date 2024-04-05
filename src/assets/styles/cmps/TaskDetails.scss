@@ -16,7 +16,7 @@
     grid-template-areas:
         "cover cover"
         "title title"
-        "shorts actions"
+        "data actions"
         "desc actions"
         "attach actions"
         "checklist actions"
@@ -43,6 +43,7 @@
         position: absolute;
         left: rem(15px);
         top: rem(15px);
+
         span {
             @include svg-container(17px, 18px);
         }
@@ -59,7 +60,7 @@
         padding: 8px 52px 8px 56px;
 
 
-        div {
+        div.title-txt {
 
             padding-top: rem(12px);
 
@@ -92,19 +93,54 @@
             }
         }
 
-        p{
-            margin: rem(4px) rem(8px) rem(4px) rem(2px);
-            display: inline-block;
-            a{
-                text-decoration: underline;
+        div.list-txt {
+            display: flex;
+            align-items: center;
+            gap: rem(15px);
+
+            p {
+                margin: rem(4px) rem(8px) rem(4px) rem(2px);
+                display: inline-block;
+
+                a {
+                    text-decoration: underline;
+                }
+
+            }
+
+            span {
+                @include svg-container;
+                align-self: start;
+                margin-top: rem(6px);
             }
         }
 
 
     }
 
-    .shorts {
-        grid-area: shorts;
+    .data {
+        grid-area: data;
+        padding: 8px 52px 8px 57px;
+
+        .members {
+            h3 {
+                margin-bottom: rem(4px);
+            }
+
+            div {
+                margin-left: rem(-0.5px);
+                gap: rem(4px);
+                button{
+                    padding: rem(6px) rem(8px);
+                    span{
+                        margin-top: rem(2px);
+                        @include svg-container
+                    }
+                }
+            }
+        }
+
+
     }
 
     .description {
@@ -124,7 +160,7 @@
 
         a {
             display: flex;
-            gap: 9px;
+            gap: 8px;
             border-radius: rem(3px);
             background-color: #091e420f;
             height: rem(32px);

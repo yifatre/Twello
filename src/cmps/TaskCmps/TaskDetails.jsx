@@ -1,6 +1,6 @@
 import { useParams } from "react-router"
 import { DescriptionEdit } from "./DescriptionEdit"
-import { checked_icon, clock_icon, eye_icon, label_icon, location_icon, member_icon, paperclip_icon, window_icon } from "../UtilCmps/SVGs"
+import { checked_icon, clock_icon, eye_icon, label_icon, member_icon, paperclip_icon, plus_icon, window_icon } from "../UtilCmps/SVGs"
 
 
 export function TaskDetails({ }) {//task }) {
@@ -60,17 +60,23 @@ export function TaskDetails({ }) {//task }) {
             <section className="cover">       </section>
             <section className="title">
                 <span className="icon-span">{window_icon}</span>
-                <div>
+                <div className="title-txt">
                     <h2 hidden>{task.title}</h2>
                     <textarea name="title" id="title" value={task.title}></textarea>
                 </div>
-                <p>in list <a href="#">{'list name'}</a>{eye_icon}</p>
+                <div className="list-txt">
+                    <p>in list <a href="#">{'list name'}</a></p>
+                    {eye_icon}
+                </div>
                 {/* {task.title} */}
             </section>
-            <div className="shorts">
+            <div className="data">
                 <section className="members">
-                    {task.memberIds.map(memberId => <div>{memberId}</div>)}
-                    <button onClick={onAddMember}>+</button>
+                    <h3>Members</h3>
+                    <div className="flex">
+                        {task.memberIds.map(memberId => <div key={memberId} className="avatar"></div>)}
+                        <button className="avatar" onClick={onAddMember}>{plus_icon}</button>
+                    </div>
                 </section>
                 <section className="labels">
                     {task.labelIds.map(labelId => <div>{labelId}</div>)}
@@ -90,7 +96,7 @@ export function TaskDetails({ }) {//task }) {
                 <a className="flex align-center" href="#">{checked_icon}Checklist</a>
                 <a className="flex align-center" href="#">{clock_icon}Dates</a>
                 <a className="flex align-center" href="#">{paperclip_icon}Attachment</a>
-                <a className="flex align-center" href="#">{location_icon}Location</a>
+                {/* <a className="flex align-center" href="#">{location_icon}Location</a> */}
 
             </section>
 

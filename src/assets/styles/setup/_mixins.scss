@@ -50,7 +50,7 @@
     }
 }
 
-// Mixin for removing hover efects on iphone screen
+// Mixin for removing hover effects on iphone screen
 @mixin hover-supported {
     @media not all and (pointer: coarse) {
         &:hover {
@@ -59,7 +59,7 @@
     }
 }
 
-@mixin svg-container($height: 16px, $width: $height) {
+@mixin svg-container($height: 16px, $width: 16px) {
     display: inline-block;
     width: rem($width);
     height: rem($height);
