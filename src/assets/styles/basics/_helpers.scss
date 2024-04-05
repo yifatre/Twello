@@ -67,3 +67,25 @@
 .portrait-ratio {
     @include aspect-ratio(9, 16);
 }
+
+.tasks-btn{
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    color: #44546f;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 3px;
+    cursor: pointer;
+    padding: 6px 12px;
+    background-color: #091E420F;
+    border: none;
+
+    &:hover{
+        background-color: #091E4224;
+    }
+
+}
