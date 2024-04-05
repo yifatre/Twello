@@ -37,24 +37,6 @@
         }
     }
 
-    & .create-btn {
-        background-color: rgb(0, 101, 255);
-        color: rgb(255, 255, 255);
-        border-radius: 3px;
-        border: 0;
-        height: 32px;
-        line-height: 32px;
-        margin: 0 4px 0 0;
-        white-space: nowrap;
-        font-weight: 500;
-        padding: 0 12px;
-        margin: 0 4px;
-
-        &:hover {
-            cursor: pointer;
-            background-color: #0055cc;
-        }
-    }
 
 }
 

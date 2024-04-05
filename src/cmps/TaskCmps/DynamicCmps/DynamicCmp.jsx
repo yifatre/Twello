@@ -13,13 +13,12 @@ export const COVER = 'COVER'
 
 
 export function DynamicCmp({ cmp, info, onUpdate }) {
-    console.log(cmp);
     var cmpType
     var topHead
     switch (cmp) {
         case LABELS:
             topHead = 'Labels'
-            cmpType = <LabelPicker info={info} onUpdate={onUpdate} />;
+            cmpType = <LabelPicker labels={info.labels} onUpdate={onUpdate} />;
             break
 
         case MEMBERS:
@@ -43,9 +42,6 @@ export function DynamicCmp({ cmp, info, onUpdate }) {
             break
     }
     return <div className={`dynamic-cmp ${cmp.toLowerCase()}`}>
-        <header className="dynamic-head-container">
-            <h2>{topHead}</h2>
-        </header>
         {cmpType}
     </div>
 }

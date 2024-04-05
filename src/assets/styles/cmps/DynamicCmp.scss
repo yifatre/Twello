@@ -4,6 +4,8 @@
     // for dev
     inset: 92px auto auto 308.8px;
     background-color: white;
+    border-radius: rem(8px);
+    box-shadow: var(--ds-shadow-overlay, 0px 8px 12px #091e4226, 0px 0px 1px #091e424f);
 
     & .dynamic-head-container {
         padding: 4px 8px;
@@ -30,5 +32,37 @@
             grid-column: 1 / span 3;
             grid-row: 1;
         }
+
+        & .close-btn,
+        .back-btn {
+            
+            z-index: 2;
+            background-color: transparent;
+
+            padding: 8px 0;
+
+            &:hover {
+                background-color: #091E4224;
+            }
+
+            & span {
+                @include svg-container
+            }
+
+        }
+
+        & .close-btn{
+            grid-column: 3;
+            grid-row: 1;
+        }
+
+        &  .back-btn {
+            grid-column: 1;
+            grid-row: 1;
+            transform: rotate(90deg)
+        }
+
     }
+
+
 }
