@@ -24,6 +24,7 @@
     ;
     grid-template-columns: 1fr max-content;
     position: fixed;
+    left: calc(50% - 0.5 * rem(768px));
     color: #172b4d;
 
     .close-btn {
@@ -38,9 +39,10 @@
         align-items: center;
         justify-content: center;
         background: none;
+        z-index: 1;
 
         &:hover {
-            background-color: var(--dynamic-button-hovered, #091E4224);
+            background: #091E4224;
         }
 
         span {
@@ -59,7 +61,24 @@
         border-start-end-radius: rem(12px);
         border-start-start-radius: rem(12px);
         height: rem(116px);
-        background-color: goldenrod;
+        background-color: var(--ds-background-accent-yellow-subtle, #e2b203);
+        color: var(--ds-text-accent-yellow-bolder, #533f04);
+        position: relative;
+
+        a {
+            display: inline-flex;
+            align-items: center;
+            gap: rem(5px);
+            margin: 0;
+            padding: 0;
+            position: absolute;
+            right: rem(24px);
+            bottom: rem(18px);
+
+            & span {
+                @include svg-container
+            }
+        }
     }
 
     .icon-span {
@@ -173,6 +192,17 @@
                 margin-left: rem(-0.5px);
                 gap: rem(4px);
 
+                .avatar {
+                    border-radius: 50%;
+                    width: rem(32px);
+                    height: rem(32px);
+                    border: none;
+                    background-color:lightseagreen;
+                    display: inline-block;
+                    padding: 0;
+                    margin: 0;
+                    // background-color: #091e420f;
+                }
                 button {
                     padding: rem(6px) rem(8px);
 
@@ -182,6 +212,7 @@
                     }
                 }
             }
+
         }
 
         .labels {
