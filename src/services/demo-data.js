@@ -3,7 +3,7 @@ export const boardsDemoData = [
     {
         _id: "b101",
         title: "Demo Data",
-        isStarred: false,
+        isStarred: true,
         archivedAt: 1589983468418,
         createdBy: {
             "_id": "u101",
@@ -80,7 +80,11 @@ export const boardsDemoData = [
                         ],
                     }
                 ],
-                "style": {}
+                "style": {
+                    
+                        "themeColor": "lime"
+                    
+                }
             },
             {
                 "id": "g102",
@@ -133,7 +137,7 @@ export const boardsDemoData = [
                             "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
                         },
                         "style": {
-                            "backgroundColor": "#26de81"
+                            
                         }
                     }
                 ],
@@ -424,14 +428,49 @@ export const boardsDemoData = [
 export const userDemoData = [
     {
         "_id": "u101",
-        "fullname": "Abi Abambi",
+        "fullName": "Yifat re",
         "username": "abi@ababmi.com",
         "password": "aBambi123",
-        "imgUrl": "http://some-img.jpg",
+        "imgUrl": "https://trello-members.s3.amazonaws.com/660bf13c426a52eda7897e39/7dc2b02dcda3f5364deedb6736608c8b/170.png",
         "mentions": [{ //optional
             "id": "m101",
             "boardId": "m101",
             "taskId": "t101"
         }]
+    },
+    {
+        "_id": "u102",
+        "fullName": "John Doe",
+        "username": "john.doe@example.com",
+        "password": "JDoe123",
+        "imgUrl": "https://randomuser.me/api/portraits/men/1.jpg"
+    },
+    {
+        "_id": "u103",
+        "fullName": "Alice Smith",
+        "username": "alice.smith@example.com",
+        "password": "ASmith456",
+        "imgUrl": "https://randomuser.me/api/portraits/women/2.jpg"
+    },
+    {
+        "_id": "u104",
+        "fullName": "Michael Johnson",
+        "username": "mike.johnson@example.com",
+        "password": "MJohnson789",
+        "imgUrl": ""
+    },
+    {
+        "_id": "u105",
+        "fullName": "Emily Brown",
+        "username": "emily.brown@example.com",
+        "password": "EBrown101",
+        "imgUrl": "https://randomuser.me/api/portraits/women/4.jpg"
+    },
+    {
+        "_id": "u106",
+        "fullName": "David Lee",
+        "username": "david.lee@example.com",
+        "password": "DLee2022",
+        "imgUrl": "https://randomuser.me/api/portraits/men/5.jpg"
     }
 ]

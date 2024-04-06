@@ -1,5 +1,6 @@
 // Setup
 @import "setup/variables";
+@import "setup/clrVariables";
 @import "setup/functions";
 @import "setup/mixins";
 @import "setup/typography";
@@ -16,11 +17,16 @@
 
 // Components
 @import "cmps/TaskIndex";
+@import "cmps/TaskDetails";
 @import "cmps/AppHeader";
 @import "cmps/AppFooter";
 @import "cmps/UserMsg";
 @import "cmps/BoardPreview.scss";
 @import "cmps/BoardList";
+@import "cmps/BoardDetails";
+@import "cmps/BoardHeader";
+@import "cmps/BoardSideBar";
+@import "cmps/GroupList";
 @import "cmps/GroupPreview";
 @import "cmps/TaskList";
 @import "cmps/TaskPreview";

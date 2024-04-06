@@ -13,10 +13,19 @@ $board-header-bgc: #0000003d;
 $task-edit-hover-bcg: #F1F2F4;
 $add-btn-bcg: #0C66E4;
 $task-info-txt-clr: #44546F;
+$txt-white-color: #ffffff;
 
 $border-radius: 0.5rem;
+$group-border-radius: 0.75rem;
+// $border-radius: (8px);
 $btn-border-radius: 0.1875rem;
 // // Breakpoints
 // $mobile-breakpoint: 460px;
 // $narrow-breakpoint: 720px;
 // $normal-breakpoint: 960px;
+
+:root {
+    --dynamic-background: #50514b;
+    --dynamic-background-transparent: hsla(69, 3.9%, 35.5%, 0.9);
+    --dynamic-txt-clr: #ffffff;
+}

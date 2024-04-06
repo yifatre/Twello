@@ -25,8 +25,8 @@ export function TaskPreview({ task }) {
     return (
         <li className="task-preview"
             style={{
-                backgroundColor: style.backgroundColor || '#ffffff',
-                backgroundImage: `url(${style.backgroundImage})`
+                backgroundColor: style?.backgroundColor || '#ffffff',
+                backgroundImage: `url(${style?.backgroundImage})`
             }}>
             <i className="edit-icon">{edit_icon}</i>
             <a>{title}</a>
@@ -36,7 +36,7 @@ export function TaskPreview({ task }) {
                 {!!task.description && <span className="icon-container">{bars_icon}</span>}
                 <div className="txt-and-icon icon-container">{paperclip_icon}2</div>
                 {!!task.checklists?.length
-                    && <div className="txt-and-icon icon-container">{checked_icon}<span>{`${getTodoDoneCount().doneCount}/${getTodoDoneCount().totalTodos}`}</span></div>}
+                    && <div className="txt-and-icon icon-container">{checked_icon}{`${getTodoDoneCount().doneCount}/${getTodoDoneCount().totalTodos}`}</div>}
 
             </div>
         </li>
