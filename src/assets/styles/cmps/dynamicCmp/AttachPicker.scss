@@ -1,0 +1,15 @@
+.attach-section{
+    & .attach-h2{
+        color: #44546f;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: -0.003em;
+    }
+
+    & p{
+        font-size: 12px;
+        margin: 8px 0 12px;
+        padding: 2px;
+        font-weight: 400;
+    }
+}
