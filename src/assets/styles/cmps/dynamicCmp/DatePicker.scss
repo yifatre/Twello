@@ -1,0 +1,13 @@
+.date-picker-container {
+
+    & .input-Date-picker {
+        width: 90px;
+        height: 32px;
+        margin-right: 8px;
+    }
+
+    & .save-date-btn {
+        background-color: var(--ds-background-brand-bold);
+        color: var(--ds-text-inverse);
+    }
+}

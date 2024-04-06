@@ -12,8 +12,7 @@ export const COVER = 'COVER'
 
 
 
-export function DynamicCmp({ cmp, info, onUpdate }) {
-    console.log('info', info)
+export function DynamicCmp({ cmp, info, onUpdate,task }) {
     var cmpType
     var topHead
     let top = 24
@@ -22,13 +21,14 @@ export function DynamicCmp({ cmp, info, onUpdate }) {
         case LABELS:
             top += buttonHeight * 2
             topHead = 'Labels'
-            cmpType = <LabelPicker labels={info.labelIds} onUpdate={onUpdate} />
+            cmpType = <LabelPicker taskLabels={task.labelIds} onUpdate={onUpdate} />
             break
 
         case MEMBERS:
             top += buttonHeight
             topHead = 'Member'
-            cmpType = <MemberPicker info={info} onUpdate={onUpdate} />
+            // todo add 'taskMembers when we connected the actual data ! 
+            cmpType = <MemberPicker  members={info} onUpdate={onUpdate} />;
             break
 
         case DATES:

@@ -40,18 +40,20 @@
             right: rem(10px);
             bottom: rem(9px);
 
-            @include svg-container(14px);
+            @include svg-container(14px, 14px);
             transition: transform 150ms;
 
         }
 
         span:not(.starred) {
             transform: translateX(200%);
+            opacity: 0;
         }
 
         &:hover {
             span {
                 transform: translateX(0);
+                opacity: 1;
 
                 &:hover {
                     transform: translateX(0) scale(1.2);
@@ -62,7 +64,5 @@
         span.starred {
             color: $clr-starred;
         }
-
-
     }
 }

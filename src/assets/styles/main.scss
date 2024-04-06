@@ -31,11 +31,18 @@
 @import "cmps/TaskList";
 @import "cmps/TaskPreview";
 @import "cmps/TaskAdd";
-@import "cmps/DynamicCmp";
-@import "cmps/LabelPicker";
+@import "cmps/dynamicCmp/DynamicCmp.scss";
+@import "cmps/dynamicCmp/LabelPicker.scss";
+@import "cmps/dynamicCmp/MembersPicker.scss";
+@import "cmps/dynamicCmp/DatePicker.scss";
+
+@import 'react-date-range/dist/styles.css';
+@import 'react-date-range/dist/theme/default.css';
 
 
-
+.rdrMonth {
+    width: 25.2em !important;
+}
 
 
 
