@@ -24,7 +24,7 @@ export function HomePage() {
             </div>
         </section >
         <section className="home-page-middle">
-            {/* <DynamicCmp cmp={DATES} /> */}
+            <DynamicCmp cmp={DATES} />
             <div className="home-page-top">
                 <div className="explain-head-container">
                     <p>Twello 101</p>

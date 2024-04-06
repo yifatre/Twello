@@ -5,7 +5,7 @@ import { utilService } from "../../services/util.service"
 import { ClickAwayListener } from '@mui/base/ClickAwayListener'
 import { useOutletContext } from "react-router-dom"
 import { useState } from "react"
-import { DynamicCmp, LABELS } from "./DynamicCmps/DynamicCmp"
+import { ATTACHMENT, COVER, DATES, DynamicCmp, LABELS, MEMBERS } from "./DynamicCmps/DynamicCmp"
 
 
 
@@ -24,8 +24,6 @@ export function TaskDetails() {
         navigate(`/board/${boardId}`) //! temporarily cancelled for dev
     }
 
-
-
     function onSetActionType(ev, type) {
         ev.preventDefault()
         ev.stopPropagation()
@@ -37,7 +35,7 @@ export function TaskDetails() {
     return <div className="task-details-backdrop">
         <ClickAwayListener onClickAway={closeTaskDetails}>
             <section className="task-details">
-                <button className="close-btn" onClick={closeTaskDetails}>{x_icon}</button>
+                <button className="details-close-btn" onClick={closeTaskDetails}>{x_icon}</button>
                 <section className="cover">
                     <a href="#">{cover_icon}Cover</a>
                 </section>
@@ -89,13 +87,14 @@ export function TaskDetails() {
 
                 <section className="actions">
                     <h3>Add to card</h3>
-                    <a className="flex align-center" href="#" >{member_icon}Members</a>
+                    <a className="flex align-center" href="#" onClick={(ev) => onSetActionType(ev, MEMBERS)} >{member_icon}Members</a>
                     <a className="flex align-center" href="#" onClick={(ev) => onSetActionType(ev, LABELS)}>{label_icon}Labels</a>
-                    <a className="flex align-center" href="#">{checked_icon}Checklist</a>
-                    <a className="flex align-center" href="#">{clock_icon}Dates</a>
-                    <a className="flex align-center" href="#">{paperclip_icon}Attachment</a>
+                    <a className="flex align-center" href="#" >{checked_icon}Checklist</a>
+                    <a className="flex align-center" href="#" onClick={(ev) => onSetActionType(ev, DATES)}>{clock_icon}Dates</a>
+                    <a className="flex align-center" href="#" onClick={(ev) => onSetActionType(ev, ATTACHMENT)}>{paperclip_icon}Attachment</a>
                     <a className="flex align-center" href="#">{location_icon}Location</a>
-                    {actionType && <DynamicCmp cmp={actionType} task={task} board={board} onUpdate={onUpdateTask} />}
+                    {!task.style?.backgroundColor && <a className="flex align-center" href="#" onClick={(ev) => onSetActionType(ev, COVER)}>{cover_icon}Cover</a>}
+                    {actionType && <DynamicCmp cmp={actionType} task={task} info={board} onUpdate={onUpdateTask} />}
                 </section>
                 {/* <ClickAwayListener onClickAway={() => setActionType(null)}> </ClickAwayListener>*/}
             </section>

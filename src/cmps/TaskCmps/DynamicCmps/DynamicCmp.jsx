@@ -30,7 +30,7 @@ export function DynamicCmp({ cmp, info, onUpdate, task, setIsAddBoard }) {
             top += buttonHeight
             topHead = 'Member'
             // todo add 'taskMembers when we connected the actual data ! 
-            cmpType = <MemberPicker members={info} onUpdate={onUpdate} />
+            cmpType = <MemberPicker members={info.members} onUpdate={onUpdate} />
             break
 
         case DATES:
