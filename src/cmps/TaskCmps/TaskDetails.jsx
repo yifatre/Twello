@@ -1,6 +1,6 @@
 import { useParams } from "react-router"
 import { DescriptionEdit } from "./DescriptionEdit"
-import { arrow_down, bars_icon, box_icon, check_icon, checked_icon, clock_icon, eye_icon, label_icon, member_icon, paperclip_icon, plus_icon, window_icon } from "../UtilCmps/SVGs"
+import { arrow_down, bars_icon, box_icon, check_icon, checked_icon, clock_icon, eye_icon, label_icon, location_icon, member_icon, paperclip_icon, plus_icon, window_icon, x_icon } from "../UtilCmps/SVGs"
 import { utilService } from "../../services/util.service"
 
 
@@ -58,6 +58,7 @@ export function TaskDetails({ }) {//task }) {
 
     return <div className="task-details-backdrop">
         <section className="task-details">
+            <button className="close-btn">{x_icon}</button>
             <section className="cover">       </section>
             <section className="title">
                 <span className="icon-span">{window_icon}</span>
@@ -113,7 +114,7 @@ export function TaskDetails({ }) {//task }) {
                 <a className="flex align-center" href="#">{checked_icon}Checklist</a>
                 <a className="flex align-center" href="#">{clock_icon}Dates</a>
                 <a className="flex align-center" href="#">{paperclip_icon}Attachment</a>
-                {/* <a className="flex align-center" href="#">{location_icon}Location</a> */}
+                <a className="flex align-center" href="#">{location_icon}Location</a>
 
             </section>
 

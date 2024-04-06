@@ -23,7 +23,30 @@
     ;
     grid-template-columns: 1fr max-content;
 
+    position: relative;
     color: #172b4d;
+
+    .close-btn {
+        position: absolute;
+        right: rem(8px);
+        top: rem(8px);
+        border-radius: 50%;
+        width: rem(40px);
+        height: rem(40px);
+        padding: rem(6px);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: none;
+
+        &:hover {
+            background-color: var(--dynamic-button-hovered, #091E4224);
+        }
+
+        span {
+            @include svg-container(24px, 24px)
+        }
+    }
 
     h3 {
         font-size: rem(12px);
@@ -41,14 +64,7 @@
 
     .icon-span {
         position: absolute;
-        // left: rem(15px);
-        // top: rem(15px);
 
-        // span {
-        //     @include svg-container(17px, 18px);
-        // }
-
-        // padding: rem(8px);
 
     }
 
@@ -90,7 +106,7 @@
 
             textarea {
                 background: none;
-                background: pink;
+                // background: pink;
                 border: none;
                 border-radius: rem(4px);
                 color: inherit;
@@ -183,7 +199,7 @@
 
                 .label {
                     height: rem(32px);
-                    background-color: green;
+                    // background-color: green;
                     border-radius: rem(3px);
                     display: inline-flex;
                     align-items: center;
@@ -207,6 +223,7 @@
             div {
                 display: inline-flex;
                 align-items: center;
+
                 span {
                     @include svg-container
                 }
@@ -229,11 +246,11 @@
                     display: inline-flex;
                     align-items: center;
                     height: rem(32px);
-                    background-color: green;
+                    // background-color: green;
                     border-radius: rem(3px);
                     padding: rem(8px) rem(12px);
 
-                    span{
+                    span {
                         margin-left: rem(4px);
                     }
 
@@ -244,7 +261,7 @@
     }
 
     .description {
-        background-color: coral;
+        // background-color: coral;
         position: relative;
         grid-area: desc;
 
@@ -260,11 +277,15 @@
 
         }
 
+        &>*:not(.icon-span) {
+
+            margin-inline-start: rem(56px);
+        }
+
         &>h3 {
             font-size: rem(16px);
             line-height: rem(20px);
             font-weight: 600;
-            margin-inline-start: rem(56px);
             margin-top: rem(14px);
         }
     }
