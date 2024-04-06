@@ -30,7 +30,7 @@
 
         & .arrow-down {
             min-width: 16px;
-            margin-left: 4px; 
+            margin-left: 4px;
             display: inline-block;
             line-height: 1;
 
@@ -45,10 +45,19 @@
     border-bottom-color: hsla(218, 54%, 19.6%, 0.16);
     box-shadow: rgba(9, 30, 66, 0.15) 0px 0.5rem 1rem 0px;
 
-    & .logo{
+    & .logo {
         width: 22px;
         margin-top: 27px;
         margin-left: 17px;
+        display: flex;
+        gap: 5px;
+
+        & h2 {
+            font-family: 'charlie-display';
+            color:#253858 ;
+            font-size: 2rem;
+            font-weight: bolder;
+        }
     }
 
     & section {

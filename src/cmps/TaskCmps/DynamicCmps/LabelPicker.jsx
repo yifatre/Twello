@@ -23,7 +23,16 @@ export function LabelPicker({ labels, onUpdate }) {
         setDark(result);
     }
 
-    function toggleBtn() {
+    function toggleBtn(label) {
+        setCurrentColor('#4bce97')
+        setLabelContent('')
+        if(label){
+            setLabelContent(label.title)
+            setCurrentColor(label.color)
+        }
+        let result = [...dark].fill(false)
+        setDark(result);
+      
         setToggle(!toggle)
     }
 
@@ -61,12 +70,12 @@ export function LabelPicker({ labels, onUpdate }) {
                 />
                 <p>Labels</p>
                 <ul className="clean-list ul-labels">
-                    {labels.map((label, index) => {
+                    {labels.map(label => {
 
                         return <li key={label.id} className="flex align-center">
                             <input className="checkbox" type="checkBox" id={label.id} />
                             <label htmlFor={label.id}> <div style={{ backgroundColor: label.color }} className="label-picker"> {label.title}</div></label>
-                            <button className="edit-label">{edit_icon}</button>
+                            <button onClick={() => toggleBtn(label)} className="edit-label">{edit_icon}</button>
                         </li>
                     })}
                 </ul>
@@ -92,6 +101,7 @@ export function LabelPicker({ labels, onUpdate }) {
                 <input
                     type="text"
                     name="txt"
+                    value={labelContent}
 
                     onChange={handleChange}
                 />
