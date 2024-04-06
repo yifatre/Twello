@@ -12,7 +12,6 @@ export const boardService = {
     save,
     remove,
     getEmptyBoard,
-    addBoardMsg,
     getEmptyTask
 }
 window.cs = boardService
@@ -45,37 +44,41 @@ async function save(board) {
         savedBoard = await storageService.put(STORAGE_KEY, board)
     } else {
         // Later, owner is set by the backend
-        board.owner = userService.getLoggedInUser()
+        board.createdBy = userService.getLoggedInUser()
         savedBoard = await storageService.post(STORAGE_KEY, board)
     }
     return savedBoard
 }
 
-async function addBoardMsg(boardId, txt) {
-    // Later, this is all done by the backend
-    const board = await getById(boardId)
-    if (!board.msgs) board.msgs = []
-
-    const msg = {
-        id: utilService.makeId(),
-        by: userService.getLoggedInUser(),
-        txt
-    }
-    board.msgs.push(msg)
-    await storageService.put(STORAGE_KEY, board)
-
-    return msg
-}
-
 function getEmptyBoard() {
     return {
-       
+        title: "",
+        isStarred: false,
+        archivedAt: null,
+        createdBy: {
+            "_id": "u101",
+            "fullname": "Abi Abambi",
+            "imgUrl": "http://some-img"
+        },
+        style: {
+            backgroundImage: null
+        },
+        labels: [
+
+        ],
+        members: [
+        ],
+        groups: [
+
+        ],
+        activities: [
+        ],
     }
 }
 
 function getEmptyTask() {
     return {
-      title: '' 
+        title: ''
     }
 }
 
