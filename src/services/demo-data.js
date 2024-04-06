@@ -35,8 +35,9 @@ export const boardsDemoData = [
         groups: [
             {
                 "id": "g101",
-                "title": "Group 1",
+                "title": "backlog",
                 "archivedAt": 1589983468418,
+                "isExtended": "true",
                 "tasks": [
                     {
                         "id": "c101",
@@ -134,7 +135,8 @@ export const boardsDemoData = [
             },
             {
                 "id": "g102",
-                "title": "Group 2",
+                "title": "To Do - Frontend",
+                "isExtended": "true",
                 "tasks": [
                     {
                         "id": "c107",
