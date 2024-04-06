@@ -1,6 +1,9 @@
 import { bars_icon, checked_icon, edit_icon, eye_icon, paperclip_icon, time_icon } from "../UtilCmps/SVGs"
+import { useNavigate, useParams } from "react-router-dom"
 
-export function TaskPreview({ task }) {
+export function TaskPreview({ task, groupId }) {
+    const { boardId } = useParams()
+    const navigate = useNavigate()
 
     function getTodoDoneCount() {
         if (!task.checklists) return
@@ -23,7 +26,7 @@ export function TaskPreview({ task }) {
 
     const { title, style } = task
     return (
-        <li className="task-preview"
+        <li className="task-preview" onClick={() => navigate(`/board/${boardId}/${groupId}/${task.id}`)}
             style={{
                 backgroundColor: style?.backgroundColor || '#ffffff',
                 backgroundImage: `url(${style?.backgroundImage})`

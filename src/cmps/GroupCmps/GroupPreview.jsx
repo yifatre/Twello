@@ -16,7 +16,7 @@ export function GroupPreview({ group }) {
                 <button className="options">{ellipsis_icon}</button>
             </div>
             <div className="tasks-container">
-                <TaskList tasks={group.tasks}/>
+                <TaskList tasks={group.tasks} groupId={group.id}/>
             </div>
             {!isAddMode && <div className='add'>
                 <button className="add-task" onClick={()=> setIsAddMode(true)}>{plus_icon}Add a card</button>
