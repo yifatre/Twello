@@ -33,7 +33,7 @@ export function BoardDetails() {
             <GroupList groups={board.groups} />
             <div className="board-fade"></div>
         </section>
-        <Outlet />
+        <Outlet context={[board]} />
     </>
     )
 }

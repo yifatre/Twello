@@ -1,8 +1,8 @@
 .dynamic-cmp {
-    position: fixed;
+    position: absolute;
     width: rem(304px);
     // for dev
-    inset: 92px auto auto 308.8px;
+    // inset: 92px auto auto 308.8px;
     background-color: white;
     border-radius: rem(8px);
     box-shadow: var(--ds-shadow-overlay, 0px 8px 12px #091e4226, 0px 0px 1px #091e424f);

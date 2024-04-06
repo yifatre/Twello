@@ -1,4 +1,4 @@
-import { AttachmentPicker } from "./AttachmentPiker"
+import { AttachmentPicker } from "./AttachmentPicker"
 import { CoverPicker } from "./CoverPicker"
 import { DatePicker } from "./DatePicker"
 import { LabelPicker } from "./LabelPicker"
@@ -13,35 +13,42 @@ export const COVER = 'COVER'
 
 
 export function DynamicCmp({ cmp, info, onUpdate }) {
+    console.log('info', info)
     var cmpType
     var topHead
+    let top = 24
+    const buttonHeight = 40
     switch (cmp) {
         case LABELS:
+            top += buttonHeight * 2
             topHead = 'Labels'
-            cmpType = <LabelPicker labels={info.labels} onUpdate={onUpdate} />;
+            cmpType = <LabelPicker labels={info.labelIds} onUpdate={onUpdate} />
             break
 
         case MEMBERS:
+            top += buttonHeight
             topHead = 'Member'
-            cmpType = <MemberPicker info={info} onUpdate={onUpdate} />;
+            cmpType = <MemberPicker info={info} onUpdate={onUpdate} />
             break
 
         case DATES:
+            top += buttonHeight * 4
             topHead = 'Date'
-            cmpType = <DatePicker info={info} onUpdate={onUpdate} />;
+            cmpType = <DatePicker info={info} onUpdate={onUpdate} />
             break
 
         case ATTACHMENT:
+            top += buttonHeight * 5
             topHead = 'Attachment'
-            cmpType = <AttachmentPicker info={info} onUpdate={onUpdate} />;
+            cmpType = <AttachmentPicker info={info} onUpdate={onUpdate} />
             break
 
         case COVER:
             topHead = 'Cover'
-            cmpType = <CoverPicker info={info} onUpdate={onUpdate} />;
+            cmpType = <CoverPicker info={info} onUpdate={onUpdate} />
             break
     }
-    return <div className={`dynamic-cmp ${cmp.toLowerCase()}`}>
+    return <div className={`dynamic-cmp ${cmp.toLowerCase()}`} style={{ top }}>
         {cmpType}
     </div>
 }
