@@ -30,7 +30,7 @@ export function BoardDetails() {
         <section className="board-details" style={{ backgroundImage: `url(${board.style.backgroundImage})` }}>
             <BoardHeader board={board}/>
             <BoardSideBar/>
-            <GroupList groups={board.groups} />
+            <GroupList groups={board.groups} board={board}/>
             <div className="board-fade"></div>
         </section>
         <Outlet />

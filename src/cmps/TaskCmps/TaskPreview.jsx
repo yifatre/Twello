@@ -1,8 +1,10 @@
 import { bars_icon, checked_icon, edit_icon, eye_icon, paperclip_icon, time_icon } from "../UtilCmps/SVGs"
+import { useSortable } from '@dnd-kit/sortable'
+import { CSS } from '@dnd-kit/utilities'
 import { useNavigate, useParams } from "react-router-dom"
 
-export function TaskPreview({ task, groupId }) {
-    const { boardId } = useParams()
+export function TaskPreview({ task, id, activeId, groupId }) {
+    console.log(id);    const { boardId } = useParams()
     const navigate = useNavigate()
 
     function getTodoDoneCount() {
@@ -24,13 +26,34 @@ export function TaskPreview({ task, groupId }) {
         return date.toString().slice(4, 7) + ' ' + date.getDate()
     }
 
+    const {
+        attributes,
+        listeners,
+        setNodeRef,
+        transform,
+        transition,
+    } = useSortable({ id: id })
+
+    const tran = {transform: CSS.Transform.toString(transform)}
+
+    // const style = {
+    //     transform: CSS.Transform.toString(transform), 
+    // }
+
+    if ( activeId === id) tran.transform += 'rotate(+0.01turn)'
+
+    console.log(activeId);
     const { title, style } = task
     return (
         <li className="task-preview" onClick={() => navigate(`/board/${boardId}/${groupId}/${task.id}`)}
             style={{
                 backgroundColor: style?.backgroundColor || '#ffffff',
-                backgroundImage: `url(${style?.backgroundImage})`
-            }}>
+                backgroundImage: `url(${style?.backgroundImage})`,
+                transform: tran.transform
+            }}
+            // style={style}
+            ref={setNodeRef} {...attributes} {...listeners} id={id}
+            >
             <i className="edit-icon">{edit_icon}</i>
             <a>{title}</a>
             <div className="task-info">
