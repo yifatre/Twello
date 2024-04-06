@@ -5,6 +5,29 @@
     border-bottom: 1px solid;
     border-bottom-color: var(--dynamic-text-transparent);
 
+
+    & .logo-inside-head  {
+        margin-top: 5px;
+        margin-right: 11px;
+        & a {
+            margin-top: 4px;
+            width: max-content;
+        }
+
+        & img {
+            width: 17px;
+            margin-right: 4px;
+        }
+
+
+        & h3 {
+            font-family: 'charlie-display';
+            color: #253858;
+            font-size: rem(19px);
+            font-weight: bolder;
+        }
+    }
+
     & .main-nav-btn {
         background-color: transparent;
         color: var(--dynamic-txt-clr);
@@ -34,7 +57,15 @@
             display: inline-block;
             line-height: 1;
 
+            & span {
+                @include svg-container
+            }
+
         }
+    }
+
+    & .more-btn{
+        padding: 8px 10px 0 6px;
     }
 
 
@@ -46,6 +77,9 @@
     box-shadow: rgba(9, 30, 66, 0.15) 0px 0.5rem 1rem 0px;
 
     & .logo {
+
+
+
         width: 22px;
         margin-top: 27px;
         margin-left: 17px;
@@ -54,7 +88,7 @@
 
         & h2 {
             font-family: 'charlie-display';
-            color:#253858 ;
+            color: #253858;
             font-size: 2rem;
             font-weight: bolder;
         }
