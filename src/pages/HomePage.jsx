@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { bcg_wave } from "../cmps/UtilCmps/SVGs";
-import { DynamicCmp, LABELS } from "../cmps/TaskCmps/DynamicCmps/DynamicCmp";
-import { boardsDemoData } from "../services/demo-data";
+import { DATES, DynamicCmp, LABELS, MEMBERS } from "../cmps/TaskCmps/DynamicCmps/DynamicCmp";
+import { boardsDemoData, userDemoData } from "../services/demo-data";
 
 export function HomePage() {
 
@@ -24,7 +24,7 @@ export function HomePage() {
             </div>
         </section >
         <section className="home-page-middle">
-            {/* <DynamicCmp cmp={LABELS} info={boardsDemoData[0]}/> */}
+            {/* <DynamicCmp cmp={DATES} /> */}
             <div className="home-page-top">
                 <div className="explain-head-container">
                     <p>Twello 101</p>

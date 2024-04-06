@@ -78,6 +78,52 @@ export const boardsDemoData = [
                                 ]
                             }
                         ],
+                    },
+                    {
+                        "id": "c104",
+                        "title": "Add Samples",
+                        "style": {},
+                        "checklists": [
+                            {
+                                "id": "YEhhmF",
+                                "title": "Checklist",
+                                "todos": [
+                                    {
+                                        "id": "21a2jX",
+                                        "title": "To Do 1",
+                                        "isDone": true
+                                    },
+                                    {
+                                        "id": "2124jX",
+                                        "title": "To Do 1",
+                                        "isDone": true
+                                    }
+                                ]
+                            }
+                        ],
+                    },
+                    {
+                        "id": "c103",
+                        "title": "Add Samples",
+                        "style": {},
+                        "checklists": [
+                            {
+                                "id": "YEhhmF",
+                                "title": "Checklist",
+                                "todos": [
+                                    {
+                                        "id": "21a2jX",
+                                        "title": "To Do 1",
+                                        "isDone": true
+                                    },
+                                    {
+                                        "id": "2124jX",
+                                        "title": "To Do 1",
+                                        "isDone": true
+                                    }
+                                ]
+                            }
+                        ],
                     }
                 ],
                 "style": {
@@ -91,13 +137,31 @@ export const boardsDemoData = [
                 "title": "Group 2",
                 "tasks": [
                     {
-                        "id": "c103",
+                        "id": "c107",
                         "title": "Do that",
                         "archivedAt": 1589983468418,
                         "style": {}
                     },
                     {
-                        "id": "c104",
+                        "id": "c108",
+                        "title": "Do that",
+                        "archivedAt": 1589983468418,
+                        "style": {}
+                    },
+                    {
+                        "id": "c109",
+                        "title": "Do that",
+                        "archivedAt": 1589983468418,
+                        "style": {}
+                    },
+                    {
+                        "id": "c1055",
+                        "title": "Do that",
+                        "archivedAt": 1589983468418,
+                        "style": {}
+                    },
+                    {
+                        "id": "c1089",
                         "title": "Help me",
                         "status": "in-progress", // monday
                         "priority": "high",
