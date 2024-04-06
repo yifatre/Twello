@@ -15,7 +15,7 @@
 
         h2 {
             font-weight: 600;
-            padding: 6px 8px 6px 12px;
+            padding: rem(6px) rem(8px) rem(6px) rem(12px);
             color: var(--accent-text-bolder);
         }
 
@@ -61,6 +61,20 @@
         &:active {
             background-color: var(--accent-background-pressed);
         }
+    }
+
+    .title-edit {
+        font-weight: 600;
+        outline: none;
+        border-radius: rem(8px);
+        border:none;
+        font-size: rem(14px);
+        height: rem(32px);
+
+        &:focus {
+            outline: 2px solid var(--ds-border-focused);
+        }
+        padding: rem(5.5px) rem(8px) rem(6.5px) rem(12px)
     }
 
     .svg-container {

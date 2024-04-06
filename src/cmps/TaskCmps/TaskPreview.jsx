@@ -36,13 +36,8 @@ export function TaskPreview({ task, id, activeId, groupId }) {
 
     const tran = {transform: CSS.Transform.toString(transform)}
 
-    // const style = {
-    //     transform: CSS.Transform.toString(transform), 
-    // }
-
     if ( activeId === id) tran.transform += 'rotate(+0.01turn)'
 
-    console.log(activeId);
     const { title, style } = task
     return (
         <li className="task-preview" onClick={() => navigate(`/board/${boardId}/${groupId}/${task.id}`)}
