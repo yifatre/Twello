@@ -5,36 +5,37 @@ export function AppHeader() {
     const { pathname } = useLocation();
     console.log(pathname);
 
-    if(pathname === '/')return(
+    if (pathname === '/') return (
         <header className="app-header-home ">
             <section className='justify-space-between flex' >
-        <Link to='/board'>
-        <div className='logo'>
-        <img src="/src/assets/img/logo-home.png" alt="" />
-        </div>
-        </Link>
-        <nav>
-        <Link className='a-right login-home-header' >Log in</Link>
-        <Link to='/board' className='a-right free-trial'>Get Twello for free</Link>
-        </nav>
-        </section>
+                <Link to='/board'>
+                    <div className='logo'>
+                        <img src="/src/assets/img/logo-home.png" alt="" />
+                        <h2>Twello</h2>
+                    </div>
+                </Link>
+                <nav>
+                    <Link className='a-right login-home-header' >Log in</Link>
+                    <Link to='/board' className='a-right free-trial'>Get Twello for free</Link>
+                </nav>
+            </section>
         </header>
-        
+
     )
     return (
         <header className="app-header flex">
             <button className='main-nav-btn arrow-down more-btn'>{more_icon}</button>
-        <div className='logo'>
-        <Link to='/board'>
-          Twello
-        </Link>
-        </div>
-        <button className='main-nav-btn'>Workspaces <span className='arrow-down'>{arrow_down}</span></button>
-        <button className='main-nav-btn'>Recent <span className='arrow-down'>{arrow_down}</span></button>
-        <button className='main-nav-btn'>Starred <span className='arrow-down'>{arrow_down}</span></button>
-        <button className='main-nav-btn'>Templates <span className='arrow-down'>{arrow_down}</span></button>
-        <button className='create-btn'>create</button>
-        {/* <div>
+            <div className='logo-inside-head '>
+                <Link to='/board'>
+                        <h3 className='flex'><img src="/src/assets/img/trello-logo-gradient-neutral@2x.png" alt="" /> Twello</h3>
+                </Link>
+            </div>
+            <button className='main-nav-btn'>Workspaces <span className='arrow-down'>{arrow_down}</span></button>
+            <button className='main-nav-btn'>Recent <span className='arrow-down'>{arrow_down}</span></button>
+            <button className='main-nav-btn'>Starred <span className='arrow-down'>{arrow_down}</span></button>
+            <button className='main-nav-btn'>Templates <span className='arrow-down'>{arrow_down}</span></button>
+            <button className='create-btn'>create</button>
+            {/* <div>
         <div className='input-container'>
             <button>{search_icon}</button>
         <input className='search-input' type="text" />
@@ -43,6 +44,6 @@ export function AppHeader() {
         </div> */}
 
         </header>
-        
-        )
+
+    )
 }

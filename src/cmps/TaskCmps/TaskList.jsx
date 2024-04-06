@@ -7,7 +7,7 @@ import {
 import { TaskPreview } from "./TaskPreview"
 import { useState } from 'react'
 
-export function TaskList({ items, activeId, id }) {
+export function TaskList({ items, activeId, id, groupId }) {
     const { setNodeRef } = useDroppable({
         id
     });
@@ -18,7 +18,7 @@ export function TaskList({ items, activeId, id }) {
             <ul className="task-list clean-list" ref={setNodeRef}>
 
                 {items.map(task =>
-                    <TaskPreview key={task.id} id={task.id} task={task} activeId={activeId}/>
+                    <TaskPreview key={task.id} id={task.id} task={task} activeId={activeId} groupId={groupId}/>
                 )}
 
             </ul>

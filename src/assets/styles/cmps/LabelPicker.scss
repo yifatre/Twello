@@ -26,12 +26,14 @@
 
         & li {
             padding: 0 0 4px 1px;
+            cursor: pointer;
         }
     }
 
     & .checkbox {
         height: 16px;
         width: 16px;
+        cursor: pointer;
     }
 
     & .label-picker {
@@ -42,6 +44,8 @@
         line-height: rem(32px);
         border-radius: rem(3px);
         margin-left: rem(12px);
+        cursor: pointer;
+        
     }
 
     & .edit-label {

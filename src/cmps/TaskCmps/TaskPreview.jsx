@@ -1,9 +1,12 @@
 import { bars_icon, checked_icon, edit_icon, eye_icon, paperclip_icon, time_icon } from "../UtilCmps/SVGs"
 import { useSortable } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
+import { useNavigate, useParams } from "react-router-dom"
 
-export function TaskPreview({ task, id, activeId }) {
-    console.log(id);
+export function TaskPreview({ task, id, activeId, groupId }) {
+    console.log(id);    const { boardId } = useParams()
+    const navigate = useNavigate()
+
     function getTodoDoneCount() {
         if (!task.checklists) return
         let doneCount = 0
@@ -42,10 +45,10 @@ export function TaskPreview({ task, id, activeId }) {
     console.log(activeId);
     const { title, style } = task
     return (
-        <li className="task-preview"
+        <li className="task-preview" onClick={() => navigate(`/board/${boardId}/${groupId}/${task.id}`)}
             style={{
-                backgroundColor: style.backgroundColor || '#ffffff',
-                backgroundImage: `url(${style.backgroundImage})`,
+                backgroundColor: style?.backgroundColor || '#ffffff',
+                backgroundImage: `url(${style?.backgroundImage})`,
                 transform: tran.transform
             }}
             // style={style}

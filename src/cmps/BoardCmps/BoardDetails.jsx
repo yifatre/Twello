@@ -1,4 +1,4 @@
-import { useParams } from "react-router"
+import { Outlet, useParams } from "react-router"
 import { GroupList } from "../GroupCmps/GroupList"
 import { useEffect, useState } from "react"
 import { boardService } from "../../services/board.service.local"
@@ -16,7 +16,7 @@ export function BoardDetails() {
 
     async function loadBoard() {
         try {
-            console.log(boardId);
+            console.log(boardId)
             setBoard(await boardService.getById(boardId))
         }
         catch (err) {
@@ -24,14 +24,16 @@ export function BoardDetails() {
             showErrorMsg('Cannot remove board')
         }
     }
-    
+
     if (!board) return <div>loading</div>
-    return (
+    return (<>
         <section className="board-details" style={{ backgroundImage: `url(${board.style.backgroundImage})` }}>
             <BoardHeader board={board}/>
             <BoardSideBar/>
             <GroupList groups={board.groups} board={board}/>
             <div className="board-fade"></div>
         </section>
+        <Outlet />
+    </>
     )
 }

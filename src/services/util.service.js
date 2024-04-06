@@ -5,7 +5,8 @@ export const utilService = {
     debounce,
     randomPastTime,
     saveToStorage,
-    loadFromStorage
+    loadFromStorage,
+    getFormattedTime
 }
 
 function makeId(length = 6) {
@@ -51,6 +52,12 @@ function debounce(func, timeout = 300) {
         clearTimeout(timer)
         timer = setTimeout(() => { func.apply(this, args) }, timeout)
     }
+}
+
+function getFormattedTime(date) {
+    const hours = date.getHours()
+    return `${date.toString().slice(4, 7)} ${date.getDate()} at ${hours > 12 ? hours - 12 : hours}:${(date.getMinutes() + '').padStart(2, '0')} ${hours > 12 ? 'PM' : 'AM'}`
+
 }
 
 function saveToStorage(key, value) {

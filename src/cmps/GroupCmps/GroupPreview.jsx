@@ -17,7 +17,7 @@ export function GroupPreview({ items, id, activeId, group }) {
             </div>
             <div className="tasks-container">
               
-                    <TaskList items={items} activeId={activeId} id={id}/>
+                    <TaskList items={items} activeId={activeId} id={id} groupId={group.id}/>
                
             </div>
             {!isAddMode && <div className='add'>
