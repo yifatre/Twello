@@ -1,10 +1,13 @@
 .group-preview {
     width: rem(272px);
-    background-color: #FFD5D2;
     padding: rem(8px);
     box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px 0px, rgba(9, 30, 66, 0.31) 0px 0px 1px 0px;
-    border-radius: $border-radius;
+    border-radius: $group-border-radius;
     height: max-content;
+    background-color: var(--accent-background);
+    color: var(--accent-text);
+
+
 
     .group-header {
         display: grid;
@@ -13,19 +16,24 @@
         h2 {
             font-weight: 600;
             padding: 6px 8px 6px 12px;
+            color: var(--accent-text-bolder);
         }
 
-        .collapse span {
-            width: rem(24px);
-            height: rem(24px);
+        .collapse {
+            padding: rem(4px);
+
+            span {
+                width: rem(24px);
+                height: rem(24px);
+            }
         }
     }
-    
+
     .add {
         display: grid;
         grid-template-columns: rem(220px) rem(32px);
         gap: 4px;
-        
+
 
         .add-task {
             display: flex;
@@ -39,9 +47,24 @@
     }
 
     button {
-        height: rem(32px);
-        width: rem(32px);
-        background-color: transparent;
-        border: none;
+        @include reg-btn;
+
+        &:hover {
+            color: var(--accent-text-bolder);
+            background-color: var(--accent-background-hovered);
+
+            .svg-container {
+                color: var(--accent-text-bolder);
+            }
+        }
+
+        &:active {
+            background-color: var(--accent-background-pressed);
+        }
+    }
+
+    .svg-container {
+        @include svg-container;
+        color: var(--accent-icon);
     }
 }

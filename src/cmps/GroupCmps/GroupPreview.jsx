@@ -9,7 +9,7 @@ export function GroupPreview({ group }) {
 
     return (
         // <li><pre>{JSON.stringify(group)}</pre></li>
-        <li className="group-preview">
+        <li className={`group-preview ${group.style.themeColor || 'gray'}`}>
             <div className="group-header">
                 <h2 className="group-title">{group.title}</h2>
                 <button className="collapse">{collapse_icon}</button>

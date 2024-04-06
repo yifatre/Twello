@@ -1,5 +1,6 @@
 // Setup
 @import "setup/variables";
+@import "setup/clrVariables";
 @import "setup/functions";
 @import "setup/mixins";
 @import "setup/typography";
@@ -22,11 +23,16 @@
 @import "cmps/UserMsg";
 @import "cmps/BoardPreview.scss";
 @import "cmps/BoardList";
+@import "cmps/BoardDetails";
+@import "cmps/BoardHeader";
+@import "cmps/BoardSideBar";
+@import "cmps/GroupList";
 @import "cmps/GroupPreview";
 @import "cmps/TaskList";
 @import "cmps/TaskPreview";
 @import "cmps/TaskAdd";
 @import "cmps/DynamicCmp";
+@import "cmps/LabelPicker";
 
 
 

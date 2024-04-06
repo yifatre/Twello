@@ -1,25 +1,35 @@
 .task-add-form {
-    
+
     textarea {
         width: 100%;
         resize: none;
         border: none;
         outline: none;
         padding: rem(8px) rem(12px) rem(24px);
+
+        &:hover {
+            outline: none;
+        }
     }
 
-    .btn-actions-container{
+    .btn-actions-container {
         display: flex;
         align-items: center;
+        gap: 4px;
         margin-block-start: rem(8px);
 
         button {
+            display: grid;
+            place-items: center;
             border-radius: $btn-border-radius;
+            padding: 0;
+
             span {
                 width: 20px;
                 height: 20px;
             }
         }
+
         .add-btn {
             background-color: $add-btn-bcg;
             width: rem(83.5px);
