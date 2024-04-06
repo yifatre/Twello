@@ -83,3 +83,22 @@
     font-weight: 500;
     font-size: rem(14px);
 }
+
+@mixin avatar ($size) {
+    border-radius: 50%;
+    color: white;
+
+    img, .initials {
+        position: relative;
+        border-radius: 50%;
+        height: rem($size);
+        width: rem($size);
+        background-color: transparent;
+        display: grid;
+        place-items: center;
+        font-size: rem(12px);
+    }
+    &:hover {
+        opacity: 70%;
+    }
+}
