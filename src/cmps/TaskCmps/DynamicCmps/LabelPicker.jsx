@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { arrow_down, edit_icon, x_icon } from "../../UtilCmps/SVGs";
+import { useState } from "react"
+import { arrow_down, edit_icon, x_icon } from "../../UtilCmps/SVGs"
 
 const pallet = ['#baf3db', '#f8e6a0', '#fedec8', '#ffd5d2', '#dfd8fd',
     '#4bce97', '#f5cd47', '#fea362', '#f87168', '#9f8fef',
@@ -11,36 +11,36 @@ const pallet = ['#baf3db', '#f8e6a0', '#fedec8', '#ffd5d2', '#dfd8fd',
 // todo connect btn's and add the on update 
 
 export function LabelPicker({ labels, onUpdate }) {
-    console.log(labels);
+    console.log('labels',labels)
     const [toggle, setToggle] = useState(false)
     const [currentColor, setCurrentColor] = useState('#4bce97')
     const [labelContent, setLabelContent] = useState('')
-    const [dark, setDark] = useState(new Array(pallet.length).fill(false));
+    const [dark, setDark] = useState(new Array(pallet.length).fill(false))
 
     const handleSelectCategory = (category, index) => {
-        let result = [...dark].fill();
-        result[index] = !result[index];
-        setDark(result);
+        let result = [...dark].fill()
+        result[index] = !result[index]
+        setDark(result)
     }
 
     function toggleBtn(label) {
         setCurrentColor('#4bce97')
         setLabelContent('')
-        if(label){
+        if (label) {
             setLabelContent(label.title)
             setCurrentColor(label.color)
         }
         let result = [...dark].fill(false)
-        setDark(result);
-      
+        setDark(result)
+
         setToggle(!toggle)
     }
 
     function colorChange(color, index) {
         let result = [...dark].fill(false)
-        result[index] = !result[index];
-        setDark(result);
-        console.log('dark',dark);
+        result[index] = !result[index]
+        setDark(result)
+        console.log('dark', dark)
         setCurrentColor(color)
     }
 

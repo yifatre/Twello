@@ -1,0 +1,22 @@
+.member-li {
+    padding: 4px 8px 4px 4px !important;
+    border-radius: 3px;
+    color: var(--ds-text);
+
+    &:hover {
+        background-color: #091e420f;
+    }
+
+    .avatar {
+        border-radius: 50%;
+        width: rem(32px);
+        height: rem(32px);
+        border: none;
+        // background-color: lightseagreen;
+        display: inline-block;
+        padding: 0;
+        margin: 0;
+        margin-right: 8px;
+    }
+
+}
