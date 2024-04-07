@@ -14,11 +14,28 @@ import { arrayMove, sortableKeyboardCoordinates } from "@dnd-kit/sortable"
 
 import { useEffect, useState } from 'react'
 import { updateBoard } from "../../store/board/board.actions"
+import { utilService } from "../../services/util.service"
 
 export function GroupList({ groups, board }) {
-
     const [items, setItems] = useState(groups.reduce((acc, group) => { acc[group.id] = group.tasks; return acc }, {}))
     const [activeId, setActiveId] = useState()
+
+    function saveGroup(group) {
+        if (group.id) {
+            const idx = board.groups.findIndex(_group => _group.id === group.id)
+            board.groups[idx] = group
+            updateBoard(board)
+        } else {
+            group.id = utilService.makeId('g')
+            board.groups.push(group)
+            updateBoard(board)
+        }
+    }
+
+    function removeGroup(groupId) {
+        const board = board.groups.filter(group => group.id !== groupId)
+        updateBoard(board)
+    }
 
     const sensors = useSensors(
         useSensor(PointerSensor, {
@@ -72,7 +89,7 @@ export function GroupList({ groups, board }) {
             const activeIndex = activeItems.findIndex(task => task.id === id)
             const overIndex = overItems.findIndex(task => task.id === overId)
             const newIndex = overItems.length + 1
-  
+
 
             return {
                 ...prev,
@@ -112,9 +129,9 @@ export function GroupList({ groups, board }) {
                 ...items,
                 [overContainer]: arrayMove(items[overContainer], activeIndex, overIndex)
             }))
-            
+
             groups.map(group => group.tasks = items[group.id])
-            updateBoard({...board, groups})
+            updateBoard({ ...board, groups })
         }
 
         setActiveId(null)
@@ -128,7 +145,13 @@ export function GroupList({ groups, board }) {
                 onDragOver={handleDragOver}
             >
                 {groups.map(group => {
-                   return <GroupPreview key={items[group.id].id} id={items[group.id].id} items={items[group.id]} group={group} activeId={activeId} />
+                    return <GroupPreview key={items[group.id].id}
+                        id={items[group.id].id}
+                        items={items[group.id]}
+                        group={group}
+                        activeId={activeId}
+                        saveGroup={saveGroup}
+                        board={board} />
                 })}
             </DndContext>
         </ul>

@@ -29,12 +29,15 @@
         }
     }
 
-    .tasks-container {
-        overflow-y: auto;
+    // .tasks-container {
+    //     overflow-x: hidden;
+    //     overflow-y: scroll;
+    //     scrollbar-color: var(--ds-background-neutral-hovered);
+    //     scrollbar-width: thin;
         
-        max-height: calc(100% - 80px);
-        margin-block: rem(8px);
-    }
+    //     max-height: calc(100% - 80px);
+    //     margin-block: rem(8px);
+    // }
 
     .add {
         display: grid;

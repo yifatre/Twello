@@ -6,6 +6,11 @@
         margin-right: 8px;
     }
 
+    & .checkbox{
+        margin: 0;
+        margin-right: rem(8px);
+    }
+
     & .save-date-btn {
         background-color: var(--ds-background-brand-bold);
         color: var(--ds-text-inverse);
