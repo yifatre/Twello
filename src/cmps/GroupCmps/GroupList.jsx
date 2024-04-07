@@ -13,7 +13,7 @@ import {
 import { arrayMove, sortableKeyboardCoordinates } from "@dnd-kit/sortable"
 
 import { useEffect, useState } from 'react'
-import { updateBoard } from "../../store/board.actions"
+import { updateBoard } from "../../store/board/board.actions"
 
 export function GroupList({ groups, board }) {
 

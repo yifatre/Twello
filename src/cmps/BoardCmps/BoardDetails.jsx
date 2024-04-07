@@ -1,10 +1,11 @@
 import { Outlet, useParams } from "react-router"
 import { GroupList } from "../GroupCmps/GroupList"
 import { useEffect, useState } from "react"
-import { boardService } from "../../services/board.service.local"
+
 import { showErrorMsg } from "../../services/event-bus.service"
 import { BoardHeader } from "./BoardHeader"
 import { BoardSideBar } from "./BoardSideBar"
+import { boardService } from "../../services/board/board.service.local"
 
 export function BoardDetails() {
     const { boardId } = useParams()

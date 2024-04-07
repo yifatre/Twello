@@ -2,6 +2,7 @@ import { useState } from "react"
 import { CREATE_BOARD, DynamicCmp } from "../TaskCmps/DynamicCmps/DynamicCmp"
 import { star_outline } from "../UtilCmps/SVGs"
 import { BoardPreview } from "./BoardPreview"
+import { utilService } from "../../services/util.service"
 
 export function BoardList({ boards }) {
     const [isAddBoard, setIsAddBoard] = useState(false)

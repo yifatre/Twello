@@ -16,25 +16,26 @@
 @import "views/UserDetails";
 
 // Components
-@import "cmps/TaskIndex";
-@import "cmps/TaskDetails";
+@import "cmps/task/TaskIndex.scss";
+@import "cmps/task/TaskDetails";
 @import "cmps/AppHeader";
 @import "cmps/AppFooter";
 @import "cmps/UserMsg";
-@import "cmps/BoardPreview.scss";
-@import "cmps/BoardList";
-@import "cmps/BoardDetails";
-@import "cmps/BoardHeader";
-@import "cmps/BoardSideBar";
-@import "cmps/GroupList";
-@import "cmps/GroupPreview";
-@import "cmps/TaskList";
-@import "cmps/TaskPreview";
-@import "cmps/TaskAdd";
+@import "cmps/board/BoardPreview.scss";
+@import "cmps/board/BoardList";
+@import "cmps/board/BoardDetails";
+@import "cmps/board/BoardHeader";
+@import "cmps/board/BoardSideBar";
+@import "cmps/group/GroupList";
+@import "cmps/group/GroupPreview";
+@import "cmps/task/TaskList";
+@import "cmps/task/TaskPreview";
+@import "cmps/task/TaskAdd";
 @import "cmps/dynamicCmp/DynamicCmp.scss";
 @import "cmps/dynamicCmp/LabelPicker.scss";
 @import "cmps/dynamicCmp/MembersPicker.scss";
 @import "cmps/dynamicCmp/DatePicker.scss";
+@import "cmps/dynamicCmp/CreateBoard.scss";
 
 // @import 'react-date-range/dist/styles.css';
 // @import 'react-date-range/dist/theme/default.css';

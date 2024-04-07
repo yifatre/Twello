@@ -1,8 +1,8 @@
 import { useState } from "react"
 import { useNavigate, useParams } from "react-router"
-import { boardService } from "../../../services/board.service.local"
-import { addBoard } from "../../../store/board.actions"
-import { x_icon } from "../../UtilCmps/SVGs"
+import { boardService } from "../../../services/board/board.service.local"
+import { addBoard } from "../../../store/board/board.actions"
+import { new_board_demo, x_icon } from "../../UtilCmps/SVGs"
 
 export function CreateBoard({ setIsAddBoard }) {
     const [board, setBoard] = useState(boardService.getEmptyBoard())
