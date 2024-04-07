@@ -3,11 +3,11 @@
     padding: rem(8px);
     box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px 0px, rgba(9, 30, 66, 0.31) 0px 0px 1px 0px;
     border-radius: $group-border-radius;
-    height: max-content;
     background-color: var(--accent-background);
     color: var(--accent-text);
-
-
+    // overflow:auto;
+    scroll-margin: 8px;
+    height: max-content;
 
     .group-header {
         display: grid;
@@ -27,6 +27,13 @@
                 height: rem(24px);
             }
         }
+    }
+
+    .tasks-container {
+        overflow-y: auto;
+        
+        max-height: calc(100% - 80px);
+        margin-block: rem(8px);
     }
 
     .add {
@@ -67,13 +74,14 @@
         font-weight: 600;
         outline: none;
         border-radius: rem(8px);
-        border:none;
+        border: none;
         font-size: rem(14px);
         height: rem(32px);
 
         &:focus {
             outline: 2px solid var(--ds-border-focused);
         }
+
         padding: rem(5.5px) rem(8px) rem(6.5px) rem(12px)
     }
 
@@ -94,7 +102,7 @@
     writing-mode: vertical-lr;
     cursor: pointer;
     height: max-content;
-    
+
     background-color: var(--accent-background);
     color: var(--accent-text);
     border-radius: $group-border-radius;
@@ -106,7 +114,7 @@
 
     h2 {
         display: flex;
-        align-items: center;   
+        align-items: center;
         color: var(--accent-text-bolder);
         font-size: rem(14px);
         height: max-content;
@@ -128,8 +136,8 @@
     button {
         @include reg-btn;
         padding: rem(4px);
-        
-        
+
+
         .svg-container {
             @include svg-container(24px, 24px)
         }
