@@ -108,4 +108,9 @@
             transition: width 0.5s, height 0.5s;
         }
     }
+
+    img {
+        border-top-right-radius: rem(8px);
+        border-top-left-radius: rem(8px);
+    }
 }

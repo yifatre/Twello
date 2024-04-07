@@ -5,7 +5,7 @@ import { useState } from 'react'
 import { TaskAdd } from '../TaskCmps/TaskAdd'
 import { utilService } from '../../services/util.service'
 
-export function GroupPreview({ items, id, activeId, group, saveGroup, board,  isLabelsExtended, setIsLabelExtended }) {
+export function GroupPreview({ activeId, group, saveGroup, board,  isLabelsExtended, setIsLabelExtended }) {
     const [isAddMode, setIsAddMode] = useState(false)
     const [isEditTitle, setIsEditTitle] = useState(false)
     const [isExtended, setIsExtended] = useState(true)
@@ -60,7 +60,7 @@ export function GroupPreview({ items, id, activeId, group, saveGroup, board,  is
             </div>
             
             <div className="tasks-container">
-                <TaskList items={items} activeId={activeId} id={id} group={group} saveTask={saveTask} board={board} isLabelsExtended={isLabelsExtended} setIsLabelExtended={setIsLabelExtended}/>
+                <TaskList activeId={activeId} group={group} saveTask={saveTask} board={board} isLabelsExtended={isLabelsExtended} setIsLabelExtended={setIsLabelExtended}/>
             </div>
             
             {!isAddMode && <div className='add'>
