@@ -3,7 +3,6 @@ import { arrow_down, more_icon, search_icon } from '../UtilCmps/SVGs';
 
 export function AppHeader() {
     const { pathname } = useLocation();
-    console.log(pathname);
 
     if (pathname === '/') return (
         <header className="app-header-home ">

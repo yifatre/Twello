@@ -1,0 +1,148 @@
+.picker-container.create-new-board {
+    padding: 0 rem(12px) rem(12px) rem(12px);
+
+    .board-bg-preview {
+
+        width: rem(200px);
+        height: rem(120px);
+        background-size: cover;
+        background-position: 50%;
+        border-radius: rem(3px);
+        margin-bottom: rem(8px);
+    }
+
+    h3 {
+        color: var(--ds-text-subtle, #44546f);
+        display: block;
+        font-size: rem(12px);
+        font-weight: 700;
+        line-height: rem(16px);
+        margin-bottom: rem(4px);
+        margin-top: rem(12px);
+    }
+
+    .background-picker {
+
+        .imgs,
+        .gradients {
+            margin-top: rem(0.5px);
+            height: rem(40px);
+            justify-content: space-between;
+            margin-bottom: rem(8px);
+
+            div {
+                position: relative;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: rem(3px);
+                background-size: cover;
+                background-position: 50%;
+                cursor: pointer;
+
+                span {
+                    margin: 0;
+                    @include svg-container;
+                    color: white;
+                }
+            }
+
+            &>div:hover::before {
+                background: var(--ds-background-inverse-subtle, rgba(0, 0, 0, 0.15));
+                position: absolute;
+                bottom: 0;
+                content: '';
+                display: block;
+                left: 0;
+                right: 0;
+                top: 0;
+                border-radius: rem(3px);
+                z-index: 0;
+            }
+        }
+
+        .imgs {
+            height: rem(40px);
+            margin-bottom: rem(8px);
+
+            div {
+                width: rem(64px);
+            }
+        }
+
+        .gradients {
+            height: rem(32px);
+            justify-content: space-between;
+            margin-bottom: rem(4px);
+
+            div {
+                width: rem(40px);
+            }
+
+            .more {
+                background-color: #091e420f;
+
+                span {
+                    color: var(--ds-icon, #42526E);
+                }
+            }
+        }
+
+
+    }
+
+    .title-input {
+
+        margin-top: rem(13px);
+
+        label {
+            color: var(--ds-text-subtle, #44546f);
+            font-size: rem(12px);
+            line-height: rem(16px);
+            font-weight: 700;
+        }
+
+        input {
+            box-shadow: inset 0 0 0 2px var(--ds-border-focused, #388bff);
+            border: none;
+            outline: none;
+            font-size: rem(14px);
+            line-height: rem(20px);
+            font-weight: 400;
+            border-radius: rem(3px);
+            padding: rem(8px) rem(12px);
+            margin-top: rem(1px);
+        }
+    }
+
+    .req {
+        margin-top: rem(4px);
+    }
+
+    .req p {
+        padding: 0;
+        margin: 0;
+    }
+
+    .req,
+    .req p {
+        color: var(--ds-text, #172b4d);
+        font-size: rem(14px);
+        line-height: rem(20px);
+        font-weight: 400;
+        height: max-content;
+    }
+
+    .create-btn {
+        margin-top: rem(16px);
+        width: 100%;
+        margin: 0;
+    }
+
+    .terms {
+        color: var(--ds-text-subtle, #44546f);
+        font-size: rem(12px);
+        line-height: rem(16px);
+        margin-top: rem(8px);
+    }
+}

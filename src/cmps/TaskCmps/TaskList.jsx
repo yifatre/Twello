@@ -1,28 +1,46 @@
+import { Droppable, Draggable } from 'react-beautiful-dnd'
 
-import { useDroppable } from "@dnd-kit/core";
-import {
-    SortableContext,
-    verticalListSortingStrategy
-} from "@dnd-kit/sortable";
 import { TaskPreview } from "./TaskPreview"
-import { useState } from 'react'
+import { useNavigate } from 'react-router'
 
-export function TaskList({ items, activeId, id, groupId }) {
-    const { setNodeRef } = useDroppable({
-        id
-    });
-    // console.log(items);
+export function TaskList({ group, saveTask, removeTask, board }) {
+    const navigate = useNavigate()
+
     return (
 
-        <SortableContext items={items} id={id} strategy={verticalListSortingStrategy}>
-            <ul className="task-list clean-list" ref={setNodeRef}>
+        <Droppable droppableId={group.id} type="task">
+            {(provided) =>
+                <ul className="task-list clean-list" {...provided.droppableProps} ref={provided.innerRef}>
 
-                {items.map(task =>
-                    <TaskPreview key={task.id} id={task.id} task={task} activeId={activeId} groupId={groupId}/>
-                )}
+                    {group.tasks.map((task, idx) =>
+                        <Draggable key={task.id} draggableId={task.id} index={idx}>
 
-            </ul>
-        </SortableContext>
+                            {(provided, snapshot) =>
+                                    <li key={task.id}
+                                        className="task-preview"
+                                        onClick={() => navigate(`/board/${board._id}/${group.id}/${task.id}`)}
+                                        ref={provided.innerRef}
+                                        {...provided.draggableProps}
+                                        {...provided.dragHandleProps}
+                                        style={{ backgroundColor: task.style?.backgroundColor || '#ffffff' }}>
+
+                                        <TaskPreview key={task.id}
+                                            id={task.id}
+                                            task={task}
+                                            groupId={group.id}
+                                            removeTask={removeTask}
+                                            saveTask={saveTask}
+                                            board={board}
+                                        />
+                                    </li>}
+                                </Draggable>
+                    )}
+                            {provided.placeholder}
+
+                        </ul>
+            }
+                </Droppable >
+
 
     )
 }

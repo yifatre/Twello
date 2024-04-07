@@ -1,15 +1,25 @@
 import { useState } from "react"
+import { ClickAwayListener } from '@mui/base/ClickAwayListener'
+
 import { CREATE_BOARD, DynamicCmp } from "../TaskCmps/DynamicCmps/DynamicCmp"
 import { star_outline } from "../UtilCmps/SVGs"
 import { BoardPreview } from "./BoardPreview"
+import { utilService } from "../../services/util.service"
 
 export function BoardList({ boards }) {
     const [isAddBoard, setIsAddBoard] = useState(false)
-    console.log(boards)
-    // todo addBoard from the index
-    function onAddBoard() {
+    const [modalPosition, setModalPosition] = useState({ top: 0, left: 0 })
+    // console.log(boards)
+
+    function onAddBoard({ target }) {
+        setModalPosition(utilService.getModalPosition(target, target.offsetWidth + 8))
         setIsAddBoard(true)
     }
+
+    function onCloseAddModal() {
+        setIsAddBoard(false)
+    }
+
     return (<>
         <section className="board-list-container">
             <h3 className="flex align-center"><span>{star_outline}</span> Starred boards</h3>
@@ -35,13 +45,18 @@ export function BoardList({ boards }) {
                 }
                 <li className="board-preview">
 
-                    <article className='new-board ' onClick={() => onAddBoard()}>
-                        <p>Create new board</p>
-                        {isAddBoard && <DynamicCmp cmp={CREATE_BOARD} setIsAddBoard={setIsAddBoard} />}
+                    <article className='new-board ' onClick={(ev) => onAddBoard(ev)}>
+                        Create new board
                     </article>
                 </li>
             </ul>
         </section>
+        {isAddBoard && <ClickAwayListener onClickAway={onCloseAddModal}>
+            <div>
+                <DynamicCmp cmp={CREATE_BOARD} setIsAddBoard={setIsAddBoard} position={modalPosition} />
+            </div>
+        </ClickAwayListener>
+        }
     </>
     )
 }

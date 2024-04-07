@@ -1,8 +1,8 @@
 
 // import { storageService } from './async-storage.service.js'
-import { httpService } from './http.service.js'
-import { utilService } from './util.service.js'
-import { userService } from './user.service.js'
+import { httpService } from '../http.service.js'
+import { utilService } from '../util.service.js'
+import { userService } from '../user.service.js'
 
 
 const STORAGE_KEY = 'board'

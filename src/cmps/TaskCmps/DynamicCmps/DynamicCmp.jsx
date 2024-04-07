@@ -1,3 +1,4 @@
+import { updateBoard } from "../../../store/board/board.actions"
 import { AttachmentPicker } from "./AttachmentPicker"
 import { CoverPicker } from "./CoverPicker"
 import { CreateBoard } from "./CreateBoard"
@@ -11,7 +12,8 @@ export const DATES = 'DATES'
 export const ATTACHMENT = 'ATTACHMENT'
 export const COVER = 'COVER'
 export const CREATE_BOARD = 'CREATE_BOARD'
-
+// onUpdateTask(cmp, info, task ) {
+//     //todo info:{groupId,taskId,dynamic}
 
 
 export function DynamicCmp({groupId, onUpdateTasks, cmp, info, task, setIsAddBoard,position }) {
@@ -41,7 +43,7 @@ export function DynamicCmp({groupId, onUpdateTasks, cmp, info, task, setIsAddBoa
         case LABELS:
             top += buttonHeight * 2
             topHead = 'Labels'
-            cmpType = <LabelPicker taskLabels={task.labelIds} labels={info.labels} onUpdate={onUpdate} />
+            cmpType = <LabelPicker onUpdateBoard={onUpdateBoard} taskLabels={task.labelIds} labels={info.labels} onUpdate={onUpdate} />
             break
 
         case MEMBERS:
@@ -67,10 +69,12 @@ export function DynamicCmp({groupId, onUpdateTasks, cmp, info, task, setIsAddBoa
             topHead = 'Cover'
             cmpType = <CoverPicker info={info} onUpdate={onUpdate} />
             break
+
         case CREATE_BOARD:
             cmpType = <CreateBoard setIsAddBoard={setIsAddBoard} />
+            break
     }
-    return <div className={`dynamic-cmp ${cmp.toLowerCase()}`} style={{ top }}>
+    return <div className={`dynamic-cmp ${cmp.toLowerCase()}`} style={{ top:position.top, left:position.left }}>
         {cmpType}
     </div>
 }

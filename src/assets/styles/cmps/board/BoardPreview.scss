@@ -34,7 +34,7 @@
             line-height: 1;
         }
 
-        span {
+        &>span {
             // grid-area: star;
             position: absolute;
             right: rem(10px);
@@ -45,13 +45,13 @@
 
         }
 
-        span:not(.starred) {
+        &>span:not(.starred) {
             transform: translateX(200%);
             opacity: 0;
         }
 
         &:hover {
-            span {
+            &>span {
                 transform: translateX(0);
                 opacity: 1;
 
@@ -61,8 +61,13 @@
             }
         }
 
-        span.starred {
+        &>span.starred {
             color: $clr-starred;
         }
+    }
+
+    .dynamic-cmp{
+        position: fixed;
+        inset: auto auto 4px 879px;
     }
 }

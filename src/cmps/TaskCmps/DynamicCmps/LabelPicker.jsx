@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { arrow_down, edit_icon, x_icon } from "../../UtilCmps/SVGs"
-import { LABELS } from "./DynamicCmp";
+import { boardService } from "../../../services/board/board.service.local"
+import { LABELS } from "./DynamicCmp"
 
 const pallet = ['#baf3db', '#f8e6a0', '#fedec8', '#ffd5d2', '#dfd8fd',
     '#4bce97', '#f5cd47', '#fea362', '#f87168', '#9f8fef',
@@ -17,12 +18,6 @@ export function LabelPicker({ onUpdateBoard, taskLabels, labels, onUpdate }) {
     const [currentColor, setCurrentColor] = useState('#4bce97')
     const [labelContent, setLabelContent] = useState('')
     const [dark, setDark] = useState(new Array(pallet.length).fill(false))
-
-    const handleSelectCategory = (category, index) => {
-        let result = [...dark].fill()
-        result[index] = !result[index]
-        setDark(result)
-    }
 
     function toggleBtn(label) {
         setCurrentColor('#4bce97')
@@ -141,7 +136,7 @@ export function LabelPicker({ onUpdateBoard, taskLabels, labels, onUpdate }) {
 
                 <button onClick={() => removeColor()} className="tasks-btn labels-btn ">{x_icon}Remove color</button>
                 <hr className="between-btn" />
-                <button className='create-btn'>create</button>
+                <button onClick={() => onCreate()} className='create-btn'>create</button>
             </section>
         </>
 

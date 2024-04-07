@@ -6,11 +6,12 @@ export const utilService = {
     randomPastTime,
     saveToStorage,
     loadFromStorage,
-    getFormattedTime
+    getFormattedTime,
+    getModalPosition
 }
 
-function makeId(length = 6) {
-    var txt = ''
+function makeId(firstLetter = '', length = 6) {
+    var txt = firstLetter
     var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
 
     for (var i = 0; i < length; i++) {
@@ -67,5 +68,11 @@ function saveToStorage(key, value) {
 function loadFromStorage(key) {
     const data = localStorage.getItem(key)
     return (data) ? JSON.parse(data) : undefined
+}
+
+function getModalPosition(target, leftMargin = 0) {
+    const left = target.offsetLeft
+    const top = target.offsetTop
+    return { top, left: left + leftMargin }
 }
 

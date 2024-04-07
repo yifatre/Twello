@@ -1,137 +1,83 @@
 import { GroupPreview } from "./GroupPreview"
-
-import {
-    DndContext,
-    DragOverlay,
-    closestCorners,
-    closestCenter,
-    KeyboardSensor,
-    PointerSensor,
-    useSensor,
-    useSensors
-} from "@dnd-kit/core"
-import { arrayMove, sortableKeyboardCoordinates } from "@dnd-kit/sortable"
-
-import { useEffect, useState } from 'react'
-import { updateBoard } from "../../store/board.actions"
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
+import { updateBoard } from "../../store/board/board.actions"
+import { utilService } from "../../services/util.service"
 
 export function GroupList({ groups, board }) {
 
-    const [items, setItems] = useState(groups.reduce((acc, group) => { acc[group.id] = group.tasks; return acc }, {}))
-    const [activeId, setActiveId] = useState()
-
-    const sensors = useSensors(
-        useSensor(PointerSensor, {
-            activationConstraint: { distance: 5 }
-        }),
-        useSensor(KeyboardSensor, {
-            coordinateGetter: sortableKeyboardCoordinates,
-        })
-    )
-
-    function findContainer(id) {
-
-        if (id in items) {
-            console.log('true')
-            return id
+    function saveGroup(group) {
+        if (group.id) {
+            const idx = board.groups.findIndex(_group => _group.id === group.id)
+            board.groups[idx] = group
+            updateBoard(board)
+        } else {
+            group.id = utilService.makeId('g')
+            board.groups.push(group)
+            updateBoard(board)
         }
-
-        return Object.keys(items).find((key) => items[key].find(item => item.id === id))
     }
 
-    function handleDragStart(event) {
-        const { active } = event
-        const { id } = active
-
-        setActiveId(id)
+    function removeGroup(groupId) {
+        const board = board.groups.filter(group => group.id !== groupId)
+        updateBoard(board)
     }
 
-    function handleDragOver(event) {
-        const { active, over, draggingRect } = event
-        const { id } = active
-        const { id: overId } = over
-
-        // Find the containers
-        const activeContainer = findContainer(id)
-        const overContainer = findContainer(overId)
-
-        console.log('activeContainer', activeContainer, 'overContainer', overContainer)
-
-        if (
-            !activeContainer ||
-            !overContainer ||
-            activeContainer === overContainer
-        ) {
-            return
+    function onDragEnd(result) {
+        if (!result.destination) {
+            return;
         }
 
-        setItems((prev) => {
-            const activeItems = prev[activeContainer]
-            const overItems = prev[overContainer]
+        const startIdx = result.source.index
+        const endIdx = result.destination.index
 
-            const activeIndex = activeItems.findIndex(task => task.id === id)
-            const overIndex = overItems.findIndex(task => task.id === overId)
-            const newIndex = overItems.length + 1
-  
+        if (result.type === 'group') {
+            const [group] = groups.splice(startIdx, 1)
+            groups.splice(endIdx, 0, group)
+            updateBoard({ ...board, groups })
+        }
 
-            return {
-                ...prev,
-                [activeContainer]: [
-                    ...prev[activeContainer].filter((item) => item.id !== active.id)
-                ],
-                [overContainer]: [
-                    ...prev[overContainer].slice(0, newIndex),
-                    items[activeContainer][activeIndex],
-                    ...prev[overContainer].slice(newIndex, prev[overContainer].length)
-                ]
-            }
-        })
+        if (result.type === 'task') {
+            const groupStart = groups.find(group => group.id === result.source.droppableId)
+            const groupEnd = groups.find(group => group.id === result.destination.droppableId)
+            const [task] = groupStart.tasks.splice(startIdx, 1)
+            groupEnd.tasks.splice(endIdx, 0, task)
+            updateBoard({ ...board, groups })
+        }
     }
 
-    function handleDragEnd(event) {
-        const { active, over } = event
-        const { id } = active
-        const { id: overId } = over
-        console.log("id, over", active, over)
-        const activeContainer = findContainer(id)
-        const overContainer = findContainer(overId)
 
-        if (
-            !activeContainer ||
-            !overContainer ||
-            activeContainer !== overContainer
-        ) {
-            return
-        }
-
-        const activeIndex = items[activeContainer].findIndex(item => item.id === active.id)
-        const overIndex = items[overContainer].findIndex(item => item.id === overId)
-
-        if (activeIndex !== overIndex) {
-            setItems((items) => ({
-                ...items,
-                [overContainer]: arrayMove(items[overContainer], activeIndex, overIndex)
-            }))
-            
-            groups.map(group => group.tasks = items[group.id])
-            updateBoard({...board, groups})
-        }
-
-        setActiveId(null)
-    }
     return (
-        <ul className="clean-list flex group-list">
-            <DndContext sensors={sensors}
-                collisionDetection={closestCorners}
-                onDragStart={handleDragStart}
-                onDragEnd={handleDragEnd}
-                onDragOver={handleDragOver}
-            >
-                {groups.map(group => {
-                   return <GroupPreview key={items[group.id].id} id={items[group.id].id} items={items[group.id]} group={group} activeId={activeId} />
-                })}
-            </DndContext>
-        </ul>
+        <DragDropContext
+            // onBeforeCapture={onBeforeCapture}
+            // onBeforeDragStart={onBeforeDragStart}
+            // onDragStart={onDragStart}
+            // onDragUpdate={onDragUpdate}
+            onDragEnd={onDragEnd}
+        >
+            <Droppable droppableId={'groups'} direction='horizontal' type="group">
+                {(provided, snapshot) => (
+                    <ul className="clean-list flex group-list" {...provided.droppableProps} ref={provided.innerRef}>
+                        {groups.map((group, idx) =>
+                            <Draggable key={group.id} draggableId={group.id} index={idx}>
+                                {(provided, snapshot) =>
+                                    <li key={group.id}
+                                        className={`group-preview ${group.style.themeColor || 'neutral'}`}
+                                        ref={provided.innerRef}
+                                        {...provided.draggableProps}
+                                        {...provided.dragHandleProps}>
+
+                                        <GroupPreview
+                                            provided={provided}
+                                            group={group}
+
+                                            saveGroup={saveGroup}
+                                            board={board} />
+                                    </li>}
+                            </Draggable>
+                        )}
+                    </ul>)}
+            </Droppable>
+        </DragDropContext>
     )
 }
 
