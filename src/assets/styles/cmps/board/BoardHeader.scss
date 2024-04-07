@@ -83,26 +83,10 @@
         grid-auto-flow: column;
         align-items: center;
         margin-inline: rem(2px) rem(8px);
-
         
-        .avatar {   
-            border-radius: 50%;
+        .avatar {           
+            @include avatar(28px);
             margin-inline-end: -3px;
-            img, .initials {
-                position: relative;
-                border-radius: 50%;
-                height: rem(28px);
-                width: rem(28px);
-                background-color: transparent;
-                display: grid;
-                place-items: center;
-                font-size: 12px;
-       
-            }
-            &:hover {
-                opacity: 70%;
-            }
-
         }
         button.more {
             height: rem(28px);
