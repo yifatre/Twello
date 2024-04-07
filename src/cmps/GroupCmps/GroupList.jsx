@@ -20,6 +20,11 @@ export function GroupList({ groups, board }) {
     const [items, setItems] = useState(groups.reduce((acc, group) => { acc[group.id] = group.tasks; return acc }, {}))
     const [activeId, setActiveId] = useState()
 
+    useEffect(() => {
+        groups.map(group => group.tasks = items[group.id])
+        updateBoard({ ...board, groups })
+    },[items])
+
     function saveGroup(group) {
         if (group.id) {
             const idx = board.groups.findIndex(_group => _group.id === group.id)
@@ -61,10 +66,11 @@ export function GroupList({ groups, board }) {
         const { id } = active
 
         setActiveId(id)
+        console.log('drag started',id);
     }
 
     function handleDragOver(event) {
-        const { active, over, draggingRect } = event
+        const { active, over } = event
         const { id } = active
         const { id: overId } = over
 
@@ -128,10 +134,7 @@ export function GroupList({ groups, board }) {
             setItems((items) => ({
                 ...items,
                 [overContainer]: arrayMove(items[overContainer], activeIndex, overIndex)
-            }))
-
-            groups.map(group => group.tasks = items[group.id])
-            updateBoard({ ...board, groups })
+            }))       
         }
 
         setActiveId(null)

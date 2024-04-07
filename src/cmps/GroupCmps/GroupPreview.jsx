@@ -41,6 +41,7 @@ export function GroupPreview({ items, id, activeId, group, saveGroup, board }) {
     )
 
     return (
+        // <SortableContext items={items} id={id} strategy={verticalListSortingStrategy}>
         isExtended && <li className={`group-preview ${group.style.themeColor || 'neutral'}`}>
             <div className="group-header">
                 {!isEditTitle && <h2 className="group-title" onClick={() => setIsEditTitle(true)}>{group.title}</h2>}
@@ -61,6 +62,7 @@ export function GroupPreview({ items, id, activeId, group, saveGroup, board }) {
             {isAddMode && <TaskAdd setIsAddMode={setIsAddMode} saveTask={saveTask}/>}
         </li>
 
+        // </SortableContext>
 
     )
 }
