@@ -82,3 +82,56 @@
         color: var(--accent-icon);
     }
 }
+
+.group-preview-shrunken {
+    justify-content: start;
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    border-radius: inherit;
+    padding: rem(8px) rem(4px);
+    overflow: hidden;
+    writing-mode: vertical-lr;
+    cursor: pointer;
+    height: max-content;
+    
+    background-color: var(--accent-background);
+    color: var(--accent-text);
+    border-radius: $group-border-radius;
+
+    &:hover {
+        color: var(--accent-text-bolder);
+        background-color: var(--accent-background-hovered);
+    }
+
+    h2 {
+        display: flex;
+        align-items: center;   
+        color: var(--accent-text-bolder);
+        font-size: rem(14px);
+        height: max-content;
+        width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        padding: rem(4px);
+    }
+
+    h4 {
+        display: flex;
+        align-items: center;
+        padding: rem(4px) 0 rem(8px);
+        color: var(--accent-text);
+        font-weight: 400;
+    }
+
+    button {
+        @include reg-btn;
+        padding: rem(4px);
+        
+        
+        .svg-container {
+            @include svg-container(24px, 24px)
+        }
+    }
+}

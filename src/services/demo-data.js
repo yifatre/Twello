@@ -35,13 +35,28 @@ export const boardsDemoData = [
         groups: [
             {
                 "id": "g101",
-                "title": "Group 1",
+                "title": "backlog",
                 "archivedAt": 1589983468418,
+                "isExtended": "true",
                 "tasks": [
                     {
                         "id": "c101",
-                        "title": "Replace logo",
-                        "style": {},
+                        "title": "User Management",
+                        "style": {
+                            "backgroundImage" : "https://trello.com/1/cards/660d25caed4263dcfcc3dbf0/attachments/660e3f679cb08cb6edb7fec3/download/user.jpg"
+                        },
+                        "labels": [
+                            {
+                                "id": "l101",
+                                "title": "Done",
+                                "color": "purple"
+                            },
+                            {
+                                "id": "l102",
+                                "title": "Progress",
+                                "color": "orange"
+                            }
+                        ],
                         "checklists": [
                             {
                                 "id": "YesdmF",
@@ -55,6 +70,18 @@ export const boardsDemoData = [
                                 ]
                             }
                         ],
+                        "members": [
+                            {
+                                "_id": "u102",
+                                "fullName": "John Doe",
+                                "imgUrl": "https://randomuser.me/api/portraits/men/1.jpg"
+                            },
+                            {
+                                "_id": "u103",
+                                "fullName": "Alice Smith",
+                                "imgUrl": "https://randomuser.me/api/portraits/women/2.jpg"
+                            },
+                        ]
                     },
                     {
                         "id": "c102",
@@ -76,6 +103,18 @@ export const boardsDemoData = [
                                         "isDone": true
                                     }
                                 ]
+                            }
+                        ],
+                        "labels": [
+                            {
+                                "id": "l101",
+                                "title": "waiting for feedback",
+                                "color": "yellow"
+                            },
+                            {
+                                "id": "l102",
+                                "title": "has to be discussed",
+                                "color": "magenta"
                             }
                         ],
                     },
@@ -124,17 +163,30 @@ export const boardsDemoData = [
                                 ]
                             }
                         ],
+                        "members" :[
+                            {
+                                "_id": "u101",
+                                "fullName": "Yifat re", 
+                                "imgUrl": "https://trello-members.s3.amazonaws.com/660bf13c426a52eda7897e39/7dc2b02dcda3f5364deedb6736608c8b/170.png",  
+                            },
+                            {
+                                "_id": "u106",
+                                "fullName": "David Lee",
+                                // "imgUrl": "https://randomuser.me/api/portraits/men/5.jpg"
+                            }
+                        ]
                     }
                 ],
                 "style": {
-                    
-                        "themeColor": "lime"
-                    
+
+                    "themeColor": "teal"
+
                 }
             },
             {
                 "id": "g102",
-                "title": "Group 2",
+                "title": "To Do - Frontend",
+                "isExtended": "true",
                 "tasks": [
                     {
                         "id": "c107",
@@ -144,9 +196,11 @@ export const boardsDemoData = [
                     },
                     {
                         "id": "c108",
-                        "title": "Do that",
+                        "title": "CRUDs",
                         "archivedAt": 1589983468418,
-                        "style": {}
+                        "style": {
+                            "backgroundImage" : "https://trello.com/1/cards/660d2f8f6d1588b03560bfcb/attachments/660e51a38812400a61b9ac76/download/CRUD.jpeg"
+                        }
                     },
                     {
                         "id": "c109",
@@ -201,7 +255,7 @@ export const boardsDemoData = [
                             "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
                         },
                         "style": {
-                            
+
                         }
                     }
                 ],
