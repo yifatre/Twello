@@ -61,7 +61,6 @@ export function GroupList({ groups, board }) {
                             <Draggable key={group.id} draggableId={group.id} index={idx}>
                                 {(provided, snapshot) =>
                                     <li key={group.id}
-                                        className={`group-preview ${group.style.themeColor || 'neutral'}`}
                                         ref={provided.innerRef}
                                         {...provided.draggableProps}
                                         {...provided.dragHandleProps}>
