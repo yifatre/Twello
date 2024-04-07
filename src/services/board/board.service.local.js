@@ -12,7 +12,9 @@ export const boardService = {
     save,
     remove,
     getEmptyBoard,
-    getEmptyTask
+    getEmptyTask,
+    getEmptyActivity,
+    getEmptyGroup
 }
 window.cs = boardService
 
@@ -55,30 +57,67 @@ function getEmptyBoard() {
         title: "",
         isStarred: false,
         archivedAt: null,
-        createdBy: {
-            "_id": "u101",
-            "fullname": "Abi Abambi",
-            "imgUrl": "http://some-img"
-        },
+        createdById: "u101",
         style: {
-            backgroundImage: null
+            background: null,
         },
-        labels: [
-
-        ],
-        members: [
-        ],
+        labels: [],
+        members: [],
         groups: [
+            {
+                id: utilService.makeId('g'),
+                title: 'todo',
+                isExtended: true,
+                style: {themeColor : 'gray'}
+            },
+            {
+                id: utilService.makeId('g'),
+                title: 'todo',
+                isExtended: true,
+                style: {themeColor : 'gray'}
+            },
+            {
+                id: utilService.makeId('g'),
+                title: 'todo',
+                isExtended: true,
+                style: {themeColor : 'gray'}
+            }
+        ],
+        activities: [],
+    }
+}
 
-        ],
-        activities: [
-        ],
+function getEmptyGroup() {
+    return {
+        title: '',
+        isExtended: true,
+        style: {
+            backgroundColor : 'gray'
+        },
     }
 }
 
 function getEmptyTask() {
     return {
-        title: ''
+        title: '',
+        description: '',
+        style: {
+            
+        },
+        labelIds: [],
+        memberIds: [],
+        checklists: [],
+    }
+}
+
+function getEmptyActivity() {
+    return {
+        id: utilService.makeId('a'),
+        createdAt: Date.now(),
+        txt: '',
+        byMemberId: '',
+        group: {},
+        task: {},
     }
 }
 

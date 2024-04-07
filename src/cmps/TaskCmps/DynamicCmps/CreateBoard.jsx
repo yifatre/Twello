@@ -27,10 +27,14 @@ export function CreateBoard({ setIsAddBoard }) {
         setBoard(prevBoard => ({ ...prevBoard, style: { ...prevBoard.style, backgroundImage: img } }))
     }
 
-    const imgs = ['https://images.unsplash.com/photo-1712291003261-5b3b5cea3f28?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3MDY2fDB8MXxjb2xsZWN0aW9ufDF8MzE3MDk5fHx8fHwyfHwxNzEyNDg2NjkwfA&ixlib=rb-4.0.3&q=80&w=400',
+    const imgs = [
+        'https://images.unsplash.com/photo-1712291003261-5b3b5cea3f28?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3MDY2fDB8MXxjb2xsZWN0aW9ufDF8MzE3MDk5fHx8fHwyfHwxNzEyNDg2NjkwfA&ixlib=rb-4.0.3&q=80&w=400',
         'https://images.unsplash.com/photo-1712148910821-8fe718c418af?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3MDY2fDB8MXxjb2xsZWN0aW9ufDJ8MzE3MDk5fHx8fHwyfHwxNzEyNDg2NjkwfA&ixlib=rb-4.0.3&q=80&w=400',
         'https://images.unsplash.com/photo-1712107063586-a282f12c3973?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3MDY2fDB8MXxjb2xsZWN0aW9ufDN8MzE3MDk5fHx8fHwyfHwxNzEyNDg2NjkwfA&ixlib=rb-4.0.3&q=80&w=400',
-        'https://images.unsplash.com/photo-1711636418389-1ee93ebd56fb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3MDY2fDB8MXxjb2xsZWN0aW9ufDR8MzE3MDk5fHx8fHwyfHwxNzEyNDg2NjkwfA&ixlib=rb-4.0.3&q=80&w=400']
+        'https://images.unsplash.com/photo-1711636418389-1ee93ebd56fb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3MDY2fDB8MXxjb2xsZWN0aW9ufDR8MzE3MDk5fHx8fHwyfHwxNzEyNDg2NjkwfA&ixlib=rb-4.0.3&q=80&w=400'
+    ]
+
+    const gradients = [gradIce, gradWave, gradMagic, gradRainbow, gradPeach]
 
     async function onCreateBoard() {
         try {
@@ -46,7 +50,7 @@ export function CreateBoard({ setIsAddBoard }) {
     return <>
         <header className="dynamic-head-container">
             <h2>Create board</h2>
-            <button className="tasks-btn close-btn" onClick={()=>setIsAddBoard(false)}>{x_icon}</button>
+            <button className="tasks-btn close-btn" onClick={() => setIsAddBoard(false)}>{x_icon}</button>
         </header>
         <div className="picker-container create-new-board">
             <div className="flex align-center justify-center">
@@ -57,17 +61,10 @@ export function CreateBoard({ setIsAddBoard }) {
             <div className="background-picker">
                 <h3>Background</h3>
                 <div className="imgs flex">
-                    <div onClick={() => changeBgImg(imgs[0])} style={{ backgroundImage: `url(${imgs[0]})` }}><span>{check_icon}</span></div>
-                    <div onClick={() => changeBgImg(imgs[1])} style={{ backgroundImage: `url(${imgs[1]})` }}><span>{check_icon}</span></div>
-                    <div onClick={() => changeBgImg(imgs[2])} style={{ backgroundImage: `url(${imgs[2]})` }}><span>{check_icon}</span></div>
-                    <div onClick={() => changeBgImg(imgs[3])} style={{ backgroundImage: `url(${imgs[3]})` }}><span>{check_icon}</span></div>
+                    {imgs.map((img, idx) => <div key={idx} onClick={() => changeBgImg(img)} style={{ backgroundImage: `url(${img})` }}><span>{board.style?.backgroundImage === img ? check_icon : ''}</span></div>)}
                 </div>
                 <div className="gradients flex">
-                    <div onClick={() => changeBgImg(gradIce)} style={{ backgroundImage: `url("${gradIce}")` }}><span>{check_icon}</span></div>
-                    <div onClick={() => changeBgImg(gradWave)} style={{ backgroundImage: `url("${gradWave}")` }}><span>{check_icon}</span></div>
-                    <div onClick={() => changeBgImg(gradMagic)} style={{ backgroundImage: `url("${gradMagic}")` }}><span>{check_icon}</span></div>
-                    <div onClick={() => changeBgImg(gradRainbow)} style={{ backgroundImage: `url("${gradRainbow}")` }}><span>{check_icon}</span></div>
-                    <div onClick={() => changeBgImg(gradPeach)} style={{ backgroundImage: `url("${gradPeach}")` }}><span>{check_icon}</span></div>
+                    {gradients.map((grad, idx) => <div key={idx} onClick={() => changeBgImg(grad)} style={{ backgroundImage: `url(${grad})` }}><span>{board.style?.backgroundImage === grad ? check_icon : ''}</span></div>)}
                     <div className="more">{ellipsis_icon}</div>
 
                 </div>
@@ -84,14 +81,3 @@ export function CreateBoard({ setIsAddBoard }) {
         </div>
     </>
 }
-
-
-
-/*
-https://images.unsplash.com/photo-1712291003261-5b3b5cea3f28?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3MDY2fDB8MXxjb2xsZWN0aW9ufDF8MzE3MDk5fHx8fHwyfHwxNzEyNDg2NjkwfA&ixlib=rb-4.0.3&q=80&w=400
-https://images.unsplash.com/photo-1712148910821-8fe718c418af?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3MDY2fDB8MXxjb2xsZWN0aW9ufDJ8MzE3MDk5fHx8fHwyfHwxNzEyNDg2NjkwfA&ixlib=rb-4.0.3&q=80&w=400
-https://images.unsplash.com/photo-1712107063586-a282f12c3973?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3MDY2fDB8MXxjb2xsZWN0aW9ufDN8MzE3MDk5fHx8fHwyfHwxNzEyNDg2NjkwfA&ixlib=rb-4.0.3&q=80&w=400
-https://images.unsplash.com/photo-1711636418389-1ee93ebd56fb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3MDY2fDB8MXxjb2xsZWN0aW9ufDR8MzE3MDk5fHx8fHwyfHwxNzEyNDg2NjkwfA&ixlib=rb-4.0.3&q=80&w=400
-
-
-*/
