@@ -1,72 +1,41 @@
 import { useNavigate, useParams } from "react-router"
 import { DescriptionEdit } from "./DescriptionEdit"
-import { arrow_down, bars_icon, box_icon, check_icon, checked_icon, clock_icon, cover_icon, eye_icon, label_icon, location_icon, member_icon, paperclip_icon, plus_icon, window_icon, x_icon } from "../UtilCmps/SVGs"
+import { arrow_down, bars_icon, check_icon, checked_icon, clock_icon, cover_icon, eye_icon, label_icon, location_icon, member_icon, paperclip_icon, plus_icon, window_icon, x_icon } from "../UtilCmps/SVGs"
 import { utilService } from "../../services/util.service"
 import { ClickAwayListener } from '@mui/base/ClickAwayListener'
+import { useOutletContext } from "react-router-dom"
+import { useState } from "react"
+import { ATTACHMENT, COVER, DATES, DynamicCmp, LABELS, MEMBERS } from "./DynamicCmps/DynamicCmp"
 
 
 
-export function TaskDetails({ }) {//task }) {
+export function TaskDetails() {
     const { boardId, groupId, taskId } = useParams()
+    const [board] = useOutletContext()
+    const [actionType, setActionType] = useState(null)
+
+    const [task, setTask] = useState(board.groups.find(group => group.id === groupId).tasks.find(task => task.id === taskId))
     const navigate = useNavigate()
     console.log('boardId, groupId, taskId', boardId, groupId, taskId)
     function onAddMember() { }
     function onAddLabel() { }
 
-    const task = {
-        "id": "c104",
-        "title": "Help me",
-        "status": "in-progress", // monday
-        "priority": "high",
-        "description": "description",
-        "comments": [
-            {
-                "id": "ZdPnm",
-                "txt": "also @yaronb please CR this",
-                "createdAt": 1590999817436,
-                "byMember": {
-                    "_id": "u101",
-                    "fullname": "Tal Tarablus",
-                    "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
-                }
-            }
-        ],
-        "checklists": [
-            {
-                "id": "YEhmF",
-                "title": "Checklist",
-                "todos": [
-                    {
-                        "id": "212jX",
-                        "title": "To Do 1",
-                        "isDone": false
-                    }
-                ]
-            }
-        ],
-        "memberIds": ["u101"],
-        "labelIds": ["l101", "l102"],
-        "dueDate": 16156215211,
-        "byMember": {
-            "_id": "u101",
-            "username": "Tal",
-            "fullname": "Tal Tarablus",
-            "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
-        },
-        "style": {
-            "backgroundColor": "#26de81"
-        }
-    }
-
-
     function closeTaskDetails() {
-        navigate(`/board/${boardId}`)
+        navigate(`/board/${boardId}`) //! temporarily cancelled for dev
     }
-    
+
+    function onSetActionType(ev, type) {
+        ev.preventDefault()
+        ev.stopPropagation()
+        setActionType(type)
+    }
+
+    function onUpdateTask() { }
+
     return <div className="task-details-backdrop">
         <ClickAwayListener onClickAway={closeTaskDetails}>
             <section className="task-details">
-                <button className="close-btn" onClick={closeTaskDetails}>{x_icon}</button>
+                <button className="details-close-btn" onClick={closeTaskDetails}>{x_icon}</button>
                 <section className="cover">
                     <a href="#">{cover_icon}Cover</a>
                 </section>
@@ -86,17 +55,16 @@ export function TaskDetails({ }) {//task }) {
                     <div className="members">
                         <h3>Members</h3>
                         <div className="">
-                            {task.memberIds.map(memberId => <div key={memberId} className="avatar"></div>)}
+                            {task.memberIds?.map(memberId => <div key={memberId} className="avatar"></div>)}
                             <button className="avatar" onClick={onAddMember}>{plus_icon}</button>
                         </div>
                     </div>
                     <div className="labels">
                         <h3>Labels</h3>
                         <div className="">
-                            {task.labelIds.map(labelId => <div key={labelId} className="label">{labelId}</div>)}
+                            {task.labelIds?.map(labelId => <div key={labelId} className="label">{labelId}</div>)}
                             <button className="label" onClick={onAddLabel}>{plus_icon}</button>
                         </div>
-
                     </div>
                     <div className="due-date">
                         <h3>Due date</h3>
@@ -119,16 +87,17 @@ export function TaskDetails({ }) {//task }) {
 
                 <section className="actions">
                     <h3>Add to card</h3>
-                    <a className="flex align-center" href="#">{member_icon}Members</a>
-                    <a className="flex align-center" href="#">{label_icon}Labels</a>
-                    <a className="flex align-center" href="#">{checked_icon}Checklist</a>
-                    <a className="flex align-center" href="#">{clock_icon}Dates</a>
-                    <a className="flex align-center" href="#">{paperclip_icon}Attachment</a>
+                    <a className="flex align-center" href="#" onClick={(ev) => onSetActionType(ev, MEMBERS)} >{member_icon}Members</a>
+                    <a className="flex align-center" href="#" onClick={(ev) => onSetActionType(ev, LABELS)}>{label_icon}Labels</a>
+                    <a className="flex align-center" href="#" >{checked_icon}Checklist</a>
+                    <a className="flex align-center" href="#" onClick={(ev) => onSetActionType(ev, DATES)}>{clock_icon}Dates</a>
+                    <a className="flex align-center" href="#" onClick={(ev) => onSetActionType(ev, ATTACHMENT)}>{paperclip_icon}Attachment</a>
                     <a className="flex align-center" href="#">{location_icon}Location</a>
-
+                    {!task.style?.backgroundColor && <a className="flex align-center" href="#" onClick={(ev) => onSetActionType(ev, COVER)}>{cover_icon}Cover</a>}
+                    {actionType && <DynamicCmp cmp={actionType} task={task} info={board} onUpdate={onUpdateTask} />}
                 </section>
-
+                {/* <ClickAwayListener onClickAway={() => setActionType(null)}> </ClickAwayListener>*/}
             </section>
         </ClickAwayListener>
-    </div>
+    </div >
 }

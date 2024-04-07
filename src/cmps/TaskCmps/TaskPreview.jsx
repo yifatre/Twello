@@ -2,9 +2,10 @@ import { bars_icon, checked_icon, edit_icon, eye_icon, paperclip_icon, time_icon
 import { useSortable } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
 import { useNavigate, useParams } from "react-router-dom"
+import { AvatarList } from "../UtilCmps/AvatarList";
 
 export function TaskPreview({ task, id, activeId, groupId }) {
-    console.log(id);    const { boardId } = useParams()
+    console.log(id); const { boardId } = useParams()
     const navigate = useNavigate()
 
     function getTodoDoneCount() {
@@ -34,28 +35,31 @@ export function TaskPreview({ task, id, activeId, groupId }) {
         transition,
     } = useSortable({ id: id })
 
-    const tran = {transform: CSS.Transform.toString(transform)}
+    const tran = { transform: CSS.Transform.toString(transform) }
 
-    // const style = {
-    //     transform: CSS.Transform.toString(transform), 
-    // }
+    if (activeId === id) tran.transform += 'rotate(+0.01turn)'
 
-    if ( activeId === id) tran.transform += 'rotate(+0.01turn)'
-
-    console.log(activeId);
     const { title, style } = task
     return (
         <li className="task-preview" onClick={() => navigate(`/board/${boardId}/${groupId}/${task.id}`)}
             style={{
                 backgroundColor: style?.backgroundColor || '#ffffff',
-                backgroundImage: `url(${style?.backgroundImage})`,
+                // backgroundImage: `url(${style?.backgroundImage})`,
                 transform: tran.transform
             }}
             // style={style}
             ref={setNodeRef} {...attributes} {...listeners} id={id}
-            >
+        >
+            {task.style.backgroundImage && <img src={task.style.backgroundImage}/>}
+            <div className="content">
+            {task.labels &&
+                <div className='labels'>
+                    {task.labels.map(label => <div className={`label ${label.color || 'gray'}`} >{label.title}</div>)}
+                </div>}
+
             <i className="edit-icon">{edit_icon}</i>
             <a>{title}</a>
+            <div className="task-info-container">
             <div className="task-info">
                 <span className="icon-container">{eye_icon}</span>
                 {!!task.dueDate && <div className="txt-and-icon icon-container">{time_icon}{getDateFormat()}</div>}
@@ -63,8 +67,10 @@ export function TaskPreview({ task, id, activeId, groupId }) {
                 <div className="txt-and-icon icon-container">{paperclip_icon}2</div>
                 {!!task.checklists?.length
                     && <div className="txt-and-icon icon-container">{checked_icon}{`${getTodoDoneCount().doneCount}/${getTodoDoneCount().totalTodos}`}</div>}
-
             </div>
+                {task.members && <div className="task-preview-avatars"><AvatarList users={task.members}/></div>}
+            
+            </div></div>
         </li>
     )
 }

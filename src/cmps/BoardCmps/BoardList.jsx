@@ -1,11 +1,14 @@
+import { useState } from "react"
+import { CREATE_BOARD, DynamicCmp } from "../TaskCmps/DynamicCmps/DynamicCmp"
 import { star_outline } from "../UtilCmps/SVGs"
 import { BoardPreview } from "./BoardPreview"
 
 export function BoardList({ boards }) {
+    const [isAddBoard, setIsAddBoard] = useState(false)
     console.log(boards)
     // todo addBoard from the index
-    function addBoard() {
-        console.log('create')
+    function onAddBoard() {
+        setIsAddBoard(true)
     }
     return (<>
         <section className="board-list-container">
@@ -28,13 +31,13 @@ export function BoardList({ boards }) {
                         return <li key={board._id}>
                             <BoardPreview board={board} />
                         </li>
-
                     })
                 }
                 <li className="board-preview">
 
-                    <article className='new-board ' onClick={() => addBoard()}>
+                    <article className='new-board ' onClick={() => onAddBoard()}>
                         <p>Create new board</p>
+                        {isAddBoard && <DynamicCmp cmp={CREATE_BOARD} setIsAddBoard={setIsAddBoard} />}
                     </article>
                 </li>
             </ul>

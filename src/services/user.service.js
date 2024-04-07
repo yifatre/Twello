@@ -85,7 +85,19 @@ function saveLocalUser(user) {
 }
 
 function getLoggedInUser() {
-    return JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN_USER))
+    // return JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN_USER))
+    return {
+        "_id": "u101",
+        "fullName": "Yifat re",
+        "username": "abi@ababmi.com",
+        "password": "aBambi123",
+        "imgUrl": "https://trello-members.s3.amazonaws.com/660bf13c426a52eda7897e39/7dc2b02dcda3f5364deedb6736608c8b/170.png",
+        "mentions": [{ //optional
+            "id": "m101",
+            "boardId": "m101",
+            "taskId": "t101"
+        }]
+    }
 }
 
 

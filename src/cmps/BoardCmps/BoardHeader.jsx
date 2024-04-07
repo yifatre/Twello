@@ -6,7 +6,7 @@ export function BoardHeader({ board }) {
     return (
         <header className="board-header">
             <h1 className="board-title">{board.title}</h1>
-            <button className="board-star">{board.isStarred ? star : star_outline}</button>
+            <button className="board-star">{board.isStarred ? <span className="svg-container">{star}</span> : <span className="svg-container">{star_outline}</span> }</button>
             <button className="btn2 visibility">{group_icon}Workspace visible</button>
             <button className="btn2 board-view active">{board_icon}Board</button>
             <button className="btn2 table-view">{table_icon}Table</button>

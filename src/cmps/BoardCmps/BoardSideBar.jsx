@@ -7,7 +7,7 @@ export function BoardSideBar() {
     return(
         !isOpen && <button className="side-bar-btn">
            
-            <button className="open-sidebar-btn">{side_arrow_icon}</button>
+            {/* <button className="open-sidebar-btn">{side_arrow_icon}</button> */}
             
         </button>
     )

@@ -15,7 +15,7 @@
 
         h2 {
             font-weight: 600;
-            padding: 6px 8px 6px 12px;
+            padding: rem(6px) rem(8px) rem(6px) rem(12px);
             color: var(--accent-text-bolder);
         }
 
@@ -63,8 +63,75 @@
         }
     }
 
+    .title-edit {
+        font-weight: 600;
+        outline: none;
+        border-radius: rem(8px);
+        border:none;
+        font-size: rem(14px);
+        height: rem(32px);
+
+        &:focus {
+            outline: 2px solid var(--ds-border-focused);
+        }
+        padding: rem(5.5px) rem(8px) rem(6.5px) rem(12px)
+    }
+
     .svg-container {
         @include svg-container;
         color: var(--accent-icon);
+    }
+}
+
+.group-preview-shrunken {
+    justify-content: start;
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    border-radius: inherit;
+    padding: rem(8px) rem(4px);
+    overflow: hidden;
+    writing-mode: vertical-lr;
+    cursor: pointer;
+    height: max-content;
+    
+    background-color: var(--accent-background);
+    color: var(--accent-text);
+    border-radius: $group-border-radius;
+
+    &:hover {
+        color: var(--accent-text-bolder);
+        background-color: var(--accent-background-hovered);
+    }
+
+    h2 {
+        display: flex;
+        align-items: center;   
+        color: var(--accent-text-bolder);
+        font-size: rem(14px);
+        height: max-content;
+        width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        padding: rem(4px);
+    }
+
+    h4 {
+        display: flex;
+        align-items: center;
+        padding: rem(4px) 0 rem(8px);
+        color: var(--accent-text);
+        font-weight: 400;
+    }
+
+    button {
+        @include reg-btn;
+        padding: rem(4px);
+        
+        
+        .svg-container {
+            @include svg-container(24px, 24px)
+        }
     }
 }
