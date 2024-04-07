@@ -6,6 +6,7 @@ import { showErrorMsg } from "../../services/event-bus.service"
 import { BoardHeader } from "./BoardHeader"
 import { BoardSideBar } from "./BoardSideBar"
 import { ATTACHMENT, COVER, DATES, LABELS, MEMBERS } from "../TaskCmps/DynamicCmps/DynamicCmp"
+import { updateBoard } from "../../store/board.actions"
 
 export function BoardDetails() {
     const { boardId } = useParams()
@@ -27,9 +28,11 @@ export function BoardDetails() {
     }
 
     function onUpdateBoard(groupId, taskToUpdate) {
+        console.log(taskToUpdate,'groupId',groupId)
         const boardToUpdate = board.groups.map(group => {
             if (group.id === groupId) {
                 const updatedTasks = group.tasks.map(task => {
+                    console.log(task.id);
                     if (task.id === taskToUpdate.id) {
                         console.log('task from map:',task);
                         return taskToUpdate
@@ -40,6 +43,8 @@ export function BoardDetails() {
             }
             return group
         })
+
+        console.log('boardToUpdate:',boardToUpdate);
         updateBoard(boardToUpdate)
     }
  
@@ -82,7 +87,7 @@ export function BoardDetails() {
             <GroupList groups={board.groups} board={board}/>
             <div className="board-fade"></div>
         </section>
-        <Outlet context={[board]} />
+        <Outlet context={[board,onUpdateTask]} />
     </>
     )
 }

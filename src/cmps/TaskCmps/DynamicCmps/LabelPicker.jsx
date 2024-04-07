@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { arrow_down, edit_icon, x_icon } from "../../UtilCmps/SVGs"
+import { LABELS } from "./DynamicCmp";
 
 const pallet = ['#baf3db', '#f8e6a0', '#fedec8', '#ffd5d2', '#dfd8fd',
     '#4bce97', '#f5cd47', '#fea362', '#f87168', '#9f8fef',
@@ -68,7 +69,10 @@ export function LabelPicker({ onUpdateBoard, taskLabels, labels, onUpdate }) {
 
     function onCheckLabel({ target }) {
         if (target.checked) {
-            const _labels = taskLabels.push(target.id)
+            taskLabels.push(target.id)
+            console.log(taskLabels);
+            const _labels = 
+            console.log(_labels,'from picker');
             onUpdate(LABELS, _labels)
         } else {
             const _labels = taskLabels.filter(id => target.id !== id)

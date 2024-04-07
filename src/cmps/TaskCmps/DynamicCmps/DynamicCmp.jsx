@@ -24,6 +24,7 @@ export function DynamicCmp({groupId, onUpdateTasks, cmp, info, task, setIsAddBoa
 
     function onUpdate(cmp,dynamic) {
         console.log('dynamic:',dynamic);
+        console.log('from dyn:',groupId);
         const _info = {
             groupId,
             taskId:task.id,
