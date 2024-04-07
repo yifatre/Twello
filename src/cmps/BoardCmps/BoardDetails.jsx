@@ -82,10 +82,10 @@ export function BoardDetails() {
 
     if (!board) return <div>loading</div>
     return (<>
-        <section className="board-details" style={{ backgroundImage: `url(${board.style.backgroundImage})` }}>
-            <BoardHeader board={board} />
-            <BoardSideBar />
-            <GroupList groups={board.groups} board={board} />
+        <section className="board-details" style={{ backgroundImage: `url(${board.style?.backgroundImage})` }}>
+            <BoardHeader board={board}/>
+            <BoardSideBar/>
+            <GroupList groups={board.groups} board={board}/>
             <div className="board-fade"></div>
         </section>
         <Outlet context={[board,onUpdateTask]} />

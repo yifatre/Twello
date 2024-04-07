@@ -16,7 +16,7 @@ export const CREATE_BOARD = 'CREATE_BOARD'
 //     //todo info:{groupId,taskId,dynamic}
 
 
-export function DynamicCmp({groupId, onUpdateTasks, cmp, info, task, setIsAddBoard }) {
+export function DynamicCmp({groupId, onUpdateTasks, cmp, info, task, setIsAddBoard,position }) {
 
     function onUpdateBoard(newLabel) {
         const boardToUpdate = { ...info, labels: { ...info.labels, newLabel } }
@@ -66,10 +66,12 @@ export function DynamicCmp({groupId, onUpdateTasks, cmp, info, task, setIsAddBoa
             topHead = 'Cover'
             cmpType = <CoverPicker info={info} onUpdate={onUpdate} />
             break
+
         case CREATE_BOARD:
             cmpType = <CreateBoard setIsAddBoard={setIsAddBoard} />
+            break
     }
-    return <div className={`dynamic-cmp ${cmp.toLowerCase()}`} style={{ top }}>
+    return <div className={`dynamic-cmp ${cmp.toLowerCase()}`} style={{ top:position.top, left:position.left }}>
         {cmpType}
     </div>
 }

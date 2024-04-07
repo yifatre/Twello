@@ -6,7 +6,8 @@ export const utilService = {
     randomPastTime,
     saveToStorage,
     loadFromStorage,
-    getFormattedTime
+    getFormattedTime,
+    getModalPosition
 }
 
 function makeId(firstLetter = '', length = 6) {
@@ -67,5 +68,12 @@ function saveToStorage(key, value) {
 function loadFromStorage(key) {
     const data = localStorage.getItem(key)
     return (data) ? JSON.parse(data) : undefined
+}
+
+function getModalPosition(target, leftMargin = 0) {
+    const left = target.offsetLeft
+    const top = target.offsetTop
+    const width = target.offsetWidth
+    return { top, left: left + width + leftMargin }
 }
 
