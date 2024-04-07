@@ -41,7 +41,7 @@ export function TaskPreview({ task, id, activeId, groupId, saveTask, removeTask,
             }}
             ref={setNodeRef} {...attributes} {...listeners} id={id}
         >
-            {task.style.backgroundImage && <img src={task.style.backgroundImage} />}
+            {task.style?.backgroundImage && <img src={task.style.backgroundImage}/>}
             <div className="content">
                 {task.labelIds &&
                     <div className='labels'>

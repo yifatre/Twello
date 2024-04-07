@@ -1,3 +1,4 @@
+import { updateBoard } from "../../../store/board/board.actions"
 import { AttachmentPicker } from "./AttachmentPicker"
 import { CoverPicker } from "./CoverPicker"
 import { CreateBoard } from "./CreateBoard"
@@ -11,10 +12,26 @@ export const DATES = 'DATES'
 export const ATTACHMENT = 'ATTACHMENT'
 export const COVER = 'COVER'
 export const CREATE_BOARD = 'CREATE_BOARD'
+// onUpdateTask(cmp, info, task ) {
+//     //todo info:{groupId,taskId,dynamic}
 
 
+export function DynamicCmp({groupId, onUpdateTasks, cmp, info, task, setIsAddBoard,position }) {
 
-export function DynamicCmp({ cmp, info, onUpdate, task, setIsAddBoard }) {
+    function onUpdateBoard(newLabel) {
+        const boardToUpdate = { ...info, labels: { ...info.labels, newLabel } }
+        updateBoard(boardToUpdate)
+    }
+
+    function onUpdate(cmp,dynamic) {
+        const _info = {
+            groupId,
+            taskId:task.id,
+            dynamic
+        }
+        onUpdateTasks(cmp,_info, task )
+    }
+
     var cmpType
     var topHead
     let top = 24
@@ -23,7 +40,7 @@ export function DynamicCmp({ cmp, info, onUpdate, task, setIsAddBoard }) {
         case LABELS:
             top += buttonHeight * 2
             topHead = 'Labels'
-            cmpType = <LabelPicker taskLabels={task.labelIds} labels={info.labels} onUpdate={onUpdate} />
+            cmpType = <LabelPicker onUpdateBoard={onUpdateBoard} taskLabels={task.labelIds} labels={info.labels} onUpdate={onUpdate} />
             break
 
         case MEMBERS:
@@ -49,10 +66,12 @@ export function DynamicCmp({ cmp, info, onUpdate, task, setIsAddBoard }) {
             topHead = 'Cover'
             cmpType = <CoverPicker info={info} onUpdate={onUpdate} />
             break
+
         case CREATE_BOARD:
             cmpType = <CreateBoard setIsAddBoard={setIsAddBoard} />
+            break
     }
-    return <div className={`dynamic-cmp ${cmp.toLowerCase()}`} style={{ top }}>
+    return <div className={`dynamic-cmp ${cmp.toLowerCase()}`} style={{ top:position.top, left:position.left }}>
         {cmpType}
     </div>
 }

@@ -60,7 +60,7 @@
     @include aspect-ratio(9, 16);
 }
 
-.tasks-btn{
+.tasks-btn {
     font-size: 14px;
     font-weight: 500;
     line-height: 20px;
@@ -76,7 +76,7 @@
     background-color: #091E420F;
     border: none;
 
-    &:hover{
+    &:hover {
         background-color: #091E4224;
     }
 
@@ -101,3 +101,6 @@
     }
 }
 
+.hide {
+    display: none;
+}

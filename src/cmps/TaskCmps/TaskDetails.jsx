@@ -11,7 +11,8 @@ import { ATTACHMENT, COVER, DATES, DynamicCmp, LABELS, MEMBERS } from "./Dynamic
 
 export function TaskDetails() {
     const { boardId, groupId, taskId } = useParams()
-    const [board] = useOutletContext()
+    const [board,onUpdateTask] = useOutletContext()
+    const [modalPosition, setModalPosition] = useState({ top: 0, left: 0 })
     const [actionType, setActionType] = useState(null)
 
     const [task, setTask] = useState(board.groups.find(group => group.id === groupId).tasks.find(task => task.id === taskId))
@@ -27,10 +28,9 @@ export function TaskDetails() {
     function onSetActionType(ev, type) {
         ev.preventDefault()
         ev.stopPropagation()
+        setModalPosition(utilService.getModalPosition(ev.target))
         setActionType(type)
     }
-
-    function onUpdateTask() { }
 
     return <div className="task-details-backdrop">
         <ClickAwayListener onClickAway={closeTaskDetails}>
@@ -94,7 +94,7 @@ export function TaskDetails() {
                     <a className="flex align-center" href="#" onClick={(ev) => onSetActionType(ev, ATTACHMENT)}>{paperclip_icon}Attachment</a>
                     <a className="flex align-center" href="#">{location_icon}Location</a>
                     {!task.style?.backgroundColor && <a className="flex align-center" href="#" onClick={(ev) => onSetActionType(ev, COVER)}>{cover_icon}Cover</a>}
-                    {actionType && <DynamicCmp cmp={actionType} task={task} info={board} onUpdate={onUpdateTask} />}
+                    {actionType && <DynamicCmp groupId={groupId} cmp={actionType} task={task} position={modalPosition} info={board} onUpdateTasks={onUpdateTask} />}
                 </section>
                 {/* <ClickAwayListener onClickAway={() => setActionType(null)}> </ClickAwayListener>*/}
             </section>

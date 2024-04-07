@@ -14,7 +14,8 @@ export const boardService = {
     getEmptyBoard,
     getEmptyTask,
     getEmptyActivity,
-    getEmptyGroup
+    getEmptyGroup,
+    getEmptyLabel
 }
 window.cs = boardService
 
@@ -68,19 +69,19 @@ function getEmptyBoard() {
                 id: utilService.makeId('g'),
                 title: 'todo',
                 isExtended: true,
-                style: {themeColor : 'gray'}
+                style: { themeColor: 'gray' }
             },
             {
                 id: utilService.makeId('g'),
                 title: 'todo',
                 isExtended: true,
-                style: {themeColor : 'gray'}
+                style: { themeColor: 'gray' }
             },
             {
                 id: utilService.makeId('g'),
                 title: 'todo',
                 isExtended: true,
-                style: {themeColor : 'gray'}
+                style: { themeColor: 'gray' }
             }
         ],
         activities: [],
@@ -92,7 +93,7 @@ function getEmptyGroup() {
         title: '',
         isExtended: true,
         style: {
-            backgroundColor : 'gray'
+            backgroundColor: 'gray'
         },
     }
 }
@@ -102,7 +103,7 @@ function getEmptyTask() {
         title: '',
         description: '',
         style: {
-            
+
         },
         labelIds: [],
         memberIds: [],
@@ -118,6 +119,14 @@ function getEmptyActivity() {
         byMemberId: '',
         group: {},
         task: {},
+    }
+}
+
+function getEmptyLabel() {
+    return {
+        id: utilService.makeId('l'),
+        title: '',
+        color: ''
     }
 }
 
