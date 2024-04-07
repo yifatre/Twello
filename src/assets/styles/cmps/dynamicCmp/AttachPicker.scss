@@ -1,15 +1,65 @@
-.attach-section{
-    & .attach-h2{
+.attach-section {
+    & .attach-h2 {
         color: #44546f;
-            font-size: 14px;
-            font-weight: 600;
-            letter-spacing: -0.003em;
+        font-size: rem(14px);
+        font-weight: 600;
+        letter-spacing: -0.003em;
     }
 
-    & p{
+    & .attach-btn {
+        margin: rem(12px) 0 rem(6px) 0;
+    }
+
+    & .secondary-head-attach {
+        margin-bottom: rem(4px);
+    }
+
+    & .p-attach {
         font-size: 12px;
-        margin: 8px 0 12px;
-        padding: 2px;
+        margin: 8px 0 0;
+        padding: 2px 2px 2px 2px;
         font-weight: 400;
     }
+
+    & .recently-viewed {
+        font-size: rem(11px);
+        font-style: inherit;
+        line-height: rem(16px);
+        color: var(--ds-text-subtlest, var(--ds-text-subtlest, #6B778C));
+        font-weight: 700;
+        text-transform: uppercase;
+        margin-top: 10px;
+    }
+
+    & .margin-top-head{
+        margin-top: 4px;
+    }
+
+    & .input-attach{
+        height:rem(39.97px) ;
+    }
+    
+    & .margin-top{
+        margin-top: 16px;
+    }
+
+    & .footer-attach {
+        gap: rem(4px);
+    }
+
+    & .cancel-btn,
+    .insert-btn {
+        margin: 0;
+    }
+
+    & .cancel-btn {
+        background-color: transparent;
+        color: var(--ds-text);
+
+        &:hover {
+            background-color: var(--ds-background-neutral-subtle-hovered);
+        }
+    }
+
+
 }
