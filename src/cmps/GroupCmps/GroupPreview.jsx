@@ -9,6 +9,7 @@ export function GroupPreview({ items, id, activeId, group, saveGroup, board }) {
     const [isAddMode, setIsAddMode] = useState(false)
     const [isEditTitle, setIsEditTitle] = useState(false)
     const [isExtended, setIsExtended] = useState(true)
+    const [titleToEdit, setTitleToEdit] = useState(group.title)
 
     function saveTask(task) {
         if(task.id) {
@@ -29,7 +30,14 @@ export function GroupPreview({ items, id, activeId, group, saveGroup, board }) {
 
     function handleClickAway() {
         setIsEditTitle(false)
+        group.title = titleToEdit
+        saveGroup(group)
     }
+
+    function handleHeaderChange({target}) {
+        setTitleToEdit(target.value)
+    }
+
     if (!isExtended) return (
         <li className={`group-preview-shrunken ${group.style.themeColor || 'gray'}`} onClick={() => setIsExtended(true)}>
             <button className="collapse">{collapse_icon}</button>
@@ -40,18 +48,21 @@ export function GroupPreview({ items, id, activeId, group, saveGroup, board }) {
 
     return (
         isExtended && <div className={`group-preview ${group.style.themeColor || 'neutral'}`}>
+           
             <div className="group-header">
                 {!isEditTitle && <h2 className="group-title" onClick={() => setIsEditTitle(true)}>{group.title}</h2>}
                 {isEditTitle &&
                     <ClickAwayListener onClickAway={handleClickAway}>
-                        <input className="title-edit" value={group.title} autoFocus={true} onFocus={(ev) => ev.target.select()} />
+                        <input className="title-edit" value={titleToEdit} autoFocus={true} onFocus={(ev) => ev.target.select()} onChange={handleHeaderChange} onKeyDown={(ev) => {if(ev.code === 'Enter')  handleClickAway()}}/>
                     </ClickAwayListener>}
                 <button className="collapse" onClick={() => setIsExtended(false)}>{collapse_icon}</button>
                 <button className="options">{ellipsis_icon}</button>
             </div>
+            
             <div className="tasks-container">
                 <TaskList items={items} activeId={activeId} id={id} group={group} saveTask={saveTask} board={board}/>
             </div>
+            
             {!isAddMode && <div className='add'>
                 <button className="add-task" onClick={() => setIsAddMode(true)}>{plus_icon}Add a card</button>
                 <button className="create-from-template">{create_icon}</button>
