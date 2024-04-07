@@ -9,8 +9,6 @@ export function GroupPreview({ id, activeId, group, saveGroup, board }) {
     const [isAddMode, setIsAddMode] = useState(false)
     const [isEditTitle, setIsEditTitle] = useState(false)
     const [isExtended, setIsExtended] = useState(true)
-    // function handleTitleChange({ target }) {
-    // }
 
     function saveTask(task) {
         if(task.id) {
@@ -41,7 +39,7 @@ export function GroupPreview({ id, activeId, group, saveGroup, board }) {
     )
 
     return (
-        isExtended && <li className={`group-preview ${group.style.themeColor || 'neutral'}`}>
+        isExtended && <>
             
             <div className="group-header">
                 {!isEditTitle && <h2 className="group-title" onClick={() => setIsEditTitle(true)}>{group.title}</h2>}
@@ -62,7 +60,7 @@ export function GroupPreview({ id, activeId, group, saveGroup, board }) {
                 <button className="create-from-template">{create_icon}</button>
             </div>}
             {isAddMode && <TaskAdd setIsAddMode={setIsAddMode} saveTask={saveTask}/>}
-        </li>
+       </>
 
 
 

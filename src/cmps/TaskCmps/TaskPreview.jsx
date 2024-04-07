@@ -1,10 +1,7 @@
 import { bars_icon, checked_icon, edit_icon, eye_icon, paperclip_icon, time_icon } from "../UtilCmps/SVGs"
-import { useNavigate, useParams } from "react-router-dom"
 import { AvatarList } from "../UtilCmps/AvatarList"
 
-export function TaskPreview({ task, id, activeId, groupId, saveTask, removeTask, board }) {
-    const { boardId } = useParams()
-    const navigate = useNavigate()
+export function TaskPreview({ task, saveTask, removeTask, board }) {
 
     function getTodoDoneCount() {
         if (!task.checklists) return
@@ -35,17 +32,12 @@ export function TaskPreview({ task, id, activeId, groupId, saveTask, removeTask,
 
     const { title, style } = task
     return (
-        <li className="task-preview" onClick={() => navigate(`/board/${boardId}/${groupId}/${task.id}`)}
-            style={{
-                backgroundColor: style?.backgroundColor || '#ffffff',
-            }}
-            ref={setNodeRef} {...attributes} {...listeners} id={id}
-        >
+      <>
             {task.style?.backgroundImage && <img src={task.style.backgroundImage}/>}
             <div className="content">
                 {task.labelIds &&
                     <div className='labels'>
-                        {getLabels().map(label => <div className={`label ${label.color || 'orange'}`} >{label.title}</div>)}
+                        {getLabels().map(label => <div key={label.id} className={`label ${label.color || 'orange'}`} >{label.title}</div>)}
                     </div>}
 
                 <i className="edit-icon">{edit_icon}</i>
@@ -63,6 +55,6 @@ export function TaskPreview({ task, id, activeId, groupId, saveTask, removeTask,
 
                 </div>
             </div>
-        </li>
+        </>
     )
 }
