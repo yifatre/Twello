@@ -14,7 +14,24 @@ export const CREATE_BOARD = 'CREATE_BOARD'
 
 
 
-export function DynamicCmp({ cmp, info, onUpdate, task, setIsAddBoard }) {
+export function DynamicCmp({groupId, onUpdateTasks, cmp, info, task, setIsAddBoard,position }) {
+    console.log('info:',info);
+
+    function onUpdateBoard(newLabel) {
+        const boardToUpdate = { ...info, labels: { ...info.labels, newLabel } }
+        updateBoard(boardToUpdate)
+    }
+
+    function onUpdate(cmp,dynamic) {
+        console.log('dynamic:',dynamic);
+        const _info = {
+            groupId,
+            taskId:task.id,
+            dynamic
+        }
+        onUpdateTasks(cmp,_info, task )
+    }
+
     var cmpType
     var topHead
     let top = 24

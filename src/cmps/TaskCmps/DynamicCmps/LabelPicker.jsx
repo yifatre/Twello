@@ -10,8 +10,8 @@ const pallet = ['#baf3db', '#f8e6a0', '#fedec8', '#ffd5d2', '#dfd8fd',
 
 // todo connect btn's and add the on update 
 
-export function LabelPicker({ labels, onUpdate }) {
-    console.log('labels',labels)
+export function LabelPicker({ onUpdateBoard, taskLabels, labels, onUpdate }) {
+    console.log(taskLabels);
     const [toggle, setToggle] = useState(false)
     const [currentColor, setCurrentColor] = useState('#4bce97')
     const [labelContent, setLabelContent] = useState('')
@@ -55,6 +55,27 @@ export function LabelPicker({ labels, onUpdate }) {
         setCurrentColor('hsla(218, 54%, 19.6%, 0.16)')
     }
 
+    function onCreate() {
+        const newLabel = boardService.getEmptyLabel()
+
+        newLabel.title = labelContent
+        newLabel.color = currentColor
+        onUpdateBoard(newLabel)
+
+        const _labels = taskLabels.push(newLabel.id)
+        onUpdate(LABELS, _labels)
+    }
+
+    function onCheckLabel({ target }) {
+        if (target.checked) {
+            const _labels = taskLabels.push(target.id)
+            onUpdate(LABELS, _labels)
+        } else {
+            const _labels = taskLabels.filter(id => target.id !== id)
+            console.log(_labels);
+            onUpdate(LABELS, _labels)
+        }
+    }
 
     {
         if (!toggle) return <>
@@ -71,9 +92,8 @@ export function LabelPicker({ labels, onUpdate }) {
                 <p>Labels</p>
                 <ul className="clean-list ul-labels">
                     {labels.map(label => {
-
                         return <li key={label.id} className="flex align-center">
-                            <input className="checkbox" type="checkBox" id={label.id} />
+                            <input defaultChecked={taskLabels ? taskLabels.filter(id => label.id === id) : false} onChange={onCheckLabel} className="checkbox" type="checkBox" id={label.id} />
                             <label htmlFor={label.id}> <div style={{ backgroundColor: label.color }} className="label-picker"> {label.title}</div></label>
                             <button onClick={() => toggleBtn(label)} className="edit-label">{edit_icon}</button>
                         </li>
