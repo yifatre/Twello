@@ -1,16 +1,14 @@
-
 import { useDroppable } from "@dnd-kit/core";
 import {
     SortableContext,
     verticalListSortingStrategy
 } from "@dnd-kit/sortable";
 import { TaskPreview } from "./TaskPreview"
-import { useState } from 'react'
 
-export function TaskList({ items, activeId, id, groupId }) {
+export function TaskList({ items, activeId, id, group, saveTask, removeTask, board }) {
     const { setNodeRef } = useDroppable({
         id
-    });
+    })
     // console.log(items);
     return (
 
@@ -18,7 +16,15 @@ export function TaskList({ items, activeId, id, groupId }) {
             <ul className="task-list clean-list" ref={setNodeRef}>
 
                 {items.map(task =>
-                    <TaskPreview key={task.id} id={task.id} task={task} activeId={activeId} groupId={groupId}/>
+                    <TaskPreview key={task.id}
+                        id={task.id}
+                        task={task}
+                        activeId={activeId}
+                        groupId={group.id}
+                        removeTask={removeTask}
+                        saveTask={saveTask}
+                        board={board}
+                    />
                 )}
 
             </ul>
