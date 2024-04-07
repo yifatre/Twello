@@ -1,11 +1,11 @@
 import { ClickAwayListener } from '@mui/base/ClickAwayListener'
 import { TaskList } from '../TaskCmps/TaskList'
 import { collapse_icon, ellipsis_icon, plus_icon, create_icon } from '../UtilCmps/SVGs'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { TaskAdd } from '../TaskCmps/TaskAdd'
 import { utilService } from '../../services/util.service'
 
-export function GroupPreview({ id, activeId, group, saveGroup, board }) {
+export function GroupPreview({ items, id, activeId, group, saveGroup, board }) {
     const [isAddMode, setIsAddMode] = useState(false)
     const [isEditTitle, setIsEditTitle] = useState(false)
     const [isExtended, setIsExtended] = useState(true)
@@ -39,8 +39,7 @@ export function GroupPreview({ id, activeId, group, saveGroup, board }) {
     )
 
     return (
-        isExtended && <>
-            
+        isExtended && <div className={`group-preview ${group.style.themeColor || 'neutral'}`}>
             <div className="group-header">
                 {!isEditTitle && <h2 className="group-title" onClick={() => setIsEditTitle(true)}>{group.title}</h2>}
                 {isEditTitle &&
@@ -50,19 +49,14 @@ export function GroupPreview({ id, activeId, group, saveGroup, board }) {
                 <button className="collapse" onClick={() => setIsExtended(false)}>{collapse_icon}</button>
                 <button className="options">{ellipsis_icon}</button>
             </div>
-
             <div className="tasks-container">
-                <TaskList id={id} group={group} saveTask={saveTask} board={board}/>
+                <TaskList items={items} activeId={activeId} id={id} group={group} saveTask={saveTask} board={board}/>
             </div>
-
             {!isAddMode && <div className='add'>
                 <button className="add-task" onClick={() => setIsAddMode(true)}>{plus_icon}Add a card</button>
                 <button className="create-from-template">{create_icon}</button>
             </div>}
             {isAddMode && <TaskAdd setIsAddMode={setIsAddMode} saveTask={saveTask}/>}
-       </>
-
-
-
+        </div>
     )
 }
