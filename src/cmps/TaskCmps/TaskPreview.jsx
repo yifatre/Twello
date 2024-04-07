@@ -50,7 +50,7 @@ export function TaskPreview({ task, id, activeId, groupId }) {
             // style={style}
             ref={setNodeRef} {...attributes} {...listeners} id={id}
         >
-            {task.style.backgroundImage && <img src={task.style.backgroundImage}/>}
+            {task.style?.backgroundImage && <img src={task.style.backgroundImage}/>}
             <div className="content">
             {task.labels &&
                 <div className='labels'>

@@ -4,7 +4,7 @@ import { collapse_icon, ellipsis_icon, plus_icon, create_icon } from '../UtilCmp
 import { useEffect, useState } from 'react'
 import { TaskAdd } from '../TaskCmps/TaskAdd'
 
-export function GroupPreview({ items, id, activeId, group }) {
+export function GroupPreview({ items, id, activeId, group, board }) {
     const [isAddMode, setIsAddMode] = useState(false)
     const [isEditTitle, setIsEditTitle] = useState(false)
     const [isExtended, setIsExtended] = useState(true)
@@ -35,7 +35,7 @@ export function GroupPreview({ items, id, activeId, group }) {
             </div>
             <div className="tasks-container">
 
-                <TaskList items={items} activeId={activeId} id={id} groupId={group.id} />
+                <TaskList items={items} activeId={activeId} id={id} groupId={group.id} board={board} />
 
             </div>
             {!isAddMode && <div className='add'>
