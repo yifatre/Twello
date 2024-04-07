@@ -73,7 +73,6 @@ function loadFromStorage(key) {
 function getModalPosition(target, leftMargin = 0) {
     const left = target.offsetLeft
     const top = target.offsetTop
-    const width = target.offsetWidth
-    return { top, left: left + width + leftMargin }
+    return { top, left: left + leftMargin }
 }
 

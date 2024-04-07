@@ -12,7 +12,7 @@ export function BoardList({ boards }) {
     // console.log(boards)
 
     function onAddBoard({ target }) {
-        setModalPosition(utilService.getModalPosition(target, 8))
+        setModalPosition(utilService.getModalPosition(target, target.offsetWidth + 8))
         setIsAddBoard(true)
     }
 
@@ -53,7 +53,7 @@ export function BoardList({ boards }) {
         </section>
         {isAddBoard && <ClickAwayListener onClickAway={onCloseAddModal}>
             <div>
-            <DynamicCmp cmp={CREATE_BOARD} setIsAddBoard={setIsAddBoard} position={modalPosition} />
+                <DynamicCmp cmp={CREATE_BOARD} setIsAddBoard={setIsAddBoard} position={modalPosition} />
             </div>
         </ClickAwayListener>
         }

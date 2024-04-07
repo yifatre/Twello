@@ -28,7 +28,7 @@ export function TaskDetails() {
     function onSetActionType(ev, type) {
         ev.preventDefault()
         ev.stopPropagation()
-        setModalPosition(utilService.getModalPosition(ev.target, 8))
+        setModalPosition(utilService.getModalPosition(ev.target))
         setActionType(type)
     }
 
