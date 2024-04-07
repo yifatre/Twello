@@ -6,7 +6,7 @@ import { showErrorMsg } from "../../services/event-bus.service"
 import { BoardHeader } from "./BoardHeader"
 import { BoardSideBar } from "./BoardSideBar"
 import { boardService } from "../../services/board/board.service.local"
-import { loadBoards } from "../../store/board/board.actions"
+import { loadBoards, updateBoard } from "../../store/board/board.actions"
 import { useSelector } from "react-redux"
 
 export function BoardDetails() {
@@ -18,10 +18,10 @@ export function BoardDetails() {
         loadBoard()
     }, [])
 
-    useEffect(() =>  {
+    useEffect(() => {
         setBoard(boards[boards.findIndex(board => board._id === boardId)])
         console.log('loading board');
-    },[boards])
+    }, [boards])
 
     async function loadBoard() {
         try {
@@ -34,15 +34,61 @@ export function BoardDetails() {
         }
     }
 
+    function onUpdateBoard(groupId, taskToUpdate) {
+        const boardToUpdate = board.groups.map(group => {
+            if (group.id === groupId) {
+                const updatedTasks = group.tasks.map(task => {
+                    if (task.id === taskToUpdate.id) {
+                        return taskToUpdate
+                    }
+                    return task
+                })
+                return { ...group, tasks: updatedTasks }
+            }
+            return group
+        })
+        updateBoard(boardToUpdate)
+    }
+ 
+    function onUpdateTask(cmp, info, task ) {
+        //todo info:{groupId,taskId,dynamic}
+        var groupId = info.groupId
+        var taskToUpdate
+        switch (cmp) {
+            case LABELS:
+                taskToUpdate = {...task, labelIds:info.dynamic}
+                break
+
+            case MEMBERS:
+                taskToUpdate = {...task, memberIds:info.membersIds}
+                break
+
+            case DATES:
+                taskToUpdate = {...task, date:info.date}
+                break
+
+            case ATTACHMENT:
+                taskToUpdate = {...task, attach:info.attach}
+                break
+
+            case COVER:
+                taskToUpdate = {...task, cover:info.cover}
+                break
+
+        }
+        return onUpdateBoard(groupId, taskToUpdate)
+    }
+
+
     if (!board) return <div>loading</div>
     return (<>
         <section className="board-details" style={{ backgroundImage: `url(${board.style.backgroundImage})` }}>
-            <BoardHeader board={board}/>
-            <BoardSideBar/>
-            <GroupList groups={board.groups} board={board}/>
+            <BoardHeader board={board} />
+            <BoardSideBar />
+            <GroupList groups={board.groups} board={board} />
             <div className="board-fade"></div>
         </section>
-        <Outlet context={[board]} />
+        <Outlet context={[board,onUpdateTask]} />
     </>
     )
 }
