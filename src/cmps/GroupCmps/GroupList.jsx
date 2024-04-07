@@ -2,8 +2,10 @@ import { GroupPreview } from "./GroupPreview"
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 import { updateBoard } from "../../store/board/board.actions"
 import { utilService } from "../../services/util.service"
+import { useState } from "react"
 
 export function GroupList({ groups, board }) {
+    const [isLabelsExtended, setIsLabelExtended] = useState(true)
 
     function saveGroup(group) {
         if (group.id) {
@@ -68,7 +70,8 @@ export function GroupList({ groups, board }) {
                                         <GroupPreview
                                             provided={provided}
                                             group={group}
-
+                                            isLabelsExtended={isLabelsExtended}
+                                            setIsLabelExtended={setIsLabelExtended}
                                             saveGroup={saveGroup}
                                             board={board} />
                                     </li>}

@@ -2,7 +2,7 @@ import { bars_icon, checked_icon, edit_icon, eye_icon, paperclip_icon, time_icon
 import { useNavigate, useParams } from "react-router-dom"
 import { AvatarList } from "../UtilCmps/AvatarList"
 
-export function TaskPreview({ task, groupId, saveTask, removeTask, board }) {
+export function TaskPreview({ task, groupId, saveTask, removeTask, board, isLabelsExtended, setIsLabelExtended }) {
     const { boardId } = useParams()
     const navigate = useNavigate()
 
@@ -29,6 +29,11 @@ export function TaskPreview({ task, groupId, saveTask, removeTask, board }) {
         return board.labels.filter(label => task.labelIds.includes(label.id))
     }
 
+    function toggleExtendedLabels(ev) {
+        ev.stopPropagation()
+        setIsLabelExtended(!isLabelsExtended)
+    }
+
     function getMembers() {
         return board.members.filter(member => task.memberIds.includes(member.id))
     }
@@ -45,7 +50,7 @@ export function TaskPreview({ task, groupId, saveTask, removeTask, board }) {
             <div className="content">
                 {task.labelIds &&
                     <div className='labels'>
-                        {getLabels().map(label => <div key={label.id} className={`label ${label.color || 'orange'}`} >{label.title}</div>)}
+                        {getLabels().map(label => <div key={label.id} onClick={toggleExtendedLabels} className={`label ${!isLabelsExtended ? 'collapsed' : ''} ${label.color || 'orange'}`}>{isLabelsExtended ? label.title : ''}</div>)}
                     </div>}
 
                 <i className="edit-icon">{edit_icon}</i>

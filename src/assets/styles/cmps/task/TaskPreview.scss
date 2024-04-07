@@ -96,6 +96,16 @@
 
             background-color: var(--accent-background);
             color: var(--accent-text);
+            &:hover {
+                background-color: var(--accent-background-hovered);
+            }
+            transition: width 0.5s, height 0.5s;
+        }
+
+        .label.collapsed {
+            width: rem(40px);
+            height: rem(8px);
+            transition: width 0.5s, height 0.5s;
         }
     }
 }

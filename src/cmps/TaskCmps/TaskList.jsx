@@ -1,7 +1,7 @@
 import { Droppable, Draggable } from 'react-beautiful-dnd'
 import { TaskPreview } from "./TaskPreview"
 
-export function TaskList({ group, saveTask, removeTask, board }) {
+export function TaskList({ group, saveTask, removeTask, board, isLabelsExtended, setIsLabelExtended }) {
 
     return (
         <Droppable droppableId={group.id} type="task">
@@ -24,6 +24,8 @@ export function TaskList({ group, saveTask, removeTask, board }) {
                                         removeTask={removeTask}
                                         saveTask={saveTask}
                                         board={board}
+                                        isLabelsExtended={isLabelsExtended}
+                                        setIsLabelExtended={setIsLabelExtended}
                                     />
                                 </li>}
                         </Draggable>
