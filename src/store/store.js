@@ -1,15 +1,14 @@
 import { createStore, combineReducers } from 'redux'
 
-import { boardReducer } from './board.reducer.js'
-import { userReducer } from './user.reducer.js'
-import { taskReducer } from './task.reducer'
+
 import { systemReducer } from './system.reducer'
+import { boardReducer } from './board/board.reducer'
+import { userReducer } from './user/user.reducer'
 
 const rootReducer = combineReducers({
     boardModule: boardReducer,
     userModule: userReducer,
     systemModule: systemReducer,
-    taskModule: taskReducer,
 })
 
 

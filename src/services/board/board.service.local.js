@@ -1,8 +1,8 @@
 
-import { storageService } from './async-storage.service.js'
-import { utilService } from './util.service.js'
-import { userService } from './user.service.js'
-import { boardsDemoData } from './demo-data.js'
+import { storageService } from '../async-storage.service.js'
+import { utilService } from '../util.service.js'
+import { userService } from '../user.service.js'
+import { boardsDemoData } from '../demo-data.js'
 
 const STORAGE_KEY = 'boardDB'
 _createBoards()

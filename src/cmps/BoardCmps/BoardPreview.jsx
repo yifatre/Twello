@@ -1,7 +1,7 @@
 import { Link, NavLink } from 'react-router-dom'
 import { star, star_outline } from '../UtilCmps/SVGs'
 import { useState } from 'react'
-import { updateBoard } from '../../store/board.actions'
+import { updateBoard } from '../../store/board/board.actions'
 
 
 export function BoardPreview({ board }) {
