@@ -6,11 +6,11 @@ import { utilService } from "../../services/util.service"
 
 export function BoardList({ boards }) {
     const [isAddBoard, setIsAddBoard] = useState(false)
-    console.log(boards)
-    // todo addBoard from the index
+
     function onAddBoard() {
         setIsAddBoard(true)
     }
+    
     return (<>
         <section className="board-list-container">
             <h3 className="flex align-center"><span>{star_outline}</span> Starred boards</h3>

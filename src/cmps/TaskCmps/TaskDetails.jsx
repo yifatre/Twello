@@ -16,12 +16,12 @@ export function TaskDetails() {
 
     const [task, setTask] = useState(board.groups.find(group => group.id === groupId).tasks.find(task => task.id === taskId))
     const navigate = useNavigate()
-    console.log('boardId, groupId, taskId', boardId, groupId, taskId)
+
     function onAddMember() { }
     function onAddLabel() { }
 
     function closeTaskDetails() {
-        navigate(`/board/${boardId}`) //! temporarily cancelled for dev
+        navigate(`/board/${boardId}`) 
     }
 
     function onSetActionType(ev, type) {

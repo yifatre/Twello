@@ -1,6 +1,4 @@
 import { bars_icon, checked_icon, edit_icon, eye_icon, paperclip_icon, time_icon } from "../UtilCmps/SVGs"
-import { useSortable } from '@dnd-kit/sortable'
-import { CSS } from '@dnd-kit/utilities'
 import { useNavigate, useParams } from "react-router-dom"
 import { AvatarList } from "../UtilCmps/AvatarList"
 
@@ -35,34 +33,11 @@ export function TaskPreview({ task, id, activeId, groupId, saveTask, removeTask,
         return board.members.filter(member => task.memberIds.includes(member.id))
     }
 
-    const {
-        attributes,
-        listeners,
-        setNodeRef,
-        transform,
-        transition,
-    } = useSortable({
-        id: id,
-        transition: {
-            duration: 400,
-            easing: 'cubic-bezier(0.25, 1, 0.5, 1)',
-        },
-    })
-
-
-    console.log(transform);
-    const tran = { transform: CSS.Transform.toString(transform) }
-    // if (activeId === id) tran.transform += 'rotate(+0.01turn)'
-    if (activeId === id) tran.zIndex = 200
-
     const { title, style } = task
     return (
         <li className="task-preview" onClick={() => navigate(`/board/${boardId}/${groupId}/${task.id}`)}
             style={{
                 backgroundColor: style?.backgroundColor || '#ffffff',
-                transform: tran.transform,
-                transition: transition,
-                zIndex: tran.zIndex
             }}
             ref={setNodeRef} {...attributes} {...listeners} id={id}
         >

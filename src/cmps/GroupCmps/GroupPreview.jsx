@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react'
 import { TaskAdd } from '../TaskCmps/TaskAdd'
 import { utilService } from '../../services/util.service'
 
-export function GroupPreview({ items, id, activeId, group, saveGroup, board }) {
+export function GroupPreview({ id, activeId, group, saveGroup, board }) {
     const [isAddMode, setIsAddMode] = useState(false)
     const [isEditTitle, setIsEditTitle] = useState(false)
     const [isExtended, setIsExtended] = useState(true)
@@ -41,8 +41,8 @@ export function GroupPreview({ items, id, activeId, group, saveGroup, board }) {
     )
 
     return (
-        // <SortableContext items={items} id={id} strategy={verticalListSortingStrategy}>
         isExtended && <li className={`group-preview ${group.style.themeColor || 'neutral'}`}>
+            
             <div className="group-header">
                 {!isEditTitle && <h2 className="group-title" onClick={() => setIsEditTitle(true)}>{group.title}</h2>}
                 {isEditTitle &&
@@ -52,9 +52,11 @@ export function GroupPreview({ items, id, activeId, group, saveGroup, board }) {
                 <button className="collapse" onClick={() => setIsExtended(false)}>{collapse_icon}</button>
                 <button className="options">{ellipsis_icon}</button>
             </div>
+
             <div className="tasks-container">
-                <TaskList items={items} activeId={activeId} id={id} group={group} saveTask={saveTask} board={board}/>
+                <TaskList id={id} group={group} saveTask={saveTask} board={board}/>
             </div>
+
             {!isAddMode && <div className='add'>
                 <button className="add-task" onClick={() => setIsAddMode(true)}>{plus_icon}Add a card</button>
                 <button className="create-from-template">{create_icon}</button>
@@ -62,7 +64,7 @@ export function GroupPreview({ items, id, activeId, group, saveGroup, board }) {
             {isAddMode && <TaskAdd setIsAddMode={setIsAddMode} saveTask={saveTask}/>}
         </li>
 
-        // </SortableContext>
+
 
     )
 }

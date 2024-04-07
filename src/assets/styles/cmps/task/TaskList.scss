@@ -1,5 +1,7 @@
 .task-list {
    display: flex;
    flex-direction: column;
-   row-gap: rem(8px);
+   row-gap: rem(4px);
+   min-height: 1px;
+   margin-block: 0.50rem 0.25rem;
 }

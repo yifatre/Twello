@@ -20,16 +20,13 @@ export function BoardDetails() {
 
     useEffect(() =>  {
         setBoard(boards[boards.findIndex(board => board._id === boardId)])
-        console.log('loading board');
     },[boards])
 
     async function loadBoard() {
         try {
-            console.log(boardId)
             await loadBoards()
         }
         catch (err) {
-            console.error(err)
             showErrorMsg('Cannot remove board')
         }
     }
