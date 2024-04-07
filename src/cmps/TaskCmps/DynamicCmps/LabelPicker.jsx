@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { arrow_down, edit_icon, x_icon } from "../../UtilCmps/SVGs"
 import { boardService } from "../../../services/board/board.service.local"
 import { LABELS } from "./DynamicCmp"
@@ -17,7 +17,12 @@ export function LabelPicker({ onUpdateBoard, taskLabels, labels, onUpdate }) {
     const [toggle, setToggle] = useState(false)
     const [currentColor, setCurrentColor] = useState('#4bce97')
     const [labelContent, setLabelContent] = useState('')
+    const [labelsFromTask, setLabelsFromTask] = useState(taskLabels)
     const [dark, setDark] = useState(new Array(pallet.length).fill(false))
+
+    useEffect(()=>{
+        onUpdate(LABELS, labelsFromTask)
+    },[labelsFromTask])
 
     function toggleBtn(label) {
         setCurrentColor('#4bce97')
@@ -64,15 +69,10 @@ export function LabelPicker({ onUpdateBoard, taskLabels, labels, onUpdate }) {
 
     function onCheckLabel({ target }) {
         if (target.checked) {
-            taskLabels.push(target.id)
-            console.log(taskLabels);
-            const _labels = 
-            console.log(_labels,'from picker');
-            onUpdate(LABELS, _labels)
+            setLabelsFromTask(prevLabels => [...prevLabels,target.id])
         } else {
-            const _labels = taskLabels.filter(id => target.id !== id)
-            console.log(_labels);
-            onUpdate(LABELS, _labels)
+            const _labels = labelsFromTask.filter(id => target.id !== id)
+            setLabelsFromTask(_labels)
         }
     }
 
@@ -92,7 +92,7 @@ export function LabelPicker({ onUpdateBoard, taskLabels, labels, onUpdate }) {
                 <ul className="clean-list ul-labels">
                     {labels.map(label => {
                         return <li key={label.id} className="flex align-center">
-                            <input defaultChecked={taskLabels ? taskLabels.filter(id => label.id === id) : false} onChange={onCheckLabel} className="checkbox" type="checkBox" id={label.id} />
+                            <input defaultChecked={taskLabels ? taskLabels.find(id => label.id === id) : false} onChange={onCheckLabel} className="checkbox" type="checkBox" id={label.id} />
                             <label htmlFor={label.id}> <div style={{ backgroundColor: label.color }} className="label-picker"> {label.title}</div></label>
                             <button onClick={() => toggleBtn(label)} className="edit-label">{edit_icon}</button>
                         </li>
