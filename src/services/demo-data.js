@@ -7,7 +7,7 @@ export const boardsDemoData = [
         archivedAt: 1589983468418,
         createdBy: {
             "_id": "u101",
-            "fullname": "Abi Abambi",
+            "fullName": "Abi Abambi",
             "imgUrl": "http://some-img"
         },
         style: {
@@ -28,7 +28,7 @@ export const boardsDemoData = [
         members: [
             {
                 "_id": "u101",
-                "fullname": "Tal Tarablus",
+                "fullName": "Tal Tarablus",
                 "imgUrl": "https://www.google.com"
             }
         ],
@@ -227,7 +227,7 @@ export const boardsDemoData = [
                                 "createdAt": 1590999817436,
                                 "byMember": {
                                     "_id": "u101",
-                                    "fullname": "Tal Tarablus",
+                                    "fullName": "Tal Tarablus",
                                     "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
                                 }
                             }
@@ -251,7 +251,7 @@ export const boardsDemoData = [
                         "byMember": {
                             "_id": "u101",
                             "username": "Tal",
-                            "fullname": "Tal Tarablus",
+                            "fullName": "Tal Tarablus",
                             "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
                         },
                         "style": {
@@ -269,7 +269,7 @@ export const boardsDemoData = [
                 "createdAt": 154514,
                 "byMember": {
                     "_id": "u101",
-                    "fullname": "Abi Abambi",
+                    "fullName": "Abi Abambi",
                     "imgUrl": "http://some-img"
                 },
                 "group": {
@@ -290,7 +290,7 @@ export const boardsDemoData = [
         "archivedAt": 1623465068418,
         "createdBy": {
             "_id": "u103",
-            "fullname": "Alice Johnson",
+            "fullName": "Alice Johnson",
             "imgUrl": "http://random-img"
         },
         "style": {
@@ -311,7 +311,7 @@ export const boardsDemoData = [
         "members": [
             {
                 "_id": "u103",
-                "fullname": "Alice Johnson",
+                "fullName": "Alice Johnson",
                 "imgUrl": "https://www.random-example.com"
             }
         ],
@@ -357,7 +357,7 @@ export const boardsDemoData = [
                                 "createdAt": 1590999817436,
                                 "byMember": {
                                     "_id": "u103",
-                                    "fullname": "Alice Johnson",
+                                    "fullName": "Alice Johnson",
                                     "imgUrl": "http://random-image.jpg"
                                 }
                             }
@@ -381,7 +381,7 @@ export const boardsDemoData = [
                         "byMember": {
                             "_id": "u103",
                             "username": "Alice",
-                            "fullname": "Alice Johnson",
+                            "fullName": "Alice Johnson",
                             "imgUrl": "http://random-image.jpg"
                         },
                         "style": {
@@ -399,7 +399,7 @@ export const boardsDemoData = [
                 "createdAt": 154514,
                 "byMember": {
                     "_id": "u103",
-                    "fullname": "Alice Johnson",
+                    "fullName": "Alice Johnson",
                     "imgUrl": "http://random-img"
                 },
                 "group": {
@@ -420,7 +420,7 @@ export const boardsDemoData = [
         "archivedAt": 1607341068418,
         "createdBy": {
             "_id": "u104",
-            "fullname": "Bob Smith",
+            "fullName": "Bob Smith",
             "imgUrl": "http://some-random-image"
         },
         "style": {
@@ -441,7 +441,7 @@ export const boardsDemoData = [
         "members": [
             {
                 "_id": "u104",
-                "fullname": "Bob Smith",
+                "fullName": "Bob Smith",
                 "imgUrl": "https://www.example-random.com"
             }
         ],
@@ -484,7 +484,7 @@ export const boardsDemoData = [
                                 "createdAt": 1590999817436,
                                 "byMember": {
                                     "_id": "u104",
-                                    "fullname": "Bob Smith",
+                                    "fullName": "Bob Smith",
                                     "imgUrl": "http://random-image.jpg"
                                 }
                             }
@@ -508,7 +508,7 @@ export const boardsDemoData = [
                         "byMember": {
                             "_id": "u104",
                             "username": "Bob",
-                            "fullname": "Bob Smith",
+                            "fullName": "Bob Smith",
                             "imgUrl": "http://random-image.jpg"
                         },
                         "style": {
@@ -526,7 +526,7 @@ export const boardsDemoData = [
                 "createdAt": 154514,
                 "byMember": {
                     "_id": "u104",
-                    "fullname": "Bob Smith",
+                    "fullName": "Bob Smith",
                     "imgUrl": "http://some-random-image"
                 },
                 "group": {
