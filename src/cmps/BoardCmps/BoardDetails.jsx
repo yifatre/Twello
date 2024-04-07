@@ -8,6 +8,7 @@ import { BoardSideBar } from "./BoardSideBar"
 import { boardService } from "../../services/board/board.service.local"
 import { loadBoards, updateBoard } from "../../store/board/board.actions"
 import { useSelector } from "react-redux"
+import { ATTACHMENT, COVER, DATES, LABELS, MEMBERS } from "../TaskCmps/DynamicCmps/DynamicCmp"
 
 export function BoardDetails() {
     const { boardId } = useParams()
@@ -20,7 +21,7 @@ export function BoardDetails() {
 
     useEffect(() => {
         setBoard(boards[boards.findIndex(board => board._id === boardId)])
-    },[boards])
+    }, [boards])
 
     async function loadBoard() {
         try {
@@ -32,13 +33,14 @@ export function BoardDetails() {
     }
 
     function onUpdateBoard(groupId, taskToUpdate) {
-        console.log(taskToUpdate,'groupId',groupId)
-        const boardToUpdate = board.groups.map(group => {
+        console.log('board from details:', board);
+        console.log(taskToUpdate, 'groupId', groupId)
+        const groupsToUpdate = board.groups.map(group => {
             if (group.id === groupId) {
                 const updatedTasks = group.tasks.map(task => {
                     console.log(task.id);
                     if (task.id === taskToUpdate.id) {
-                        console.log('task from map:',task);
+                        console.log('task from map:', task);
                         return taskToUpdate
                     }
                     return task
@@ -47,35 +49,35 @@ export function BoardDetails() {
             }
             return group
         })
-
-        console.log('boardToUpdate:',boardToUpdate);
+        const boardToUpdate = { ...board, groups: groupsToUpdate }
+        console.log('boardToUpdate:', boardToUpdate);
         updateBoard(boardToUpdate)
     }
- 
-    function onUpdateTask(cmp, info, task ) {
+
+    function onUpdateTask(cmp, info, task) {
         //todo info:{groupId,taskId,dynamic}
         var groupId = info.groupId
         var taskToUpdate
         switch (cmp) {
             case LABELS:
-                taskToUpdate = {...task, labelIds:info.dynamic}
-                console.log('taskToUpdate:',taskToUpdate);
+                taskToUpdate = { ...task, labelIds: info.dynamic }
+                console.log('taskToUpdate:', taskToUpdate);
                 break
 
             case MEMBERS:
-                taskToUpdate = {...task, memberIds:info.membersIds}
+                taskToUpdate = { ...task, memberIds: info.membersIds }
                 break
 
             case DATES:
-                taskToUpdate = {...task, date:info.date}
+                taskToUpdate = { ...task, date: info.date }
                 break
 
             case ATTACHMENT:
-                taskToUpdate = {...task, attach:info.attach}
+                taskToUpdate = { ...task, attach: info.attach }
                 break
 
             case COVER:
-                taskToUpdate = {...task, cover:info.cover}
+                taskToUpdate = { ...task, cover: info.cover }
                 break
 
         }
@@ -86,12 +88,12 @@ export function BoardDetails() {
     if (!board) return <div>loading</div>
     return (<>
         <section className="board-details" style={{ backgroundImage: `url(${board.style?.backgroundImage})` }}>
-            <BoardHeader board={board}/>
-            <BoardSideBar/>
-            <GroupList groups={board.groups} board={board}/>
+            <BoardHeader board={board} />
+            <BoardSideBar />
+            <GroupList groups={board.groups} board={board} />
             <div className="board-fade"></div>
         </section>
-        <Outlet context={[board,onUpdateTask]} />
+        <Outlet context={[board, onUpdateTask]} />
     </>
     )
 }
