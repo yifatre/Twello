@@ -1,28 +1,33 @@
 import { useEffect, useState } from "react"
 import { arrow_down, calender_icon, member_icon, plus_icon, settings_icon, side_arrow_icon, star, star_outline, table_icon, trello_icon } from "../UtilCmps/SVGs"
 import { useSelector } from "react-redux"
-import { loadBoards, updateBoard } from "../../store/board/board.actions"
+import { loadBoard, loadBoards, updateBoard } from "../../store/board/board.actions"
+import { Link, NavLink, useParams } from "react-router-dom"
 
 export function BoardSideBar() {
     const [isOpen, setIsOpen] = useState(true)
     const boards = useSelector(storeState => storeState.boardModule.boards)
-    const board = useSelector(storeState => storeState.boardModule.board.isStarred)
-
+    const board = useSelector(storeState => storeState.boardModule.board)
+    const { boardId } = useParams()
 
     useEffect(() => {
         loadBoards()
     }, [])
 
+    useEffect(() => {
+        loadBoard(boardId)
+    }, [boardId])
+
     function setStarBoard(boardId) {
-        
+
         // updateBoard({...board})
     }
 
     return (
-        <>
+        <div className="sidebar-container">
             {!isOpen &&
                 <button className="board-sidebar-collapsed">
-                    <span className="open-sidebar-btn">{side_arrow_icon}</span>
+                    <span className="open-sidebar-btn" onClick={() => setIsOpen(true)}>{side_arrow_icon}</span>
                 </button>}
 
             {isOpen &&
@@ -33,7 +38,7 @@ export function BoardSideBar() {
                             <h2 className="workspace-title">My workspace</h2>
                             <h5 className="user-sub">Premium</h5>
                         </div>
-                        <button className="close-sidebar-btn">{side_arrow_icon}</button>
+                        <button className="close-sidebar-btn" onClick={() => setIsOpen(false)}>{side_arrow_icon}</button>
                     </section>
 
                     <section className="sidebar-content">
@@ -70,28 +75,29 @@ export function BoardSideBar() {
                         <ul className="board-preview-list clean-list">
                             {
                                 <>
-                                    {boards.filter(board => board.isStarred).map(board => {
-                                        return <li key={board._id} className="line board-p starred">
-                                            <div className="board-p-img" style={{ backgroundImage: `url(${board.style?.backgroundImage})`, backgroundColor: board.style?.backgroundColor}}></div>
-                                            <span>{board.title}</span>
+                                    {boards.filter(_board => _board.isStarred).map(_board => {
+                                        return <NavLink key={_board._id} className={`line board-p`} to={`/board/${_board._id}`}>
+                                            <div className="board-p-img" style={{ backgroundImage: `url(${_board.backgroundImage})`, backgroundColor: _board.backgroundColor }}></div>
+                                            <span>{_board.title}</span>
                                             <button className="star-container">
-                                            <span className="svg-container star" onClick={()=> setStarBoard(board._id)}>{star}</span>
-                                            <span className="svg-container star-outline" onClick={()=> setStarBoard(board._id)}>{star_outline}</span></button>
-                                        </li>
+                                                <span className="svg-container star" onClick={() => setStarBoard(_board._id)}>{star}</span>
+                                                <span className="svg-container star-outline" onClick={() => setStarBoard(_board._id)}>{star_outline}</span></button>
+                                        </NavLink>
                                     })}
-                                    {boards.filter(board => !board.isStarred).map(board => {
-                                        return <li key={board._id} className="line board-p">
-                                            <div className="board-p-img" style={{ backgroundImage: `url(${board.style.backgroundImage})`, backgroundColor: board.style?.backgroundColor}}></div>
-                                            <span>{board.title}</span>
+                                    {boards.filter(_board => !_board.isStarred).map(_board => {
+                                        return <NavLink key={_board._id} className={`line board-p`} to={`/board/${_board._id}`}>
+                                            <div className="board-p-img" style={{ backgroundImage: `url(${_board.backgroundImage})`, backgroundColor: _board.backgroundColor }}></div>
+                                            <span>{_board.title}</span>
                                             <button className="star-container-outline">
-                                            <span className="svg-container star-outline-o" onClick={()=> setStarBoard(board._id)}>{star_outline}</span></button>
-                                        </li>
+                                                <span className="svg-container star-outline-o" onClick={() => setStarBoard(_board._id)}>{star_outline}</span></button>
+                                        </NavLink>
                                     })}
                                 </>
                             }
                         </ul>
                     </section>
+                        <div className="board-sidebar-footer"></div>
                 </div>}
-        </>
+        </div>
     )
 }
