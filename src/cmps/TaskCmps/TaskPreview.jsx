@@ -50,7 +50,7 @@ export function TaskPreview({ task, groupId, saveTask, removeTask, board, isLabe
             <div className="content">
                 {!!task.labelIds.length &&
                     <div className='labels'>
-                        {getLabels().map(label => <div key={label.id} onClick={toggleExtendedLabels} className={`label ${!isLabelsExtended ? 'collapsed' : ''} ${label.color || 'orange'}`}>{isLabelsExtended ? label.title : ''}</div>)}
+                        {getLabels().map(label => <div key={label.id} onClick={toggleExtendedLabels} className={`label ${!isLabelsExtended ? 'collapsed' : ''} ${label.color || 'orange'}`}><span>{isLabelsExtended ? label.title : label.title}</span></div>)}
                     </div>}
 
                 <i className="edit-icon">{edit_icon}</i>
