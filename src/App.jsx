@@ -10,9 +10,9 @@ import { TaskDetails } from './cmps/TaskCmps/TaskDetails'
 export function App() {
 
     return (
-        <div>
+        <>
             <AppHeader />
-            <main>
+            <main className='main-content'>
                 <Routes>
                     <Route path="/" element={<HomePage />} />
                     <Route path="/board" element={<BoardIndex />} />
@@ -21,7 +21,7 @@ export function App() {
                     </Route>
                 </Routes>
             </main>
-        </div>
+        </>
     )
 }
 

@@ -34,7 +34,6 @@ export function TaskPreview({ task, groupId, saveTask, removeTask, board, isLabe
     }
 
     function getMembers() {
-        // console.log( board.members.filter(member => task.memberIds.includes(member._id)));
         return board.members.filter(member => task.memberIds.includes(member._id))
     }
 
@@ -48,7 +47,7 @@ export function TaskPreview({ task, groupId, saveTask, removeTask, board, isLabe
         >
             {task.style?.backgroundImage && <div className="img-container"> <img src={task.style.backgroundImage} /></div>}
             <div className="content">
-                {task.labelIds &&
+                {!!task.labelIds.length &&
                     <div className='labels'>
                         {getLabels().map(label => <div key={label.id} onClick={toggleExtendedLabels} className={`label ${!isLabelsExtended ? 'collapsed' : ''} ${label.color || 'orange'}`}><span>{isLabelsExtended ? label.title : label.title}</span></div>)}
                     </div>}
@@ -64,7 +63,7 @@ export function TaskPreview({ task, groupId, saveTask, removeTask, board, isLabe
                         {!!task.checklists?.length
                             && <div className="txt-and-icon icon-container">{checked_icon}{`${getTodoDoneCount().doneCount}/${getTodoDoneCount().totalTodos}`}</div>}
                     </div>
-                    {task.memberIds && <div className="task-preview-avatars"><AvatarList users={getMembers()} /></div>}
+                    {!! task.memberIds?.length && <div className="task-preview-avatars"><AvatarList users={getMembers()} /></div>}
 
                 </div>
             </div>
