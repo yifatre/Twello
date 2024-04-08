@@ -128,7 +128,7 @@ function getEmptyLabel() {
     return {
         id: utilService.makeId('l'),
         title: '',
-        color: ''
+        color: 'green-subtle'
     }
 }
 
