@@ -48,8 +48,8 @@ export async function addBoard(board) {
     try {
         const savedBoard = await boardService.save(board)
         console.log('Added Board', savedBoard)
+        store.dispatch({ type: ADD_BOARD, board: { _id: board._id, title: board.title, style: { backgroundImage: board.style.backgroundImage }, isStarred: board.isStarred } })
         store.dispatch({ type: SET, board })
-        store.dispatch({ type: ADD_BOARD, board: { _id: board._id, title: board.title, backgroundImage: board.style.backgroundImage, isStarred: board.isStarred } })
         return savedBoard
     } catch (err) {
         console.log('Cannot add board', err)
@@ -62,7 +62,7 @@ export async function updateBoard(board, isUpdateMiniBoard = false) {
         const savedBoard = await boardService.save(board)
         console.log('Updated Board:', savedBoard)
         store.dispatch({ type: UPDATE_BOARD, board })
-        if (isUpdateMiniBoard) store.dispatch({ type: UPDATE_MINI_BOARD, board: { _id: board._id, title: board.title, backgroundImage: board.style.backgroundImage, isStarred: board.isStarred } })
+        if (isUpdateMiniBoard) store.dispatch({ type: UPDATE_MINI_BOARD, board: { _id: board._id, title: board.title, style: { backgroundImage: board.style?.backgroundImage }, isStarred: board.isStarred } })
         return savedBoard
     }
     catch (err) {

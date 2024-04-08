@@ -70,9 +70,10 @@ function loadFromStorage(key) {
     return (data) ? JSON.parse(data) : undefined
 }
 
-function getModalPosition(target, leftMargin = 0) {
-    const left = target.offsetLeft
-    const top = target.offsetTop
-    return { top, left: left + leftMargin }
+function getModalPosition(target, offsetx = 0, offsety = 0) {
+    const { bottom, top, left, right, height, width, x, y } = target.getBoundingClientRect()
+    // const left = target.offsetLeft
+    // const top = target.offsetTop
+    return { top: top + offsety, left: left + offsetx }
 }
 
