@@ -4,25 +4,31 @@ import { arrow_down, bars_icon, check_icon, checked_icon, clock_icon, cover_icon
 import { utilService } from "../../services/util.service"
 import { ClickAwayListener } from '@mui/base/ClickAwayListener'
 import { useOutletContext } from "react-router-dom"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { ATTACHMENT, COVER, DATES, DynamicCmp, LABELS, MEMBERS } from "./DynamicCmps/DynamicCmp"
+import { useSelector } from "react-redux"
 
 
 
 export function TaskDetails() {
     const { boardId, groupId, taskId } = useParams()
-    const [board,onUpdateTask] = useOutletContext()
+    const [onUpdateTask] = useOutletContext()
+    const board = useSelector(storeState => storeState.boardModule.boards[storeState.boardModule.boards.findIndex(board => board._id === boardId)])
     const [modalPosition, setModalPosition] = useState({ top: 0, left: 0 })
     const [actionType, setActionType] = useState(null)
 
     const [task, setTask] = useState(board.groups.find(group => group.id === groupId).tasks.find(task => task.id === taskId))
     const navigate = useNavigate()
 
+    useEffect(()=>{
+        setTask(board.groups.find(group => group.id === groupId).tasks.find(task => task.id === taskId))
+    },[board])
+
     function onAddMember() { }
     function onAddLabel() { }
 
     function closeTaskDetails() {
-        navigate(`/board/${boardId}`) 
+        navigate(`/board/${boardId}`)
     }
 
     function onSetActionType(ev, type) {
@@ -49,13 +55,12 @@ export function TaskDetails() {
                         <p>in list <a href="#">{'list name'}</a></p>
                         {eye_icon}
                     </div>
-                    {/* {task.title} */}
                 </section>
                 <section className="data">
                     <div className="members">
                         <h3>Members</h3>
                         <div className="">
-                            {task.memberIds?.map(memberId => <div key={memberId} className="avatar"></div>)}
+                            {task.memberIds?.map(memberId => <div key={memberId} className="avatar" > <img className="avatar" src={board.members.find(member => member._id === memberId).imgUrl} alt="" /> </div>)}
                             <button className="avatar" onClick={onAddMember}>{plus_icon}</button>
                         </div>
                     </div>
@@ -94,9 +99,12 @@ export function TaskDetails() {
                     <a className="flex align-center" href="#" onClick={(ev) => onSetActionType(ev, ATTACHMENT)}>{paperclip_icon}Attachment</a>
                     <a className="flex align-center" href="#">{location_icon}Location</a>
                     {!task.style?.backgroundColor && <a className="flex align-center" href="#" onClick={(ev) => onSetActionType(ev, COVER)}>{cover_icon}Cover</a>}
-                    {actionType && <DynamicCmp groupId={groupId} cmp={actionType} task={task} position={modalPosition} info={board} onUpdateTasks={onUpdateTask} />}
+                    <ClickAwayListener onClickAway={() => setActionType(null)}>
+                        <div>
+                            {actionType && <DynamicCmp groupId={groupId} cmp={actionType} task={task} position={modalPosition} info={board} onUpdateTasks={onUpdateTask} setTask={setTask} />}
+                        </div>
+                    </ClickAwayListener>
                 </section>
-                {/* <ClickAwayListener onClickAway={() => setActionType(null)}> </ClickAwayListener>*/}
             </section>
         </ClickAwayListener>
     </div >

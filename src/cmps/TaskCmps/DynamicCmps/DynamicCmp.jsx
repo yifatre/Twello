@@ -16,23 +16,24 @@ export const CREATE_BOARD = 'CREATE_BOARD'
 //     //todo info:{groupId,taskId,dynamic}
 
 
-export function DynamicCmp({groupId, onUpdateTasks, cmp, info, task, setIsAddBoard,position }) {
-    console.log('info:',info);
+export function DynamicCmp({ groupId, onUpdateTasks, cmp, info, task, setTask, setIsAddBoard, position }) {
+    console.log('info:', info)
 
     function onUpdateBoard(newLabel) {
         const boardToUpdate = { ...info, labels: { ...info.labels, newLabel } }
         updateBoard(boardToUpdate)
     }
 
-    function onUpdate(cmp,dynamic) {
-        console.log('dynamic:',dynamic);
-        console.log('from dyn:',groupId);
+    function onUpdate(cmp, dynamic) {
+        console.log('dynamic:', dynamic)
+        console.log('from dyn:', groupId)
         const _info = {
             groupId,
-            taskId:task.id,
+            taskId: task.id,
             dynamic
         }
-        onUpdateTasks(cmp,_info, task )
+        onUpdateTasks(cmp, _info, task)
+        
     }
 
     var cmpType
@@ -50,7 +51,7 @@ export function DynamicCmp({groupId, onUpdateTasks, cmp, info, task, setIsAddBoa
             top += buttonHeight
             topHead = 'Member'
             // todo add 'taskMembers when we connected the actual data ! 
-            cmpType = <MemberPicker members={info.members} onUpdate={onUpdate} />
+            cmpType = <MemberPicker members={info.members} onUpdate={onUpdate} task={task} groupId={groupId} />
             break
 
         case DATES:
@@ -74,7 +75,7 @@ export function DynamicCmp({groupId, onUpdateTasks, cmp, info, task, setIsAddBoa
             cmpType = <CreateBoard setIsAddBoard={setIsAddBoard} />
             break
     }
-    return <div className={`dynamic-cmp ${cmp.toLowerCase()}`} style={{ top:position.top, left:position.left }}>
+    return <div className={`dynamic-cmp ${cmp.toLowerCase()}`} style={{ top: position.top, left: position.left }}>
         {cmpType}
     </div>
 }
