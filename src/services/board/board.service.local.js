@@ -134,11 +134,3 @@ function _createBoards() {
     const boards = utilService.loadFromStorage(STORAGE_KEY)
     if (!boards) utilService.saveToStorage(STORAGE_KEY, boardsDemoData)
 }
-
-
-// TEST DATA
-// storageService.post(STORAGE_KEY, {vendor: 'Subali Rahok 2', price: 980}).then(x => console.log(x))
-
-
-
-

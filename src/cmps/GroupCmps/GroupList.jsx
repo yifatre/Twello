@@ -77,6 +77,8 @@ export function GroupList({ groups, board }) {
                                     </li>}
                             </Draggable>
                         )}
+                        {provided.placeholder}
+
                     </ul>)}
             </Droppable>
         </DragDropContext>

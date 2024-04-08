@@ -25,7 +25,32 @@ export const boardsDemoData = [
             {
                 "_id": "u101",
                 "fullName": "Tal Tarablus",
+                "imgUrl": "https://trello-members.s3.amazonaws.com/660bf13c426a52eda7897e39/7dc2b02dcda3f5364deedb6736608c8b/170.png"
+            },
+            {
+                "_id": "u102",
+                "fullName": "John Doe",
                 "imgUrl": "https://randomuser.me/api/portraits/men/1.jpg"
+            },
+            {
+                "_id": "u103",
+                "fullName": "Alice Smith",
+                "imgUrl": "https://randomuser.me/api/portraits/women/2.jpg"
+            },
+            {
+                "_id": "u104",
+                "fullName": "Michael Johnson",
+                "imgUrl": ""
+            },
+            {
+                "_id": "u105",
+                "fullName": "Emily Brown",
+                "imgUrl": "https://randomuser.me/api/portraits/women/4.jpg"
+            },
+            {
+                "_id": "u106",
+                "fullName": "David Lee",
+                "imgUrl": "https://randomuser.me/api/portraits/men/5.jpg"
             }
         ],
         groups: [
@@ -37,12 +62,13 @@ export const boardsDemoData = [
                 "tasks": [
                     {
                         "id": "c101",
-                        "title": "User Management",
-                        "description": "description",
+                        "title": "Backlog",
+                        "description": "On this board we have a list of things we think we want to do, maybe not quite ready for work, but high likelihood of being worked on \n This is the staging area where specs should get fleshed out. \n No limit on the list size, but we should reconsider if it gets long.",
                         "style": {
-                            "backgroundImage": "https://trello.com/1/cards/660d25caed4263dcfcc3dbf0/attachments/660e3f679cb08cb6edb7fec3/download/user.jpg"
+                            "backgroundImage": "https://trello-stickers.s3.amazonaws.com/SharedSticker/80x80/a36f4ad3663043c140a08100148a64aa/100w.gif",
+                            "backgroundColor": "gray"
                         },
-                        "labelIds": ["l101", "l102"],
+                        "labelIds": [],
                         "checklists": [
                             {
                                 "id": "YesdmF",
@@ -60,9 +86,11 @@ export const boardsDemoData = [
                     },
                     {
                         "id": "c102",
-                        "title": "Add Samples",
+                        "title": "Users Management",
                         "description": "description",
-                        "style": {},
+                        "style": {
+                            "backgroundImage": "https://trello.com/1/cards/660d25caed4263dcfcc3dbf0/attachments/660e3f679cb08cb6edb7fec3/download/user.jpg"
+                        },
                         "checklists": [
                             {
                                 "id": "YEhhmF",
@@ -181,7 +209,7 @@ export const boardsDemoData = [
                         "description": "description",
                         "archivedAt": 1589983468418,
                         "style": {},
-                        "labelIds": [],
+                        "labelIds": ["l101", "l102"],
                         "memberIds": []
                     },
                     {

@@ -33,14 +33,14 @@ export function BoardDetails() {
     }
 
     function onUpdateBoard(groupId, taskToUpdate) {
-        console.log('board from details:', board);
+        console.log('board from details:', board)
         console.log(taskToUpdate, 'groupId', groupId)
         const groupsToUpdate = board.groups.map(group => {
             if (group.id === groupId) {
                 const updatedTasks = group.tasks.map(task => {
-                    console.log(task.id);
+                    console.log(task.id)
                     if (task.id === taskToUpdate.id) {
-                        console.log('task from map:', task);
+                        console.log('task from map:', task)
                         return taskToUpdate
                     }
                     return task
@@ -50,7 +50,7 @@ export function BoardDetails() {
             return group
         })
         const boardToUpdate = { ...board, groups: groupsToUpdate }
-        console.log('boardToUpdate:', boardToUpdate);
+        console.log('boardToUpdate:', boardToUpdate)
         updateBoard(boardToUpdate)
     }
 
@@ -61,11 +61,12 @@ export function BoardDetails() {
         switch (cmp) {
             case LABELS:
                 taskToUpdate = { ...task, labelIds: info.dynamic }
-                console.log('taskToUpdate:', taskToUpdate);
+                console.log('taskToUpdate:', taskToUpdate)
                 break
 
             case MEMBERS:
-                taskToUpdate = { ...task, memberIds: info.membersIds }
+                taskToUpdate = { ...task, memberIds: info.dynamic }
+                console.log('taskToUpdate', taskToUpdate)
                 break
 
             case DATES:
@@ -93,7 +94,7 @@ export function BoardDetails() {
             <GroupList groups={board.groups} board={board} />
             <div className="board-fade"></div>
         </section>
-        <Outlet context={[board, onUpdateTask]} />
+        <Outlet context={[onUpdateTask]} />
     </>
     )
 }
