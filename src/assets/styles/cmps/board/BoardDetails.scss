@@ -1,27 +1,32 @@
-.board-details {
-    position: relative;
-    width: 100%;
-    height: calc(100vh - 48px);
-    background-position-y: 50%;
-    background-size: cover;
-    background-repeat: no-repeat;
+.main-content {
+    flex: 1;
+    overflow: hidden;
+    
+    .board-details {
+        position: relative;
+        height: 100%;
+        width: 100%;
+        background-position-y: 50%;
+        background-size: cover;
+        background-repeat: no-repeat;
 
-    display: grid;
-    grid-template-areas:
-        "sidebar head"
-        "sidebar body";
+        display: grid;
+        grid-template-areas:
+            "sidebar head"
+            "sidebar body";
 
-    grid-template-rows: max-content 1fr;
-    grid-template-columns: max-content 1fr;
+        grid-template-rows: max-content 1fr;
+        grid-template-columns: max-content 1fr;
 
-    &::after {
-        content: "";
-        left: 0;
-        right: 0;
-        top: 0;
-        bottom: 0;
-        display: block;
-        position: absolute;
-        background: rgba(0, 0, 0, 0.144);
+        &::after {
+            content: "";
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            display: block;
+            position: absolute;
+            background: rgba(0, 0, 0, 0.144);
+        }
     }
 }
