@@ -3,7 +3,6 @@ import { useNavigate, useParams } from "react-router-dom"
 import { AvatarList } from "../UtilCmps/AvatarList"
 
 export function TaskPreview({ task, groupId, saveTask, removeTask, board, isLabelsExtended, setIsLabelExtended }) {
-    const { boardId } = useParams()
     const navigate = useNavigate()
 
     function getTodoDoneCount() {
@@ -35,19 +34,19 @@ export function TaskPreview({ task, groupId, saveTask, removeTask, board, isLabe
     }
 
     function getMembers() {
-        console.log( board.members.filter(member => task.memberIds.includes(member._id)));
+        // console.log( board.members.filter(member => task.memberIds.includes(member._id)));
         return board.members.filter(member => task.memberIds.includes(member._id))
     }
 
     const { title, style } = task
     return (
-        <div className="task-preview" onClick={() => navigate(`/board/${boardId}/${groupId}/${task.id}`)}
+        <div className="task-preview" onClick={() => navigate(`/board/${board._id}/${groupId}/${task.id}`)}
             style={{
                 backgroundColor: style?.backgroundColor || '#ffffff',
             }}
 
         >
-            {task.style?.backgroundImage && <div className="img-container"> <img src={task.style.backgroundImage}/></div>}
+            {task.style?.backgroundImage && <div className="img-container"> <img src={task.style.backgroundImage} /></div>}
             <div className="content">
                 {task.labelIds &&
                     <div className='labels'>

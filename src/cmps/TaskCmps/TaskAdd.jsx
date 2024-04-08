@@ -1,11 +1,11 @@
 import { ClickAwayListener } from '@mui/base/ClickAwayListener'
-import { TextareaAutosize as MinTextArea } from '@mui/base/TextareaAutosize';
+import { TextareaAutosize as MinTextArea } from '@mui/base/TextareaAutosize'
 
 import { useState } from "react"
 import { x_icon } from "../UtilCmps/SVGs"
-import { boardService } from '../../services/board/board.service.local';
+import { boardService } from '../../services/board/board.service.local'
 
-export function TaskAdd({ setIsAddMode, saveTask }) {
+export function TaskAdd({ setIsAddMode, saveTask, groupId }) {
     const [task, setTask] = useState(boardService.getEmptyTask())
 
     function handleChange({ target }) {
@@ -18,7 +18,7 @@ export function TaskAdd({ setIsAddMode, saveTask }) {
 
     function onSaveTask(ev) {
         ev.preventDefault()
-        saveTask(task)
+        saveTask(task, groupId)
         setIsAddMode(false)
     }
 

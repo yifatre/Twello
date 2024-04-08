@@ -6,84 +6,101 @@ import { showErrorMsg } from "../../services/event-bus.service"
 import { BoardHeader } from "./BoardHeader"
 import { BoardSideBar } from "./BoardSideBar"
 import { boardService } from "../../services/board/board.service.local"
-import { loadBoards, updateBoard } from "../../store/board/board.actions"
+import { loadBoard, loadBoards, updateBoard } from "../../store/board/board.actions"
 import { useSelector } from "react-redux"
 import { ATTACHMENT, COVER, DATES, LABELS, MEMBERS } from "../TaskCmps/DynamicCmps/DynamicCmp"
+import { utilService } from "../../services/util.service"
 
 export function BoardDetails() {
     const { boardId } = useParams()
-    const [board, setBoard] = useState(null)
-    const boards = useSelector(storeState => storeState.boardModule.boards)
+    // const [board, setBoard] = useState(null)
+
+    const board = useSelector(storeState => storeState.boardModule.board)
 
     useEffect(() => {
-        loadBoard()
+        getBoard()
     }, [])
 
-    useEffect(() => {
-        setBoard(boards[boards.findIndex(board => board._id === boardId)])
-    }, [boards])
+    // useEffect(() => {
+    //     setBoard(boards[boards.findIndex(board => board._id === boardId)])
+    // }, [board])
 
-    async function loadBoard() {
+    async function getBoard() {
         try {
-            await loadBoards()
+            await loadBoard(boardId)
         }
         catch (err) {
-            showErrorMsg('Cannot remove board')
+            console.error(err)
+            // showErrorMsg('Cannot remove board')
         }
     }
 
-    function onUpdateBoard(groupId, taskToUpdate) {
-        console.log('board from details:', board)
-        console.log(taskToUpdate, 'groupId', groupId)
-        const groupsToUpdate = board.groups.map(group => {
-            if (group.id === groupId) {
-                const updatedTasks = group.tasks.map(task => {
-                    console.log(task.id)
-                    if (task.id === taskToUpdate.id) {
-                        console.log('task from map:', task)
-                        return taskToUpdate
-                    }
-                    return task
-                })
-                return { ...group, tasks: updatedTasks }
-            }
-            return group
-        })
-        const boardToUpdate = { ...board, groups: groupsToUpdate }
-        console.log('boardToUpdate:', boardToUpdate)
-        updateBoard(boardToUpdate)
-    }
-
-    function onUpdateTask(cmp, info, task) {
-        //todo info:{groupId,taskId,dynamic}
-        var groupId = info.groupId
-        var taskToUpdate
-        switch (cmp) {
-            case LABELS:
-                taskToUpdate = { ...task, labelIds: info.dynamic }
-                console.log('taskToUpdate:', taskToUpdate)
-                break
-
-            case MEMBERS:
-                taskToUpdate = { ...task, memberIds: info.dynamic }
-                console.log('taskToUpdate', taskToUpdate)
-                break
-
-            case DATES:
-                taskToUpdate = { ...task, date: info.date }
-                break
-
-            case ATTACHMENT:
-                taskToUpdate = { ...task, attach: info.attach }
-                break
-
-            case COVER:
-                taskToUpdate = { ...task, cover: info.cover }
-                break
-
+    function saveTask(task, groupId) {
+        const group = board.groups.find(group => group.id === groupId)
+        if (task.id) {
+            const idx = group.tasks.findIndex(_task => _task.id === task.id)
+            group.tasks[idx] = task
+            saveGroup(group)
+        } else {
+            task.id = utilService.makeId('t')
+            group.tasks.push(task)
+            saveGroup(group)
         }
-        return onUpdateBoard(groupId, taskToUpdate)
     }
+
+    function removeTask(taskId, groupId) {
+        let group = board.groups.find(group => group.id === groupId)
+        group = group.tasks.filter(task => task.id !== taskId)
+        saveGroup(group)
+    }
+
+    function saveGroup(group) {
+        if (group.id) {
+            const idx = board.groups.findIndex(_group => _group.id === group.id)
+            board.groups[idx] = group
+            updateBoard(board)
+        } else {
+            group.id = utilService.makeId('g')
+            board.groups.push(group)
+            updateBoard(board)
+        }
+    }
+
+    function removeGroup(groupId) {
+        const board = board.groups.filter(group => group.id !== groupId)
+        updateBoard(board)
+    }
+
+    // function onUpdateTask(cmp, info, task) {
+    //     //todo info:{groupId,taskId,dynamic}
+    //     var groupId = info.groupId
+    //     var taskToUpdate
+    //     switch (cmp) {
+    //         case LABELS:
+    //             taskToUpdate = { ...task, labelIds: info.dynamic }
+    //             // console.log('taskToUpdate:', taskToUpdate)
+    //             break
+
+    //         case MEMBERS:
+    //             taskToUpdate = { ...task, memberIds: info.dynamic }
+    //             // console.log('taskToUpdate', taskToUpdate)
+    //             break
+
+    //         case DATES:
+    //             taskToUpdate = { ...task, date: info.date }
+    //             break
+
+    //         case ATTACHMENT:
+    //             taskToUpdate = { ...task, attach: info.attach }
+    //             break
+
+    //         case COVER:
+    //             taskToUpdate = { ...task, cover: info.cover }
+    //             break
+    //     }
+    //     const groupToUpdate = board.groups.find(group => group.id === groupId)
+    //     return saveTask(taskToUpdate, groupToUpdate)
+    // }
 
 
     if (!board) return <div>loading</div>
@@ -91,10 +108,10 @@ export function BoardDetails() {
         <section className="board-details" style={{ backgroundImage: `url(${board.style?.backgroundImage})` }}>
             <BoardHeader board={board} />
             <BoardSideBar />
-            <GroupList groups={board.groups} board={board} />
+            <GroupList board={board} saveGroup={saveGroup} removeGroup={removeGroup} saveTask={saveTask} removeTask={removeTask} />
             <div className="board-fade"></div>
         </section>
-        <Outlet context={[onUpdateTask]} />
+        <Outlet context={[saveTask]} />
     </>
     )
 }

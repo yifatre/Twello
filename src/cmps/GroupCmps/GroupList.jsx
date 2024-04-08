@@ -4,29 +4,13 @@ import { updateBoard } from "../../store/board/board.actions"
 import { utilService } from "../../services/util.service"
 import { useState } from "react"
 
-export function GroupList({ groups, board }) {
+export function GroupList({ board, saveGroup, removeGroup, saveTask, removeTask }) {
     const [isLabelsExtended, setIsLabelExtended] = useState(true)
-
-    function saveGroup(group) {
-        if (group.id) {
-            const idx = board.groups.findIndex(_group => _group.id === group.id)
-            board.groups[idx] = group
-            updateBoard(board)
-        } else {
-            group.id = utilService.makeId('g')
-            board.groups.push(group)
-            updateBoard(board)
-        }
-    }
-
-    function removeGroup(groupId) {
-        const board = board.groups.filter(group => group.id !== groupId)
-        updateBoard(board)
-    }
+    const { groups } = board
 
     function onDragEnd(result) {
         if (!result.destination) {
-            return;
+            return
         }
 
         const startIdx = result.source.index
@@ -47,7 +31,6 @@ export function GroupList({ groups, board }) {
         }
     }
 
-
     return (
         <DragDropContext
             // onBeforeCapture={onBeforeCapture}
@@ -59,7 +42,7 @@ export function GroupList({ groups, board }) {
             <Droppable droppableId={'groups'} direction='horizontal' type="group">
                 {(provided, snapshot) => (
                     <ul className="clean-list flex group-list" {...provided.droppableProps} ref={provided.innerRef}>
-                        {groups.map((group, idx) =>
+                        {groups?.map((group, idx) =>
                             <Draggable key={group.id} draggableId={group.id} index={idx}>
                                 {(provided, snapshot) =>
                                     <li key={group.id}
@@ -73,6 +56,8 @@ export function GroupList({ groups, board }) {
                                             isLabelsExtended={isLabelsExtended}
                                             setIsLabelExtended={setIsLabelExtended}
                                             saveGroup={saveGroup}
+                                            saveTask={saveTask}
+                                            removeTask={removeTask}
                                             board={board} />
                                     </li>}
                             </Draggable>

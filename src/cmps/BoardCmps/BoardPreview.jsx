@@ -15,7 +15,7 @@ export function BoardPreview({ board }) {
 
     return (
         <Link className='board-preview' to={`/board/${board._id}`}>
-            <article className='' style={{ backgroundImage: `url(${board.style?.backgroundImage})` }}>
+            <article className='' style={{ backgroundImage: `url(${board?.backgroundImage})` }}>
                 <div className='board-preview-fade'>
                 </div>
                 <h3>{board.title}</h3>

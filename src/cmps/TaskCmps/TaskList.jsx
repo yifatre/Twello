@@ -8,7 +8,7 @@ export function TaskList({ group, saveTask, removeTask, board, isLabelsExtended,
             {(provided) =>
                 <ul className="task-list clean-list" {...provided.droppableProps} ref={provided.innerRef}>
 
-                    {group.tasks.map((task, idx) =>
+                    {group.tasks?.map((task, idx) =>
                         <Draggable key={task.id} draggableId={task.id} index={idx}>
 
                             {(provided, snapshot) =>

@@ -22,14 +22,15 @@ window.cs = boardService
 
 async function query(filterBy = { txt: '', price: 0 }) {
     var boards = await storageService.query(STORAGE_KEY)
-    if (filterBy.txt) {
-        const regex = new RegExp(filterBy.txt, 'i')
-        boards = boards.filter(board => regex.test(board.vendor) || regex.test(board.description))
-    }
-    if (filterBy.price) {
-        boards = boards.filter(board => board.price <= filterBy.price)
-    }
-    return boards
+    // if (filterBy.txt) {
+    //     const regex = new RegExp(filterBy.txt, 'i')
+    //     boards = boards.filter(board => regex.test(board.vendor) || regex.test(board.description))
+    // }
+    // if (filterBy.price) {
+    //     boards = boards.filter(board => board.price <= filterBy.price)
+    // }
+
+    return boards.map(board => ({ _id: board._id, title: board.title, backgroundImage: board.style.backgroundImage, isStarred: board.isStarred }))
 }
 
 function getById(boardId) {
@@ -67,19 +68,19 @@ function getEmptyBoard() {
         groups: [
             {
                 id: utilService.makeId('g'),
-                title: 'todo',
+                title: 'To do',
                 isExtended: true,
                 style: { themeColor: 'gray' }
             },
             {
                 id: utilService.makeId('g'),
-                title: 'todo',
+                title: 'Doing',
                 isExtended: true,
                 style: { themeColor: 'gray' }
             },
             {
                 id: utilService.makeId('g'),
-                title: 'todo',
+                title: 'Done',
                 isExtended: true,
                 style: { themeColor: 'gray' }
             }

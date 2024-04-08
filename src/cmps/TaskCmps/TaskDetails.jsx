@@ -12,17 +12,17 @@ import { useSelector } from "react-redux"
 
 export function TaskDetails() {
     const { boardId, groupId, taskId } = useParams()
-    const [onUpdateTask] = useOutletContext()
-    const board = useSelector(storeState => storeState.boardModule.boards[storeState.boardModule.boards.findIndex(board => board._id === boardId)])
+    const [saveTask] = useOutletContext()
+    const board = useSelector(storeState => storeState.boardModule.board)
     const [modalPosition, setModalPosition] = useState({ top: 0, left: 0 })
     const [actionType, setActionType] = useState(null)
 
     const [task, setTask] = useState(board.groups.find(group => group.id === groupId).tasks.find(task => task.id === taskId))
     const navigate = useNavigate()
 
-    useEffect(()=>{
+    useEffect(() => {
         setTask(board.groups.find(group => group.id === groupId).tasks.find(task => task.id === taskId))
-    },[board])
+    }, [board])
 
     function onAddMember() { }
     function onAddLabel() { }
@@ -34,7 +34,7 @@ export function TaskDetails() {
     function onSetActionType(ev, type) {
         ev.preventDefault()
         ev.stopPropagation()
-        setModalPosition(utilService.getModalPosition(ev.target))
+        setModalPosition(utilService.getModalPosition(ev.target, ev.target.offsetLeft))
         setActionType(type)
     }
 
@@ -60,15 +60,15 @@ export function TaskDetails() {
                     <div className="members">
                         <h3>Members</h3>
                         <div className="">
-                            {task.memberIds?.map(memberId => <div key={memberId} className="avatar" > <img className="avatar" src={board.members.find(member => member._id === memberId).imgUrl} alt="" /> </div>)}
-                            <button className="avatar" onClick={onAddMember}>{plus_icon}</button>
+                            {task.memberIds?.map(memberId => <div key={memberId} className="avatar" > <img className="avatar" src={board.members.find(member => member._id === memberId)?.imgUrl} alt="" /> </div>)}
+                            <button className="avatar neutral-label" onClick={onAddMember}>{plus_icon}</button>
                         </div>
                     </div>
                     <div className="labels">
                         <h3>Labels</h3>
                         <div className="">
-                            {task.labelIds?.map(labelId => <div key={labelId} className="label">{labelId}</div>)}
-                            <button className="label" onClick={onAddLabel}>{plus_icon}</button>
+                            {task.labelIds?.map(labelId => <div key={labelId} className={`label ${board.labels.find(label => label.id === labelId).color}`}>{board.labels.find(label => label.id === labelId).title}</div>)}
+                            <button className="label neutral-label" onClick={onAddLabel}>{plus_icon}</button>
                         </div>
                     </div>
                     <div className="due-date">
@@ -101,7 +101,7 @@ export function TaskDetails() {
                     {!task.style?.backgroundColor && <a className="flex align-center" href="#" onClick={(ev) => onSetActionType(ev, COVER)}>{cover_icon}Cover</a>}
                     <ClickAwayListener onClickAway={() => setActionType(null)}>
                         <div>
-                            {actionType && <DynamicCmp groupId={groupId} cmp={actionType} task={task} position={modalPosition} info={board} onUpdateTasks={onUpdateTask} setTask={setTask} />}
+                            {actionType && <DynamicCmp groupId={groupId} cmp={actionType} task={task} position={modalPosition} info={board} saveTask={saveTask} setTask={setTask} />}
                         </div>
                     </ClickAwayListener>
                 </section>

@@ -12,17 +12,18 @@ const pallet = ['green', 'yellow', 'orange', 'red', 'purple',
 
 // todo connect btn's and add the on update 
 
-export function LabelPicker({ onUpdateBoard, taskLabels, labels, onUpdate }) {
-    console.log(taskLabels);
+export function LabelPicker({ onUpdateBoard, labels, task, saveTask, groupId }) {
+    // console.log(taskLabels);
     const [toggle, setToggle] = useState(false)
     const [currentColor, setCurrentColor] = useState('green-subtle')
     const [labelContent, setLabelContent] = useState('')
-    const [labelsFromTask, setLabelsFromTask] = useState(taskLabels)
+    const [labelsFromTask, setLabelsFromTask] = useState(task.labelIds)
     const [dark, setDark] = useState(new Array(pallet.length).fill(false))
 
-    useEffect(()=>{
-        onUpdate(LABELS, labelsFromTask)
-    },[labelsFromTask])
+    useEffect(() => {
+        // onUpdate(LABELS, labelsFromTask)
+        saveTask({ ...task, labelIds: labelsFromTask }, groupId)
+    }, [labelsFromTask])
 
     function toggleBtn(label) {
         setCurrentColor('green-subtle')
@@ -41,7 +42,7 @@ export function LabelPicker({ onUpdateBoard, taskLabels, labels, onUpdate }) {
         let result = [...dark].fill(false)
         result[index] = !result[index]
         setDark(result)
-        console.log('dark', dark)
+        // console.log('dark', dark)
         setCurrentColor(color)
     }
 
@@ -63,13 +64,13 @@ export function LabelPicker({ onUpdateBoard, taskLabels, labels, onUpdate }) {
         newLabel.color = currentColor
         onUpdateBoard(newLabel)
 
-        const _labels = taskLabels.push(newLabel.id)
+        const _labels = task.labelIds.push(newLabel.id)
         onUpdate(LABELS, _labels)
     }
 
     function onCheckLabel({ target }) {
         if (target.checked) {
-            setLabelsFromTask(prevLabels => [...prevLabels,target.id])
+            setLabelsFromTask(prevLabels => [...prevLabels, target.id])
         } else {
             const _labels = labelsFromTask.filter(id => target.id !== id)
             setLabelsFromTask(_labels)
@@ -92,8 +93,8 @@ export function LabelPicker({ onUpdateBoard, taskLabels, labels, onUpdate }) {
                 <ul className="clean-list ul-labels">
                     {labels.map(label => {
                         return <li key={label.id} className="flex align-center">
-                            <input defaultChecked={taskLabels ? taskLabels.find(id => label.id === id) : false} onChange={onCheckLabel} className="checkbox" type="checkBox" id={label.id} />
-                            <label htmlFor={label.id}> <div  className={`label-picker ${label.color}`}> {label.title}</div></label>
+                            <input defaultChecked={task.labelIds ? task.labelIds.find(id => label.id === id) : false} onChange={onCheckLabel} className="checkbox" type="checkBox" id={label.id} />
+                            <label htmlFor={label.id}> <div className={`label-picker ${label.color}`}> {label.title}</div></label>
                             <button onClick={() => toggleBtn(label)} className="edit-label">{edit_icon}</button>
                         </li>
                     })}

@@ -3,17 +3,15 @@ import { x_icon } from "../../UtilCmps/SVGs"
 import { MEMBERS } from "./DynamicCmp"
 
 
-export function MemberPicker({ members, onUpdate, task }) {
+export function MemberPicker({ members, task, saveTask, groupId }) {
     const [memberIdsToUpdate, setMemberIdsToUpdate] = useState(task.memberIds)
-    console.log('board members', members)
-    console.log('task members', task.memberIds)
 
     useEffect(() => {
-        onUpdate(MEMBERS, memberIdsToUpdate)
+        // onUpdate(MEMBERS, memberIdsToUpdate)
+        saveTask({ ...task, memberIds: memberIdsToUpdate }, groupId)
     }, [memberIdsToUpdate])
 
     function onAddMember(memberId) {
-        console.log('memberId', memberId)
         if (!task.memberIds) task.memberIds = []
         setMemberIdsToUpdate([...task.memberIds, memberId])
     }
@@ -51,7 +49,7 @@ export function MemberPicker({ members, onUpdate, task }) {
                 <>
                     <p>Board members</p>
                     <ul className="clean-list ul-labels">
-                        {console.log('task.memberIds', task.memberIds)}
+                        {/* {console.log('task.memberIds', task.memberIds)} */}
                         {members.filter(member => !memberIdsToUpdate.includes(member._id)).map(member => {
                             // todo refactor when get the actual data fullname 
                             return <li key={member._id} className="flex align-center member-li" onClick={() => onAddMember(member._id)}>
