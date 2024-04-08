@@ -18,12 +18,7 @@ export function CreateBoard({ setIsAddBoard }) {
         setBoard(prevBoard => ({ ...prevBoard, [field]: value }))
     }
 
-    useEffect(() => {
-        console.log('board.style', board.style)
-    }, [board])
-
     function changeBgImg(img) {
-        console.log('img', img)
         setBoard(prevBoard => ({ ...prevBoard, style: { ...prevBoard.style, backgroundImage: img } }))
     }
 
