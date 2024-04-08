@@ -84,28 +84,45 @@
     .labels {
         display: flex;
         flex-wrap: wrap;
+        justify-content: start;
         gap: 4px;
         margin-block-end: rem(4px);
 
         .label {
             border-radius: rem(4px);
             height: rem(16px);
+            flex-grow: 0.1;
+            flex-shrink: 1;
             line-height: rem(16px);
             font-size: rem(12px);
             padding: 0 rem(8px);
+
+            display: inline-flex;
 
             background-color: var(--accent-background);
             color: var(--accent-text);
             &:hover {
                 background-color: var(--accent-background-hovered);
             }
-            transition: width 0.5s, height 0.5s;
+            transition: flex-grow 0.5s, height 0.5s, width 0.5s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            & span{
+                opacity: 1;
+                transition: opacity 0s 0.5s;
+            }
         }
-
+        
         .label.collapsed {
             width: rem(40px);
             height: rem(8px);
-            transition: width 0.5s, height 0.5s;
+            flex-grow: 0.001;
+            & span{
+                opacity: 0;
+                transition: opacity 0s 0s;
+            }
+            // transition: width 0.5s, height 0.5s;
         }
     }
 
