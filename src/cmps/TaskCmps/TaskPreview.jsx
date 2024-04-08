@@ -35,7 +35,8 @@ export function TaskPreview({ task, groupId, saveTask, removeTask, board, isLabe
     }
 
     function getMembers() {
-        return board.members.filter(member => task.memberIds.includes(member.id))
+        console.log( board.members.filter(member => task.memberIds.includes(member._id)));
+        return board.members.filter(member => task.memberIds.includes(member._id))
     }
 
     const { title, style } = task
@@ -46,7 +47,7 @@ export function TaskPreview({ task, groupId, saveTask, removeTask, board, isLabe
             }}
 
         >
-            {task.style?.backgroundImage && <img src={task.style.backgroundImage}/>}
+            {task.style?.backgroundImage && <div className="img-container"> <img src={task.style.backgroundImage}/></div>}
             <div className="content">
                 {task.labelIds &&
                     <div className='labels'>

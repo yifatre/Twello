@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom'
-import { arrow_down, more_icon, search_icon } from '../UtilCmps/SVGs';
+import { arrow_down, bell_icon, info_btn, more_icon, search_icon } from '../UtilCmps/SVGs';
 
 export function AppHeader() {
     const { pathname } = useLocation();
@@ -22,25 +22,34 @@ export function AppHeader() {
 
     )
     return (
-        <header className="app-header flex">
-            <button className='main-nav-btn arrow-down more-btn'>{more_icon}</button>
-            <div className='logo-inside-head '>
-                <Link to='/board'>
-                        <h3 className='flex'><img src="/src/assets/img/trello-logo-gradient-neutral@2x.png" alt="" /> Twello</h3>
-                </Link>
-            </div>
-            <button className='main-nav-btn'>Workspaces <span className='arrow-down'>{arrow_down}</span></button>
-            <button className='main-nav-btn'>Recent <span className='arrow-down'>{arrow_down}</span></button>
-            <button className='main-nav-btn'>Starred <span className='arrow-down'>{arrow_down}</span></button>
-            <button className='main-nav-btn'>Templates <span className='arrow-down'>{arrow_down}</span></button>
-            <button className='create-btn'>create</button>
-            {/* <div>
-        <div className='input-container'>
-            <button>{search_icon}</button>
-        <input className='search-input' type="text" />
+        <header className="app-header flex justify-space-between">
+            <div className='flex'>
 
-        </div>
-        </div> */}
+                <button className='main-nav-btn arrow-down more-btn'>{more_icon}</button>
+                <div className='logo-inside-head '>
+                    <Link to='/board'>
+                        <h3 className='flex'><img src="/src/assets/img/trello-logo-gradient-neutral@2x.png" alt="" /> Twello</h3>
+                    </Link>
+                </div>
+                <button className='main-nav-btn'>Workspaces <span className='arrow-down'>{arrow_down}</span></button>
+                <button className='main-nav-btn'>Recent <span className='arrow-down'>{arrow_down}</span></button>
+                <button className='main-nav-btn'>Starred <span className='arrow-down'>{arrow_down}</span></button>
+                <button className='main-nav-btn'>Templates <span className='arrow-down'>{arrow_down}</span></button>
+                <button className='create-btn'>create</button>
+            </div>
+            <div className='flex'>
+
+                <div className='flex justify-center input-container'>
+                    <span className='svg-search'>{search_icon}</span>
+                    <input placeholder='Search' className='search-input' type="text" />
+                </div>
+<div className='flex btn-right-head-container'>
+
+                <button className='alarm-btn top-header-btn'>{bell_icon}</button>
+                <button className='info-btn top-header-btn'>{info_btn}</button>
+                <button className='user-btn top-header-btn'>user</button>
+</div>
+            </div>
 
         </header>
 
