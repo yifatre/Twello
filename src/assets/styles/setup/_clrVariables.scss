@@ -425,7 +425,7 @@
     --accent-background-hovered: var(--ds-background-accent-lime-bolder-hovered);
     --accent-background-pressed: var(--ds-background-accent-lime-bolder-pressed);
     --accent-icon: var(--ds-icon-accent-lime);
-    --accent-text: var(--ds-text-accent-lime);
+    --accent-text: #fff;
     --accent-text-bolder: var(--ds-text-accent-lime-bolder);
 }
 
@@ -452,7 +452,7 @@
     --accent-background-hovered: var(--ds-background-accent-red-bolder-hovered);
     --accent-background-pressed: var(--ds-background-accent-red-bolder-pressed);
     --accent-icon: var(--ds-icon-accent-red);
-    --accent-text: var(--ds-text-accent-red);
+    --accent-text: #fff;
     --accent-text-bolder: var(--ds-text-accent-red-bolder);
 }
 
@@ -479,7 +479,7 @@
     --accent-background-hovered: var(--ds-background-accent-orange-bolder-hovered);
     --accent-background-pressed: var(--ds-background-accent-orange-bolder-pressed);
     --accent-icon: var(--ds-icon-accent-orange);
-    --accent-text: var(--ds-text-accent-orange);
+    --accent-text: #fff;
     --accent-text-bolder: var(--ds-text-accent-orange-bolder);
 }
 
@@ -501,12 +501,12 @@
     --accent-text-bolder: var(--ds-text-accent-yellow-bolder);
 }
 
-.yellow-boler {
+.yellow-bolder {
     --accent-background: var(--ds-background-accent-yellow-bolder);
     --accent-background-hovered: var(--ds-background-accent-yellow-bolder-hovered);
     --accent-background-pressed: var(--ds-background-accent-yellow-bolder-pressed);
     --accent-icon: var(--ds-icon-accent-yellow);
-    --accent-text: var(--ds-text-accent-yellow);
+    --accent-text: #fff;
     --accent-text-bolder: var(--ds-text-accent-yellow-bolder);
 }
 
@@ -533,7 +533,7 @@
     --accent-background-hovered: var(--ds-background-accent-green-bolder-hovered);
     --accent-background-pressed: var(--ds-background-accent-green-bolder-pressed);
     --accent-icon: var(--ds-icon-accent-green);
-    --accent-text: var(--ds-text-accent-green);
+    --accent-text: #fff;
     --accent-text-bolder: var(--ds-text-accent-green-bolder);
 }
 
@@ -555,12 +555,12 @@
     --accent-text-bolder: var(--ds-text-accent-purple-bolder);
 }
 
-.purple-balder {
+.purple-bolder {
     --accent-background: var(--ds-background-accent-purple-bolder);
     --accent-background-hovered: var(--ds-background-accent-purple-bolder-hovered);
     --accent-background-pressed: var(--ds-background-accent-purple-bolder-pressed);
     --accent-icon: var(--ds-icon-accent-purple);
-    --accent-text: var(--ds-text-accent-purple);
+    --accent-text: #fff;
     --accent-text-bolder: var(--ds-text-accent-purple-bolder);
 }
 
@@ -587,7 +587,7 @@
     --accent-background-hovered: var(--ds-background-accent-blue-bolder-hovered);
     --accent-background-pressed: var(--ds-background-accent-blue-bolder-pressed);
     --accent-icon: var(--ds-icon-accent-blue);
-    --accent-text: var(--ds-text-accent-blue);
+    --accent-text: #fff;
     --accent-text-bolder: var(--ds-text-accent-blue-bolder);
 }
 
@@ -614,7 +614,7 @@
     --accent-background-hovered: var(--ds-background-accent-teal-bolder-hovered);
     --accent-background-pressed: var(--ds-background-accent-teal-bolder-pressed);
     --accent-icon: var(--ds-icon-accent-teal);
-    --accent-text: var(--ds-text-accent-teal);
+    --accent-text:#fff;
     --accent-text-bolder: var(--ds-text-accent-teal-bolder);
 }
 
@@ -641,7 +641,7 @@
     --accent-background-hovered: var(--ds-background-accent-magenta-bolder-hovered);
     --accent-background-pressed: var(--ds-background-accent-magenta-bolder-pressed);
     --accent-icon: var(--ds-icon-accent-magenta);
-    --accent-text: var(--ds-text-accent-magenta);
+    --accent-text: #fff;
     --accent-text-bolder: var(--ds-text-accent-magenta-bolder);
 }
 
@@ -668,12 +668,21 @@
     --accent-background-hovered: var(--ds-background-accent-gray-bolder-hovered);
     --accent-background-pressed: var(--ds-background-accent-gray-bolder-pressed);
     --accent-icon: var(--ds-icon-accent-gray);
-    --accent-text: var(--ds-text-accent-gray);
+    --accent-text: #fff;
     --accent-text-bolder: var(--ds-text-accent-gray-bolder);
 }
 
 .neutral {
     --accent-background: var(--ds-background-accent-gray-subtlest);
+    --accent-background-hovered: var(--ds-background-neutral-hovered);
+    --accent-background-pressed: var(--ds-background-neutral-pressed);
+    --accent-icon: var(--ds-icon-subtle);
+    --accent-text: var(--ds-text-subtle);
+    --accent-text-bolder: var(--ds-text);
+}
+
+.neutral-label{
+    --accent-background: var(--ds-background-neutral);
     --accent-background-hovered: var(--ds-background-neutral-hovered);
     --accent-background-pressed: var(--ds-background-neutral-pressed);
     --accent-icon: var(--ds-icon-subtle);

@@ -3,19 +3,19 @@ import { arrow_down, edit_icon, x_icon } from "../../UtilCmps/SVGs"
 import { boardService } from "../../../services/board/board.service.local"
 import { LABELS } from "./DynamicCmp"
 
-const pallet = ['#baf3db', '#f8e6a0', '#fedec8', '#ffd5d2', '#dfd8fd',
-    '#4bce97', '#f5cd47', '#fea362', '#f87168', '#9f8fef',
-    '#1f845a', '#946f00', '#c25100', '#c9372c', '#6e5dc6',
-    '#cce0ff', '#c6edfb', '#d3f1a7', '#fdd0ec', '#dcdfe4',
-    '#579dff', '#6cc3e0', '#94c748', '#e774bb', '#8590a2',
-    '#0c66e4', '#227d9b', '#5b7f24', '#ae4787', '#626f86']
+const pallet = ['green', 'yellow', 'orange', 'red', 'purple',
+    'green-subtle', 'yellow-subtle', 'orange-subtle', 'red-subtle', 'purple-subtle',
+    'green-bolder', 'yellow-bolder', 'orange-bolder', 'red-bolder', 'purple-bolder',
+    'blue', 'teal', 'lime', 'magenta', 'gray',
+    'blue-subtle', 'teal-subtle', 'lime-subtle', 'magenta-subtle', 'gray-subtle',
+    'blue-bolder', 'teal-bolder', 'lime-bolder', 'magenta-bolder', 'gray-bolder']
 
 // todo connect btn's and add the on update 
 
 export function LabelPicker({ onUpdateBoard, taskLabels, labels, onUpdate }) {
     console.log(taskLabels);
     const [toggle, setToggle] = useState(false)
-    const [currentColor, setCurrentColor] = useState('#4bce97')
+    const [currentColor, setCurrentColor] = useState('green-subtle')
     const [labelContent, setLabelContent] = useState('')
     const [labelsFromTask, setLabelsFromTask] = useState(taskLabels)
     const [dark, setDark] = useState(new Array(pallet.length).fill(false))
@@ -25,7 +25,7 @@ export function LabelPicker({ onUpdateBoard, taskLabels, labels, onUpdate }) {
     },[labelsFromTask])
 
     function toggleBtn(label) {
-        setCurrentColor('#4bce97')
+        setCurrentColor('green-subtle')
         setLabelContent('')
         if (label) {
             setLabelContent(label.title)
@@ -53,7 +53,7 @@ export function LabelPicker({ onUpdateBoard, taskLabels, labels, onUpdate }) {
     }
 
     function removeColor() {
-        setCurrentColor('hsla(218, 54%, 19.6%, 0.16)')
+        setCurrentColor('neutral-label')
     }
 
     function onCreate() {
@@ -93,7 +93,7 @@ export function LabelPicker({ onUpdateBoard, taskLabels, labels, onUpdate }) {
                     {labels.map(label => {
                         return <li key={label.id} className="flex align-center">
                             <input defaultChecked={taskLabels ? taskLabels.find(id => label.id === id) : false} onChange={onCheckLabel} className="checkbox" type="checkBox" id={label.id} />
-                            <label htmlFor={label.id}> <div style={{ backgroundColor: label.color }} className="label-picker"> {label.title}</div></label>
+                            <label htmlFor={label.id}> <div  className={`label-picker ${label.color}`}> {label.title}</div></label>
                             <button onClick={() => toggleBtn(label)} className="edit-label">{edit_icon}</button>
                         </li>
                     })}
@@ -113,7 +113,7 @@ export function LabelPicker({ onUpdateBoard, taskLabels, labels, onUpdate }) {
                 <button className="tasks-btn close-btn">{x_icon}</button>
             </header>
             <div className="label-preview-container">
-                <span style={{ backgroundColor: currentColor }} className="label-preview">{labelContent}</span>
+                <span className={`label-preview ${currentColor}`}>{labelContent}</span>
             </div>
             <section className="picker-container">
                 <p>Title</p>
@@ -128,7 +128,7 @@ export function LabelPicker({ onUpdateBoard, taskLabels, labels, onUpdate }) {
                 <div className="color-pallet">
                     {pallet.map((color, index) => {
                         return <div key={color} className={`color-container ${dark[index] ? 'outsideLine' : ''}`}>
-                            <div onClick={() => colorChange(color, index)} style={{ backgroundColor: color }} className={`color ${dark[index] ? 'outsideLine-white' : ''}`}></div>
+                            <div onClick={() => colorChange(color, index)} className={`color ${color} ${dark[index] ? 'outsideLine-white' : ''}`}></div>
                         </div>
                     })}
                 </div>
