@@ -8,6 +8,7 @@ import { boardService } from '../../services/board/board.service.local'
 export function BoardPreview({ board }) {
 
 
+
     const [isHovered, setIsHovered] = useState(false)
 
     async function onToggleStar(ev) {
@@ -25,6 +26,7 @@ export function BoardPreview({ board }) {
     return (
         <Link className='board-preview' to={`/board/${board._id}`}>
             <article className='' style={{ backgroundImage: `url(${board.style?.backgroundImage})` }}>
+
                 <div className='board-preview-fade'>
                 </div>
                 <h3>{board.title}</h3>
