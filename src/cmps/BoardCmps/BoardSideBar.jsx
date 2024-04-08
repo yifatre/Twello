@@ -77,7 +77,7 @@ export function BoardSideBar() {
                                 <>
                                     {boards.filter(_board => _board.isStarred).map(_board => {
                                         return <NavLink key={_board._id} className={`line board-p`} to={`/board/${_board._id}`}>
-                                            <div className="board-p-img" style={{ backgroundImage: `url(${_board.backgroundImage})`, backgroundColor: _board.backgroundColor }}></div>
+                                            <div className="board-p-img" style={{ backgroundImage: `url(${_board.style.backgroundImage})`, backgroundColor: _board.style.backgroundColor }}></div>
                                             <span>{_board.title}</span>
                                             <button className="star-container">
                                                 <span className="svg-container star" onClick={() => setStarBoard(_board._id)}>{star}</span>
@@ -86,7 +86,7 @@ export function BoardSideBar() {
                                     })}
                                     {boards.filter(_board => !_board.isStarred).map(_board => {
                                         return <NavLink key={_board._id} className={`line board-p`} to={`/board/${_board._id}`}>
-                                            <div className="board-p-img" style={{ backgroundImage: `url(${_board.backgroundImage})`, backgroundColor: _board.backgroundColor }}></div>
+                                            <div className="board-p-img" style={{ backgroundImage: `url(${_board.style.backgroundImage})`, backgroundColor: _board.style.backgroundColor }}></div>
                                             <span>{_board.title}</span>
                                             <button className="star-container-outline">
                                                 <span className="svg-container star-outline-o" onClick={() => setStarBoard(_board._id)}>{star_outline}</span></button>
