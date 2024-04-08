@@ -6,16 +6,17 @@ import { updateBoard } from '../../store/board/board.actions'
 
 export function BoardPreview({ board }) {
 
+
     const [isHovered, setIsHovered] = useState(false)
     function onToggleStar(ev) {
         ev.stopPropagation()
         ev.preventDefault()
-        updateBoard({ ...board, isStarred: !board.isStarred })
+        updateBoard({ ...board, isStarred: !board.isStarred }, true)
     }
 
     return (
         <Link className='board-preview' to={`/board/${board._id}`}>
-            <article className='' style={{ backgroundImage: `url(${board?.backgroundImage})` }}>
+            <article className='' style={{ backgroundImage: `url(${board.style?.backgroundImage})` }}>
                 <div className='board-preview-fade'>
                 </div>
                 <h3>{board.title}</h3>
