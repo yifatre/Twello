@@ -35,7 +35,8 @@ export function TaskPreview({ task, groupId, saveTask, removeTask, board, isLabe
     }
 
     function getMembers() {
-        return board.members.filter(member => task.memberIds.includes(member.id))
+        console.log( board.members.filter(member => task.memberIds.includes(member._id)));
+        return board.members.filter(member => task.memberIds.includes(member._id))
     }
 
     const { title, style } = task
@@ -64,7 +65,7 @@ export function TaskPreview({ task, groupId, saveTask, removeTask, board, isLabe
                         {!!task.checklists?.length
                             && <div className="txt-and-icon icon-container">{checked_icon}{`${getTodoDoneCount().doneCount}/${getTodoDoneCount().totalTodos}`}</div>}
                     </div>
-                    {task.memberIds && <div className="task-preview-avatars"><AvatarList users={getMembers()} /></div>}
+                    {task.memberIds?.length && <div className="task-preview-avatars"><AvatarList users={getMembers()} /></div>}
 
                 </div>
             </div>

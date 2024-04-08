@@ -25,7 +25,32 @@ export const boardsDemoData = [
             {
                 "_id": "u101",
                 "fullName": "Tal Tarablus",
+                "imgUrl": "https://trello-members.s3.amazonaws.com/660bf13c426a52eda7897e39/7dc2b02dcda3f5364deedb6736608c8b/170.png"
+            },
+            {
+                "_id": "u102",
+                "fullName": "John Doe",
                 "imgUrl": "https://randomuser.me/api/portraits/men/1.jpg"
+            },
+            {
+                "_id": "u103",
+                "fullName": "Alice Smith",
+                "imgUrl": "https://randomuser.me/api/portraits/women/2.jpg"
+            },
+            {
+                "_id": "u104",
+                "fullName": "Michael Johnson",
+                "imgUrl": ""
+            },
+            {
+                "_id": "u105",
+                "fullName": "Emily Brown",
+                "imgUrl": "https://randomuser.me/api/portraits/women/4.jpg"
+            },
+            {
+                "_id": "u106",
+                "fullName": "David Lee",
+                "imgUrl": "https://randomuser.me/api/portraits/men/5.jpg"
             }
         ],
         groups: [
