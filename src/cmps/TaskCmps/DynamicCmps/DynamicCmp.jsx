@@ -17,7 +17,6 @@ export const CREATE_BOARD = 'CREATE_BOARD'
 
 
 export function DynamicCmp({ groupId, cmp, board, task, setIsAddBoard, position, saveTask }) {
-    console.log('info:', board)
 
     function onUpdateBoard(newLabel) {
         const boardToUpdate = { ...board, labels: { ...board.labels, newLabel } }

@@ -37,8 +37,6 @@ export function BoardIndex() {
 
     return (
         <div>
-            <h3>Boards App</h3>
-                <button onClick={onAddBoard}>Add Board</button>
             <main>
                 <BoardList boards={boards}/>
             </main>

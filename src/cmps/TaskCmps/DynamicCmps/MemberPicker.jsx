@@ -8,6 +8,7 @@ export function MemberPicker({ members, task, saveTask, groupId }) {
 
     useEffect(() => {
         // onUpdate(MEMBERS, memberIdsToUpdate)
+        console.log('11111', 11111)
         saveTask({ ...task, memberIds: memberIdsToUpdate }, groupId)
     }, [memberIdsToUpdate])
 
@@ -49,7 +50,6 @@ export function MemberPicker({ members, task, saveTask, groupId }) {
                 <>
                     <p>Board members</p>
                     <ul className="clean-list ul-labels">
-                        {/* {console.log('task.memberIds', task.memberIds)} */}
                         {members.filter(member => !memberIdsToUpdate.includes(member._id)).map(member => {
                             // todo refactor when get the actual data fullname 
                             return <li key={member._id} className="flex align-center member-li" onClick={() => onAddMember(member._id)}>

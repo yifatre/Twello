@@ -24,17 +24,22 @@ export function TaskDetails() {
         setTask(board.groups.find(group => group.id === groupId).tasks.find(task => task.id === taskId))
     }, [board])
 
-    function onAddMember() { }
-    function onAddLabel() { }
-
     function closeTaskDetails() {
         navigate(`/board/${boardId}`)
     }
 
-    function onSetActionType(ev, type) {
+
+
+    function onOpenModalFromList(ev, type) {
         ev.preventDefault()
         ev.stopPropagation()
-        setModalPosition(utilService.getModalPosition(ev.target, ev.target.offsetLeft))
+        onSetActionType(ev, type, 0, ev.currentTarget.getBoundingClientRect().height + 8)
+    }
+
+    function onSetActionType(ev, type, offsetx = 0, offsety = 0) {
+        ev.preventDefault()
+        ev.stopPropagation()
+        setModalPosition(utilService.getModalPosition(ev.currentTarget, offsetx, offsety))
         setActionType(type)
     }
 
@@ -61,14 +66,14 @@ export function TaskDetails() {
                         <h3>Members</h3>
                         <div className="">
                             {task.memberIds?.map(memberId => <div key={memberId} className="avatar" > <img className="avatar" src={board.members.find(member => member._id === memberId)?.imgUrl} alt="" /> </div>)}
-                            <button className="avatar neutral-label" onClick={onAddMember}>{plus_icon}</button>
+                            <button className="avatar neutral-label" onClick={(ev) => onOpenModalFromList(ev, MEMBERS)}>{plus_icon}</button>
                         </div>
                     </div>
                     <div className="labels">
                         <h3>Labels</h3>
                         <div className="">
                             {task.labelIds?.map(labelId => <div key={labelId} className={`label ${board.labels.find(label => label.id === labelId).color}`}>{board.labels.find(label => label.id === labelId).title}</div>)}
-                            <button className="label neutral-label" onClick={onAddLabel}>{plus_icon}</button>
+                            <button className="label neutral-label" onClick={(ev) => onOpenModalFromList(ev, LABELS)}>{plus_icon}</button>
                         </div>
                     </div>
                     <div className="due-date">
@@ -92,11 +97,11 @@ export function TaskDetails() {
 
                 <section className="actions">
                     <h3>Add to card</h3>
-                    <a className="flex align-center" href="#" onClick={(ev) => onSetActionType(ev, MEMBERS)} >{member_icon}Members</a>
+                    <a className="flex align-center" href="#" onClickCapture={(ev) => onSetActionType(ev, MEMBERS)} >{member_icon}Members</a>
                     <a className="flex align-center" href="#" onClick={(ev) => onSetActionType(ev, LABELS)}>{label_icon}Labels</a>
                     <a className="flex align-center" href="#" >{checked_icon}Checklist</a>
                     <a className="flex align-center" href="#" onClick={(ev) => onSetActionType(ev, DATES)}>{clock_icon}Dates</a>
-                    <a className="flex align-center" href="#" onClick={(ev) => onSetActionType(ev, ATTACHMENT)}>{paperclip_icon}Attachment</a>
+                    {/* <a className="flex align-center" href="#" onClick={(ev) => onSetActionType(ev, ATTACHMENT)}>{paperclip_icon}Attachment</a> */}
                     <a className="flex align-center" href="#">{location_icon}Location</a>
                     {!task.style?.backgroundColor && <a className="flex align-center" href="#" onClick={(ev) => onSetActionType(ev, COVER)}>{cover_icon}Cover</a>}
                     <ClickAwayListener onClickAway={() => setActionType(null)}>
