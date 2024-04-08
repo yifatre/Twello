@@ -25,7 +25,7 @@ export const boardsDemoData = [
             {
                 "_id": "u101",
                 "fullName": "Tal Tarablus",
-                "imgUrl": "https://www.google.com"
+                "imgUrl": "https://randomuser.me/api/portraits/men/1.jpg"
             }
         ],
         groups: [
@@ -82,6 +82,7 @@ export const boardsDemoData = [
                             }
                         ],
                         "labelIds": ["l101", "l102"],
+                        "memberIds": []
                     },
                     {
                         "id": "c104",
@@ -106,6 +107,8 @@ export const boardsDemoData = [
                                 ]
                             }
                         ],
+                        "labelIds": [],
+                        "memberIds": []
                     },
                     {
                         "id": "c103",
@@ -130,7 +133,8 @@ export const boardsDemoData = [
                                 ]
                             }
                         ],
-                        "memberIds": ["u101", "u106"]
+                        "memberIds": ["u101", "u106"],
+                        "labelIds": []
                     }
                 ],
                 "style": {
@@ -147,7 +151,9 @@ export const boardsDemoData = [
                         "title": "Do that",
                         "description": "description",
                         "archivedAt": 1589983468418,
-                        "style": {}
+                        "style": {},
+                        "labelIds": [],
+                        "memberIds": []
                     },
                     {
                         "id": "c108",
@@ -155,22 +161,28 @@ export const boardsDemoData = [
                         "description": "description",
                         "archivedAt": 1589983468418,
                         "style": {
-                            "backgroundImage": "https://trello.com/1/cards/660d2f8f6d1588b03560bfcb/attachments/660e51a38812400a61b9ac76/download/CRUD.jpeg"
-                        }
+                            "backgroundImage": "https://trello.com/1/cards/660d2f8f6d1588b03560bfcb/attachments/660e51a38812400a61b9ac76/download/CRUD.jpeg",
+                        },
+                        "labelIds": [],
+                        "memberIds": []
                     },
                     {
                         "id": "c109",
                         "title": "Do that",
                         "description": "description",
                         "archivedAt": 1589983468418,
-                        "style": {}
+                        "style": {},
+                        "labelIds": [],
+                        "memberIds": []
                     },
                     {
                         "id": "c1055",
                         "title": "Do that",
                         "description": "description",
                         "archivedAt": 1589983468418,
-                        "style": {}
+                        "style": {},
+                        "labelIds": [],
+                        "memberIds": []
                     },
                     {
                         "id": "c1089",
@@ -258,7 +270,7 @@ export const userDemoData = [
         "fullName": "Michael Johnson",
         "username": "mike.johnson@example.com",
         "password": "MJohnson789",
-        "imgUrl": ""
+        "imgUrl": "https://randomuser.me/api/portraits/men/2.jpg"
     },
     {
         "_id": "u105",
