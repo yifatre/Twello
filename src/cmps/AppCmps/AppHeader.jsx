@@ -1,8 +1,8 @@
 import { Link, useLocation } from 'react-router-dom'
-import { arrow_down, bell_icon, info_btn, more_icon, search_icon } from '../UtilCmps/SVGs';
+import { arrow_down, bell_icon, info_btn, logo, more_icon, search_icon } from '../UtilCmps/SVGs'
 
 export function AppHeader() {
-    const { pathname } = useLocation();
+    const { pathname } = useLocation()
 
     if (pathname === '/') return (
         <header className="app-header-home ">
@@ -26,9 +26,9 @@ export function AppHeader() {
             <div className='flex'>
 
                 <button className='main-nav-btn arrow-down more-btn'>{more_icon}</button>
-                <div className='logo-inside-head '>
+                <div className='logo-inside-head flex align-center justify-center'>
                     <Link to='/board'>
-                        <h3 className='flex'><img src="/src/assets/img/trello-logo-gradient-neutral@2x.png" alt="" /> Twello</h3>
+                        <h3 className='flex'><span className='logo-svg'>{logo}</span></h3>
                     </Link>
                 </div>
                 <button className='main-nav-btn'>Workspaces <span className='arrow-down'>{arrow_down}</span></button>
@@ -43,12 +43,12 @@ export function AppHeader() {
                     <span className='svg-search'>{search_icon}</span>
                     <input placeholder='Search' className='search-input' type="text" />
                 </div>
-<div className='flex btn-right-head-container'>
+                <div className='flex btn-right-head-container'>
 
-                <button className='alarm-btn top-header-btn'>{bell_icon}</button>
-                <button className='info-btn top-header-btn'>{info_btn}</button>
-                <button className='user-btn top-header-btn'>user</button>
-</div>
+                    <button className='alarm-btn top-header-btn'>{bell_icon}</button>
+                    <button className='info-btn top-header-btn'>{info_btn}</button>
+                    <button className='user-btn top-header-btn'>user</button>
+                </div>
             </div>
 
         </header>

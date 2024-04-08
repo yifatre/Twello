@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { uploadService } from '../../services/upload.service'
 
-export function ImgUploader({ onUploaded = null }) {
+export function FileUploader({ onUploaded = null }) {
   const [imgData, setImgData] = useState({
     imgUrl: null,
     height: 500,
@@ -23,7 +23,7 @@ export function ImgUploader({ onUploaded = null }) {
   }
 
   return (
-    <div className="upload-ptask">
+    <div className="upload-preview">
       {imgData.imgUrl && <img src={imgData.imgUrl} style={{ maxWidth: '200px', float: 'right' }} />}
       <label htmlFor="imgUpload">{getUploadLabel()}</label>
       <input type="file" onChange={uploadImg} accept="img/*" id="imgUpload" />

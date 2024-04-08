@@ -27,6 +27,15 @@
             font-size: rem(19px);
             font-weight: bolder;
         }
+
+        & .logo-svg{
+            // width: 100%;
+            @include svg-container(32px,75px);
+            width: auto;
+            height: rem(36px);
+            margin-bottom: rem(6px);
+            color: white;
+        }
     }
 
     & .main-nav-btn {

@@ -1,7 +1,25 @@
-import { x_icon } from "../../UtilCmps/SVGs";
+import { x_icon } from "../../UtilCmps/SVGs"
 
 
-export function AttachmentPicker({ info, onUpdate }) {
+export function AttachmentPicker({ board, groupId, task, saveTask }) {
+    const [imgData, setImgData] = useState({
+        imgUrl: null,
+        height: 500,
+        width: 500,
+    })
+
+    const [isUploading, setIsUploading] = useState(false)
+
+    async function onUploadFile(ev) {
+        // setIsUploading(true)
+        // const { secure_url, height, width } = await uploadService.uploadImg(ev)
+        // setImgData({ imgUrl: secure_url, width, height })
+        // setIsUploading(false)
+        // onUploaded && onUploaded(secure_url)
+
+    }
+
+
     return (<>
         <header className="dynamic-head-container">
             <h2>Attach</h2>
@@ -10,11 +28,12 @@ export function AttachmentPicker({ info, onUpdate }) {
         <section className="picker-container attach-section">
             <h2 className="attach-h2 margin-top-head">Attach a file from your computer</h2>
             <p className="p-attach ">You can also drag and drop files to upload them</p>
-            <button className="tasks-btn labels-btn attach-btn">Choose a file</button>
+            <label htmlFor="attachment" className="tasks-btn labels-btn attach-btn">Choose a file</label>
+            <input className="hide" type="file" name="attachment" id="attachment" onChange={onUploadFile} />
             <hr className="between-btn" />
-    <h2 className="attach-h2 secondary-head-attach ">Search or paste a link</h2>
+            <h2 className="attach-h2 secondary-head-attach ">Search or paste a link</h2>
             <input
-            className="input-attach"
+                className="input-attach"
                 type="text"
                 name="txt"
                 placeholder="Find recent links or paste a new link"
