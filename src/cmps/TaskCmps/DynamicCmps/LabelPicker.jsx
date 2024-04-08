@@ -65,6 +65,7 @@ export function LabelPicker({ SaveLabel, deleteLabel, onUpdateBoard, labels, tas
         newLabel.title = labelContent
         newLabel.color = currentColor
         onUpdateBoard(newLabel)
+        toggleBtn()
 
         setLabelsFromTask(prevLabels => [...prevLabels, newLabel.id])
     }
@@ -73,6 +74,7 @@ export function LabelPicker({ SaveLabel, deleteLabel, onUpdateBoard, labels, tas
     function onDeleteLabel(labelId) {
         const newLabels = labelsFromTask.filter(label => label.id !== labelId)
         deleteLabel(labelId, newLabels)
+        toggleBtn()
     }
 
     function onCheckLabel({ target }) {
@@ -91,6 +93,7 @@ export function LabelPicker({ SaveLabel, deleteLabel, onUpdateBoard, labels, tas
             color: currentColor
         }
         SaveLabel(editLabel)
+        toggleBtn()
     }
 
     {

@@ -36,16 +36,16 @@ export function DynamicCmp({ groupId, cmp,  board, task, setIsAddBoard, position
     }
 
     function deleteLabel(labelId) {
-        const board = board
+        const Board = board
         console.log(board);
 
-        const labels = board.labels.filter(label => label.id !== labelId)
-        board.labels = labels
+        const labels = Board.labels.filter(label => label.id !== labelId)
+        Board.labels = labels
 
-        board.groups = deleteLabelIdFromEverywhere(board.groups, labelId)
+        Board.groups = deleteLabelIdFromEverywhere(Board.groups, labelId)
         
-        updateBoard(board)
-        console.log(board);
+        updateBoard(Board)
+        console.log(Board);
     }
 
     function deleteLabelIdFromEverywhere(data, labelIdToDelete) {
@@ -72,7 +72,7 @@ export function DynamicCmp({ groupId, cmp,  board, task, setIsAddBoard, position
         case LABELS:
             top += buttonHeight * 2
             topHead = 'Labels'
-            cmpType = <LabelPicker onUpdateBoard={onUpdateBoard} task={task} labels={board.labels} saveTask={saveTask} groupId={groupId} />
+            cmpType = <LabelPicker SaveLabel={SaveLabel} deleteLabel={deleteLabel} onUpdateBoard={onUpdateBoard} task={task} labels={board.labels} saveTask={saveTask} groupId={groupId} />
             break
 
         case MEMBERS:
