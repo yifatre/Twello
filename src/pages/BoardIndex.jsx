@@ -5,7 +5,6 @@ import { loadBoards, addBoard, updateBoard, removeBoard } from '../store/board/b
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
 
 import { BoardList } from '../cmps/BoardCmps/BoardList.jsx'
-import { boardService } from '../services/board/board.service.local.js'
 
 export function BoardIndex() {
 
@@ -14,26 +13,6 @@ export function BoardIndex() {
     useEffect(() => {
         loadBoards()
     }, [])
-
-    async function onRemoveBoard(boardId) {
-        try {
-            await removeBoard(boardId)
-            showSuccessMsg('Board removed')            
-        } catch (err) {
-            showErrorMsg('Cannot remove board')
-        }
-    }
-
-    async function onAddBoard() {
-        const board = boardService.getEmptyBoard()
-             
-    }
-
-    async function onUpdateBoard(board) {
-             
-    }
-
-
 
     return (
         <div>

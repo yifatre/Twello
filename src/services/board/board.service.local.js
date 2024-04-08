@@ -30,7 +30,7 @@ async function query(filterBy = { txt: '', price: 0 }) {
     //     boards = boards.filter(board => board.price <= filterBy.price)
     // }
 
-    return boards.map(board => ({ _id: board._id, title: board.title, backgroundImage: board.style.backgroundImage, isStarred: board.isStarred }))
+    return boards.map(board => ({ _id: board._id, title: board.title, style: { backgroundImage: board.style?.backgroundImage }, isStarred: board.isStarred }))
 }
 
 function getById(boardId) {
@@ -43,6 +43,7 @@ async function remove(boardId) {
 }
 
 async function save(board) {
+    console.log('board', board)
     var savedBoard
     if (board._id) {
         savedBoard = await storageService.put(STORAGE_KEY, board)
