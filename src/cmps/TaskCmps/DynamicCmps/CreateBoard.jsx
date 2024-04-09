@@ -10,16 +10,16 @@ import gradRainbow from "../../../assets/img/gradients/rainbow.svg"
 import gradPeach from "../../../assets/img/gradients/peach.svg"
 
 export function CreateBoard({ setIsAddBoard }) {
-    const [board, setBoard] = useState(boardService.getEmptyBoard())
+    const [boardToAdd, setBoardToAdd] = useState(boardService.getEmptyBoard())
     const navigate = useNavigate()
 
     function handleChange({ target }) {
         const { type, value, name: field } = target
-        setBoard(prevBoard => ({ ...prevBoard, [field]: value }))
+        setBoardToAdd(prevBoard => ({ ...prevBoard, [field]: value }))
     }
 
     function changeBgImg(img) {
-        setBoard(prevBoard => ({ ...prevBoard, style: { ...prevBoard.style, backgroundImage: img } }))
+        setBoardToAdd(prevBoard => ({ ...prevBoard, style: { ...prevBoard.style, backgroundImage: img } }))
     }
 
     const imgs = [
@@ -33,9 +33,10 @@ export function CreateBoard({ setIsAddBoard }) {
 
     async function onCreateBoard() {
         try {
-            const savedBoard = await addBoard(board)
+            const savedBoard = await addBoard(boardToAdd)
             setIsAddBoard(false)
             console.log('savedBoard', savedBoard)
+
             navigate(`/board/${savedBoard._id}`)
         }
         catch (err) {
@@ -50,24 +51,24 @@ export function CreateBoard({ setIsAddBoard }) {
         </header>
         <div className="picker-container create-new-board">
             <div className="flex align-center justify-center">
-                <div className="board-bg-preview flex align-center justify-center" style={{ backgroundImage: `url(${board.style?.backgroundImage})` }}>
+                <div className="board-bg-preview flex align-center justify-center" style={{ backgroundImage: `url(${boardToAdd.style?.backgroundImage})` }}>
                     {new_board_demo}
                 </div>
             </div>
             <div className="background-picker">
                 <h3>Background</h3>
                 <div className="imgs flex">
-                    {imgs.map((img, idx) => <div key={idx} onClick={() => changeBgImg(img)} style={{ backgroundImage: `url(${img})` }}><span>{board.style?.backgroundImage === img ? check_icon : ''}</span></div>)}
+                    {imgs.map((img, idx) => <div key={idx} onClick={() => changeBgImg(img)} style={{ backgroundImage: `url(${img})` }}><span>{boardToAdd.style?.backgroundImage === img ? check_icon : ''}</span></div>)}
                 </div>
                 <div className="gradients flex">
-                    {gradients.map((grad, idx) => <div key={idx} onClick={() => changeBgImg(grad)} style={{ backgroundImage: `url(${grad})` }}><span>{board.style?.backgroundImage === grad ? check_icon : ''}</span></div>)}
+                    {gradients.map((grad, idx) => <div key={idx} onClick={() => changeBgImg(grad)} style={{ backgroundImage: `url(${grad})` }}><span>{boardToAdd.style?.backgroundImage === grad ? check_icon : ''}</span></div>)}
                     <div className="more">{ellipsis_icon}</div>
 
                 </div>
             </div>
             <div className="title-input">
                 <label htmlFor="title">Board title<span style={{ color: 'red' }}>*</span></label>
-                <input type="text" name="title" id="title" value={board.title} onChange={handleChange} />
+                <input type="text" name="title" id="title" value={boardToAdd.title} onChange={handleChange} />
             </div>
             <div className="req flex align-center"><span>👋</span><p> Board title is required</p></div>
             {/* <label htmlFor="visibility">Visibility</label>
