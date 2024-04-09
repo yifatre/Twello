@@ -100,6 +100,7 @@ function getEmptyGroup() {
         style: {
             backgroundColor: 'gray'
         },
+        tasks: []
     }
 }
 
