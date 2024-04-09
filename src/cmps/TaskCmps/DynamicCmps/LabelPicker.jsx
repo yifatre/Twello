@@ -13,7 +13,7 @@ const pallet = ['green', 'yellow', 'orange', 'red', 'purple',
 
 // todo connect btn's and add the on update 
 
-export function LabelPicker({ SaveLabel, deleteLabel, onUpdateBoard, labels, task, saveTask, groupId }) {
+export function LabelPicker({setActionType, SaveLabel, deleteLabel, onUpdateBoard, labels, task, saveTask, groupId }) {
     const [toggle, setToggle] = useState(false)
     const [currentColor, setCurrentColor] = useState('green-subtle')
     const [labelContent, setLabelContent] = useState('')
@@ -100,7 +100,7 @@ export function LabelPicker({ SaveLabel, deleteLabel, onUpdateBoard, labels, tas
         if (!toggle) return <>
             <header className="dynamic-head-container">
                 <h2>Label</h2>
-                <button className="tasks-btn close-btn">{x_icon}</button>
+                <button onClick={()=>setActionType(null)} className="tasks-btn close-btn">{x_icon}</button>
             </header>
             <section className="picker-container">
                 <input
@@ -130,7 +130,7 @@ export function LabelPicker({ SaveLabel, deleteLabel, onUpdateBoard, labels, tas
             <header className="dynamic-head-container">
                 <button onClick={() => toggleBtn()} className="tasks-btn back-btn">{arrow_down}</button>
                 <h2>Create label</h2>
-                <button className="tasks-btn close-btn">{x_icon}</button>
+                <button onClick={()=>setActionType(null)} className="tasks-btn close-btn">{x_icon}</button>
             </header>
             <div className="label-preview-container">
                 <span className={`label-preview ${currentColor}`}>{labelContent}</span>
@@ -157,7 +157,7 @@ export function LabelPicker({ SaveLabel, deleteLabel, onUpdateBoard, labels, tas
                     <>
                         <button onClick={() => removeColor()} className="tasks-btn labels-btn ">{x_icon}Remove color</button>
                         <hr className="between-btn" />
-                        <button onClick={() => onCreate()} className='create-btn'>create</button>
+                        <button onClick={() => onCreate()} className='create-btn'>Create</button>
                     </>
                 }
                 {(labelId) &&

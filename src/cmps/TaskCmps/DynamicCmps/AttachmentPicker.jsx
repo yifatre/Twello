@@ -1,7 +1,9 @@
+import { useEffect, useState } from "react"
 import { x_icon } from "../../UtilCmps/SVGs"
+import { uploadService } from "../../../services/upload.service"
 
 
-export function AttachmentPicker({ board, groupId, task, saveTask }) {
+export function AttachmentPicker({ setActionType, board, groupId, task, saveTask }) {
     const [imgData, setImgData] = useState({
         imgUrl: null,
         height: 500,
@@ -10,12 +12,21 @@ export function AttachmentPicker({ board, groupId, task, saveTask }) {
 
     const [isUploading, setIsUploading] = useState(false)
 
+    useEffect(() => {
+
+    }, [])
+
     async function onUploadFile(ev) {
-        // setIsUploading(true)
-        // const { secure_url, height, width } = await uploadService.uploadImg(ev)
-        // setImgData({ imgUrl: secure_url, width, height })
-        // setIsUploading(false)
-        // onUploaded && onUploaded(secure_url)
+        console.log(ev.target.files[0]);
+        console.log(task);
+        setIsUploading(true)
+        const { secure_url, height, width } = await uploadService.uploadImg(ev)
+        setImgData({ imgUrl: secure_url, width, height })
+        setIsUploading(false)
+        if (!task.attach) task.attach = []
+        task.attach.push(secure_url)
+        saveTask({ ...task, style: { backgroundImage: secure_url } }, groupId)
+        setActionType(null)
 
     }
 
@@ -23,14 +34,14 @@ export function AttachmentPicker({ board, groupId, task, saveTask }) {
     return (<>
         <header className="dynamic-head-container">
             <h2>Attach</h2>
-            <button className="tasks-btn close-btn">{x_icon}</button>
+            <button onClick={()=>setActionType(null)} setActionType className="tasks-btn close-btn">{x_icon}</button>
         </header>
         <section className="picker-container attach-section">
             <h2 className="attach-h2 margin-top-head">Attach a file from your computer</h2>
-            <p className="p-attach ">You can also drag and drop files to upload them</p>
+            {/* <p className="p-attach ">You can also drag and drop files to upload them</p> */}
             <label htmlFor="attachment" className="tasks-btn labels-btn attach-btn">Choose a file</label>
             <input className="hide" type="file" name="attachment" id="attachment" onChange={onUploadFile} />
-            <hr className="between-btn" />
+            {/* <hr className="between-btn" />
             <h2 className="attach-h2 secondary-head-attach ">Search or paste a link</h2>
             <input
                 className="input-attach"
@@ -48,7 +59,7 @@ export function AttachmentPicker({ board, groupId, task, saveTask }) {
             <footer className="flex justify-end footer-attach">
                 <button className='create-btn cancel-btn'>Cancel</button>
                 <button className='create-btn insert-btn'>Insert</button>
-            </footer>
+            </footer> */}
         </section>
     </>
     )

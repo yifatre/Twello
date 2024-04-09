@@ -7,7 +7,8 @@ export const utilService = {
     saveToStorage,
     loadFromStorage,
     getFormattedTime,
-    getModalPosition
+    getModalPosition,
+    getDateFormat
 }
 
 function makeId(firstLetter = '', length = 6) {
@@ -77,3 +78,16 @@ function getModalPosition(target, offsetx = 0, offsety = 0) {
     return { top: top + offsety, left: left + offsetx }
 }
 
+function getDateFormat(dateLongForm) {
+    const dateString = dateLongForm;
+    const date = new Date(dateString);
+
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1; 
+    const day = date.getDate();
+
+    const formattedDate = `${month.toString().padStart(2, '0')}/${day.toString().padStart(2, '0')}/${year}`;
+console.log(formattedDate);
+   return formattedDate
+
+}
