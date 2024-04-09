@@ -56,9 +56,9 @@ export function TaskDetails() {
         <ClickAwayListener onClickAway={closeTaskDetails}>
             <section className="task-details">
                 <button className="details-close-btn" onClick={closeTaskDetails}>{x_icon}</button>
-                <section className="cover">
+                {(task.style?.backgroundColor || task.style?.backgroundImage) && <section className="cover">
                     <a href="#">{cover_icon}Cover</a>
-                </section>
+                </section>}
                 <section className="title">
                     <span className="icon-span">{window_icon}</span>
                     <div className="title-txt">
@@ -112,7 +112,7 @@ export function TaskDetails() {
                     <a className="flex align-center" href="#" onClick={(ev) => onSetActionType(ev, DATES)}>{clock_icon}Dates</a>
                     {/* <a className="flex align-center" href="#" onClick={(ev) => onSetActionType(ev, ATTACHMENT)}>{paperclip_icon}Attachment</a> */}
                     <a className="flex align-center" href="#">{location_icon}Location</a>
-                    {!task.style?.backgroundColor && <a className="flex align-center" href="#" onClick={(ev) => onSetActionType(ev, COVER)}>{cover_icon}Cover</a>}
+                    {!(task.style?.backgroundColor || task.style?.backgroundImage) && <a className="flex align-center" href="#" onClick={(ev) => onSetActionType(ev, COVER)}>{cover_icon}Cover</a>}
                     <ClickAwayListener onClickAway={() => setActionType(null)}>
                         <div>
                             {actionType && <DynamicCmp groupId={groupId} cmp={actionType} task={task} position={modalPosition} board={board} saveTask={saveTask} />}
