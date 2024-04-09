@@ -3,6 +3,7 @@ import { AttachmentPicker } from "./AttachmentPicker"
 import { CoverPicker } from "./CoverPicker"
 import { CreateBoard } from "./CreateBoard"
 import { DatePicker } from "./DatePicker"
+import { GroupActions } from "./GroupActios"
 import { LabelPicker } from "./LabelPicker"
 import { MemberPicker } from "./MemberPicker"
 
@@ -12,12 +13,10 @@ export const DATES = 'DATES'
 export const ATTACHMENT = 'ATTACHMENT'
 export const COVER = 'COVER'
 export const CREATE_BOARD = 'CREATE_BOARD'
-// onUpdateTask(cmp, info, task ) {
-//     //todo info:{groupId,taskId,dynamic}
+export const GROUP_ACTIONS = 'GROUP_ACTIONS'
 
 
-export function DynamicCmp({ groupId, cmp,  board, task, setIsAddBoard, position, saveTask }) {
-    console.log('info:', board)
+export function DynamicCmp({ groupId, cmp, board, task, setIsAddBoard, position, saveTask, group, saveGroup, setIsActionsOpen }) {
 
     function onUpdateBoard(newLabel) {
         const boardToUpdate = { ...board }
@@ -37,30 +36,30 @@ export function DynamicCmp({ groupId, cmp,  board, task, setIsAddBoard, position
 
     function deleteLabel(labelId) {
         const Board = board
-        console.log(board);
+        console.log(board)
 
         const labels = Board.labels.filter(label => label.id !== labelId)
         Board.labels = labels
 
         Board.groups = deleteLabelIdFromEverywhere(Board.groups, labelId)
-        
+
         updateBoard(Board)
-        console.log(Board);
+        console.log(Board)
     }
 
     function deleteLabelIdFromEverywhere(data, labelIdToDelete) {
         const updatedData = data.map(group => {
             const updatedTasks = group.tasks.map(task => {
-                const updatedTask = { ...task };
-                const labelIndex = updatedTask.labelIds.indexOf(labelIdToDelete);
+                const updatedTask = { ...task }
+                const labelIndex = updatedTask.labelIds.indexOf(labelIdToDelete)
                 if (labelIndex !== -1) {
-                    updatedTask.labelIds.splice(labelIndex, 1);
+                    updatedTask.labelIds.splice(labelIndex, 1)
                 }
-                return updatedTask;
-            });
-            return { ...group, tasks: updatedTasks };
-        });
-        return updatedData;
+                return updatedTask
+            })
+            return { ...group, tasks: updatedTasks }
+        })
+        return updatedData
     }
 
 
@@ -102,8 +101,12 @@ export function DynamicCmp({ groupId, cmp,  board, task, setIsAddBoard, position
         case CREATE_BOARD:
             cmpType = <CreateBoard setIsAddBoard={setIsAddBoard} />
             break
+
+        case GROUP_ACTIONS:
+            cmpType = <GroupActions setIsActionsOpen={setIsActionsOpen} group={group} saveGroup={saveGroup} />
+            break
     }
-    return <div className={`dynamic-cmp ${cmp.toLowerCase()}`} style={{ top: position.top, left: position.left }}>
+    return <div className={`dynamic-cmp ${cmp.toLowerCase()}`} style={{ top: position.top, left: position.left, zIndex: 150 }}>
         {cmpType}
     </div>
 }
