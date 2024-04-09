@@ -18,16 +18,25 @@ export function TaskDetails() {
     const [actionType, setActionType] = useState(null)
 
     const [task, setTask] = useState(board.groups.find(group => group.id === groupId).tasks.find(task => task.id === taskId))
+    const [titleToEdit, setTitleToEdit] = useState(task.title)
     const navigate = useNavigate()
 
     useEffect(() => {
         setTask(board.groups.find(group => group.id === groupId).tasks.find(task => task.id === taskId))
     }, [board])
 
+    useEffect(() => {
+        saveTask({ ...task, title: titleToEdit }, groupId)
+    }, [titleToEdit])
+
     function closeTaskDetails() {
         navigate(`/board/${boardId}`)
     }
 
+    function handleChange({ target }) {
+        const { value, name: field } = target
+        setTitleToEdit(value)
+    }
 
 
     function onOpenModalFromList(ev, type) {
@@ -47,14 +56,14 @@ export function TaskDetails() {
         <ClickAwayListener onClickAway={closeTaskDetails}>
             <section className="task-details">
                 <button className="details-close-btn" onClick={closeTaskDetails}>{x_icon}</button>
-                <section className="cover">
+                {(task.style?.backgroundColor || task.style?.backgroundImage) && <section className="cover">
                     <a href="#">{cover_icon}Cover</a>
-                </section>
+                </section>}
                 <section className="title">
                     <span className="icon-span">{window_icon}</span>
                     <div className="title-txt">
                         <h2 hidden>{task.title}</h2>
-                        <textarea name="title" id="title" value={task.title}></textarea>
+                        <textarea name="title" id="title" value={titleToEdit} onChange={handleChange}></textarea>
                     </div>
                     <div className="list-txt">
                         <p>in list <a href="#">{'list name'}</a></p>
@@ -103,7 +112,7 @@ export function TaskDetails() {
                     <a className="flex align-center" href="#" onClick={(ev) => onSetActionType(ev, DATES)}>{clock_icon}Dates</a>
                     {/* <a className="flex align-center" href="#" onClick={(ev) => onSetActionType(ev, ATTACHMENT)}>{paperclip_icon}Attachment</a> */}
                     <a className="flex align-center" href="#">{location_icon}Location</a>
-                    {!task.style?.backgroundColor && <a className="flex align-center" href="#" onClick={(ev) => onSetActionType(ev, COVER)}>{cover_icon}Cover</a>}
+                    {!(task.style?.backgroundColor || task.style?.backgroundImage) && <a className="flex align-center" href="#" onClick={(ev) => onSetActionType(ev, COVER)}>{cover_icon}Cover</a>}
                     <ClickAwayListener onClickAway={() => setActionType(null)}>
                         <div>
                             {actionType && <DynamicCmp groupId={groupId} cmp={actionType} task={task} position={modalPosition} board={board} saveTask={saveTask} />}

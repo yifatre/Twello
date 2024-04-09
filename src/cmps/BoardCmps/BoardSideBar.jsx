@@ -3,9 +3,15 @@ import { arrow_down, calender_icon, member_icon, plus_icon, settings_icon, side_
 import { useSelector } from "react-redux"
 import { loadBoard, loadBoards, updateBoard } from "../../store/board/board.actions"
 import { Link, NavLink, useParams } from "react-router-dom"
+import { utilService } from "../../services/util.service"
+import { ClickAwayListener } from '@mui/base/ClickAwayListener'
+import { CREATE_BOARD, DynamicCmp } from "../TaskCmps/DynamicCmps/DynamicCmp"
+import { boardService } from "../../services/board/board.service.local"
 
 export function BoardSideBar() {
     const [isOpen, setIsOpen] = useState(true)
+    const [modalPosition, setModalPosition] = useState({ top: 0, left: 0 })
+    const [isAddBoard, setIsAddBoard] = useState(false)
     const boards = useSelector(storeState => storeState.boardModule.boards)
     const board = useSelector(storeState => storeState.boardModule.board)
     const { boardId } = useParams()
@@ -18,12 +24,32 @@ export function BoardSideBar() {
         loadBoard(boardId)
     }, [boardId])
 
-    function setStarBoard(boardId) {
-
-        // updateBoard({...board})
+    async function toggleStarBoard(ev, boardId) {
+        ev.stopPropagation()
+        ev.preventDefault()
+        try {
+            const fullBoard = await boardService.getById(boardId)
+            updateBoard({ ...fullBoard, isStarred: !fullBoard.isStarred }, true)
+        }
+        catch (err) {
+            console.error(err)
+        }
     }
 
-    return (
+    function onAddBoard(ev) {
+        console.log('ev', ev)
+        const { currentTarget } = ev
+        console.log('currentTarget', currentTarget)
+        setModalPosition(utilService.getModalPosition(currentTarget, currentTarget.getBoundingClientRect().width + 8, 0))
+        setIsAddBoard(true)
+    }
+
+    function onCloseAddModal() {
+        setIsAddBoard(false)
+    }
+
+
+    return (<>
         <div className="sidebar-container">
             {!isOpen &&
                 <button className="board-sidebar-collapsed">
@@ -35,7 +61,7 @@ export function BoardSideBar() {
                     <section className="board-sidebar-header">
                         <div className="workspace-letter">T</div>
                         <div className="txt-container">
-                            <h2 className="workspace-title">My workspace</h2>
+                            <h2 className="workspace-title">My workspace </h2>
                             <h5 className="user-sub">Premium</h5>
                         </div>
                         <button className="close-sidebar-btn" onClick={() => setIsOpen(false)}>{side_arrow_icon}</button>
@@ -70,7 +96,7 @@ export function BoardSideBar() {
                         </div>
                         <div className="sep-title">
                             <h4 >Your boards</h4>
-                            <button>{plus_icon}</button>
+                            <button onClick={onAddBoard}>{plus_icon}</button>
                         </div>
                         <ul className="board-preview-list clean-list">
                             {
@@ -80,8 +106,8 @@ export function BoardSideBar() {
                                             <div className="board-p-img" style={{ backgroundImage: `url(${_board.style.backgroundImage})`, backgroundColor: _board.style.backgroundColor }}></div>
                                             <span>{_board.title}</span>
                                             <button className="star-container">
-                                                <span className="svg-container star" onClick={() => setStarBoard(_board._id)}>{star}</span>
-                                                <span className="svg-container star-outline" onClick={() => setStarBoard(_board._id)}>{star_outline}</span></button>
+                                                <span className="svg-container star" onClick={(ev) => toggleStarBoard(ev, _board._id)}>{star}</span>
+                                                <span className="svg-container star-outline" onClick={(ev) => toggleStarBoard(ev, _board._id)}>{star_outline}</span></button>
                                         </NavLink>
                                     })}
                                     {boards.filter(_board => !_board.isStarred).map(_board => {
@@ -89,15 +115,21 @@ export function BoardSideBar() {
                                             <div className="board-p-img" style={{ backgroundImage: `url(${_board.style.backgroundImage})`, backgroundColor: _board.style.backgroundColor }}></div>
                                             <span>{_board.title}</span>
                                             <button className="star-container-outline">
-                                                <span className="svg-container star-outline-o" onClick={() => setStarBoard(_board._id)}>{star_outline}</span></button>
+                                                <span className="svg-container star-outline-o" onClick={(ev) => toggleStarBoard(ev, _board._id)}>{star_outline}</span></button>
                                         </NavLink>
                                     })}
                                 </>
                             }
                         </ul>
                     </section>
-                        <div className="board-sidebar-footer"></div>
+                    <div className="board-sidebar-footer"></div>
                 </div>}
         </div>
+        {isAddBoard && <ClickAwayListener onClickAway={onCloseAddModal}>
+            <div style={{ zIndex: 110 }}>
+                <DynamicCmp cmp={CREATE_BOARD} setIsAddBoard={setIsAddBoard} position={modalPosition} />
+            </div>
+        </ClickAwayListener>
+        }</>
     )
 }
