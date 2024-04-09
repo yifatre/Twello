@@ -1,1 +1,5 @@
-//
+.board-index {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: rem(288px) 1fr;
+}
