@@ -4,12 +4,16 @@ import { collapse_icon, ellipsis_icon, plus_icon, create_icon, extend_icon } fro
 import { useState } from 'react'
 import { TextareaAutosize as MinTextArea } from '@mui/base/TextareaAutosize'
 
+import { DynamicCmp, GROUP_ACTIONS } from '../TaskCmps/DynamicCmps/DynamicCmp'
+import { utilService } from '../../services/util.service'
 
 export function GroupPreview({ group, saveGroup, board, isLabelsExtended, setIsLabelExtended, saveTask, removeTask }) {
     const [isAddMode, setIsAddMode] = useState(false)
     const [isEditTitle, setIsEditTitle] = useState(false)
     const [isExtended, setIsExtended] = useState(true)
     const [titleToEdit, setTitleToEdit] = useState(group.title)
+    const [isActionsOpen, setIsActionsOpen] = useState(false)
+    const [modalPosition, setModalPosition] = useState({ top: 0, left: 0 })
 
     function handleClickAway() {
         setIsEditTitle(false)
@@ -19,6 +23,13 @@ export function GroupPreview({ group, saveGroup, board, isLabelsExtended, setIsL
 
     function handleHeaderChange({ target }) {
         setTitleToEdit(target.value)
+    }
+
+    function onOpenActionsMenu(ev) {
+        ev.preventDefault()
+        ev.stopPropagation()
+        setModalPosition(utilService.getModalPosition(ev.currentTarget, 0, ev.currentTarget.getBoundingClientRect().height + 7))
+        setIsActionsOpen(true)
     }
 
     return (<>
@@ -34,14 +45,14 @@ export function GroupPreview({ group, saveGroup, board, isLabelsExtended, setIsL
                 {!isEditTitle && <h2 className="group-title" onClick={() => setIsEditTitle(true)}>{group.title}</h2>}
                 {isEditTitle &&
                     <ClickAwayListener onClickAway={handleClickAway}>
-                         <MinTextArea className="title-edit" value={titleToEdit} autoFocus={true} onFocus={(ev) => ev.target.select()} onChange={handleHeaderChange} onKeyDown={(ev) => { if (ev.code === 'Enter') handleClickAway() }} ></MinTextArea>
+                        <MinTextArea className="title-edit" value={titleToEdit} autoFocus={true} onFocus={(ev) => ev.target.select()} onChange={handleHeaderChange} onKeyDown={(ev) => { if (ev.code === 'Enter') handleClickAway() }} ></MinTextArea>
                     </ClickAwayListener>}
                 <button className="collapse" onClick={() => setIsExtended(false)}>{collapse_icon}</button>
-                <button className="options">{ellipsis_icon}</button>
+                <button className="options" onClick={onOpenActionsMenu}>{ellipsis_icon}</button>
             </div>
 
             <div className="tasks-container">
-                <TaskList group={group} saveTask={saveTask} board={board} isLabelsExtended={isLabelsExtended} setIsLabelExtended={setIsLabelExtended} isAddMode={isAddMode} setIsAddMode={setIsAddMode}/>
+                <TaskList group={group} saveTask={saveTask} board={board} isLabelsExtended={isLabelsExtended} setIsLabelExtended={setIsLabelExtended} isAddMode={isAddMode} setIsAddMode={setIsAddMode} />
             </div>
 
             {!isAddMode && <div className='add'>
@@ -49,6 +60,12 @@ export function GroupPreview({ group, saveGroup, board, isLabelsExtended, setIsL
                 <button className="create-from-template">{create_icon}</button>
             </div>}
         </div>}
+        {isActionsOpen &&
+            <ClickAwayListener onClickAway={() => setIsActionsOpen(false)}>
+                <div>
+                    <DynamicCmp setIsActionsOpen={setIsActionsOpen} cmp={GROUP_ACTIONS} position={modalPosition} group={group} saveGroup={saveGroup} />
+                </div>
+            </ClickAwayListener >}
     </>
     )
 }

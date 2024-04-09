@@ -10,7 +10,7 @@ export function HomePage() {
             <div className="home-page-top">
                 <div className="top-left-container">
                     <div>
-                        <h1>Trello brings all your tasks, teammates, and tools together</h1>
+                        <h1>Twello brings all your tasks, teammates, and tools together</h1>
                         <p>Keep everything in the same place-even if your team isn't.</p>
                     </div>
                     <Link to='/board'>
