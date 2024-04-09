@@ -1,0 +1,85 @@
+.board-right-sidebar {
+    position: fixed;
+    right: 0;
+    z-index: 100;
+    grid-area: rsb;
+    width: rem(339px);
+    background-color: var(--ds-surface-overlay, #fff);
+    height: 100%;
+    color: var(--ds-text, #172b4d);
+    padding-inline: rem(12px);
+    transform: translateX(100%);
+    transition: transform 0.35s;
+
+    & .svg-container {
+        @include svg-container(20px, 20px)
+    }
+
+    & hr {
+        background-color: var(--ds-border, #091e4224);
+        border: 0;
+        height: 1px;
+        width: 100%;
+    }
+
+    .r-sidebar-header {
+        display: grid;
+        grid-template-columns: 1fr max-content;
+        line-height: rem(20px);
+        margin: rem(18px) rem(4px) rem(18px) rem(24px);
+        overflow: hidden;
+        text-align: center;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+
+        & h2 {
+            font-weight: 500;
+            font-size: rem(16px);
+        }
+    }
+
+    & .r-sidebar-content {
+        padding-block: rem(12px) rem(8px);
+
+        & .r-line {
+            display: grid;
+            grid-template-columns: rem(40px) 1fr;
+            padding-block: rem(6px);
+            font-size: rem(14px);
+            font-weight: 400;
+            line-height: rem(20px);
+            margin-block-end: rem(4px);
+            color: inherit;
+            border-radius: rem(8px);
+
+            &:hover {
+                background-color: var(--ds-background-neutral-subtle-hovered);
+
+            }
+
+            & .svg-container {
+                place-self: center;
+                color: inherit;
+                font-weight: 400;
+            }
+
+            & .board-p-img {
+                width: rem(20px);
+                height: rem(20px);
+                place-self: center;
+                border-radius: 2px;
+                position: relative;
+                opacity: 0.7;
+                background-size: cover;
+            }
+
+            & .i-activity.svg-container {
+                @include svg-container(17px, 17px)
+            }
+        }
+
+        & .content-sep {
+            margin-block: rem(8px);
+        }
+    }
+}

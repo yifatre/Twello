@@ -103,9 +103,9 @@
 
                 &:hover {
                     & .star-container-outline {
-                        
+
                         display: block;
-                    
+
                     }
                 }
 
@@ -147,27 +147,28 @@
                     margin-inline-end: rem(4px);
 
                     &:hover {
-                        
+
                         & .star {
                             display: none;
                         }
-                        
+
                         & .star-outline {
                             display: block;
                             scale: 1.25;
                         }
                     }
                 }
-                
+
                 & #star-btn {
                     &:hover {
                         background-color: transparent;
                     }
                 }
-                
+
                 & .star-container-outline {
                     margin-inline-end: rem(4px);
                     display: none;
+
                     &:hover {
                         & .star-outline-o {
                             scale: 1.2;
@@ -176,11 +177,11 @@
                 }
 
                 & .board-p-img {
-                    margin-inline-start: 4px;
+                    margin-inline-start: rem(4px);
                     width: rem(24px);
                     height: rem(20px);
                     place-self: center;
-                    border-radius: 2px;
+                    border-radius: rem(2px);
                     position: relative;
                     opacity: 0.7;
                     background-size: cover;

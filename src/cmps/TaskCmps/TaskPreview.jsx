@@ -2,7 +2,7 @@ import { bars_icon, checked_icon, edit_icon, eye_icon, paperclip_icon, time_icon
 import { useNavigate, useParams } from "react-router-dom"
 import { AvatarList } from "../UtilCmps/AvatarList"
 
-export function TaskPreview({ task, groupId, saveTask, removeTask, board, isLabelsExtended, setIsLabelExtended }) {
+export function TaskPreview({ task, groupId, removeTask, board, isLabelsExtended, setIsLabelExtended }) {
     const navigate = useNavigate()
 
     function getTodoDoneCount() {

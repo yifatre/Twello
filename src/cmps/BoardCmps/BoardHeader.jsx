@@ -3,7 +3,7 @@ import { updateBoard } from "../../store/board/board.actions"
 import { AvatarList } from "../UtilCmps/AvatarList"
 import { arrow_down, board_icon, ellipsis_icon, filter_icon, flash_icon, group_icon, rocket_icon, share_icon, star, star_outline, table_icon } from "../UtilCmps/SVGs"
 
-export function BoardHeader({ board }) {
+export function BoardHeader({ board, setRsbIsOpen }) {
     async function onToggleStar(ev) {
         ev.stopPropagation()
         ev.preventDefault()
@@ -30,7 +30,7 @@ export function BoardHeader({ board }) {
             <span className="sep"></span>
             <div className="users-avatars"><AvatarList users={userDemoData} maxUsers={5} /></div>
             <button className="btn2 board-share active">{share_icon}Share</button>
-            <button className="board-options">{ellipsis_icon}</button>
+            <button className="board-options" onClick={() => setRsbIsOpen(true)}>{ellipsis_icon}</button>
         </header>
     )
 }

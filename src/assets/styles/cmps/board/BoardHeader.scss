@@ -1,4 +1,5 @@
 .board-header {
+    position: relative;
     display: grid;
     grid-auto-flow: column;
     grid-template-columns: repeat(6, max-content) 1fr repeat(6, max-content);
@@ -8,15 +9,16 @@
     color: $txt-white-color;
     z-index: 100;
     grid-area: head;
+    transition: margin 0.35s;
 
-    .board-title {
+    & .board-title {
         font-size: rem(18px);
         padding: 0 rem(10px);
         display: flex;
         align-items: center;
     }
 
-    .board-star {
+    & .board-star {
         margin-inline: 3.5px;
 
         &:hover {

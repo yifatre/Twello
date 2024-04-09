@@ -7,7 +7,7 @@ import { plus_icon } from "../UtilCmps/SVGs"
 import { DynEntityAdd } from "../TaskCmps/DynEntityAdd"
 
 export function GroupList({ board, saveGroup, removeGroup, saveTask, removeTask }) {
-    const [isLabelsExtended, setIsLabelExtended] = useState(true)
+    const [isLabelsExtended, setIsLabelExtended] = useState(false)
     const [isAddGroup, setIsAddGroup] = useState(false)
     const { groups } = board
 

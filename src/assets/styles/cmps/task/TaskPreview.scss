@@ -10,19 +10,13 @@
 
     }
 
-    &>*{
+    &>* {
         display: block;
         margin-block-end: rem(8px);
     }
 
-
-
-    // &:focus {
-    //     outline: 2px solid -webkit-focus-ring-color;
-    // }
-
     &:hover {
-        outline: 2px solid -webkit-focus-ring-color;
+        outline: 2px solid -webkit-focus-ring-color, var(--ds-border-focused);
 
         .edit-icon {
             opacity: 1;
@@ -78,6 +72,8 @@
             flex-wrap: wrap;
             gap: rem(4px);
             width: max-content;
+            justify-content: right;
+            flex-grow: 1;
 
             .avatar {
                 @include avatar(24px)
@@ -149,6 +145,7 @@
         }
     }
 }
+
 .task-list {
     & li:last-child {
         .content {

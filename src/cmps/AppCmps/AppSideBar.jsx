@@ -1,5 +1,5 @@
-import { NavLink } from "react-router-dom";
-import { pulse_icon, trello_icon, trello_templates_icon } from "../UtilCmps/SVGs";
+import { NavLink } from "react-router-dom"
+import { pulse_icon, trello_icon, trello_templates_icon } from "../UtilCmps/SVGs"
 
 export function AppSideBar() {
     return(

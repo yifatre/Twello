@@ -7,10 +7,11 @@ import { BoardSideBar } from "./BoardSideBar"
 import { loadBoard, loadBoards, updateBoard } from "../../store/board/board.actions"
 import { useSelector } from "react-redux"
 import { utilService } from "../../services/util.service"
+import { BoardRightSideBar } from "./BoardRightSideBar"
 
 export function BoardDetails() {
     const { boardId } = useParams()
-
+    const [rsbIsOpen, setRsbIsOpen] = useState(false)
     const board = useSelector(storeState => storeState.boardModule.board)
 
     useEffect(() => {
@@ -64,11 +65,12 @@ export function BoardDetails() {
 
     if (!board) return <div>loading</div>
     return (<>
-        <section className="board-details" style={{ backgroundImage: `url(${board.style?.backgroundImage})` }}>
-            <BoardHeader board={board} />
+        <section className={`board-details ${rsbIsOpen ? 'rsb-open' : ''}`} style={{ backgroundImage: `url(${board.style?.backgroundImage})` }}>
+            <BoardHeader board={board} setRsbIsOpen={setRsbIsOpen}/>
             <BoardSideBar />
             <GroupList board={board} saveGroup={saveGroup} removeGroup={removeGroup} saveTask={saveTask} removeTask={removeTask} />
             <div className="board-fade"></div>
+             <BoardRightSideBar setRsbIsOpen={setRsbIsOpen} />
         </section>
         <Outlet context={[saveTask]} />
     </>
