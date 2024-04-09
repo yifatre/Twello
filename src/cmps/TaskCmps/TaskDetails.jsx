@@ -18,16 +18,25 @@ export function TaskDetails() {
     const [actionType, setActionType] = useState(null)
 
     const [task, setTask] = useState(board.groups.find(group => group.id === groupId).tasks.find(task => task.id === taskId))
+    const [titleToEdit, setTitleToEdit] = useState(task.title)
     const navigate = useNavigate()
 
     useEffect(() => {
         setTask(board.groups.find(group => group.id === groupId).tasks.find(task => task.id === taskId))
     }, [board])
 
+    useEffect(() => {
+        saveTask({ ...task, title: titleToEdit }, groupId)
+    }, [titleToEdit])
+
     function closeTaskDetails() {
         navigate(`/board/${boardId}`)
     }
 
+    function handleChange({ target }) {
+        const { value, name: field } = target
+        setTitleToEdit(value)
+    }
 
 
     function onOpenModalFromList(ev, type) {
@@ -54,7 +63,7 @@ export function TaskDetails() {
                     <span className="icon-span">{window_icon}</span>
                     <div className="title-txt">
                         <h2 hidden>{task.title}</h2>
-                        <textarea name="title" id="title" value={task.title}></textarea>
+                        <textarea name="title" id="title" value={titleToEdit} onChange={handleChange}></textarea>
                     </div>
                     <div className="list-txt">
                         <p>in list <a href="#">{'list name'}</a></p>
