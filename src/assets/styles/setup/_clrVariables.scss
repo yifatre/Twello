@@ -1,7 +1,7 @@
 :root {
     color-scheme: light;
     // --dynamic-background: hsl(69, 3.9%, 30.5%)
-    --header-button-hovered:rgba(255, 255, 255, 0.3);
+    --header-button-hovered: rgba(255, 255, 255, 0.3);
     --ds-text: #172B4D;
     --ds-text-accent-lime: #4C6B1F;
     --ds-text-accent-lime-bolder: #37471F;
@@ -401,6 +401,11 @@
     --dynamic-button-highlighted-hovered: #FFFFFF;
     --dynamic-text-transparent: hsla(0, 0%, 100%, 0.16);
     --dynamic-sidebar-button-highlighted: #ffffff4d;
+
+    //Main theme colors
+    --dynamic-background: #50514b;
+    --dynamic-background-transparent: hsla(69, 3.9%, 35.5%, 0.9);
+    --dynamic-txt-clr: #ffffff;
 }
 
 .lime {
@@ -615,7 +620,7 @@
     --accent-background-hovered: var(--ds-background-accent-teal-bolder-hovered);
     --accent-background-pressed: var(--ds-background-accent-teal-bolder-pressed);
     --accent-icon: var(--ds-icon-accent-teal);
-    --accent-text:#fff;
+    --accent-text: #fff;
     --accent-text-bolder: var(--ds-text-accent-teal-bolder);
 }
 
@@ -682,7 +687,7 @@
     --accent-text-bolder: var(--ds-text);
 }
 
-.neutral-label{
+.neutral-label {
     --accent-background: var(--ds-background-neutral);
     --accent-background-hovered: var(--ds-background-neutral-hovered);
     --accent-background-pressed: var(--ds-background-neutral-pressed);
