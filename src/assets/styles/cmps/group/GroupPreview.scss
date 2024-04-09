@@ -13,7 +13,7 @@
         background-color: var(--accent-background);
         color: var(--accent-text);
         max-height: 100%;
-        overflow: hidden;
+        // overflow: hidden;
         display: flex;
         flex-direction: column;
 
@@ -21,11 +21,14 @@
             display: grid;
             grid-template-columns: rem(192px) rem(32px) rem(32px);
             margin-inline: rem(8px);
+            margin-block-end: rem(8px);
 
             h2 {
                 font-weight: 600;
-                padding: rem(6px) rem(8px) rem(6px) rem(12px);
+                padding: rem(7px) rem(8px) rem(5px) rem(12px);
                 color: var(--accent-text-bolder);
+                overflow: hidden;
+                overflow-wrap: anywhere;
             }
 
             .collapse {
@@ -43,6 +46,7 @@
             grid-template-columns: rem(220px) rem(32px);
             gap: 4px;
             padding-inline: rem(8px);
+            margin-block-start: rem(8px);
 
             .add-task {
                 display: flex;
@@ -79,6 +83,13 @@
             border: none;
             font-size: rem(14px);
             height: rem(32px);
+            resize: none;
+            border: none;
+            outline: none;
+            margin-block-start: rem(0.5px);
+            font-weight: 600;
+            line-height: 20px;
+            // white-space: normal;
 
             &:focus {
                 outline: 2px solid var(--ds-border-focused);

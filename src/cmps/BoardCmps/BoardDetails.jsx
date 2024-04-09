@@ -26,16 +26,16 @@ export function BoardDetails() {
         }
     }
 
-    function saveTask(task, groupId) {
+    async function saveTask(task, groupId) {
         const group = board.groups.find(group => group.id === groupId)
         if (task.id) {
             const idx = group.tasks.findIndex(_task => _task.id === task.id)
             group.tasks[idx] = task
-            saveGroup(group)
+            return await saveGroup(group)
         } else {
             task.id = utilService.makeId('t')
             group.tasks.push(task)
-            saveGroup(group)
+            return await saveGroup(group)
         }
     }
 
@@ -45,15 +45,15 @@ export function BoardDetails() {
         saveGroup(group)
     }
 
-    function saveGroup(group) {
+    async function saveGroup(group) {
         if (group.id) {
             const idx = board.groups.findIndex(_group => _group.id === group.id)
             board.groups[idx] = group
-            updateBoard(board)
+            return await updateBoard(board)
         } else {
             group.id = utilService.makeId('g')
             board.groups.push(group)
-            updateBoard(board)
+            return await updateBoard(board)
         }
     }
 

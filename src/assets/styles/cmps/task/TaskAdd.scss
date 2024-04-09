@@ -1,6 +1,4 @@
 .task-add-form {
-    padding-inline: rem(8px);
-
     textarea {
         width: 100%;
         resize: none;
@@ -31,10 +29,14 @@
             }
         }
 
-        .add-btn {
+        & #add-btn {
             background-color: $add-btn-bcg;
             width: rem(83.5px);
             color: white;
+
+            &:hover {
+                background-color: var(--ds-background-brand-bold-hovered);
+            }
         }
     }
 }

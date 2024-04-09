@@ -10,10 +10,12 @@
 
     }
 
-    &>* {
+    &>*{
         display: block;
         margin-block-end: rem(8px);
     }
+
+
 
     // &:focus {
     //     outline: 2px solid -webkit-focus-ring-color;
@@ -144,6 +146,13 @@
         img {
             border-top-right-radius: rem(8px);
             border-top-left-radius: rem(8px);
+        }
+    }
+}
+.task-list {
+    & li:last-child {
+        div {
+            margin-block-end: 0;
         }
     }
 }
