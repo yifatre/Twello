@@ -48,8 +48,8 @@ export async function addBoard(board) {
     try {
         const savedBoard = await boardService.save(board)
         console.log('Added Board', savedBoard)
-        store.dispatch({ type: ADD_BOARD, board: { _id: board._id, title: board.title, style: { backgroundImage: board.style.backgroundImage }, isStarred: board.isStarred } })
-        store.dispatch({ type: SET, board })
+        store.dispatch({ type: ADD_BOARD, board: { _id: savedBoard._id, title: savedBoard.title, style: { backgroundImage: savedBoard.style.backgroundImage }, isStarred: savedBoard.isStarred } })
+        store.dispatch({ type: SET_BOARD, savedBoard })
         return savedBoard
     } catch (err) {
         console.log('Cannot add board', err)
@@ -82,7 +82,7 @@ export function onRemoveBoardOptimistic(boardId) {
 
     boardService.remove(boardId)
         .then(() => {
-            console.log('Server Reported - Deleted Succesfully')
+            console.log('Server Reported - Deleted Successfully')
         })
         .catch(err => {
             showErrorMsg('Cannot remove board')
