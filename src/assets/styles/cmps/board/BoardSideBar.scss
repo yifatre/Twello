@@ -137,23 +137,29 @@
                 }
 
                 & .star-container {
-                    margin-inline-end: 4px;
+                    margin-inline-end: rem(4px);
 
                     &:hover {
-                        background-color: transparent;
-
+                        
                         & .star {
                             display: none;
                         }
-
+                        
                         & .star-outline {
                             display: block;
                             scale: 1.25;
                         }
                     }
                 }
-
+                
+                & #star-btn {
+                    &:hover {
+                        background-color: transparent;
+                    }
+                }
+                
                 & .star-container-outline {
+                    margin-inline-end: rem(4px);
                     &:hover {
                         & .star-outline-o {
                             scale: 1.2;

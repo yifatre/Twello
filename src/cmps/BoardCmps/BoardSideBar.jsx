@@ -105,7 +105,7 @@ export function BoardSideBar() {
                                         return <NavLink key={_board._id} className={`line board-p`} to={`/board/${_board._id}`}>
                                             <div className="board-p-img" style={{ backgroundImage: `url(${_board.style.backgroundImage})`, backgroundColor: _board.style.backgroundColor }}></div>
                                             <span>{_board.title}</span>
-                                            <button className="star-container">
+                                            <button className="star-container" id="star-btn">
                                                 <span className="svg-container star" onClick={(ev) => toggleStarBoard(ev, _board._id)}>{star}</span>
                                                 <span className="svg-container star-outline" onClick={(ev) => toggleStarBoard(ev, _board._id)}>{star_outline}</span></button>
                                         </NavLink>
@@ -114,7 +114,7 @@ export function BoardSideBar() {
                                         return <NavLink key={_board._id} className={`line board-p`} to={`/board/${_board._id}`}>
                                             <div className="board-p-img" style={{ backgroundImage: `url(${_board.style.backgroundImage})`, backgroundColor: _board.style.backgroundColor }}></div>
                                             <span>{_board.title}</span>
-                                            <button className="star-container-outline">
+                                            <button className="star-container-outline" id="star-btn">
                                                 <span className="svg-container star-outline-o" onClick={(ev) => toggleStarBoard(ev, _board._id)}>{star_outline}</span></button>
                                         </NavLink>
                                     })}
