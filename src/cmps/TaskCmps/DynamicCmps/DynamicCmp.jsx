@@ -16,7 +16,7 @@ export const CREATE_BOARD = 'CREATE_BOARD'
 export const GROUP_ACTIONS = 'GROUP_ACTIONS'
 
 
-export function DynamicCmp({ groupId, cmp, board, task, setIsAddBoard, position, saveTask, group, saveGroup, setIsActionsOpen }) {
+export function DynamicCmp({setActionType, groupId, cmp, board, task, setIsAddBoard, position, saveTask, group, saveGroup, setIsActionsOpen }) {
 
     function onUpdateBoard(newLabel) {
         const boardToUpdate = { ...board }
@@ -71,31 +71,31 @@ export function DynamicCmp({ groupId, cmp, board, task, setIsAddBoard, position,
         case LABELS:
             top += buttonHeight * 2
             topHead = 'Labels'
-            cmpType = <LabelPicker SaveLabel={SaveLabel} deleteLabel={deleteLabel} onUpdateBoard={onUpdateBoard} task={task} labels={board.labels} saveTask={saveTask} groupId={groupId} />
+            cmpType = <LabelPicker setActionType={setActionType} SaveLabel={SaveLabel} deleteLabel={deleteLabel} onUpdateBoard={onUpdateBoard} task={task} labels={board.labels} saveTask={saveTask} groupId={groupId} />
             break
 
         case MEMBERS:
             top += buttonHeight
             topHead = 'Member'
             // todo add 'taskMembers when we connected the actual data ! 
-            cmpType = <MemberPicker members={board.members} task={task} saveTask={saveTask} groupId={groupId} />
+            cmpType = <MemberPicker setActionType={setActionType} members={board.members} task={task} saveTask={saveTask} groupId={groupId} />
             break
 
         case DATES:
             top += buttonHeight * 4
             topHead = 'Date'
-            cmpType = <DatePicker board={board} groupId={groupId} />
+            cmpType = <DatePicker saveTask={saveTask} setActionType={setActionType} task={task} groupId={groupId} />
             break
 
         case ATTACHMENT:
             top += buttonHeight * 5
             topHead = 'Attachment'
-            cmpType = <AttachmentPicker board={board} groupId={groupId} task={task} saveTask={saveTask} />
+            cmpType = <AttachmentPicker setActionType={setActionType} board={board} groupId={groupId} task={task} saveTask={saveTask} />
             break
 
         case COVER:
             topHead = 'Cover'
-            cmpType = <CoverPicker board={board} groupId={groupId} task={task} saveTask={saveTask} />
+            cmpType = <CoverPicker setActionType={setActionType} board={board} groupId={groupId} task={task} saveTask={saveTask} />
             break
 
         case CREATE_BOARD:

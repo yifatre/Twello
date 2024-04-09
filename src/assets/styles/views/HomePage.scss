@@ -24,7 +24,6 @@
             max-width: 960px;
         }
 
-
         @media (min-width: 1200px) {
             max-width: 1140px;
         }
@@ -36,6 +35,9 @@
         width: 100%;
 
         .top-left-container {
+           
+           
+           
             text-align: left;
             display: block;
             flex: 0 0 auto;
@@ -45,6 +47,9 @@
             padding-bottom: 8rem;
             padding-right: 19px;
             padding-top: 40px;
+
+            
+    
 
             & h1 {
                 font-family: 'charlie-display';
@@ -92,6 +97,8 @@
             padding-bottom: 0px;
             position: relative;
 
+      
+
 
         }
         & .home-page-middle {
@@ -115,6 +122,15 @@
                     flex: 0 0 auto;
                     width: 58.3333%;
                 }
+            }
+        }
+        @media (max-width: 992px) {
+            .top-img-container {
+                max-width: 100% !important;
+            }
+
+            .top-left-container {
+                max-width: 100% !important;
             }
         }
     }

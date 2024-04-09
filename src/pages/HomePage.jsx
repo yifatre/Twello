@@ -14,7 +14,7 @@ export function HomePage() {
                         <p>Keep everything in the same place-even if your team isn't.</p>
                     </div>
                     <Link to='/board'>
-                        <button>start demo</button>
+                        <button>Try - it's free</button>
                     </Link>
                 </div>
                 <div className="top-img-container">

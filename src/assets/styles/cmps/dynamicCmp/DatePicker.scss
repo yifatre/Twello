@@ -1,5 +1,10 @@
 .date-picker-container {
 
+    & .rdrMonth {
+        width: 25.2em !important;
+    }
+    
+
     & .input-Date-picker {
         width: 90px;
         height: 32px;
