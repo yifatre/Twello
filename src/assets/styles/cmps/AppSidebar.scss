@@ -1,0 +1,44 @@
+.app-sidebar {
+    padding: rem(40px) rem(16px);
+    display: grid;
+
+    & .main-nav {
+        border-block-end: 1px solid var(--ds-border, #091e4224);
+        height: max-content;
+
+        & .nav-line {
+            display: grid;
+            font-size: rem(14px);
+            align-items: center;
+            grid-template-columns: rem(24px) 1fr;
+            border-radius: rem(8px);
+            background-color: transparent;
+            color: var(--ds-text);
+            font-weight: 500;
+            gap: rem(8px);
+            margin-block-end: rem(4px);
+            height: rem(36px);
+            padding: rem(6px) rem(8px);
+
+            & .svg-container {
+                @include svg-container;
+                place-self: center;
+            }
+
+            &:hover {
+                background-color: var(--ds-background-neutral-hovered, #091e4224);
+                color: currentColor;
+            }
+            
+            &.active {
+                background-color: var(--ds-background-selected, #e9f2ff);
+                color: var(--ds-text-selected, #0c66e4);
+            }
+            
+            &:active {
+                background-color: var(--ds-background-neutral-pressed, #091e424f);
+                color: currentColor;
+            }
+        }
+    }
+}

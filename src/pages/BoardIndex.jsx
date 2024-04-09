@@ -5,6 +5,7 @@ import { loadBoards, addBoard, updateBoard, removeBoard } from '../store/board/b
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
 
 import { BoardList } from '../cmps/BoardCmps/BoardList.jsx'
+import { AppSideBar } from '../cmps/AppCmps/AppSideBar.jsx'
 
 export function BoardIndex() {
 
@@ -15,7 +16,8 @@ export function BoardIndex() {
     }, [])
 
     return (
-        <div>
+        <div className='board-index'>
+            <AppSideBar/>
             <main>
                 <BoardList boards={boards}/>
             </main>
