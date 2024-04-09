@@ -7,10 +7,11 @@ import { BoardSideBar } from "./BoardSideBar"
 import { loadBoard, loadBoards, updateBoard } from "../../store/board/board.actions"
 import { useSelector } from "react-redux"
 import { utilService } from "../../services/util.service"
+import { BoardRightSideBar } from "./BoardRightSideBar"
 
 export function BoardDetails() {
     const { boardId } = useParams()
-
+    const [rsbIsOpen, setRsbIsOpen] = useState(false)
     const board = useSelector(storeState => storeState.boardModule.board)
 
     useEffect(() => {
@@ -26,16 +27,16 @@ export function BoardDetails() {
         }
     }
 
-    function saveTask(task, groupId) {
+    async function saveTask(task, groupId) {
         const group = board.groups.find(group => group.id === groupId)
         if (task.id) {
             const idx = group.tasks.findIndex(_task => _task.id === task.id)
             group.tasks[idx] = task
-            saveGroup(group)
+            return await saveGroup(group)
         } else {
             task.id = utilService.makeId('t')
             group.tasks.push(task)
-            saveGroup(group)
+            return await saveGroup(group)
         }
     }
 
@@ -45,15 +46,15 @@ export function BoardDetails() {
         saveGroup(group)
     }
 
-    function saveGroup(group) {
+    async function saveGroup(group) {
         if (group.id) {
             const idx = board.groups.findIndex(_group => _group.id === group.id)
             board.groups[idx] = group
-            updateBoard(board)
+            return await updateBoard(board)
         } else {
             group.id = utilService.makeId('g')
             board.groups.push(group)
-            updateBoard(board)
+            return await updateBoard(board)
         }
     }
 
@@ -64,11 +65,12 @@ export function BoardDetails() {
 
     if (!board) return <div>loading</div>
     return (<>
-        <section className="board-details" style={{ backgroundImage: `url(${board.style?.backgroundImage})` }}>
-            <BoardHeader board={board} />
+        <section className={`board-details ${rsbIsOpen ? 'rsb-open' : ''}`} style={{ backgroundImage: `url(${board.style?.backgroundImage})` }}>
+            <BoardHeader board={board} setRsbIsOpen={setRsbIsOpen}/>
             <BoardSideBar />
             <GroupList board={board} saveGroup={saveGroup} removeGroup={removeGroup} saveTask={saveTask} removeTask={removeTask} />
             <div className="board-fade"></div>
+             <BoardRightSideBar setRsbIsOpen={setRsbIsOpen} />
         </section>
         <Outlet context={[saveTask]} />
     </>

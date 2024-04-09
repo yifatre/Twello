@@ -4,10 +4,10 @@ import { updateBoard } from "../../store/board/board.actions"
 import { utilService } from "../../services/util.service"
 import { useState } from "react"
 import { plus_icon } from "../UtilCmps/SVGs"
-import { TaskAdd } from "../TaskCmps/TaskAdd"
+import { DynEntityAdd } from "../TaskCmps/DynEntityAdd"
 
 export function GroupList({ board, saveGroup, removeGroup, saveTask, removeTask }) {
-    const [isLabelsExtended, setIsLabelExtended] = useState(true)
+    const [isLabelsExtended, setIsLabelExtended] = useState(false)
     const [isAddGroup, setIsAddGroup] = useState(false)
     const { groups } = board
 
@@ -67,10 +67,11 @@ export function GroupList({ board, saveGroup, removeGroup, saveTask, removeTask 
                             </Draggable>
                         )}
                         {provided.placeholder}
-                        <li className="group-preview-container add-group-btn group-preview neutral">
+                        <li className="group-preview-container group-preview add-group-container">
                             <div className="group-header flex">
                                 {!isAddGroup && <button className="add-group-btn group-preview" onClick={() => setIsAddGroup(true)}>{plus_icon}Add another list</button>}
-                                {isAddGroup && <div className="add-group-btn group-preview"><TaskAdd setIsAddMode={setIsAddGroup} saveTask={saveGroup} type={'GROUP'} /></div>}
+                                {isAddGroup && <div className="add-group group-preview"><DynEntityAdd setIsAddMode={setIsAddGroup} saveEntity={saveGroup} type={'GROUP'} /></div>}
+
                             </div>
                         </li>
                     </ul>)}

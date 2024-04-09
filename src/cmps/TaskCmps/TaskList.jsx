@@ -1,7 +1,8 @@
 import { Droppable, Draggable } from 'react-beautiful-dnd'
 import { TaskPreview } from "./TaskPreview"
+import { DynEntityAdd } from './DynEntityAdd'
 
-export function TaskList({ group, saveTask, removeTask, board, isLabelsExtended, setIsLabelExtended }) {
+export function TaskList({ group, saveTask, removeTask, board, isLabelsExtended, setIsLabelExtended, isAddMode, setIsAddMode }) {
 
     return (
         <Droppable droppableId={group.id} type="task">
@@ -31,7 +32,7 @@ export function TaskList({ group, saveTask, removeTask, board, isLabelsExtended,
                         </Draggable>
                     )}
                     {provided.placeholder}
-
+                    {isAddMode && <DynEntityAdd setIsAddMode={setIsAddMode} saveEntity={saveTask} groupId={group.id} />}
                 </ul>
             }
         </Droppable >

@@ -1,7 +1,7 @@
 .main-content {
     flex: 1;
     overflow: hidden;
-    
+
     .board-details {
         position: relative;
         height: 100%;
@@ -12,11 +12,11 @@
 
         display: grid;
         grid-template-areas:
-            "sidebar head"
-            "sidebar body";
+            "sidebar head rsb"
+            "sidebar body rsb";
 
-        grid-template-rows: max-content 1fr;
-        grid-template-columns: max-content 1fr;
+        grid-template-rows: max-content 1fr max-content;
+        grid-template-columns: max-content 1fr max-content;
 
         &::after {
             content: "";
@@ -27,6 +27,18 @@
             display: block;
             position: absolute;
             background: rgba(0, 0, 0, 0.144);
+        }
+
+        
+        
+        &.rsb-open {
+            .board-header {
+                margin-inline-end: rem(339px);
+            }
+
+            .board-right-sidebar {
+                transform: translateX(0);
+            }
         }
     }
 }

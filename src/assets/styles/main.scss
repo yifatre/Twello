@@ -27,13 +27,15 @@
 @import "cmps/board/BoardDetails";
 @import "cmps/board/BoardHeader";
 @import "cmps/board/BoardSideBar";
+@import "cmps/board/BoardRightSideBar";
 @import "cmps/group/GroupList";
 @import "cmps/group/GroupPreview";
 @import "cmps/task/TaskList";
 @import "cmps/task/TaskPreview";
-@import "cmps/task/TaskAdd";
+@import "cmps/task/DynEntityAdd";
 @import "cmps/dynamicCmp/DynamicCmp.scss";
 @import "cmps/dynamicCmp/LabelPicker.scss";
+@import "cmps/dynamicCmp/GroupActions.scss";
 @import "cmps/dynamicCmp/MembersPicker.scss";
 @import "cmps/dynamicCmp/DatePicker.scss";
 @import "cmps/dynamicCmp/CreateBoard.scss";
