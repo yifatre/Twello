@@ -101,6 +101,13 @@
                 text-decoration: none;
                 height: rem(32px);
 
+                &:hover {
+                    & .star-container-outline {
+                        
+                        display: block;
+                    
+                    }
+                }
 
                 &.italic {
                     font-style: italic;
@@ -160,6 +167,7 @@
                 
                 & .star-container-outline {
                     margin-inline-end: rem(4px);
+                    display: none;
                     &:hover {
                         & .star-outline-o {
                             scale: 1.2;
