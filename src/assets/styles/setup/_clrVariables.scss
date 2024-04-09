@@ -401,11 +401,43 @@
     --dynamic-button-highlighted-hovered: #FFFFFF;
     --dynamic-text-transparent: hsla(0, 0%, 100%, 0.16);
     --dynamic-sidebar-button-highlighted: #ffffff4d;
+    //board header white-theme
+    --dynamic-background-white: var(--ds-surface, #FAFBFC);
+    --dynamic-button-hovered-white: #091E4224;
+    --dynamic-button-pressed-white: #091E424F;
+    --dynamic-button-highlighted-white: rgba(0, 0, 0, 0.5);
+    --dynamic-button-highlighted-text-white: #FFFFFF;
+    --dynamic-button-highlighted-hovered-white: rgba(0, 0, 0, 0.6);
+    --dynamic-icon-white: #42526E;
+    --dynamic-text-white: #172B4D;
+    --dynamic-text-transparent-white: hsla(218, 54%, 19.6%, 0.16);
+
 
     //Main theme colors
     --dynamic-background: #50514b;
     --dynamic-background-transparent: hsla(69, 3.9%, 35.5%, 0.9);
     --dynamic-txt-clr: #ffffff;
+}
+
+.white-main {
+    --accent-background: var(--dynamic-background-white);
+    --accent-background-transparent: var(--dynamic-background-white);
+    --accent-background-hovered: var(--ds-background-accent-lime-subtler-hovered);
+    --accent-background-pressed: var(--ds-background-accent-lime-subtler-pressed);
+    --accent-icon: var(--ds-icon-accent-lime);
+    --accent-text: var(--ds-text-accent-lime);
+    --accent-text-bolder: var(--ds-text-accent-lime-bolder);
+}
+
+.gray-main {
+    --accent-background: var(--dynamic-background);
+    --accent-background-transparent: var(--dynamic-background-transparent);
+    // --accent-background-hovered: var(--ds-background-accent-lime-subtler-hovered);
+    // --accent-background-pressed: var(--ds-background-accent-lime-subtler-pressed);
+    --accent-icon: var(--ds-icon-accent-lime);
+    --accent-text: var(--dynamic-txt-clr: #ffffff; );
+    --accent-text-transparent: var(--dynamic-text-transparent);
+    // --accent-text-bolder: var(--ds-text-accent-lime-bolder);
 }
 
 .lime {

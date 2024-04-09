@@ -17,9 +17,11 @@ export function BoardIndex() {
 
     return (
         <div className='board-index'>
-            <AppSideBar/>
             <main>
-                <BoardList boards={boards}/>
+                <AppSideBar />
+                <div className='all-boards'>
+                    <BoardList boards={boards} />
+                </div>
             </main>
         </div>
     )

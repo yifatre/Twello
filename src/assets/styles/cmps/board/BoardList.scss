@@ -1,5 +1,4 @@
 .board-list-container {
-    margin-left: rem(8px);
     margin-block-start: rem(33px);
 
     &>h3 {
@@ -33,7 +32,7 @@
             background-color: #091e4224;
         }
 
-        color: var(--ds-text,#172b4d);
+        color: var(--ds-text, #172b4d);
         background-color: #091E420F;
         text-align: center;
 
