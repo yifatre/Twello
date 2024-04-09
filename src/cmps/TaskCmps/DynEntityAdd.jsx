@@ -10,7 +10,7 @@ export function DynEntityAdd({ setIsAddMode, saveEntity, groupId, type = 'TASK' 
     const formRef = useRef(null)
 
     useEffect(() => {
-        formRef.current.scrollIntoView(true)
+        formRef.current.scrollIntoView({inline: "center", behavior: "smooth"})
     }, [])
 
     function handleChange({ target }) {
@@ -28,7 +28,7 @@ export function DynEntityAdd({ setIsAddMode, saveEntity, groupId, type = 'TASK' 
         try {
             await saveEntity(entity, groupId)
             setEntity(type === 'TASK' ? boardService.getEmptyTask() : boardService.getEmptyGroup())
-            ev.target.scrollIntoView(true);
+            ev.target.scrollIntoView({inline: "center", behavior: "smooth"})
         }
         catch (err) {
             console.error(err)

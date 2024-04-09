@@ -7,7 +7,7 @@ export const boardsDemoData = [
         archivedAt: 1589983468418,
         createdById: "_u101",
         style: {
-            backgroundImage: "https://trello-backgrounds.s3.amazonaws.com/SharedBackground/1280x1920/1454636af11dff5041c580f6ca325ace/photo-1711522676532-d6dce8a42335.jpg"
+            backgroundImage: "https://images.unsplash.com/photo-1568607689150-17e625c1586e?q=80&w=3870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
         },
         labels: [
             {
