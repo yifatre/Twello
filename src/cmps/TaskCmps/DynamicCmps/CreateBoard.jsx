@@ -35,6 +35,7 @@ export function CreateBoard({ setIsAddBoard }) {
         try {
             const savedBoard = await addBoard(board)
             setIsAddBoard(false)
+            console.log('savedBoard', savedBoard)
             navigate(`/board/${savedBoard._id}`)
         }
         catch (err) {

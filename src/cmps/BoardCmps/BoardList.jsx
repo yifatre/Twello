@@ -9,7 +9,6 @@ import { utilService } from "../../services/util.service"
 export function BoardList({ boards }) {
     const [isAddBoard, setIsAddBoard] = useState(false)
     const [modalPosition, setModalPosition] = useState({ top: 0, left: 0 })
-    // console.log(boards)
 
     function onAddBoard(ev) {
         console.log('ev', ev)
@@ -24,7 +23,7 @@ export function BoardList({ boards }) {
     }
 
     return (<>
-        <section className="board-list-container">
+        {boards.filter(board => board.isStarred).length > 0 && <section className="board-list-container">
             <h3 className="flex align-center"><span>{star_outline}</span> Starred boards</h3>
             <ul className="board-list flex justify-start clean-list">
                 {
@@ -35,7 +34,7 @@ export function BoardList({ boards }) {
                     })
                 }
             </ul>
-        </section>
+        </section>}
         <section className="board-list-container">
             <h3 className="flex align-center">Your boards</h3>
             <ul className="board-list flex justify-start clean-list">
