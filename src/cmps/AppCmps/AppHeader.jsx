@@ -1,8 +1,28 @@
 import { Link, useLocation } from 'react-router-dom'
+import { ClickAwayListener } from '@mui/base/ClickAwayListener'
+
 import { arrow_down, bell_icon, info_btn, logo, more_icon, search_icon } from '../UtilCmps/SVGs'
+import { CREATE_BOARD, DynamicCmp } from '../TaskCmps/DynamicCmps/DynamicCmp'
+import { useState } from 'react'
+import { utilService } from '../../services/util.service'
 
 export function AppHeader() {
     const { pathname } = useLocation()
+    const [isAddBoard, setIsAddBoard] = useState(false)
+    const [modalPosition, setModalPosition] = useState({ top: 0, left: 0 })
+
+    function onAddBoard(ev) {
+        console.log('ev', ev)
+        const { currentTarget } = ev
+        console.log('currentTarget', currentTarget)
+        setModalPosition(utilService.getModalPosition(currentTarget, 0, currentTarget.getBoundingClientRect().height + 8))
+        setIsAddBoard(true)
+    }
+
+    function onCloseAddModal() {
+        setIsAddBoard(false)
+    }
+
 
     if (pathname === '/') return (
         <header className="app-header-home ">
@@ -21,7 +41,7 @@ export function AppHeader() {
         </header>
 
     )
-    return (
+    return (<>
         <header className="app-header flex justify-space-between">
             <div className='flex'>
 
@@ -35,7 +55,7 @@ export function AppHeader() {
                 <button className='main-nav-btn'>Recent <span className='arrow-down'>{arrow_down}</span></button>
                 <button className='main-nav-btn'>Starred <span className='arrow-down'>{arrow_down}</span></button>
                 <button className='main-nav-btn'>Templates <span className='arrow-down'>{arrow_down}</span></button>
-                <button className='create-btn'>create</button>
+                <button className='create-btn' onClick={onAddBoard}>create</button>
             </div>
             <div className='flex'>
 
@@ -52,6 +72,12 @@ export function AppHeader() {
             </div>
 
         </header>
-
+        {isAddBoard && <ClickAwayListener onClickAway={onCloseAddModal}>
+            <div style={{zIndex:110}}>
+                <DynamicCmp cmp={CREATE_BOARD} setIsAddBoard={setIsAddBoard} position={modalPosition} />
+            </div>
+        </ClickAwayListener>
+        }
+    </>
     )
 }

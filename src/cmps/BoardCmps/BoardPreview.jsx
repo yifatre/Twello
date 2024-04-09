@@ -6,9 +6,6 @@ import { boardService } from '../../services/board/board.service.local'
 
 
 export function BoardPreview({ board }) {
-
-
-
     const [isHovered, setIsHovered] = useState(false)
 
     async function onToggleStar(ev) {
