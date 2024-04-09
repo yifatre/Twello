@@ -1,34 +1,221 @@
-.side-bar-btn {
-    padding: 0;
+.sidebar-container {
     display: flex;
     grid-area: sidebar;
-    background-color: var(--dynamic-background-transparent);
-    width: rem(16px);
-    border: none;
     z-index: 100;
-    border-inline-end: 1px solid var(--dynamic-text-transparent);
 
-    .open-sidebar-btn {
+    .board-sidebar-collapsed {
         padding: 0;
-        background-color: inherit;
-        border: 1px solid var(--dynamic-text-transparent);
-        border-radius: 50%;
-        margin: 15px 0 0 3px;
-        height: rem(26px);
-        width: rem(26px);
-        backdrop-filter: blur(16px);
+        display: flex;
+        // grid-area: sidebar;
+        background-color: var(--dynamic-background-transparent);
+        width: rem(16px);
+        border: none;
 
-        .svg-container {
-            @include svg-container(24px);
-        }
-    }
-
-    &:hover {
-        background-color: var(--dynamic-background);
+        border-inline-end: 1px solid var(--dynamic-text-transparent);
 
         .open-sidebar-btn {
-            background-color: #ffffff4d;
+            padding: 0;
+            background-color: inherit;
+            border: 1px solid var(--dynamic-text-transparent);
+            border-radius: 50%;
+            margin: 15px 0 0 3px;
+            backdrop-filter: blur(16px);
+            height: rem(26px);
+            width: rem(26px);
+
+            & .svg-container {
+                @include svg-container(24px, 24px);
+            }
         }
+
+        &:hover {
+            background-color: var(--dynamic-background);
+
+            .open-sidebar-btn {
+                background-color: var(--dynamic-sidebar-button-highlighted);
+            }
+        }
+
     }
 
+    .board-sidebar {
+        background-color: var(--dynamic-background-transparent);
+        backdrop-filter: blur(6px);
+        color: var(--ds-text-inverse);
+        grid-area: sidebar;
+        position: relative;
+
+        & .board-sidebar-header {
+            display: grid;
+            align-items: center;
+            grid-template-columns: rem(32px) rem(172px) rem(32px);
+            padding: rem(8px) rem(12px) rem(8px);
+            border-block-end: 1px solid var(--dynamic-text-transparent);
+
+            & .workspace-letter {
+                display: grid;
+                place-items: center;
+                height: rem(32px);
+                width: rem(32px);
+                font-size: rem(20px);
+                font-weight: bold;
+                border-radius: rem(4px);
+                background: linear-gradient(var(--ds-background-accent-green-bolder), var(--ds-background-accent-green-subtle));
+            }
+
+            & .txt-container {
+                padding-inline: rem(8px) rem(4px);
+
+                & .user-sub {
+                    font-weight: 400;
+                    font-size: rem(12px);
+                }
+            }
+
+            & .close-sidebar-btn {
+                @include reg-btn($padding: 1px);
+                border-radius: rem(3px);
+
+                &:hover {
+                    background-color: var(--dynamic-button-hovered);
+                }
+
+                &:active {
+                    background-color: var(--dynamic-button-pressed);
+                }
+
+                & .svg-container {
+                    @include svg-container(28px, 28px);
+                    transform: rotate(180deg);
+                }
+            }
+        }
+
+        & .sidebar-content {
+            padding-block-start: rem(12px);
+
+            & .line {
+                display: grid;
+                grid-template-columns: rem(44px) 1fr rem(36px);
+                align-items: center;
+                text-decoration: none;
+                height: rem(32px);
+
+
+                &.italic {
+                    font-style: italic;
+                }
+
+                &.bolder {
+                    font-weight: 500;
+                }
+
+                & .svg-container {
+                    @include svg-container;
+                    place-self: center end;
+                    margin-inline-end: rem(12px);
+                }
+
+                & button {
+                    @include reg-btn(24px, 2px);
+                    width: rem(24px);
+                    place-self: center;
+                    border-radius: rem(3px);
+
+                    & .svg-container {
+                        margin: 0;
+                        place-self: center;
+                    }
+
+                    &:hover {
+                        background-color: var(--dynamic-button-hovered);
+                    }
+                }
+
+                & .star-outline {
+                    display: none;
+                }
+
+                & .star-container {
+                    margin-inline-end: 4px;
+
+                    &:hover {
+                        background-color: transparent;
+
+                        & .star {
+                            display: none;
+                        }
+
+                        & .star-outline {
+                            display: block;
+                            scale: 1.25;
+                        }
+                    }
+                }
+
+                & .star-container-outline {
+                    &:hover {
+                        & .star-outline-o {
+                            scale: 1.2;
+                        }
+                    }
+                }
+
+                & .board-p-img {
+                    margin-inline-start: 4px;
+                    width: rem(24px);
+                    height: rem(20px);
+                    place-self: center;
+                    border-radius: 2px;
+                    position: relative;
+                    opacity: 0.7;
+                    background-size: cover;
+                }
+
+                &.active {
+                    background-color: var(--dynamic-sidebar-button-highlighted);
+                }
+
+            }
+
+            & .sep-title {
+                display: grid;
+                grid-template-columns: 1fr rem(40px);
+                margin-block: rem(8px) rem(2px);
+                padding-inline-start: rem(12px);
+                height: rem(32px);
+                align-items: center;
+
+                & h4 {
+                    letter-spacing: -0.003em;
+                    font-weight: 600;
+                }
+
+                & button {
+                    @include reg-btn(24px, 2px);
+                    width: rem(24px);
+                    place-self: center;
+                    border-radius: rem(3px);
+
+                    & .svg-container {
+                        @include svg-container;
+                        place-self: center;
+                    }
+
+                    &:hover {
+                        background-color: var(--dynamic-button-hovered);
+                    }
+                }
+            }
+        }
+
+        & .board-sidebar-footer {
+            position: absolute;
+            bottom: 0;
+            height: rem(72px);
+            padding: rem(12px);
+            width: 100%;
+            border-block-start: 1px solid var(--dynamic-text-transparent);
+        }
+    }
 }

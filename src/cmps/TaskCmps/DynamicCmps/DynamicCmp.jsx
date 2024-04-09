@@ -16,12 +16,53 @@ export const CREATE_BOARD = 'CREATE_BOARD'
 //     //todo info:{groupId,taskId,dynamic}
 
 
-export function DynamicCmp({ groupId, cmp, board, task, setIsAddBoard, position, saveTask }) {
+export function DynamicCmp({ groupId, cmp,  board, task, setIsAddBoard, position, saveTask }) {
+    console.log('info:', board)
 
     function onUpdateBoard(newLabel) {
-        const boardToUpdate = { ...board, labels: { ...board.labels, newLabel } }
+        const boardToUpdate = { ...board }
+        boardToUpdate.labels.push(newLabel)
         updateBoard(boardToUpdate)
     }
+
+    function SaveLabel(editLabel) {
+        const newLabels = board.labels.map(label => {
+            if (label.id === editLabel.id) return editLabel
+            return label
+        })
+        const boardToUpdate = { ...board }
+        boardToUpdate.labels = newLabels
+        updateBoard(boardToUpdate)
+    }
+
+    function deleteLabel(labelId) {
+        const Board = board
+        console.log(board);
+
+        const labels = Board.labels.filter(label => label.id !== labelId)
+        Board.labels = labels
+
+        Board.groups = deleteLabelIdFromEverywhere(Board.groups, labelId)
+        
+        updateBoard(Board)
+        console.log(Board);
+    }
+
+    function deleteLabelIdFromEverywhere(data, labelIdToDelete) {
+        const updatedData = data.map(group => {
+            const updatedTasks = group.tasks.map(task => {
+                const updatedTask = { ...task };
+                const labelIndex = updatedTask.labelIds.indexOf(labelIdToDelete);
+                if (labelIndex !== -1) {
+                    updatedTask.labelIds.splice(labelIndex, 1);
+                }
+                return updatedTask;
+            });
+            return { ...group, tasks: updatedTasks };
+        });
+        return updatedData;
+    }
+
 
     var cmpType
     var topHead
@@ -31,7 +72,7 @@ export function DynamicCmp({ groupId, cmp, board, task, setIsAddBoard, position,
         case LABELS:
             top += buttonHeight * 2
             topHead = 'Labels'
-            cmpType = <LabelPicker onUpdateBoard={onUpdateBoard} task={task} labels={board.labels} saveTask={saveTask} groupId={groupId} />
+            cmpType = <LabelPicker SaveLabel={SaveLabel} deleteLabel={deleteLabel} onUpdateBoard={onUpdateBoard} task={task} labels={board.labels} saveTask={saveTask} groupId={groupId} />
             break
 
         case MEMBERS:

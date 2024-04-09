@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react"
-import { arrow_down, edit_icon, x_icon } from "../../UtilCmps/SVGs"
+import { arrow_down, edit_icon, new_board_demo, x_icon } from "../../UtilCmps/SVGs"
 import { boardService } from "../../../services/board/board.service.local"
 import { LABELS } from "./DynamicCmp"
+import { useSelector } from "react-redux"
 
 const pallet = ['green', 'yellow', 'orange', 'red', 'purple',
     'green-subtle', 'yellow-subtle', 'orange-subtle', 'red-subtle', 'purple-subtle',
@@ -12,17 +13,17 @@ const pallet = ['green', 'yellow', 'orange', 'red', 'purple',
 
 // todo connect btn's and add the on update 
 
-export function LabelPicker({ onUpdateBoard, labels, task, saveTask, groupId }) {
-    // console.log(taskLabels);
+export function LabelPicker({ SaveLabel, deleteLabel, onUpdateBoard, labels, task, saveTask, groupId }) {
     const [toggle, setToggle] = useState(false)
     const [currentColor, setCurrentColor] = useState('green-subtle')
     const [labelContent, setLabelContent] = useState('')
+    const [labelId, setLabelId] = useState('')
     const [labelsFromTask, setLabelsFromTask] = useState(task.labelIds)
     const [dark, setDark] = useState(new Array(pallet.length).fill(false))
 
     useEffect(() => {
-        // onUpdate(LABELS, labelsFromTask)
         saveTask({ ...task, labelIds: labelsFromTask }, groupId)
+        console.log('im not good');
     }, [labelsFromTask])
 
     function toggleBtn(label) {
@@ -30,6 +31,7 @@ export function LabelPicker({ onUpdateBoard, labels, task, saveTask, groupId }) 
         setLabelContent('')
         if (label) {
             setLabelContent(label.title)
+            setLabelId(label.id)
             setCurrentColor(label.color)
         }
         let result = [...dark].fill(false)
@@ -63,9 +65,16 @@ export function LabelPicker({ onUpdateBoard, labels, task, saveTask, groupId }) 
         newLabel.title = labelContent
         newLabel.color = currentColor
         onUpdateBoard(newLabel)
+        toggleBtn()
 
-        const _labels = task.labelIds.push(newLabel.id)
-        onUpdate(LABELS, _labels)
+        setLabelsFromTask(prevLabels => [...prevLabels, newLabel.id])
+    }
+
+
+    function onDeleteLabel(labelId) {
+        const newLabels = labelsFromTask.filter(label => label.id !== labelId)
+        deleteLabel(labelId, newLabels)
+        toggleBtn()
     }
 
     function onCheckLabel({ target }) {
@@ -75,6 +84,16 @@ export function LabelPicker({ onUpdateBoard, labels, task, saveTask, groupId }) 
             const _labels = labelsFromTask.filter(id => target.id !== id)
             setLabelsFromTask(_labels)
         }
+    }
+
+    function onSaveLabel(labelId) {
+        const editLabel = {
+            id: labelId,
+            title: labelContent,
+            color: currentColor
+        }
+        SaveLabel(editLabel)
+        toggleBtn()
     }
 
     {
@@ -134,10 +153,23 @@ export function LabelPicker({ onUpdateBoard, labels, task, saveTask, groupId }) 
                     })}
                 </div>
 
-
-                <button onClick={() => removeColor()} className="tasks-btn labels-btn ">{x_icon}Remove color</button>
-                <hr className="between-btn" />
-                <button onClick={() => onCreate()} className='create-btn'>create</button>
+                {(!labelId) &&
+                    <>
+                        <button onClick={() => removeColor()} className="tasks-btn labels-btn ">{x_icon}Remove color</button>
+                        <hr className="between-btn" />
+                        <button onClick={() => onCreate()} className='create-btn'>create</button>
+                    </>
+                }
+                {(labelId) &&
+                    <>
+                        <button onClick={() => removeColor()} className="tasks-btn labels-btn ">{x_icon}Remove color</button>
+                        <hr className="between-btn" />
+                        <div className="save-label-container flex justify-space-between">
+                            <button onClick={() => onSaveLabel(labelId)} className='create-btn save-btn'>Save</button>
+                            <button onClick={() => onDeleteLabel(labelId)} className='create-btn delete-btn'>Delete</button>
+                        </div>
+                    </>
+                }
             </section>
         </>
 

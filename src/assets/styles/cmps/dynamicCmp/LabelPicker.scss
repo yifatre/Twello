@@ -49,10 +49,10 @@
         background-color: var(--accent-background);
         color: var(--accent-text);
 
-        &:hover{
+        &:hover {
             background-color: var(--accent-background-hovered);
         }
-        
+
     }
 
     & .edit-label {
@@ -96,9 +96,9 @@
         grid-template-columns: repeat(5, 1fr);
         gap: 4px;
         margin-bottom: 8px;
-       
 
-       
+
+
         & .color-container {
             position: relative;
             border-radius: 3px;
@@ -113,6 +113,7 @@
                 height: 100%;
                 cursor: pointer;
                 background-color: var(--accent-background);
+
                 &:hover {
                     background-color: var(--accent-background-hovered);
                 }
@@ -124,18 +125,28 @@
         }
     }
 
-    & .outsideLine{
+    & .outsideLine {
         border: 2px solid #0c66e4 !important;
 
-         & .outsideLine-white{
-            border: 2px  #ffffff solid !important;
+        & .outsideLine-white {
+            border: 2px #ffffff solid !important;
             border-radius: none !important;
-         }
+        }
     }
-    
+
 
     & span {
         margin-right: 8px;
+    }
+
+    & .save-label-container {
+        & .save-btn{
+            margin: 0;
+        }
+
+        & .delete-btn{
+            background-color: var(--ds-background-danger-bold);
+        }
     }
 
 }
@@ -168,4 +179,3 @@
 
 
 }
-
