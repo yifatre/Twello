@@ -71,19 +71,22 @@ function getEmptyBoard() {
                 id: utilService.makeId('g'),
                 title: 'To do',
                 isExtended: true,
-                style: { themeColor: 'neutral' }
+                style: { themeColor: 'neutral' },
+                tasks: []
             },
             {
                 id: utilService.makeId('g'),
                 title: 'Doing',
                 isExtended: true,
-                style: { themeColor: 'gray' }
+                style: { themeColor: 'gray' },
+                tasks: []
             },
             {
                 id: utilService.makeId('g'),
                 title: 'Done',
                 isExtended: true,
-                style: { themeColor: 'gray' }
+                style: { themeColor: 'gray' },
+                tasks: []
             }
         ],
         activities: [],
