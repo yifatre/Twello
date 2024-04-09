@@ -5,10 +5,19 @@
         border: none;
         outline: none;
         padding: rem(8px) rem(12px) rem(24px);
+        line-height: 20px;
         border-radius: 0.5rem;
+        background-color: var(--ds-surface-raised, #ffffff);
+        box-shadow: var(--ds-shadow-raised, 0px 1px 1px #091e4240, 0px 0px 1px #091e424f);
+        border-radius: 8px;
 
         &:hover {
             outline: none;
+        }
+
+        &::placeholder {
+            color: var(--ds-text, #172b4d);
+            font-size: rem(14px);
         }
     }
 
@@ -89,7 +98,6 @@
 
             textarea {
                 width: 100%;
-                // min-height: rem(32px);
                 overflow: hidden;
                 overflow-wrap: break-word;
                 padding: rem(6px) rem(12px);
@@ -101,10 +109,6 @@
                 line-height: rem(20px);
                 box-shadow: inset 0 0 0 2px var(--ds-border-input, #091e4224);
 
-                &::placeholder {
-                    color: var(--ds-text, #172b4d);
-                }
-
                 &:focus {
                     box-shadow: inset 0 0 0 2px var(--ds-border-focused, #388bff);
                 }
@@ -112,6 +116,12 @@
 
             & .btn-actions-container {
                 margin-block-start: rem(4px);
+
+                button {
+                    &:hover {
+                        background-color: var(--ds-background-neutral-hovered, #091e4224);
+                    }
+                }
 
                 & #add-btn {
                     width: rem(73.64px);
