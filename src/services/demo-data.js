@@ -239,7 +239,7 @@ export const boardsDemoData = [
                         ],
                         "memberIds": ["u101"],
                         "labelIds": ["l101", "l102"],
-                        "dueDate": 16156215211,
+                        "dueDate": 1712703775417,
                         "style": {}
                     }
                 ],
