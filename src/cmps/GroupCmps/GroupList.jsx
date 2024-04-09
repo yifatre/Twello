@@ -3,9 +3,12 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 import { updateBoard } from "../../store/board/board.actions"
 import { utilService } from "../../services/util.service"
 import { useState } from "react"
+import { plus_icon } from "../UtilCmps/SVGs"
+import { TaskAdd } from "../TaskCmps/TaskAdd"
 
 export function GroupList({ board, saveGroup, removeGroup, saveTask, removeTask }) {
     const [isLabelsExtended, setIsLabelExtended] = useState(true)
+    const [isAddGroup, setIsAddGroup] = useState(false)
     const { groups } = board
 
     function onDragEnd(result) {
@@ -46,7 +49,7 @@ export function GroupList({ board, saveGroup, removeGroup, saveTask, removeTask 
                             <Draggable key={group.id} draggableId={group.id} index={idx}>
                                 {(provided, snapshot) =>
                                     <li key={group.id}
-                                    className="group-preview-container"
+                                        className="group-preview-container"
                                         ref={provided.innerRef}
                                         {...provided.draggableProps}
                                         {...provided.dragHandleProps}>
@@ -64,7 +67,12 @@ export function GroupList({ board, saveGroup, removeGroup, saveTask, removeTask 
                             </Draggable>
                         )}
                         {provided.placeholder}
-
+                        <li className="group-preview-container add-group-btn group-preview neutral">
+                            <div className="group-header flex">
+                                {!isAddGroup && <button className="add-group-btn group-preview" onClick={() => setIsAddGroup(true)}>{plus_icon}Add another list</button>}
+                                {isAddGroup && <div className="add-group-btn group-preview"><TaskAdd setIsAddMode={setIsAddGroup} saveTask={saveGroup} type={'GROUP'} /></div>}
+                            </div>
+                        </li>
                     </ul>)}
             </Droppable>
         </DragDropContext>

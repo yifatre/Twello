@@ -156,4 +156,29 @@
             }
         }
     }
+
+    button.group-preview.add-group-btn {
+        margin: 0;
+
+    }
+
+    .group-preview.add-group-btn {
+        // display: flex;
+        flex-direction: row;
+        padding: rem(12px);
+        align-items: center;
+        gap: rem(8px);
+        font-weight: 500;
+        font-size: rem(14px);
+        line-height: rem(20px);
+        background-color: #ffffff3d;
+        color: white;
+        .svg-container{
+            color: inherit;
+        }
+
+        &.add-group{
+            flex-grow: 1;
+        }
+    }
 }
