@@ -2,16 +2,12 @@
    overflow-y: auto;
    scrollbar-color: var(--ds-background-neutral-hovered);
    scrollbar-width: thin;
-   padding-inline: 2px 2px;
+   padding-inline: rem(8px);
    .task-list {
       display: flex;
       flex-direction: column;
-      // row-gap: rem(4px);
       min-height: 1px;
       margin-block: 0.50rem 0.25rem;
-
-      // li {
-      //    margin-block-end: 4px;
-      // }
+      // width: rem(264px);
    }
 }
