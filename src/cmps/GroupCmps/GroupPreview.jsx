@@ -22,7 +22,7 @@ export function GroupPreview({ group, saveGroup, board, isLabelsExtended, setIsL
     }
 
     return (<>
-        {!isExtended && <li className={`group-preview-shrunken ${group.style.themeColor || 'gray'}`} onClick={() => setIsExtended(true)}>
+        {!isExtended && <li className={`group-preview-shrunken ${group.style.themeColor || 'neutral'}`} onClick={() => setIsExtended(true)}>
             <button className="collapse">{extend_icon}</button>
             <h2 className='group-title'>{group.title}</h2>
             <h4 className='tasks-number'>{group.tasks.length}</h4>

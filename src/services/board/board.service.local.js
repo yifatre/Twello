@@ -71,7 +71,7 @@ function getEmptyBoard() {
                 id: utilService.makeId('g'),
                 title: 'To do',
                 isExtended: true,
-                style: { themeColor: 'gray' }
+                style: { themeColor: 'neutral' }
             },
             {
                 id: utilService.makeId('g'),

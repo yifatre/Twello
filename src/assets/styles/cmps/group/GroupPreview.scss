@@ -1,11 +1,14 @@
 .group-preview-container {
     max-height: 100%;
-    overflow: hidden;
+    // overflow: hidden;
+    margin-inline-end: rem(12px);
+    width: rem(272px);
 
     .group-preview {
         width: rem(272px);
-        padding: rem(8px);
-        box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px 0px, rgba(9, 30, 66, 0.31) 0px 0px 1px 0px;
+        padding-block: rem(8px);
+        // box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px 0px, rgba(9, 30, 66, 0.31) 0px 0px 1px 0px;
+        box-shadow: var(--ds-shadow-raised, 0px 1px 1px #091e4240, 0px 0px 1px #091e424f);
         border-radius: $group-border-radius;
         background-color: var(--accent-background);
         color: var(--accent-text);
@@ -38,7 +41,7 @@
             display: grid;
             grid-template-columns: rem(220px) rem(32px);
             gap: 4px;
-
+            padding-inline: rem(8px);
 
             .add-task {
                 display: flex;
@@ -83,7 +86,7 @@
             padding: rem(5.5px) rem(8px) rem(6.5px) rem(12px)
         }
 
-        .svg-container {
+        & .svg-container {
             @include svg-container;
             color: var(--accent-icon);
         }
