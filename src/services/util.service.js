@@ -59,7 +59,10 @@ function debounce(func, timeout = 300) {
 
 function getFormattedTime(date) {
     const hours = date.getHours()
-    return `${date.toString().slice(4, 7)} ${date.getDate()} at ${hours > 12 ? hours - 12 : hours}:${(date.getMinutes() + '').padStart(2, '0')} ${hours > 12 ? 'PM' : 'AM'}`
+    const minutes = date.getMinutes()
+    if (hours !== 0 && minutes !== 0)
+        return `${date.toString().slice(4, 7)} ${date.getDate()} at ${hours > 12 ? hours - 12 : hours}:${(date.getMinutes() + '').padStart(2, '0')} ${hours > 12 ? 'PM' : 'AM'}`
+    return `${date.toString().slice(4, 7)} ${date.getDate()}`
 
 }
 

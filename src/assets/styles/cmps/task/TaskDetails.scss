@@ -9,20 +9,23 @@
 
 .task-details {
     border-radius: rem(12px);
-    margin: rem(48px) auto;
+    margin: rem(48px) 0;
     // position: absolute;
+    // padding-inline: rem(16px);
     background-color: #F1F2F4;
     width: rem(768px);
+    min-height: rem(600px);
     display: grid;
     grid-template-areas:
-        "cover cover"
-        "title title"
-        "data actions"
-        "desc actions"
-        "attach actions"
-        "checklist actions"
+        "cover       cover cover"
+        "title-icon  title title"
+        ".           data actions"
+        "desc-icon   desc actions"
+        "attach-icon attach actions"
+        "check-icon  checklist actions"
     ;
-    grid-template-columns: 1fr max-content;
+    grid-template-columns: rem(56px) 1fr max-content;
+    grid-template-rows: repeat(6, max-content);
     position: fixed;
     left: calc(50% - 0.5 * rem(768px));
     color: #172b4d;
@@ -82,9 +85,29 @@
     }
 
     .icon-span {
-        position: absolute;
+        align-self: start;
+        justify-self: center;
+        margin-top: rem(4px);
+        margin-inline-start: rem(8px);
 
+        span {
+            @include svg-container(24px, 24px);
+        }
 
+        padding: rem(8px);
+    }
+
+    .title-icon {
+        grid-area: title-icon;
+        margin-top: rem(16px);
+
+        span {
+            @include svg-container(17px, 18px);
+        }
+    }
+
+    .desc-icon {
+        grid-area: desc-icon;
     }
 
     .title {
@@ -93,20 +116,7 @@
         min-height: rem(32px);
         height: rem(89px);
         position: relative;
-        padding: 8px 52px 8px 56px;
-
-        .icon-span {
-            // position: absolute;
-            left: rem(15px);
-            top: rem(15px);
-
-            span {
-                @include svg-container(17px, 18px);
-            }
-
-            padding: rem(8px);
-
-        }
+        padding-block: rem(8px);
 
 
         div.title-txt {
@@ -174,11 +184,13 @@
 
     .data {
         grid-area: data;
-        padding: 8px 52px 8px 57px;
+        // padding-inline: rem(8px);
+        align-self: end;
         display: flex;
         flex-wrap: wrap;
         gap: rem(16px);
         margin-bottom: 3px;
+        padding-block: rem(8px);
 
         h3 {
             margin-bottom: rem(4px);
@@ -196,7 +208,7 @@
             div {
                 display: inline-flex;
                 margin-left: rem(-0.5px);
-                gap: rem(4px);               
+                gap: rem(4px);
 
                 .avatar {
                     border-radius: 50%;
@@ -210,10 +222,10 @@
                     background-color: #091e420f;
                     @include avatar(32px);
                 }
-                
+
                 button {
                     padding: rem(6px) rem(8px);
-                    
+
                     span {
                         color: #172b4d;
                         margin-top: rem(4px);
@@ -319,14 +331,11 @@
     }
 
     .description {
-        // background-color: coral;
-        position: relative;
         grid-area: desc;
+        padding-block: rem(14px);
 
         .icon-span {
-            left: rem(12px);
-            top: rem(4px);
-
+            
             span {
                 @include svg-container(24px, 24px);
             }
@@ -335,16 +344,25 @@
 
         }
 
-        &>*:not(.icon-span) {
-
-            margin-inline-start: rem(56px);
-        }
-
         &>h3 {
             font-size: rem(16px);
             line-height: rem(20px);
             font-weight: 600;
-            margin-top: rem(14px);
+            // margin-top: rem(14px);
+        }
+
+        & .task-description .desc-content {
+            margin-block-start: rem(18px);
+            min-height: rem(56px);
+            border-radius: rem(3px);
+            font-weight: 500;
+            padding-inline: 0;
+
+            &.empty {
+                padding: rem(8px) rem(12px);
+
+                background-color: var(--ds-background-neutral, #091e420f);
+            }
         }
     }
 
@@ -352,8 +370,7 @@
         border-end-end-radius: rem(12px);
         width: rem(192px);
         grid-area: actions;
-        // background-color: palevioletred;
-        padding: 0 rem(16px) rem(8px) rem(9px);
+        padding-inline: rem(8px) rem(16px);
         position: relative;
 
         h3 {
@@ -372,6 +389,10 @@
 
             span {
                 @include svg-container
+            }
+
+            &:hover {
+                background-color: #091E4224;
             }
         }
     }

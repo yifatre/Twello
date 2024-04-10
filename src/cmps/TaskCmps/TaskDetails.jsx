@@ -65,8 +65,8 @@ export function TaskDetails() {
                 {(task.style?.backgroundColor || task.style?.backgroundImage) && <section className="cover">
                     <a href="#">{cover_icon}Cover</a>
                 </section>}
+                <span className="icon-span title-icon">{window_icon}</span>
                 <section className="title">
-                    <span className="icon-span">{window_icon}</span>
                     <div className="title-txt">
                         <h2 hidden>{task.title}</h2>
                         <textarea name="title" id="title" value={titleToEdit} onChange={handleChange}></textarea>
@@ -97,16 +97,16 @@ export function TaskDetails() {
                             <span className="box">
                                 {check_icon}
                             </span>
-                            <button>{utilService.getFormattedTime(new Date('April 25, 2024 20:20:00'))}{arrow_down}</button>
+                            <button>{utilService.getFormattedTime(new Date(task.date?.dueDate))}{arrow_down}</button>
                         </div>
                     </div>
                     {/* <section className="notifications"></section> */}
                 </section>
+                <span className="icon-span desc-icon">{bars_icon}</span>
                 <section className="description">
-                    <span className="icon-span">{bars_icon}</span>
                     <h3>Description</h3>
                     <div className="task-description">
-                        {!isDescriptionEdit && <a href="#" className="" onClick={onEditDescription}><div dangerouslySetInnerHTML={{ __html: (task.description || 'Add a more detailed description...') }}></div></a>}
+                        {!isDescriptionEdit && <div className={`desc-content ${task.description ? '' : 'empty'}`} onClick={onEditDescription} dangerouslySetInnerHTML={{ __html: (task.description || 'Add a more detailed description...') }}></div>}
                         {isDescriptionEdit && <div className="desc-editor"><DescriptionEdit groupId={groupId} task={task} saveTask={saveTask} setIsDescriptionEdit={setIsDescriptionEdit} /></div>}
                     </div>
                 </section>
