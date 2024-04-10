@@ -7,8 +7,6 @@ export function MemberPicker({setActionType, members, task, saveTask, groupId })
     const [memberIdsToUpdate, setMemberIdsToUpdate] = useState(task.memberIds)
 
     useEffect(() => {
-        // onUpdate(MEMBERS, memberIdsToUpdate)
-        console.log('11111', 11111)
         saveTask({ ...task, memberIds: memberIdsToUpdate }, groupId)
     }, [memberIdsToUpdate])
 
@@ -51,7 +49,6 @@ export function MemberPicker({setActionType, members, task, saveTask, groupId })
                     <p>Board members</p>
                     <ul className="clean-list ul-labels">
                         {members.filter(member => !memberIdsToUpdate.includes(member._id)).map(member => {
-                            // todo refactor when get the actual data fullname 
                             return <li key={member._id} className="flex align-center member-li" onClick={() => onAddMember(member._id)}>
                                 <img className="avatar" src={member.imgUrl} alt="" />
                                 <div>{member.fullName}</div>
