@@ -120,7 +120,9 @@ function getInitials(name) {
             .match(/(^\S|\S$)?/g)
             .join("").toUpperCase(), color: colors[letterToNumber[name.slice(0, 1).toUpperCase()]]
     }
-} function getDateFormat(dateLongForm) {
+}
+
+function getDateFormat(dateLongForm) {
     const dateString = dateLongForm
     const date = new Date(dateString)
 
@@ -131,5 +133,14 @@ function getInitials(name) {
     const formattedDate = `${month.toString().padStart(2, '0')}/${day.toString().padStart(2, '0')}/${year}`
     console.log(formattedDate)
     return formattedDate
+}
 
+function getDnDStyle(){
+    const getListStyle = (isDraggingOver) => ({
+        background: isDraggingOver ? "lightblue" : "lightgrey",
+        padding: grid,
+        width: 250,
+        color: isDraggingOver ? "black" : "white",
+        cursor: "all-scroll"
+      });
 }

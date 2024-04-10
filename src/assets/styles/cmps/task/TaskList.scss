@@ -4,9 +4,10 @@
    scrollbar-width: thin;
    padding-inline: rem(8px);
 
-   &.scrolling{
+   &.scrolling {
       padding-inline-end: rem(4px);
    }
+
    .task-list {
       display: flex;
       flex-direction: column;
