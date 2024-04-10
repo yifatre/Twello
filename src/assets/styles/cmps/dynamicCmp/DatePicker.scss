@@ -1,10 +1,4 @@
 .date-picker-container {
-
-    & .rdrMonth {
-        width: 25.2em !important;
-    }
-    
-
     & .input-Date-picker {
         width: 90px;
         height: 32px;
@@ -20,4 +14,8 @@
         background-color: var(--ds-background-brand-bold);
         color: var(--ds-text-inverse);
     }
+}
+
+.rdrMonth {
+    width: rem(304px) !important;
 }
