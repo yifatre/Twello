@@ -1,5 +1,6 @@
 import { updateBoard } from "../../../store/board/board.actions"
 import { AttachmentPicker } from "./AttachmentPicker"
+import { CheckList } from "./CheckLlist"
 import { CoverPicker } from "./CoverPicker"
 import { CreateBoard } from "./CreateBoard"
 import { DatePicker } from "./DatePicker"
@@ -14,6 +15,7 @@ export const ATTACHMENT = 'ATTACHMENT'
 export const COVER = 'COVER'
 export const CREATE_BOARD = 'CREATE_BOARD'
 export const GROUP_ACTIONS = 'GROUP_ACTIONS'
+export const CHECKLIST = 'CHECKLIST'
 
 
 export function DynamicCmp({setActionType, groupId, cmp, board, task, setIsAddBoard, position, saveTask, group, saveGroup, setIsActionsOpen }) {
@@ -101,6 +103,10 @@ export function DynamicCmp({setActionType, groupId, cmp, board, task, setIsAddBo
 
         case GROUP_ACTIONS:
             cmpType = <GroupActions setIsActionsOpen={setIsActionsOpen} group={group} saveGroup={saveGroup} />
+            break
+
+        case CHECKLIST:
+            cmpType = <CheckList/>
             break
     }
     return <div className={`dynamic-cmp ${cmp.toLowerCase()}`} style={{ top: position.top, left: position.left, zIndex: 150 }}>
