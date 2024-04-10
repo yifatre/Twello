@@ -8,6 +8,7 @@ export const utilService = {
     loadFromStorage,
     getFormattedTime,
     getModalPosition,
+    getInitials,
     getDateFormat
 }
 
@@ -78,16 +79,54 @@ function getModalPosition(target, offsetx = 0, offsety = 0) {
     return { top: top + offsety, left: left + offsetx }
 }
 
-function getDateFormat(dateLongForm) {
-    const dateString = dateLongForm;
-    const date = new Date(dateString);
+function getInitials(name) {
+    const colors = ["#0052CC", "#00A3BF", "#00875A", "#FF991F", "#DE350C", "#5343AA", "#172B4E"]
+    const letterToNumber = {
+        A: 1,
+        B: 2,
+        C: 3,
+        D: 4,
+        E: 5,
+        F: 6,
+        G: 7,
+        H: 1,
+        I: 2,
+        J: 3,
+        K: 4,
+        L: 5,
+        M: 6,
+        N: 7,
+        O: 1,
+        P: 2,
+        Q: 3,
+        R: 4,
+        S: 5,
+        T: 6,
+        U: 7,
+        V: 1,
+        W: 2,
+        X: 3,
+        Y: 4,
+        Z: 5
+    }
 
-    const year = date.getFullYear();
-    const month = date.getMonth() + 1; 
-    const day = date.getDate();
+    return {
+        initials: name
+            .match(/(\b\S)?/g)
+            .join("")
+            .match(/(^\S|\S$)?/g)
+            .join("").toUpperCase(), color: colors[letterToNumber[name.slice(0, 1).toUpperCase()]]
+    }
+} function getDateFormat(dateLongForm) {
+    const dateString = dateLongForm
+    const date = new Date(dateString)
 
-    const formattedDate = `${month.toString().padStart(2, '0')}/${day.toString().padStart(2, '0')}/${year}`;
-console.log(formattedDate);
-   return formattedDate
+    const year = date.getFullYear()
+    const month = date.getMonth() + 1
+    const day = date.getDate()
+
+    const formattedDate = `${month.toString().padStart(2, '0')}/${day.toString().padStart(2, '0')}/${year}`
+    console.log(formattedDate)
+    return formattedDate
 
 }

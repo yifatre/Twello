@@ -48,7 +48,7 @@
             }
         }
 
-        
+
     }
 
     .btn2 {
@@ -81,21 +81,22 @@
     }
 
     .users-avatars {
-        display: grid;
-        grid-auto-flow: column;
+        display: flex;
+        flex-direction: row-reverse;
         align-items: center;
         margin-inline: rem(2px) rem(8px);
-        
-        .avatar {           
+
+        .avatar {
             @include avatar(28px);
             margin-inline-end: -3px;
         }
+
         button.more {
             height: rem(28px);
             width: rem(28px);
             font-size: rem(12px);
             border-radius: 50%;
-            
+
         }
     }
 }

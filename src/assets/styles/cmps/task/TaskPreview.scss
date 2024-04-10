@@ -7,7 +7,6 @@
 
     .content {
         padding: rem(8px) rem(12px) rem(4px);
-
     }
 
     &>* {
@@ -16,11 +15,17 @@
     }
 
     &:hover {
-        outline: 2px solid -webkit-focus-ring-color, var(--ds-border-focused);
+        outline: 2px solid var(--ds-border-focused);
 
         .edit-icon {
             opacity: 1;
         }
+    }
+
+    & .task-preview-title {
+        font-size: rem(14px);
+        font-weight: 400;
+        margin-block-end: rem(4px);
     }
 
     .edit-icon {
@@ -41,6 +46,10 @@
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
+
+        &>* {
+            margin-block-end: rem(4px);
+        }
 
         & .task-info {
             display: flex;
@@ -74,6 +83,8 @@
             width: max-content;
             justify-content: right;
             flex-grow: 1;
+            margin-right: -4px;
+            margin-bottom: 4px;
 
             .avatar {
                 @include avatar(24px)
@@ -142,6 +153,44 @@
         img {
             border-top-right-radius: rem(8px);
             border-top-left-radius: rem(8px);
+        }
+    }
+
+    & #done {
+        background-color: var(--ds-background-success-bold);
+        color: var(--ds-text-inverse, #ffffff);
+
+        & .svg-container {
+            color: inherit;
+        }
+    }
+
+    & #over {
+        background-color: var(--ds-background-accent-red-subtler, #ffd2cc);
+        color: var(--ds-text-accent-red, #ae2a19);
+
+        & .svg-container {
+            color: inherit;
+        }
+    }
+
+    & #soon {
+        background-color: var(--ds-background-warning-bold, #e2b203);
+        color: var(--ds-text-accent-yellow, #7f5f01);
+
+        & .svg-container {
+            color: inherit;
+        }
+    }
+
+    & .date-preview {
+        border-radius: rem(3px);
+        &:hover {
+            cursor: pointer;
+            filter: saturate(85%) brightness(85%);
+        }
+        & .svg-container {
+            color: inherit;
         }
     }
 }

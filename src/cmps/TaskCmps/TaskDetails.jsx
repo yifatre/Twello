@@ -7,6 +7,7 @@ import { useOutletContext } from "react-router-dom"
 import { useEffect, useState } from "react"
 import { ATTACHMENT, COVER, DATES, DynamicCmp, LABELS, MEMBERS } from "./DynamicCmps/DynamicCmp"
 import { useSelector } from "react-redux"
+import { AvatarPreview } from "../UtilCmps/AvatarPreview"
 
 
 
@@ -71,20 +72,20 @@ export function TaskDetails() {
                     </div>
                 </section>
                 <section className="data">
-                    <div className="members">
+                    {!!task.memberIds.length && <div className="members">
                         <h3>Members</h3>
                         <div className="">
-                            {task.memberIds?.map(memberId => <div key={memberId} className="avatar" > <img className="avatar" src={board.members.find(member => member._id === memberId)?.imgUrl} alt="" /> </div>)}
+                            {task.memberIds?.map(memberId => <div key={memberId} className="avatar" > <AvatarPreview user={board.members.find(_member => _member._id === memberId)} /> </div>)}
                             <button className="avatar neutral-label" onClick={(ev) => onOpenModalFromList(ev, MEMBERS)}>{plus_icon}</button>
                         </div>
-                    </div>
-                    <div className="labels">
+                    </div>}
+                    {!!task.labelIds.length && <div className="labels">
                         <h3>Labels</h3>
                         <div className="">
                             {task.labelIds?.map(labelId => <div key={labelId} className={`label ${board.labels.find(label => label.id === labelId).color}`}>{board.labels.find(label => label.id === labelId).title}</div>)}
                             <button className="label neutral-label" onClick={(ev) => onOpenModalFromList(ev, LABELS)}>{plus_icon}</button>
                         </div>
-                    </div>
+                    </div>}
                     <div className="due-date">
                         <h3>Due date</h3>
                         <div className="">
@@ -93,7 +94,6 @@ export function TaskDetails() {
                             </span>
                             <button>{utilService.getFormattedTime(new Date('April 25, 2024 20:20:00'))}{arrow_down}</button>
                         </div>
-
                     </div>
                     {/* <section className="notifications"></section> */}
                 </section>

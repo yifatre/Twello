@@ -1,27 +1,38 @@
 import { bars_icon, checked_icon, edit_icon, eye_icon, paperclip_icon, time_icon } from "../UtilCmps/SVGs"
 import { useNavigate, useParams } from "react-router-dom"
 import { AvatarList } from "../UtilCmps/AvatarList"
+import { useState } from "react"
 
 export function TaskPreview({ task, groupId, removeTask, board, isLabelsExtended, setIsLabelExtended }) {
     const navigate = useNavigate()
+    const [todosCount, setTodosCount] = useState(getTodoDoneCount())
+    console.log(todosCount);
 
     function getTodoDoneCount() {
         if (!task.checklists) return
-        let doneCount = 0
-        let totalTodos = 0
+        const _todosCount = { done: 0, total: 0 }
 
         task.checklists.forEach((checklist) => {
-            totalTodos += checklist.todos.length
+            _todosCount.total += checklist.todos.length
             checklist.todos.forEach((todo) => {
-                if (todo.isDone) return doneCount++
+                if (todo.isDone) return _todosCount.done++
             })
         })
-        return { doneCount, totalTodos }
+        return _todosCount
     }
 
     function getDateFormat() {
-        const date = new Date(task.dueDate)
+        const date = new Date(task.date.dueDate)
+        if(task.date.dueDate < Date.now()) return date.toString().slice(4, 7) + ' ' + date.getDate() + ', ' + date.getFullYear()
         return date.toString().slice(4, 7) + ' ' + date.getDate()
+    }
+
+    function getDateStatus() {
+        const { dueDate } = task.date
+        // if(task.dueDate.done) return 'done'
+        if (dueDate < Date.now()) return 'over'
+        else if (dueDate < Date.now() + (1000 * 60 * 60 * 24)) return 'soon'
+        return ''
     }
 
     function getLabels() {
@@ -53,17 +64,17 @@ export function TaskPreview({ task, groupId, removeTask, board, isLabelsExtended
                     </div>}
 
                 <i className="edit-icon">{edit_icon}</i>
-                <a>{title}</a>
+                <h4 className="task-preview-title">{title}</h4>
                 <div className="task-info-container">
                     <div className="task-info">
-                        <span className="icon-container">{eye_icon}</span>
-                        {!!task.dueDate && <div className="txt-and-icon icon-container">{time_icon}{getDateFormat()}</div>}
+                        {/* <span className="icon-container">{eye_icon}</span> */}
+                        {!!task.date?.dueDate && <div className="txt-and-icon icon-container date-preview" id={getDateStatus()}>{time_icon}{getDateFormat()}</div>}
                         {!!task.description && <span className="icon-container">{bars_icon}</span>}
-                        <div className="txt-and-icon icon-container">{paperclip_icon}2</div>
+                        {!!task.attachments && <div className="txt-and-icon icon-container">{paperclip_icon}{task.attachments.length}</div>}
                         {!!task.checklists?.length
-                            && <div className="txt-and-icon icon-container">{checked_icon}{`${getTodoDoneCount().doneCount}/${getTodoDoneCount().totalTodos}`}</div>}
+                            && <div className={`txt-and-icon icon-container`} id={todosCount.done === todosCount.total ? 'done' : ''}>{checked_icon}{`${todosCount.done}/${todosCount.total}`}</div>}
                     </div>
-                    {!! task.memberIds?.length && <div className="task-preview-avatars"><AvatarList users={getMembers()} /></div>}
+                    {!!task.memberIds?.length && <div className="task-preview-avatars"><AvatarList users={getMembers()} /></div>}
 
                 </div>
             </div>
