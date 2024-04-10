@@ -8,7 +8,7 @@ import { utilService } from "../../../services/util.service";
 export function DatePicker({ groupId, setActionType, task, saveTask }) {
 
     const [inputDateState, setInputDateState] = useState(task.date?.startDate ? true : false)
-    const [inputDateTimeState, setInputDateTimeState] = useState(task.date?.dueDate ? true : false)
+    const [inputDateTimeState, setInputDateTimeState] = useState(task.date?.dueDate ? true : false || task.date?.startDate ? false : true)
 
     const [date, setDate] = useState(task.date?.startDate ? new Date(task.date.startDate) : new Date())
     const [dateTime, setDateTime] = useState(task.date?.dueDate ? new Date(task.date.dueDate) : new Date())
