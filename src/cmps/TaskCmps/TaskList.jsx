@@ -5,6 +5,7 @@ import { DynEntityAdd } from './DynEntityAdd'
 export function TaskList({ group, saveTask, removeTask, board, isLabelsExtended, setIsLabelExtended, isAddMode, setIsAddMode }) {
 
     return (
+        <>
         <Droppable droppableId={group.id} type="task">
             {(provided) =>
                 <ul className="task-list clean-list" {...provided.droppableProps} ref={provided.innerRef}>
@@ -35,6 +36,6 @@ export function TaskList({ group, saveTask, removeTask, board, isLabelsExtended,
                     {isAddMode && <DynEntityAdd setIsAddMode={setIsAddMode} saveEntity={saveTask} groupId={group.id} />}
                 </ul>
             }
-        </Droppable >
+        </Droppable ></>
     )
 }

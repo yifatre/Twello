@@ -8,6 +8,7 @@ import { useEffect, useState } from "react"
 import { ATTACHMENT, CHECKLIST, COVER, DATES, DynamicCmp, LABELS, MEMBERS } from "./DynamicCmps/DynamicCmp"
 import { useSelector } from "react-redux"
 import { AvatarPreview } from "../UtilCmps/AvatarPreview"
+import { ChecklistIndex } from "./CheckList.jsx/ChecklistIndex"
 
 
 
@@ -109,6 +110,10 @@ export function TaskDetails() {
                         {!isDescriptionEdit && <a href="#" className="" onClick={onEditDescription}><div dangerouslySetInnerHTML={{ __html: (task.description || 'Add a more detailed description...') }}></div></a>}
                         {isDescriptionEdit && <div className="desc-editor"><DescriptionEdit groupId={groupId} task={task} saveTask={saveTask} setIsDescriptionEdit={setIsDescriptionEdit} /></div>}
                     </div>
+                </section>
+
+                <section className="checklists">
+                <ChecklistIndex task={task} saveTask={saveTask} groupId={groupId}/>
                 </section>
 
                 <section className="actions">

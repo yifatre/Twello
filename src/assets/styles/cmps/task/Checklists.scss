@@ -1,0 +1,177 @@
+.checklists {
+    padding-inline-start: rem(16px);
+    margin-block-end: rem(24px);
+    grid-area: checklist;
+
+    & button {
+        width: rem(67px);
+        height: rem(32px);
+        background-color: var(--ds-background-neutral, #091e420f);
+        border: none;
+        border-radius: 3px;
+        color: var(--ds-text, #172b4d);
+        font-weight: 500;
+        cursor: pointer;
+        transition-duration: 85ms;
+        transition-property: background-color;
+        background-color: var(--ds-background-neutral-hovered, #091e4224);
+
+
+    }
+
+    & .checklist {
+        position: relative;
+        margin-block-end: rem(24px);
+
+        & .checklist-header {
+            margin-block-end: rem(4px);
+            padding: 8px 0;
+            display: grid;
+            grid-template-columns: rem(32px) 1fr max-content;
+            gap: rem(8px);
+            align-items: center;
+
+            &>h3 {
+                font-size: rem(16px);
+                line-height: rem(20px);
+                font-weight: 600;
+            }
+
+            & .svg-container {
+                @include svg-container(24px, 24px);
+                place-self: center;
+            }
+
+        }
+
+        .title-edit-container {
+            display: grid;
+            grid-template-columns: rem(32px)  rem(8px) max-content max-content 1fr;
+            grid-template-areas:
+                "svg . ta ta ta"
+                ". . btn btn2 ."
+            ;
+            margin-block: rem(4px) rem(24px);
+
+            & .title-edit {
+                font-weight: 600;
+                outline: none;
+                border-radius: rem(3px);
+                border: none;
+                font-size: rem(16px);
+                height: rem(32px);
+                resize: none;
+                border: none;
+                outline: none;
+                margin-block: rem(0.5px) rem(6px);
+                font-weight: 600;
+                line-height: 20px;
+                width: 100%;
+                grid-area: ta;
+                
+
+                &:focus {
+                    outline: 2px solid var(--ds-border-focused);
+                }
+
+                padding: rem(5.5px) rem(8px) rem(6.5px) rem(12px)
+            }
+
+            & .svg-container {
+                @include svg-container(24px, 24px);
+                place-self: center;
+                grid-area: svg;
+                margin-block: rem(0.5px) rem(4px);
+            }
+
+            & .title-save-btn {
+                background-color: var(--ds-background-brand-bold, #0c66e4);
+                color: white;
+                width: rem(55px);
+                margin-inline-end: rem(4px);
+                grid-area: btn;
+
+                &:hover {
+                    background-color: var(--ds-background-brand-bold-hovered, #05c);
+                }
+            }
+
+            & .title-close-btn {
+                @include reg-btn($padding: 4px);
+                background-color: transparent;
+                grid-area: btn2;
+                display: block;
+
+                & .svg-container {
+                    @include svg-container(24px, 24px);
+                    place-self: center;
+                    grid-area: svg;
+                    margin: 0;
+                    color: var(--ds-icon, #44546f);
+                }
+
+            }
+        }
+
+        & .progressbar {
+            height: rem(8px);
+            // width: 50px;
+            margin-block-end: rem(6px);
+            background-color: var(--ds-background-neutral, #091e420f);
+        }
+
+        & .todo-list {
+            margin: 0;
+
+            & .todo-preview {
+                display: grid;
+                grid-template-columns: rem(32px) 1fr;
+                height: rem(36px);
+                font-size: rem(14px);
+
+
+                & .todo-title {
+                    display: grid;
+                    align-items: center;
+                    border-radius: rem(8px);
+                    overflow-wrap: break-word;
+                    padding: 6px 8px;
+
+                    &:hover {
+                        background-color: var(--ds-background-neutral, #091e420f);
+                    }
+                }
+
+                & input {
+                    cursor: pointer;
+                    width: rem(16px);
+                    height: rem(16px);
+                    margin: 0 0 rem(4px) 0;
+                    place-self: center;
+                }
+
+                & .box {
+                    display: inline-block;
+                    background-color: #fff;
+                    border-radius: 2px;
+                    box-shadow: inset 0 0 0 2px #091e4224;
+                    flex-shrink: 0;
+                    margin-block-end: rem(4px);
+                    overflow: hidden;
+                    position: relative;
+                    transition: all .2s ease-in-out;
+                    white-space: nowrap;
+                    width: rem(16px);
+                    height: rem(16px);
+                    place-self: center;
+                }
+
+            }
+        }
+
+        & .add-todo {
+            width: rem(102.5px);
+            margin: rem(8px) 0 rem(8px) rem(40px);
+        }
+    }
+}
