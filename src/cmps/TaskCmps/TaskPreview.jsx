@@ -6,7 +6,6 @@ import { useState } from "react"
 export function TaskPreview({ task, groupId, removeTask, board, isLabelsExtended, setIsLabelExtended }) {
     const navigate = useNavigate()
     const [todosCount, setTodosCount] = useState(getTodoDoneCount())
-    console.log(todosCount);
 
     function getTodoDoneCount() {
         if (!task.checklists) return
