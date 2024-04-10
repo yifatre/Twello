@@ -1,20 +1,52 @@
-import { checked_icon } from "../../UtilCmps/SVGs"
+import { checked_icon, x_icon } from "../../UtilCmps/SVGs"
 import { Droppable, Draggable } from 'react-beautiful-dnd'
-import { TodoPreview } from "./TodoPreview";
+import { TodoPreview } from "./TodoPreview"
+import { useState } from "react"
+import { ClickAwayListener } from '@mui/base/ClickAwayListener'
+import { TextareaAutosize as MinTextArea } from '@mui/base/TextareaAutosize'
 
-// import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgress'
 
-export function ChecklistList({ checklist, onRemoveList }) {
+import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgress'
 
+export function ChecklistList({ checklist, onRemoveList, onUpdateList }) {
+    const [isEditTitle, setIsEditTitle] = useState(false)
+    const [isAddTodo, setIsAddTodo] = useState(false)
+    const [titleToEdit, setTitleToEdit] = useState(checklist.title)
 
+    function handleClickAway() {
+        onUpdateTitle()
+    }
+
+    function onUpdateTitle() {
+        setIsEditTitle(false)
+        checklist.title = titleToEdit
+        onUpdateList(checklist)
+    }
+
+    function handleTitleChange({ target }) {
+        setTitleToEdit(target.value)
+    }
 
     return (
         <section className="checklist">
-            <div className="checklist-header">
+
+            {!isEditTitle && <div className="checklist-header">
                 {checked_icon}
-                <h3>{checklist.title}</h3>
+                <h3 onClick={() => setIsEditTitle(true)}>{checklist.title}</h3>
                 <button className="delete-tasklist" onClick={() => onRemoveList(checklist)}>Delete</button>
-            </div>
+            </div>}
+
+
+            {isEditTitle &&
+                <div className="title-edit-container">
+                    {checked_icon}
+                    <ClickAwayListener onClickAway={handleClickAway}>
+                        <MinTextArea className="title-edit" value={titleToEdit} autoFocus={true} onFocus={(ev) => ev.target.select()} onChange={handleTitleChange} onKeyDown={(ev) => { if (ev.code === 'Enter') handleClickAway() }} ></MinTextArea>
+                    </ClickAwayListener>
+                    <button className="title-save-btn" onClick={onUpdateTitle}>Save</button>
+                    <button className="title-close-btn" onClick={() => setIsEditTitle(false)}>{x_icon}</button></div>
+            }
+
             <div className="progressbar">
                 {/* <LinearProgress value={20}/> */}
             </div>
@@ -43,6 +75,7 @@ export function ChecklistList({ checklist, onRemoveList }) {
                 }
             </Droppable >
             <button className="add-todo">Add an item</button>
-        </section>
+            {/* {isAddTodo && <TodoAdd} */}
+        </section >
     )
 }
