@@ -6,18 +6,21 @@ import { utilService } from "../../../services/util.service";
 
 
 export function DatePicker({ groupId, setActionType, task, saveTask }) {
-    const [inputDateState, setInputDateState] = useState(false)
-    const [inputDateTimeState, setInputDateTimeState] = useState(true)
 
-    const [date, setDate] = useState(new Date())
-    const [dateTime, setDateTime] = useState(new Date())
+    const [inputDateState, setInputDateState] = useState(task.date?.startDate ? true : false)
+    const [inputDateTimeState, setInputDateTimeState] = useState(task.date?.dueDate ? true : false || task.date?.startDate ? false : true)
+
+    const [date, setDate] = useState(task.date?.startDate ? new Date(task.date.startDate) : new Date())
+    const [dateTime, setDateTime] = useState(task.date?.dueDate ? new Date(task.date.dueDate) : new Date())
     const [time, setTime] = useState(task.date ? task.date.time : '5:46 PM')
+
     const [taskDate, setTaskDate] = useState(task.date ? task.date : '')
     const [dateValues, setDateValues] = useState('')
 
     useEffect(() => {
         loadTaskDate()
     }, [])
+
     const [state, setState] = useState([
         {
             startDate: new Date(),
@@ -30,15 +33,14 @@ export function DatePicker({ groupId, setActionType, task, saveTask }) {
 
         const date = {}
         if (taskDate.dueDate) {
-            setDateTime(taskDate.dueDate)
             date.dueDate = utilService.getDateFormat(taskDate.dueDate)
         }
         if (taskDate.startDate) {
-            setDate(taskDate.startDate)
             date.startDate = utilService.getDateFormat(taskDate.startDate)
         }
         if (taskDate.startDate && taskDate.dueDate) {
-            setState(...prevState, startDate = taskDate.startDate, endDate = taskDate.dueDate)
+            setState(prevState => [{ ...prevState[0], startDate: taskDate.startDate, endDate: taskDate.dueDate }])
+            setInputDateState(true)
         }
         setDateValues(date)
     }
@@ -56,20 +58,17 @@ export function DatePicker({ groupId, setActionType, task, saveTask }) {
 
     function handleSelect(item) {
         if (!inputDateTimeState & !inputDateState) {
-            // setDateTime(item)
             setInputDateTimeState(true)
         } if (!inputDateState & inputDateTimeState) {
-            setDate(item)
+            setDateTime(item)
             setValue(item, 'date-time')
         } if (inputDateState & !inputDateTimeState) {
-            setDateTime(item)
+            setDate(item)
             console.log('setDateTime:', dateTime);
             setValue(item, 'date')
-            // console.log('setDateTime:', item);
         } if (inputDateTimeState & inputDateState) {
             setState([item.selection])
             setValue(item, 'range')
-            // console.log('setRange:', item);
         }
     }
 
@@ -77,18 +76,18 @@ export function DatePicker({ groupId, setActionType, task, saveTask }) {
         let date = {}
         let dateValues = {}
         if (name === 'date') {
-            date.startDate = item
+            date.startDate = item.valueOf()
             dateValues.startDate = utilService.getDateFormat(item)
 
         }
         if (name === 'date-time') {
-            date.dueDate = item
+            date.dueDate = item.valueOf()
             dateValues.dueDate = utilService.getDateFormat(item)
         }
         if (name === 'range') {
-            date.startDate = item.selection.startDate
+            date.startDate = item.selection.startDate.valueOf()
             dateValues.startDate = utilService.getDateFormat(item.selection.startDate)
-            date.dueDate = item.selection.endDate
+            date.dueDate = item.selection.endDate.valueOf()
             dateValues.dueDate = utilService.getDateFormat(item.selection.endDate)
         }
         console.log(date);
@@ -105,10 +104,11 @@ export function DatePicker({ groupId, setActionType, task, saveTask }) {
 
     function onSaveDate() {
         const date = taskDate
+        console.log("date", date)
         time ? taskDate.time = time : ''
-        saveTask(saveTask({ ...task, date: taskDate }, groupId))
+        saveTask({ ...task, date: taskDate }, groupId)
+        setActionType(null)
     }
-
 
     return (<>
         <header className="dynamic-head-container">
@@ -122,11 +122,9 @@ export function DatePicker({ groupId, setActionType, task, saveTask }) {
                 onChange={handleSelect}
                 moveRangeOnFirstSelection={false}
                 showDateDisplay={false}
-                // showPreview={false}
                 ranges={state}
-            // onChange= {handleSelect}
             />}
-        {inputDateTimeState && !inputDateState &&
+        {!inputDateTimeState && inputDateState &&
             <Calendar
                 className="date-piker"
                 showDateDisplay={false}
@@ -134,7 +132,7 @@ export function DatePicker({ groupId, setActionType, task, saveTask }) {
                 onChange={handleSelect}
             />}
         {/* //date & Time */}
-        {!inputDateTimeState &&
+        {((inputDateTimeState && !inputDateState) || (!inputDateState && !inputDateTimeState)) &&
             <Calendar
                 showDateDisplay={false}
                 className="date-piker"
@@ -146,7 +144,7 @@ export function DatePicker({ groupId, setActionType, task, saveTask }) {
             <ul className="clean-list ul-labels">
                 <p>Start date</p>
                 <li className="flex align-center">
-                    <input onChange={handleCheckBox} id="date" className="checkbox" type="checkBox" />
+                    <input onChange={handleCheckBox} checked={inputDateState} id="date" className="checkbox" type="checkBox" />
                     <input onChange={handleTimeChange} value={dateValues.startDate ? dateValues.startDate : ''} disabled={inputDateState ? "" : "disabled"} placeholder="M/D/YYYY" className="input-Date-picker" type="text" />
                 </li>
                 <p>Due date</p>

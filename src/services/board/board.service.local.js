@@ -2,7 +2,7 @@
 import { storageService } from '../async-storage.service.js'
 import { utilService } from '../util.service.js'
 import { userService } from '../user.service.js'
-import { boardsDemoData } from '../demo-data.js'
+import { boardsDemoData, boardsDemoData2 } from '../demo-data.js'
 
 const STORAGE_KEY = 'boardDB'
 _createBoards()
@@ -138,5 +138,5 @@ function getEmptyLabel() {
 
 function _createBoards() {
     const boards = utilService.loadFromStorage(STORAGE_KEY)
-    if (!boards) utilService.saveToStorage(STORAGE_KEY, boardsDemoData)
+    if (!boards) utilService.saveToStorage(STORAGE_KEY, boardsDemoData2)
 }

@@ -36,7 +36,6 @@ export function DynamicCmp({setActionType, groupId, cmp, board, task, setIsAddBo
 
     function deleteLabel(labelId) {
         const Board = board
-        console.log(board)
 
         const labels = Board.labels.filter(label => label.id !== labelId)
         Board.labels = labels
@@ -44,7 +43,6 @@ export function DynamicCmp({setActionType, groupId, cmp, board, task, setIsAddBo
         Board.groups = deleteLabelIdFromEverywhere(Board.groups, labelId)
 
         updateBoard(Board)
-        console.log(Board)
     }
 
     function deleteLabelIdFromEverywhere(data, labelIdToDelete) {
@@ -77,7 +75,6 @@ export function DynamicCmp({setActionType, groupId, cmp, board, task, setIsAddBo
         case MEMBERS:
             top += buttonHeight
             topHead = 'Member'
-            // todo add 'taskMembers when we connected the actual data ! 
             cmpType = <MemberPicker setActionType={setActionType} members={board.members} task={task} saveTask={saveTask} groupId={groupId} />
             break
 

@@ -39,6 +39,9 @@
     &.justify-end{
         justify-content: flex-end;
     }
+    & .flex-warp{
+        flex-wrap: wrap;
+    }
 }
 
 .clean-list {

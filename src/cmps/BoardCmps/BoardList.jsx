@@ -11,9 +11,7 @@ export function BoardList({ boards }) {
     const [modalPosition, setModalPosition] = useState({ top: 0, left: 0 })
 
     function onAddBoard(ev) {
-        console.log('ev', ev)
         const { currentTarget } = ev
-        console.log('currentTarget', currentTarget)
         setModalPosition(utilService.getModalPosition(currentTarget, currentTarget.getBoundingClientRect().width + 8, 0))
         setIsAddBoard(true)
     }

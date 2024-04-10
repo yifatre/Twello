@@ -1,0 +1,17 @@
+.desc-editor {
+    border-radius: 0;
+    &>*{
+    }
+    & .create-btn,
+    & .tasks-btn {
+        margin-block-start: rem(8px);
+    }
+
+    & .tasks-btn {
+        background-color: transparent;
+
+        &:hover {
+            background-color: #091E4224;
+        }
+    }
+}
