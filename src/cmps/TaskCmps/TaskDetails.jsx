@@ -5,9 +5,10 @@ import { utilService } from "../../services/util.service"
 import { ClickAwayListener } from '@mui/base/ClickAwayListener'
 import { useOutletContext } from "react-router-dom"
 import { useEffect, useState } from "react"
-import { ATTACHMENT, COVER, DATES, DynamicCmp, LABELS, MEMBERS } from "./DynamicCmps/DynamicCmp"
+import { ATTACHMENT, CHECKLIST, COVER, DATES, DynamicCmp, LABELS, MEMBERS } from "./DynamicCmps/DynamicCmp"
 import { useSelector } from "react-redux"
 import { AvatarPreview } from "../UtilCmps/AvatarPreview"
+import { ChecklistIndex } from "./CheckList.jsx/ChecklistIndex"
 
 
 
@@ -111,11 +112,15 @@ export function TaskDetails() {
                     </div>
                 </section>
 
+                <section className="checklists">
+                <ChecklistIndex task={task} saveTask={saveTask} groupId={groupId}/>
+                </section>
+
                 <section className="actions">
                     <h3>Add to card</h3>
                     <a className="flex align-center" href="#" onClickCapture={(ev) => onSetActionType(ev, MEMBERS)} >{member_icon}Members</a>
                     <a className="flex align-center" href="#" onClick={(ev) => onSetActionType(ev, LABELS)}>{label_icon}Labels</a>
-                    <a className="flex align-center" href="#" >{checked_icon}Checklist</a>
+                    <a className="flex align-center" href="#"onClick={(ev) => onSetActionType(ev, CHECKLIST)} >{checked_icon}Checklist</a>
                     <a className="flex align-center" href="#" onClick={(ev) => onSetActionType(ev, DATES)}>{clock_icon}Dates</a>
                     <a className="flex align-center" href="#" onClick={(ev) => onSetActionType(ev, ATTACHMENT)}>{paperclip_icon}Attachment</a>
                     <a className="flex align-center" href="#">{location_icon}Location</a>

@@ -6,10 +6,19 @@ import { AvatarPreview } from "../../UtilCmps/AvatarPreview"
 
 export function MemberPicker({setActionType, members, task, saveTask, groupId }) {
     const [memberIdsToUpdate, setMemberIdsToUpdate] = useState(task.memberIds)
+    const [memberFilter,setMemberFilter]=useState(members)
 
     useEffect(() => {
         saveTask({ ...task, memberIds: memberIdsToUpdate }, groupId)
     }, [memberIdsToUpdate])
+
+    function handleChangeFilter({ target }) {
+        let filter = target.value
+        const regex = new RegExp(filter, 'i')
+        let _members = members.filter(member => regex.test(member.fullName))
+        setMemberFilter(_members)
+        console.log("filter", filter)
+    }
 
     function onAddMember(memberId) {
         if (!task.memberIds) task.memberIds = []
@@ -30,6 +39,8 @@ export function MemberPicker({setActionType, members, task, saveTask, groupId })
                 type="text"
                 name="txt"
                 placeholder="Search members"
+
+                onChange={handleChangeFilter}
             />
             {!!memberIdsToUpdate?.length &&
                 <>
@@ -49,7 +60,7 @@ export function MemberPicker({setActionType, members, task, saveTask, groupId })
                 <>
                     <p>Board members</p>
                     <ul className="clean-list ul-labels">
-                        {members.filter(member => !memberIdsToUpdate.includes(member._id)).map(member => {
+                        {memberFilter.filter(member => !memberIdsToUpdate.includes(member._id)).map(member => {
                             return <li key={member._id} className="flex align-center member-li" onClick={() => onAddMember(member._id)}>
                                 <AvatarPreview user={member} />
                                 <div>{member.fullName}</div>
