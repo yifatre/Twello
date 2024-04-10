@@ -115,7 +115,7 @@ export function TaskDetails() {
                     {!(task.style?.backgroundColor || task.style?.backgroundImage) && <a className="flex align-center" href="#" onClick={(ev) => onSetActionType(ev, COVER)}>{cover_icon}Cover</a>}
                     <ClickAwayListener onClickAway={() => setActionType(null)}>
                         <div>
-                            {actionType && <DynamicCmp groupId={groupId} cmp={actionType} task={task} position={modalPosition} board={board} saveTask={saveTask} />}
+                            {actionType && <DynamicCmp setActionType={setActionType} groupId={groupId} cmp={actionType} task={task} position={modalPosition} board={board} saveTask={saveTask} />}
                         </div>
                     </ClickAwayListener>
                 </section>

@@ -55,7 +55,7 @@ export function AppHeader() {
                 <button className='main-nav-btn'>Recent <span className='arrow-down'>{arrow_down}</span></button>
                 <button className='main-nav-btn'>Starred <span className='arrow-down'>{arrow_down}</span></button>
                 <button className='main-nav-btn'>Templates <span className='arrow-down'>{arrow_down}</span></button>
-                <button className='create-btn' onClick={onAddBoard}>create</button>
+                <button className='create-btn' onClick={onAddBoard}>Create</button>
             </div>
             <div className='flex'>
 

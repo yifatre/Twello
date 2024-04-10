@@ -8,7 +8,8 @@ export const utilService = {
     loadFromStorage,
     getFormattedTime,
     getModalPosition,
-    getInitials
+    getInitials,
+    getDateFormat
 }
 
 function makeId(firstLetter = '', length = 6) {
@@ -116,4 +117,16 @@ function getInitials(name) {
             .match(/(^\S|\S$)?/g)
             .join("").toUpperCase(), color: colors[letterToNumber[name.slice(0, 1).toUpperCase()]]
     }
+}function getDateFormat(dateLongForm) {
+    const dateString = dateLongForm;
+    const date = new Date(dateString);
+
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1; 
+    const day = date.getDate();
+
+    const formattedDate = `${month.toString().padStart(2, '0')}/${day.toString().padStart(2, '0')}/${year}`;
+console.log(formattedDate);
+   return formattedDate
+
 }

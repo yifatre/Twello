@@ -4,7 +4,7 @@ import { MEMBERS } from "./DynamicCmp"
 import { AvatarPreview } from "../../UtilCmps/AvatarPreview"
 
 
-export function MemberPicker({ members, task, saveTask, groupId }) {
+export function MemberPicker({setActionType, members, task, saveTask, groupId }) {
     const [memberIdsToUpdate, setMemberIdsToUpdate] = useState(task.memberIds)
 
     useEffect(() => {
@@ -23,7 +23,7 @@ export function MemberPicker({ members, task, saveTask, groupId }) {
     return (<>
         <header className="dynamic-head-container">
             <h2>Members</h2>
-            <button className="tasks-btn close-btn">{x_icon}</button>
+            <button onClick={()=>setActionType(null)} className="tasks-btn close-btn">{x_icon}</button>
         </header>
         <section className="picker-container">
             <input
