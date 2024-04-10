@@ -8,6 +8,7 @@ import { useEffect, useState } from "react"
 import { ATTACHMENT, COVER, DATES, DynamicCmp, LABELS, MEMBERS } from "./DynamicCmps/DynamicCmp"
 import { useSelector } from "react-redux"
 import { AvatarPreview } from "../UtilCmps/AvatarPreview"
+import { ChecklistIndex } from "./CheckList.jsx/ChecklistIndex"
 
 
 
@@ -102,6 +103,10 @@ export function TaskDetails() {
                     <h3>Description</h3>
 
                     <DescriptionEdit />
+                </section>
+
+                <section className="checklists">
+                <ChecklistIndex task={task} saveTask={saveTask} groupId={groupId}/>
                 </section>
 
                 <section className="actions">

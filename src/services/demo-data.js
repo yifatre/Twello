@@ -97,13 +97,29 @@ export const boardsDemoData = [
                                 "title": "Checklist",
                                 "todos": [
                                     {
-                                        "id": "21a2jX",
+                                        "id": "21asd2jX",
                                         "title": "To Do 1",
                                         "isDone": true
                                     },
                                     {
-                                        "id": "2124jX",
-                                        "title": "To Do 1",
+                                        "id": "21sdafss2432jX",
+                                        "title": "To Do 2",
+                                        "isDone": true
+                                    }
+                                ]
+                            },
+                            {
+                                "id": "sldhgfk",
+                                "title": "Checklist",
+                                "todos": [
+                                    {
+                                        "id": "21af2jX",
+                                        "title": "To Do 11",
+                                        "isDone": true
+                                    },
+                                    {
+                                        "id": "21aslla2432jX",
+                                        "title": "To Do 22",
                                         "isDone": true
                                     }
                                 ]
