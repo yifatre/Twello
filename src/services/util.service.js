@@ -117,16 +117,16 @@ function getInitials(name) {
             .match(/(^\S|\S$)?/g)
             .join("").toUpperCase(), color: colors[letterToNumber[name.slice(0, 1).toUpperCase()]]
     }
-}function getDateFormat(dateLongForm) {
-    const dateString = dateLongForm;
-    const date = new Date(dateString);
+} function getDateFormat(dateLongForm) {
+    const dateString = dateLongForm
+    const date = new Date(dateString)
 
-    const year = date.getFullYear();
-    const month = date.getMonth() + 1; 
-    const day = date.getDate();
+    const year = date.getFullYear()
+    const month = date.getMonth() + 1
+    const day = date.getDate()
 
-    const formattedDate = `${month.toString().padStart(2, '0')}/${day.toString().padStart(2, '0')}/${year}`;
-console.log(formattedDate);
-   return formattedDate
+    const formattedDate = `${month.toString().padStart(2, '0')}/${day.toString().padStart(2, '0')}/${year}`
+    console.log(formattedDate)
+    return formattedDate
 
 }

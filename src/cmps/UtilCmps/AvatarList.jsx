@@ -6,6 +6,7 @@ export function AvatarList({ users, maxUsers = Infinity }) {
 
     return (
         <>
+            {dynEl}
             {users.slice(0, maxUsers).map(user => {
                 const initials = utilService.getInitials(user.fullName)
                 console.log('initials', initials)
@@ -16,7 +17,6 @@ export function AvatarList({ users, maxUsers = Infinity }) {
                 </div>
             }
             )}
-            {dynEl}
         </>
     )
 
