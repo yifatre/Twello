@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react"
 import { x_icon } from "../../UtilCmps/SVGs"
 import { MEMBERS } from "./DynamicCmp"
+import { AvatarPreview } from "../../UtilCmps/AvatarPreview"
 
 
 export function MemberPicker({ members, task, saveTask, groupId }) {
     const [memberIdsToUpdate, setMemberIdsToUpdate] = useState(task.memberIds)
 
     useEffect(() => {
-        // onUpdate(MEMBERS, memberIdsToUpdate)
-        console.log('11111', 11111)
         saveTask({ ...task, memberIds: memberIdsToUpdate }, groupId)
     }, [memberIdsToUpdate])
 
@@ -35,12 +34,12 @@ export function MemberPicker({ members, task, saveTask, groupId }) {
             {!!memberIdsToUpdate?.length &&
                 <>
                     <p>Card members</p>
-                    <ul className="clean-list ul-labels member-li">
+                    <ul className="clean-list ul-labels">
                         {memberIdsToUpdate.map(memberId => {
-
-                            return <li key={memberId} className="flex align-center" onClick={() => onRemoveMember(memberId)}>
-                                <img className="avatar" src={members.find(_member => _member._id === memberId).imgUrl} alt="" />
-                                <div>{members.find(member => member._id === memberId).fullName}</div>
+                            const member = members.find(_member => _member._id === memberId)
+                            return <li key={memberId} className="flex align-center member-li" onClick={() => onRemoveMember(memberId)}>
+                                <AvatarPreview user={member} />
+                                <div>{member.fullName}</div>
                             </li>
                         })}
                     </ul>
@@ -51,9 +50,8 @@ export function MemberPicker({ members, task, saveTask, groupId }) {
                     <p>Board members</p>
                     <ul className="clean-list ul-labels">
                         {members.filter(member => !memberIdsToUpdate.includes(member._id)).map(member => {
-                            // todo refactor when get the actual data fullname 
                             return <li key={member._id} className="flex align-center member-li" onClick={() => onAddMember(member._id)}>
-                                <img className="avatar" src={member.imgUrl} alt="" />
+                                <AvatarPreview user={member} />
                                 <div>{member.fullName}</div>
                             </li>
                         })}
