@@ -1,7 +1,8 @@
-import { Link } from "react-router-dom";
-import { bcg_wave } from "../cmps/UtilCmps/SVGs";
-import { DATES, DynamicCmp, LABELS, MEMBERS } from "../cmps/TaskCmps/DynamicCmps/DynamicCmp";
-import { boardsDemoData, userDemoData } from "../services/demo-data";
+import { Link } from "react-router-dom"
+import { bcg_wave } from "../cmps/UtilCmps/SVGs"
+import { DATES, DynamicCmp, LABELS, MEMBERS } from "../cmps/TaskCmps/DynamicCmps/DynamicCmp"
+import { boardsDemoData, userDemoData } from "../services/demo-data"
+import { DescriptionEdit } from "../cmps/TaskCmps/DescriptionEdit"
 
 export function HomePage() {
 
@@ -23,13 +24,14 @@ export function HomePage() {
                 </div>
             </div>
         </section >
+        {/* <DescriptionEdit /> */}
         {/* <section className="home-page-middle">
             <div className="home-page-top">
                 <div className="explain-head-container">
                     <p>Twello 101</p>
                     <h2>A productivity powerhouse</h2>
                     <p>Simple, flexible, and powerful. All it takes are boards, lists, and cards to get a clear view of who’s doing what and what needs to get done. Learn more in our guide for getting started.</p>
-                </div>
+                </>
             </div>
         </section> */}
     </>

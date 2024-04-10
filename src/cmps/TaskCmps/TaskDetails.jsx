@@ -17,6 +17,7 @@ export function TaskDetails() {
     const board = useSelector(storeState => storeState.boardModule.board)
     const [modalPosition, setModalPosition] = useState({ top: 0, left: 0 })
     const [actionType, setActionType] = useState(null)
+    const [isDescriptionEdit, setIsDescriptionEdit] = useState(false)
 
     const [task, setTask] = useState(board.groups.find(group => group.id === groupId).tasks.find(task => task.id === taskId))
     const [titleToEdit, setTitleToEdit] = useState(task.title)
@@ -30,6 +31,11 @@ export function TaskDetails() {
         saveTask({ ...task, title: titleToEdit }, groupId)
     }, [titleToEdit])
 
+    function onEditDescription(ev) {
+        ev.preventDefault()
+        setIsDescriptionEdit(true)
+    }
+
     function closeTaskDetails() {
         navigate(`/board/${boardId}`)
     }
@@ -38,7 +44,6 @@ export function TaskDetails() {
         const { value, name: field } = target
         setTitleToEdit(value)
     }
-
 
     function onOpenModalFromList(ev, type) {
         ev.preventDefault()
@@ -100,8 +105,10 @@ export function TaskDetails() {
                 <section className="description">
                     <span className="icon-span">{bars_icon}</span>
                     <h3>Description</h3>
-
-                    <DescriptionEdit />
+                    <div className="task-description">
+                        {!isDescriptionEdit && <a href="#" className="" onClick={onEditDescription}><div dangerouslySetInnerHTML={{ __html: (task.description || 'Add a more detailed description...') }}></div></a>}
+                        {isDescriptionEdit && <div className="desc-editor"><DescriptionEdit groupId={groupId} task={task} saveTask={saveTask} setIsDescriptionEdit={setIsDescriptionEdit} /></div>}
+                    </div>
                 </section>
 
                 <section className="actions">
