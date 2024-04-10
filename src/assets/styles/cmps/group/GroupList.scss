@@ -7,6 +7,11 @@
     // scrollbar-width: auto;
     grid-area: body;
 
+    // -webkit-transform: translate3d(0, 0, 0);
+    scrollbar-color: var(--ds-background-neutral-hovered, #091e4224) var(--ds-background-neutral, #091e420f);
+    scrollbar-width: thin;
+    scrollbar-gutter: stable both-edges;
+
     padding: rem(14px) rem(12px) rem(16px);
     z-index: 100;
 }

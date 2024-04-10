@@ -17,6 +17,11 @@
         display: flex;
         flex-direction: column;
 
+        &.scrolling {
+            padding-inline-end: rem(4px);
+
+        }
+
         .group-header {
             display: grid;
             grid-template-columns: rem(192px) rem(32px) rem(32px);

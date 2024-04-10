@@ -3,12 +3,14 @@
    scrollbar-color: var(--ds-background-neutral-hovered);
    scrollbar-width: thin;
    padding-inline: rem(8px);
+
+   &.scrolling{
+      padding-inline-end: rem(4px);
+   }
    .task-list {
       display: flex;
       flex-direction: column;
       min-height: 1px;
       padding-block: 2px;
-      // margin-block: 0.50rem 0.25rem;
-      // width: rem(264px);
    }
 }
