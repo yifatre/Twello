@@ -6,7 +6,6 @@ import { useState } from "react"
 export function TaskPreview({ task, groupId, removeTask, board, isLabelsExtended, setIsLabelExtended }) {
     const navigate = useNavigate()
     const [todosCount, setTodosCount] = useState(getTodoDoneCount())
-    console.log(todosCount);
 
     function getTodoDoneCount() {
         if (!task.checklists) return
@@ -22,13 +21,13 @@ export function TaskPreview({ task, groupId, removeTask, board, isLabelsExtended
     }
 
     function getDateFormat() {
-        const date = new Date(task.dueDate)
-        if(task.dueDate < Date.now()) return date.toString().slice(4, 7) + ' ' + date.getDate() + ', ' + date.getFullYear()
+        const date = new Date(task.date.dueDate)
+        if(task.date.dueDate < Date.now()) return date.toString().slice(4, 7) + ' ' + date.getDate() + ', ' + date.getFullYear()
         return date.toString().slice(4, 7) + ' ' + date.getDate()
     }
 
     function getDateStatus() {
-        const { dueDate } = task
+        const { dueDate } = task.date
         // if(task.dueDate.done) return 'done'
         if (dueDate < Date.now()) return 'over'
         else if (dueDate < Date.now() + (1000 * 60 * 60 * 24)) return 'soon'
@@ -68,7 +67,7 @@ export function TaskPreview({ task, groupId, removeTask, board, isLabelsExtended
                 <div className="task-info-container">
                     <div className="task-info">
                         {/* <span className="icon-container">{eye_icon}</span> */}
-                        {!!task.dueDate && <div className="txt-and-icon icon-container date-preview" id={getDateStatus()}>{time_icon}{getDateFormat()}</div>}
+                        {!!task.date?.dueDate && <div className="txt-and-icon icon-container date-preview" id={getDateStatus()}>{time_icon}{getDateFormat()}</div>}
                         {!!task.description && <span className="icon-container">{bars_icon}</span>}
                         {!!task.attachments && <div className="txt-and-icon icon-container">{paperclip_icon}{task.attachments.length}</div>}
                         {!!task.checklists?.length

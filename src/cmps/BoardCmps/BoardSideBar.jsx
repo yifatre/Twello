@@ -37,9 +37,7 @@ export function BoardSideBar() {
     }
 
     function onAddBoard(ev) {
-        console.log('ev', ev)
         const { currentTarget } = ev
-        console.log('currentTarget', currentTarget)
         setModalPosition(utilService.getModalPosition(currentTarget, currentTarget.getBoundingClientRect().width + 8, 0))
         setIsAddBoard(true)
     }
