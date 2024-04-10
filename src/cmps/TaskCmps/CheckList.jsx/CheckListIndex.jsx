@@ -1,9 +1,15 @@
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
-import { ChecklistList } from './ChecklistList';
+import { ChecklistList } from './ChecklistList'
 
 export function ChecklistIndex({ task, saveTask, groupId }) {
     const checklists  = task.checklists
-    console.log(task);
+
+    function onRemoveList(_checklist) {
+        console.log('_checklist', _checklist);
+        const _checkListsFiltered = checklists.filter(checklist => checklist.id !== _checklist.id)
+        console.log('_checkListsFiltered',_checkListsFiltered);
+        saveTask({ ...task, checklists: _checkListsFiltered }, groupId)
+    }
 
     function onDragEnd(result) {
         if (!result.destination) {
@@ -49,6 +55,7 @@ export function ChecklistIndex({ task, saveTask, groupId }) {
                                         <ChecklistList
                                             provided={provided}
                                             checklist={checklist}
+                                            onRemoveList={onRemoveList}
                                         />
                                     </li>}
                             </Draggable>

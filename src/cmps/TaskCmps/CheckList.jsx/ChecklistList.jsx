@@ -4,15 +4,16 @@ import { TodoPreview } from "./TodoPreview";
 
 // import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgress'
 
-export function ChecklistList({ checklist }) {
-    console.log(checklist);
-    return (
+export function ChecklistList({ checklist, onRemoveList }) {
 
+
+
+    return (
         <section className="checklist">
             <div className="checklist-header">
                 {checked_icon}
                 <h3>{checklist.title}</h3>
-                <button className="delete-tasklist">Delete</button>
+                <button className="delete-tasklist" onClick={() => onRemoveList(checklist)}>Delete</button>
             </div>
             <div className="progressbar">
                 {/* <LinearProgress value={20}/> */}
