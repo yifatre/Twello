@@ -24,13 +24,17 @@
 
     .r-sidebar-header {
         display: grid;
-        grid-template-columns: 1fr max-content;
+        grid-template-columns:max-content 1fr max-content;
         line-height: rem(20px);
-        margin: rem(18px) rem(4px) rem(18px) rem(24px);
+        margin: rem(18px) rem(4px) rem(18px) rem(4px);
         overflow: hidden;
         text-align: center;
         text-overflow: ellipsis;
         white-space: nowrap;
+
+        & span {
+            height: rem(20px);
+        }
 
         & h2 {
             font-weight: 500;
@@ -81,5 +85,10 @@
         & .content-sep {
             margin-block: rem(8px);
         }
+
+    }
+    & .back-btn{
+        rotate: 90deg;
+        height: 25px;
     }
 }

@@ -1,0 +1,50 @@
+.change-back-container {
+    & .head-img-card-container {
+        width: 50%;
+        padding: 0 rem(4px) 0 rem(4px);
+        text-align: center;
+
+
+    }
+
+    & .img-card {
+        position: relative;
+        height: rem(96px);
+        width: rem(149.5px);
+        background-color: var(--accent-background);
+
+        &:hover {
+            background-color: var(--accent-background-hovered);
+        }
+
+        border-radius: rem(8px);
+
+        & img {
+            height: rem(96px);
+            width: rem(149.5px);
+            object-fit: cover;
+            border-radius: rem(8px);
+
+            &:hover {
+                opacity: 0.6;
+            }
+
+
+        }
+
+        & span {
+            position: absolute;
+            top: rem(38px);
+            right: rem(64.75px);
+
+            & svg {
+                color: #6C798E;
+            }
+        }
+    }
+
+    & .img-container{
+        gap: 8px;
+        padding: 0 rem(4px) 0 rem(4px);
+    }
+}

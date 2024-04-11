@@ -49,10 +49,10 @@ export function AppHeader() {
                         <h3 className='flex'><span className='logo-svg'>{logo}</span></h3>
                     </Link>
                 </div>
-                <button className='main-nav-btn'>Workspaces <span className='arrow-down'>{arrow_down}</span></button>
-                <button className='main-nav-btn'>Recent <span className='arrow-down'>{arrow_down}</span></button>
-                <button className='main-nav-btn'>Starred <span className='arrow-down'>{arrow_down}</span></button>
-                <button className='main-nav-btn'>Templates <span className='arrow-down'>{arrow_down}</span></button>
+                {/* <button className='main-nav-btn'>Workspaces <span className='arrow-down'>{arrow_down}</span></button> */}
+                {/* <button className='main-nav-btn'>Recent <span className='arrow-down'>{arrow_down}</span></button> */}
+                {/* <button className='main-nav-btn'>Starred <span className='arrow-down'>{arrow_down}</span></button> */}
+                {/* <button className='main-nav-btn'>Templates <span className='arrow-down'>{arrow_down}</span></button> */}
                 <button className='create-btn' onClick={onAddBoard}>Create</button>
             </div>
             <div className='flex'>

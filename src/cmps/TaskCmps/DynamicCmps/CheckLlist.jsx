@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { x_icon } from "../../UtilCmps/SVGs"
 
-export function CheckList() {
+export function CheckList({setActionType}) {
     const [value, setValue] = useState('CheckList')
 
 
