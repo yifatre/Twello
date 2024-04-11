@@ -1,6 +1,6 @@
 .board-preview {
     display: block;
-    .board-preview-fade {
+    & .board-preview-fade {
         background-color: #000000;
         opacity: 0.15;
         width: 100%;
@@ -13,7 +13,7 @@
         z-index: 10;
     }
     
-    article {
+    & article {
         border-radius: rem(3px);
         position: relative;
 
@@ -46,6 +46,7 @@
         &>span:not(.starred) {
             transform: translateX(200%);
             opacity: 0;
+            transition: transform 150ms;
         }
 
         &:hover {
@@ -55,6 +56,7 @@
 
                 &:hover {
                     transform: translateX(0) scale(1.2);
+                    transition: transform 150ms;
                 }
             }
         }

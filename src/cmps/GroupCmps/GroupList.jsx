@@ -11,7 +11,17 @@ export function GroupList({ board, saveGroup, removeGroup, saveTask, removeTask 
     const [isAddGroup, setIsAddGroup] = useState(false)
     const { groups } = board
 
+
+    function onDragStart(abc) {
+        // console.log('abc', abc)
+    }
+
+    function onDragUpdate(ev) {
+        // console.log('ev', ev)
+    }
+
     function onDragEnd(result) {
+        // console.log('result', result)
         if (!result.destination) {
             return
         }
@@ -38,8 +48,8 @@ export function GroupList({ board, saveGroup, removeGroup, saveTask, removeTask 
         <DragDropContext
             // onBeforeCapture={onBeforeCapture}
             // onBeforeDragStart={onBeforeDragStart}
-            // onDragStart={onDragStart}
-            // onDragUpdate={onDragUpdate}
+            onDragStart={onDragStart}
+            onDragUpdate={onDragUpdate}
             onDragEnd={onDragEnd}
         >
             <Droppable droppableId={'groups'} direction='horizontal' type="group">
@@ -52,8 +62,9 @@ export function GroupList({ board, saveGroup, removeGroup, saveTask, removeTask 
                                         className="group-preview-container"
                                         ref={provided.innerRef}
                                         {...provided.draggableProps}
-                                        {...provided.dragHandleProps}>
-
+                                        {...provided.dragHandleProps}
+                                        style={snapshot.isDragging ? { ...provided.draggableProps?.style, opacity: 0.6, rotate: '4deg', } : { ...provided.draggableProps?.style, cursor: 'pointer' }}
+                                    >
                                         <GroupPreview
                                             provided={provided}
                                             group={group}
