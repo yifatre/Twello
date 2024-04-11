@@ -18,7 +18,7 @@
     "@mui/material": "^5.15.15",
     "@mui/styled-engine-sc": "^6.0.0-alpha.18",
     "@tinymce/tinymce-react": "^5.0.1",
-    "axios": "^1.5.0",
+    "axios": "^1.6.8",
     "dayjs": "^1.11.10",
     "react": "^18.2.0",
     "react-beautiful-dnd": "^13.1.1",

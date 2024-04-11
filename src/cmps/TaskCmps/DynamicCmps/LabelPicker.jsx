@@ -54,7 +54,6 @@ export function LabelPicker({ setActionType, SaveLabel, deleteLabel, onUpdateBoa
         let { value, name: field, type } = ev.target
         if (type === 'number') value = +value
         setLabelContent(value)
-
     }
 
     function handleChangeFilter({ target }) {
