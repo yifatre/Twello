@@ -10,6 +10,8 @@
     "preview": "vite ptask"
   },
   "dependencies": {
+    "@atlaskit/pragmatic-drag-and-drop-react-beautiful-dnd-migration": "^1.1.0",
+    "@atlaskit/pragmatic-drag-and-drop-react-drop-indicator": "^1.1.0",
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
     "@mui/base": "^5.0.0-beta.40",

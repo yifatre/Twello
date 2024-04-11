@@ -8,6 +8,7 @@ import { loadBoard, loadBoards, updateBoard } from "../../store/board/board.acti
 import { useSelector } from "react-redux"
 import { utilService } from "../../services/util.service"
 import { BoardRightSideBar } from "./BoardRightSideBar"
+import { BoardTable } from "./BaordTable"
 
 export function BoardDetails() {
     const { boardId } = useParams()
@@ -69,6 +70,7 @@ export function BoardDetails() {
             <BoardHeader board={board} setRsbIsOpen={setRsbIsOpen}/>
             <BoardSideBar />
             <GroupList board={board} saveGroup={saveGroup} removeGroup={removeGroup} saveTask={saveTask} removeTask={removeTask} />
+            {/* <BoardTable/> */}
             <div className="board-fade"></div>
              <BoardRightSideBar setRsbIsOpen={setRsbIsOpen} />
         </section>
