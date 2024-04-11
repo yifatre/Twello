@@ -1,5 +1,5 @@
 import { checked_icon, x_icon } from "../../UtilCmps/SVGs"
-import { Droppable, Draggable } from 'react-beautiful-dnd'
+import { Droppable, Draggable } from '@atlaskit/pragmatic-drag-and-drop-react-beautiful-dnd-migration'
 import { TodoPreview } from "./TodoPreview"
 import { useState } from "react"
 import { ClickAwayListener } from '@mui/base/ClickAwayListener'

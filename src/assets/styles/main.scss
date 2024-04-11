@@ -28,6 +28,7 @@
 @import "cmps/board/BoardHeader";
 @import "cmps/board/BoardSideBar";
 @import "cmps/board/BoardRightSideBar";
+@import "cmps/board/BoardTable.scss";
 @import "cmps/group/GroupList";
 @import "cmps/group/GroupPreview";
 @import "cmps/task/TaskList";
@@ -35,6 +36,7 @@
 @import "cmps/task/DescriptionEdit.scss";
 @import "cmps/task/DynEntityAdd";
 @import "cmps/task/Checklists";
+@import "cmps/task/TaskQuickEdit";
 @import "cmps/dynamicCmp/DynamicCmp.scss";
 @import "cmps/dynamicCmp/LabelPicker.scss";
 @import "cmps/dynamicCmp/GroupActions.scss";
