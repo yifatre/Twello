@@ -35,9 +35,9 @@
         width: 100%;
 
         .top-left-container {
-           
-           
-           
+
+
+
             text-align: left;
             display: block;
             flex: 0 0 auto;
@@ -48,8 +48,8 @@
             padding-right: 19px;
             padding-top: 40px;
 
-            
-    
+
+
 
             & h1 {
                 font-family: 'charlie-display';
@@ -97,33 +97,11 @@
             padding-bottom: 0px;
             position: relative;
 
-      
+
 
 
         }
-        & .home-page-middle {
-            background: linear-gradient(0deg, rgb(230, 252, 255), rgb(255, 255, 255)) 0% 0% / auto repeat scroll padding-box border-box rgb(178, 212, 255);
-            background-blend-mode: normal;
-            color: rgb(9, 30, 66);
-    
-            &.explain-head-container {
-                align-items: flex-start;
-                -webkit-box-pack: start;
-                justify-content: flex-start;
-                display: flex;
-                flex-wrap: wrap;
-                margin-left: -1rem;
-                margin-right: -1rem;
-                
-                @media (min-width: 768px) {
-                    text-align: left;
-                    order: 1;
-                    display: block;
-                    flex: 0 0 auto;
-                    width: 58.3333%;
-                }
-            }
-        }
+
         @media (max-width: 992px) {
             .top-img-container {
                 max-width: 100% !important;
@@ -132,6 +110,109 @@
             .top-left-container {
                 max-width: 100% !important;
             }
+        }
+    }
+
+}
+
+.home-page-middle {
+    background: linear-gradient(0deg, rgb(230, 252, 255), rgb(255, 255, 255)) 0% 0% / auto repeat scroll padding-box border-box rgb(178, 212, 255);
+    background-blend-mode: normal;
+    color: rgb(9, 30, 66);
+    display: grid;
+    grid-template-columns: 1fr minmax(540px, 1140px) 1fr;
+
+    & .explain-head-container {
+        grid-area: 2/2;
+        display: flex;
+        flex-direction: column;
+
+        & .first-p {
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            margin-top: 0px;
+            font-size: 1rem;
+            line-height: 1.25;
+            text-transform: uppercase;
+        }
+
+        & h2 {
+            font-size: rem(36px);
+            font-weight: 500;
+            margin-bottom: rem(24px);
+            line-height: rem(48px);
+        }
+
+        .second-p {
+            font-size: rem(20px);
+            font-weight: 400;
+            line-height: rem(30px);
+            margin-bottom: rem(36px);
+        }
+
+        @media (min-width: 768px) {
+            text-align: left;
+            order: 1;
+            display: block;
+            flex: 0 0 auto;
+            width: 58.3333%;
+        }
+    }
+
+    & .explain-container {
+        display: grid;
+        grid-template-columns: rem(365px) rem(759px);
+        grid-template-rows: rem(168px) rem(168px) rem(168px);
+        grid-template-areas:
+            "first large"
+            "second large"
+            "third large";
+            
+            gap: rem(15px);
+
+        & .explain-card {
+            padding: rem(16px);
+            border-radius: rem(4.8px);
+            cursor: pointer;
+
+            & h3{
+                line-height: 1.33333;
+                margin-bottom: rem(8px);
+            }
+
+            & p{
+                font-size: 1rem;
+                font-family: 'charlie-display';
+            }
+        }
+
+        & .explain-mini-first {
+            grid-area: first;
+            border-left: rem(8px) solid transparent;
+        }
+
+        & .explain-mini-second {
+            grid-area: second;
+            border-left: rem(8px) solid transparent;
+        }
+
+        & .explain-mini-third {
+            grid-area: third;
+            border-left: rem(8px) solid transparent;
+        }
+
+        & .explain-large {
+            grid-area: large;
+        }
+
+        & .explain-img {
+            border-radius: rem(4.8px);
+        }
+
+        & .selected{
+            box-shadow: rgba(9, 30, 66, 0.15) 0px 0.5rem 1rem 0px;
+            background-color: #fff;
+            border-left: rem(8px) solid rgb(0, 199, 229);
         }
     }
 

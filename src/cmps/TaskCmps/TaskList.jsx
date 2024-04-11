@@ -6,36 +6,46 @@ export function TaskList({ group, saveTask, removeTask, board, isLabelsExtended,
 
     return (
         <>
-        <Droppable droppableId={group.id} type="task">
-            {(provided) =>
-                <ul className="task-list clean-list" {...provided.droppableProps} ref={provided.innerRef}>
+            <Droppable droppableId={group.id} type="task" direction='vertical'>
+                {(provided) =>
+                    <ul className="task-list clean-list" {...provided.droppableProps} ref={provided.innerRef}>
 
-                    {group.tasks?.map((task, idx) =>
-                        <Draggable key={task.id} draggableId={task.id} index={idx}>
+                        {group.tasks?.map((task, idx) =>
+                            <Draggable key={task.id} draggableId={task.id} index={idx} >
 
-                            {(provided, snapshot) =>
-                                <li key={task.id}
-                                    ref={provided.innerRef}
-                                    {...provided.draggableProps}
-                                    {...provided.dragHandleProps}>
+                                {(provided, snapshot) => {
+                                    console.log('snapshot', snapshot.isClone = true)
+                                    // console.log('provided.draggableProps?.style.', provided.draggableProps?.style, 'task.id', task.id)
+                                    return <li key={task.id}
+                                        ref={provided.innerRef}
+                                        {...provided.draggableProps}
+                                        {...provided.dragHandleProps}
+                                        // style={snapshot.isDragging ? { opacity: 0.6, rotate: 4, ...provided.draggableProps?.style } : { ...provided.draggableProps?.style }}
+                                        style={snapshot.isDragging ? { ...provided.draggableProps?.style, opacity: 0.6, rotate: '6deg', } : { ...provided.draggableProps?.style, cursor: 'pointer' }}
+                                    >
 
-                                    <TaskPreview key={task.id}
-                                        id={task.id}
-                                        task={task}
-                                        groupId={group.id}
-                                        removeTask={removeTask}
-                                        saveTask={saveTask}
-                                        board={board}
-                                        isLabelsExtended={isLabelsExtended}
-                                        setIsLabelExtended={setIsLabelExtended}
-                                    />
-                                </li>}
-                        </Draggable>
-                    )}
-                    {provided.placeholder}
-                    {isAddMode && <DynEntityAdd setIsAddMode={setIsAddMode} saveEntity={saveTask} groupId={group.id} />}
-                </ul>
-            }
-        </Droppable ></>
+                                        <TaskPreview key={task.id}
+                                            id={task.id}
+                                            task={task}
+                                            groupId={group.id}
+                                            removeTask={removeTask}
+                                            saveTask={saveTask}
+                                            board={board}
+                                            isLabelsExtended={isLabelsExtended}
+                                            setIsLabelExtended={setIsLabelExtended}
+                                        />
+                                    </li>
+                                }}
+                            </Draggable>
+                        )}
+                        {<div style={{ background: 'blue' }}> {provided.placeholder}</div>}
+                        {/* {provided.placeholder} */}
+                        {console.log("provided.dragHandleProps", provided.dragHandleProps)}
+
+                        {/* {console.log("provided.placeholder", provided)} */}
+                        {isAddMode && <DynEntityAdd setIsAddMode={setIsAddMode} saveEntity={saveTask} groupId={group.id} />}
+                    </ul>
+                }
+            </Droppable ></>
     )
 }

@@ -1,8 +1,9 @@
 .main-content {
     flex: 1;
-    overflow: hidden;
-
+    
+    overflow: auto;
     .board-details {
+        overflow: hidden auto;
         position: relative;
         height: 100%;
         width: 100%;
