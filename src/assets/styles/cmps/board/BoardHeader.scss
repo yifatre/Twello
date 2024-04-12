@@ -2,7 +2,7 @@
     position: relative;
     display: grid;
     grid-auto-flow: column;
-    grid-template-columns: repeat(6, max-content) 1fr repeat(6, max-content);
+    grid-template-columns: repeat(5, max-content) 1fr repeat(5, max-content);
     padding: rem(12px) rem(10px) rem(12px) rem(16px);
     background-color: $board-header-bgc;
     backdrop-filter: blur(4px);
