@@ -106,19 +106,19 @@ export function DynamicCmp({ setActionType, groupId, cmp, board, task, setIsAddB
         case MEMBERS:
             top += buttonHeight
             topHead = 'Member'
-            cmpType = <MemberPicker setActionType={setActionType} members={board.members} task={task} saveTask={saveTask} groupId={groupId} />
+            cmpType = <MemberPicker  group={group} setActionType={setActionType} members={board.members} task={task} saveTask={saveTask} groupId={groupId} />
             break
 
         case DATES:
             top += buttonHeight * 4
             topHead = 'Date'
-            cmpType = <DatePicker saveTask={saveTask} setActionType={setActionType} task={task} groupId={groupId} />
+            cmpType = <DatePicker group={group} saveTask={saveTask} setActionType={setActionType} task={task} groupId={groupId} />
             break
 
         case ATTACHMENT:
             top += buttonHeight * 5
             topHead = 'Attachment'
-            cmpType = <AttachmentPicker setActionType={setActionType} board={board} groupId={groupId} task={task} saveTask={saveTask} />
+            cmpType = <AttachmentPicker group={group} setActionType={setActionType} board={board} groupId={groupId} task={task} saveTask={saveTask} />
             break
 
         case COVER:
