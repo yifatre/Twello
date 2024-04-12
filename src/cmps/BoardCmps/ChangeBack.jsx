@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-import { plus_icon } from "../UtilCmps/SVGs";
+import { plus_icon } from "../UtilCmps/SVGs"
 import gradIce from "../../assets/img/gradients/ice.svg"
 import gradWave from "../../assets/img/gradients/wave.svg"
 import gradMagic from "../../assets/img/gradients/magic.svg"
@@ -10,9 +10,9 @@ import gradAline from "../../assets/img/gradients/alien.svg"
 import gradEarth from "../../assets/img/gradients/earth.svg"
 import gradFlower from "../../assets/img/gradients/flower.svg"
 import gradLava from "../../assets/img/gradients/lava.svg"
-import { updateBoard } from "../../store/board/board.actions";
-import axios from "axios";
-import { utilService } from "../../services/util.service";
+import { updateBoard } from "../../store/board/board.actions"
+import axios from "axios"
+import { utilService } from "../../services/util.service"
 
 export function ChangeBack({ setTopHead, board, setBackTo, topHead }) {
     const [search, setSearch] = useState('aurora')
@@ -33,13 +33,13 @@ export function ChangeBack({ setTopHead, board, setBackTo, topHead }) {
 
 
     async function getPhotos() {
-        console.log(url);
+        console.log(url)
         try {
             const res = await axios.get(url)
             setImages(res.data)
             console.log("res", res.data)
         } catch (error) {
-            console.error(error);
+            console.error(error)
         }
     }
 
@@ -51,9 +51,9 @@ export function ChangeBack({ setTopHead, board, setBackTo, topHead }) {
     }
 
     function onselect(name) {
-        console.log(name);
+        console.log(name)
         if (name === 'Photos from Unsplash') {
-            console.log('hi');
+            console.log('hi')
             getPhotos()
         }
         setTopHead(name)
@@ -63,12 +63,12 @@ export function ChangeBack({ setTopHead, board, setBackTo, topHead }) {
     function handleChange(ev) {
         let { value, name: field, type } = ev.target
         if (type === 'number') value = +value
-        console.log(value);
+        console.log(value)
         setSearch(value)
         getPhotos()
     }
 
-    const debounceOnChange =utilService.debounce(handleChange,300)
+    const debounceOnChange = utilService.debounce(handleChange, 300)
 
     return (
         <section className="change-back-container flex column">
@@ -90,12 +90,14 @@ export function ChangeBack({ setTopHead, board, setBackTo, topHead }) {
 
                     </header>
                     <hr />
-                    <div className="img-card neutral">
-                        {plus_icon}
-                    </div>
+                    <div className="flex column head-img-card-container">
+                        <div className="img-card neutral">
+                            {plus_icon}
+                        </div>
+                        </div>
                 </>
             }
-            <main className="img-container flex flex-warp ">
+            <main className="img-container flex column">
 
                 {topHead === 'Color' &&
                     gradients.map((grad, idx) =>
@@ -112,9 +114,14 @@ export function ChangeBack({ setTopHead, board, setBackTo, topHead }) {
 
                             onChange={debounceOnChange}
                         />
-                        {images && images.map((img, idx) => <div className="img-card" key={idx} onClick={() => changeBgImg(img.urls.full)} >
-                            <img src={img.urls.regular} alt="" /> </div>
-                        )
+
+                        {images && <div className="images flex flex-warp">
+                            {images.map((img, idx) =>
+                                <div className="img-card" key={idx} onClick={() => changeBgImg(img.urls.full)} >
+                                    <img src={img.urls.regular} alt="" />
+                                </div>
+                            )}
+                        </div>
                         }
                         <footer className="unsplash-disclaimer">
                             By using images from Unsplash, you agree to their <a href="https://unsplash.com/license">license</a> and <a href="https://unsplash.com/terms">Therms of Service</a>
