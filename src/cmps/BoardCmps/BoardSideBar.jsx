@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react"
-import { arrow_down, calender_icon, member_icon, plus_icon, settings_icon, side_arrow_icon, star, star_outline, table_icon, trello_icon } from "../UtilCmps/SVGs"
+import { arrow_down, board_icon, calender_icon, member_icon, plus_icon, settings_icon, side_arrow_icon, star, star_outline, table_icon, trello_icon } from "../UtilCmps/SVGs"
 import { useSelector } from "react-redux"
 import { loadBoard, loadBoards, updateBoard } from "../../store/board/board.actions"
 import { Link, NavLink, useParams } from "react-router-dom"
@@ -8,7 +8,7 @@ import { ClickAwayListener } from '@mui/base/ClickAwayListener'
 import { CREATE_BOARD, DynamicCmp } from "../TaskCmps/DynamicCmps/DynamicCmp"
 import { boardService } from "../../services/board/board.service.local"
 
-export function BoardSideBar() {
+export function BoardSideBar({ setViewType }) {
     const [isOpen, setIsOpen] = useState(true)
     const [modalPosition, setModalPosition] = useState({ top: 0, left: 0 })
     const [isAddBoard, setIsAddBoard] = useState(false)
@@ -76,23 +76,27 @@ export function BoardSideBar() {
                             <span>Members</span>
                             <button>{plus_icon}</button>
                         </div>
-                        <div className="line bolder">
+                        {/* <div className="line bolder">
                             {settings_icon}
                             <span>Workspace settings</span>
                             <button>{arrow_down}</button>
-                        </div>
+                        </div> */}
                         <div className="sep-title">
-                            <h4 >Workspace views</h4>
-                            <button>{plus_icon}</button>
+                            <h4 >Board views</h4>
+                            {/* <button>{plus_icon}</button> */}
                         </div>
-                        <div className="line italic">
+                        <button className="line italic" onClick={() =>  setViewType('board') }>
+                            {board_icon}
+                            <span>Board</span>
+                        </button>
+                        <button className="line italic" onClick={() =>  setViewType('table') }>
                             {table_icon}
                             <span>Table</span>
-                        </div>
-                        <div className="line italic">
+                        </button>
+                        <button className="line italic">
                             {calender_icon}
                             <span>Calender</span>
-                        </div>
+                        </button>
                         <div className="sep-title">
                             <h4 >Your boards</h4>
                             <button onClick={onAddBoard} ref={refTrigger}>{plus_icon}</button>

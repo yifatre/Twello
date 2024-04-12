@@ -34,11 +34,11 @@ export function GroupPreview({ group, saveGroup, board, isLabelsExtended, setIsL
     }
 
     return (<>
-        {!isExtended && <li className={`group-preview-shrunken ${group.style.themeColor || 'neutral'}`} onClick={() => setIsExtended(true)}>
+        {!isExtended && <div className={`group-preview-shrunken ${group.style.themeColor || 'neutral'}`} onClick={() => setIsExtended(true)}>
             <button className="collapse g-btn">{extend_icon}</button>
             <h2 className='group-title'>{group.title}</h2>
             <h4 className='tasks-number'>{group.tasks.length}</h4>
-        </li>
+        </div>
         }
         {isExtended && <div className={`group-preview ${group.style.themeColor || 'neutral'}`}>
 
