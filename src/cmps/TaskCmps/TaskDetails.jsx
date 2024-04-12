@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from "react-router"
 import { DescriptionEdit } from "./DescriptionEdit"
-import { arrow_down, bars_icon, check_icon, checked_icon, clock_icon, cover_icon, eye_icon, label_icon, location_icon, member_icon, paperclip_icon, plus_icon, window_icon, x_icon } from "../UtilCmps/SVGs"
+import { arrow_down, bars_icon, check_icon, checked_icon, clock_icon, cover_icon, eye_icon, label_icon, location_icon, member_icon, paperclip_icon, plus_icon, right_up_arrow, window_icon, x_icon } from "../UtilCmps/SVGs"
 import { utilService } from "../../services/util.service"
 import { ClickAwayListener } from '@mui/base/ClickAwayListener'
 import { useOutletContext } from "react-router-dom"
@@ -46,16 +46,16 @@ export function TaskDetails() {
         setTitleToEdit(value)
     }
 
-    function onOpenModalFromList(ev, type) {
-        ev.preventDefault()
-        ev.stopPropagation()
-        onSetActionType(ev, type, 0, ev.currentTarget.getBoundingClientRect().height + 8)
-    }
+    // function onOpenModalFromList(ev, type) {
+    //     ev.preventDefault()
+    //     ev.stopPropagation()
+    //     onSetActionType(ev, type, 0, ev.currentTarget.getBoundingClientRect().height + 8)
+    // }
 
-    function onSetActionType(ev, type, offsetx = 0, offsety = 0) {
+    function onSetActionType(ev, type) {
         ev.preventDefault()
         ev.stopPropagation()
-        setModalPosition(utilService.getModalPosition(ev.currentTarget, offsetx, offsety))
+        setModalPosition(utilService.getModalPosition(ev.currentTarget, 0, ev.currentTarget.getBoundingClientRect().height + 8))
         setActionType(type)
     }
 
@@ -83,14 +83,14 @@ export function TaskDetails() {
                         <h3>Members</h3>
                         <div className="">
                             {task.memberIds?.map(memberId => <div key={memberId} className="avatar" > <AvatarPreview user={board.members.find(_member => _member._id === memberId)} /> </div>)}
-                            <button className="avatar neutral-label" onClick={(ev) => onOpenModalFromList(ev, MEMBERS)}>{plus_icon}</button>
+                            <button className="avatar neutral-label" onClick={(ev) => onSetActionType(ev, MEMBERS)}>{plus_icon}</button>
                         </div>
                     </div>}
                     {!!task.labelIds.length && <div className="labels">
                         <h3>Labels</h3>
                         <div className="">
                             {task.labelIds?.map(labelId => <div key={labelId} className={`label ${board.labels.find(label => label.id === labelId).color}`}>{board.labels.find(label => label.id === labelId).title}</div>)}
-                            <button className="label neutral-label" onClick={(ev) => onOpenModalFromList(ev, LABELS)}>{plus_icon}</button>
+                            <button className="label neutral-label" onClick={(ev) => onSetActionType(ev, LABELS)}>{plus_icon}</button>
                         </div>
                     </div>}
                     {task.date?.dueDate && <div className="due-date">
@@ -100,7 +100,7 @@ export function TaskDetails() {
                                 {task.date?.isDone && check_icon}
                             </span>
 
-                            <button onClick={(ev) => onOpenModalFromList(ev, DATES)} className="tasks-btn">{utilService.getFormattedTime(new Date(task.date.dueDate))}<span className={`due ${due === 'Due soon' ? 'soon' : due === 'Overdue' ? 'over' : due === 'Complete' ? 'done' : ''}`}>{due}</span>{arrow_down}</button>
+                            <button onClick={(ev) => onSetActionType(ev, DATES)} className="tasks-btn">{utilService.getFormattedTime(new Date(task.date.dueDate))}<span className={`due ${due === 'Due soon' ? 'soon' : due === 'Overdue' ? 'over' : due === 'Complete' ? 'done' : ''}`}>{due}</span>{arrow_down}</button>
                         </div>
                     </div>}
                     {/* <section className="notifications"></section> */}
@@ -113,6 +113,30 @@ export function TaskDetails() {
                         {isDescriptionEdit && <div className="desc-editor"><DescriptionEdit groupId={groupId} task={task} saveTask={saveTask} setIsDescriptionEdit={setIsDescriptionEdit} /></div>}
                     </div>
                 </section>
+
+                {task.attach?.length > 0 &&
+                    <>
+                        <span className="icon-span attach-icon">{paperclip_icon}</span>
+                        <section className="attachments">
+                            <h3>Attachments</h3>
+                            {task.attach.map(attach => {
+                                const imgTypes = ['png', 'jpg', 'gif', 'svg']
+                                let fileName = attach.split('/')
+
+                                return <div className="attach-details">
+                                    <div className="attach_img" style={{ background: `url(${attach})` }}>
+                                        {/* {imgTypes.find(type => type === attach.slice(-3).toLowerCase()) && <img src={attach} alt="" />} */}
+                                        {!imgTypes.find(type => type === attach.slice(-3).toLowerCase()) && attach.slice(-3)}
+
+                                    </div>
+                                    {/* <span >{fileName[fileName.length - 1]}</span> */}
+                                    <a className="fileName" target="_blank" href={attach} download>{fileName[fileName.length - 1]} ↗</a>
+                                    {/* <span className="deleteAttach">Delete</span> */}
+
+                                </div>
+                            })}
+                        </section>
+                    </>}
 
                 <section className="checklists">
                     <ChecklistIndex task={task} saveTask={saveTask} groupId={groupId} />
