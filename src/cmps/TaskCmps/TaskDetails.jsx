@@ -46,16 +46,16 @@ export function TaskDetails() {
         setTitleToEdit(value)
     }
 
-    function onOpenModalFromList(ev, type) {
-        ev.preventDefault()
-        ev.stopPropagation()
-        onSetActionType(ev, type, 0, ev.currentTarget.getBoundingClientRect().height + 8)
-    }
+    // function onOpenModalFromList(ev, type) {
+    //     ev.preventDefault()
+    //     ev.stopPropagation()
+    //     onSetActionType(ev, type, 0, ev.currentTarget.getBoundingClientRect().height + 8)
+    // }
 
-    function onSetActionType(ev, type, offsetx = 0, offsety = 0) {
+    function onSetActionType(ev, type) {
         ev.preventDefault()
         ev.stopPropagation()
-        setModalPosition(utilService.getModalPosition(ev.currentTarget, offsetx, offsety))
+        setModalPosition(utilService.getModalPosition(ev.currentTarget, 0, ev.currentTarget.getBoundingClientRect().height + 8))
         setActionType(type)
     }
 
@@ -83,14 +83,14 @@ export function TaskDetails() {
                         <h3>Members</h3>
                         <div className="">
                             {task.memberIds?.map(memberId => <div key={memberId} className="avatar" > <AvatarPreview user={board.members.find(_member => _member._id === memberId)} /> </div>)}
-                            <button className="avatar neutral-label" onClick={(ev) => onOpenModalFromList(ev, MEMBERS)}>{plus_icon}</button>
+                            <button className="avatar neutral-label" onClick={(ev) => onSetActionType(ev, MEMBERS)}>{plus_icon}</button>
                         </div>
                     </div>}
                     {!!task.labelIds.length && <div className="labels">
                         <h3>Labels</h3>
                         <div className="">
                             {task.labelIds?.map(labelId => <div key={labelId} className={`label ${board.labels.find(label => label.id === labelId).color}`}>{board.labels.find(label => label.id === labelId).title}</div>)}
-                            <button className="label neutral-label" onClick={(ev) => onOpenModalFromList(ev, LABELS)}>{plus_icon}</button>
+                            <button className="label neutral-label" onClick={(ev) => onSetActionType(ev, LABELS)}>{plus_icon}</button>
                         </div>
                     </div>}
                     {task.date?.dueDate && <div className="due-date">
@@ -100,7 +100,7 @@ export function TaskDetails() {
                                 {task.date?.isDone && check_icon}
                             </span>
 
-                            <button onClick={(ev) => onOpenModalFromList(ev, DATES)} className="tasks-btn">{utilService.getFormattedTime(new Date(task.date.dueDate))}<span className={`due ${due === 'Due soon' ? 'soon' : due === 'Overdue' ? 'over' : due === 'Complete' ? 'done' : ''}`}>{due}</span>{arrow_down}</button>
+                            <button onClick={(ev) => onSetActionType(ev, DATES)} className="tasks-btn">{utilService.getFormattedTime(new Date(task.date.dueDate))}<span className={`due ${due === 'Due soon' ? 'soon' : due === 'Overdue' ? 'over' : due === 'Complete' ? 'done' : ''}`}>{due}</span>{arrow_down}</button>
                         </div>
                     </div>}
                     {/* <section className="notifications"></section> */}
