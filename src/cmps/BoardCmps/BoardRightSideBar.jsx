@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { about_icon, activity_icon, archive_icon, arrow_down, info_btn, label_icon, minus_icon, share_icon, x_icon } from "../UtilCmps/SVGs";
+import { about_icon, activity_icon, archive_icon, arrow_down, info_btn, label_icon, logo_no_icon, minus_icon, share_icon, x_icon } from "../UtilCmps/SVGs";
 import { useState } from "react";
 import { ChangeBack } from "./ChangeBack";
 import { SideBarLabels } from "./SideBarLabels";
@@ -50,20 +50,27 @@ export function BoardRightSideBar({ setRsbIsOpen }) {
                 </div>
             </>
             }
-            {(topHead === 'Change background' || 'Color' || 'Photos from Unsplash') ?
+            {(topHead === 'Change background' ||topHead === 'Color' ||topHead === 'Photos from Unsplash') ?
                 <>
-                    {topHead !== 'Menu' &&
                         <div className="r-sidebar-header">
                             <span className="back-btn" onClick={() => onBack()}>{arrow_down}</span>
                             <h2>{topHead}</h2>
                             <span onClick={() => onClose()}>{x_icon}</span>
-                        </div>}
+                        </div>
                     <ChangeBack setTopHead={setTopHead} topHead={topHead} board={board} setBackTo={setBackTo} />
                 </>
                 : <></>
             }
             {topHead === 'Labels'&&
+            <>
+             <div className="r-sidebar-header">
+                            <span className="back-btn" onClick={() => onBack()}>{arrow_down}</span>
+                            <h2>{topHead}</h2>
+                            <span onClick={() => onClose()}>{x_icon}</span>
+                        </div>
+            {console.log('hi')}
             <SideBarLabels board={board}/>
+            </>
             }
 
         </section >

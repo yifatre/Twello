@@ -140,8 +140,8 @@ export function LabelPicker({ setActionType, SaveLabel, deleteLabel, onUpdateBoa
                 <button onClick={() => toggleBtn()} className="tasks-btn labels-btn">Create a new label</button>
                 {labels.length > value ? <button onClick={() => moreLabels()} className="tasks-btn labels-btn">Show more labels</button> : <></>}
 
-                <hr className="between-btn" />
-                <button className="tasks-btn labels-btn enable-colorblind">Enable colorblind friendly mode </button>
+                {/* <hr className="between-btn" />
+                <button className="tasks-btn labels-btn enable-colorblind">Enable colorblind friendly mode </button> */}
             </section>
         </>
 
