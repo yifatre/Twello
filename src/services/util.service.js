@@ -9,7 +9,8 @@ export const utilService = {
     getFormattedTime,
     getModalPosition,
     getInitials,
-    getDateFormat
+    getDateFormat,
+    timeAgo
 }
 
 function makeId(firstLetter = '', length = 6) {
@@ -76,9 +77,9 @@ function loadFromStorage(key) {
 }
 
 function getModalPosition(target, offsetx = 0, offsety = 0) {
-    
+
     const { bottom, top, left, right, height, width, x, y } = target.getBoundingClientRect()
-    console.log('x,y,left,top', x,y,left,top)
+    console.log('x,y,left,top', x, y, left, top)
     // const left = target.offsetLeft
     // const top = target.offsetTop
     return { top: top + offsety, left: left + offsetx }
@@ -137,12 +138,75 @@ function getDateFormat(dateLongForm) {
     return formattedDate
 }
 
-function getDnDStyle(){
+function getDnDStyle() {
     const getListStyle = (isDraggingOver) => ({
         background: isDraggingOver ? "lightblue" : "lightgrey",
         padding: grid,
         width: 250,
         color: isDraggingOver ? "black" : "white",
         cursor: "all-scroll"
-      });
+    });
+}
+
+const MONTH_NAMES = [
+    'January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December'
+];
+
+
+function _getFormattedDate(date, prefomattedDate = false, hideYear = false) {
+
+    const day = date.getDate();
+    const month = MONTH_NAMES[date.getMonth()];
+    const year = date.getFullYear();
+    const hours = date.getHours();
+    let minutes = date.getMinutes();
+
+    if (minutes < 10) {
+        minutes = `0${minutes}`;
+    }
+
+    if (prefomattedDate) {
+        return `${prefomattedDate} at ${hours}:${minutes}`;
+    }
+
+    if (hideYear) {
+        return `${day}. ${month} at ${hours}:${minutes}`;
+    }
+
+    return `${day}. ${month} ${year}. at ${hours}:${minutes}`;
+}
+
+function timeAgo(dateParam) {
+    if (!dateParam) {
+        return null;
+    }
+
+    const date = typeof dateParam === 'object' ? dateParam : new Date(dateParam);
+    const DAY_IN_MS = 86400000; // 24 * 60 * 60 * 1000
+    const today = new Date();
+    const yesterday = new Date(today - DAY_IN_MS);
+    const seconds = Math.round((today - date) / 1000);
+    const minutes = Math.round(seconds / 60);
+    const isToday = today.toDateString() === date.toDateString();
+    const isYesterday = yesterday.toDateString() === date.toDateString();
+    const isThisYear = today.getFullYear() === date.getFullYear();
+
+    if (seconds < 5) {
+        return 'now';
+    } else if (seconds < 60) {
+        return `${seconds} seconds ago`;
+    } else if (seconds < 90) {
+        return 'about a minute ago';
+    } else if (minutes < 60) {
+        return `${minutes} minutes ago`;
+    } else if (isToday) {
+        return _getFormattedDate(date, 'Today'); // Today at 10:20
+    } else if (isYesterday) {
+        return _getFormattedDate(date, 'Yesterday'); // Yesterday at 10:20
+    } else if (isThisYear) {
+        return _getFormattedDate(date, false, true); // 10. January at 10:20
+    }
+
+    return _getFormattedDate(date); // 10. January 2017. at 10:20
 }
