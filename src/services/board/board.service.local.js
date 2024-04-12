@@ -15,7 +15,8 @@ export const boardService = {
     getEmptyTask,
     getEmptyActivity,
     getEmptyGroup,
-    getEmptyLabel
+    getEmptyLabel,
+    getEmptyTodo
 }
 window.cs = boardService
 
@@ -114,6 +115,13 @@ function getEmptyTask() {
         labelIds: [],
         memberIds: [],
         checklists: [],
+    }
+}
+
+function getEmptyTodo(){
+    return {
+        title: '',
+        isDone: false,
     }
 }
 

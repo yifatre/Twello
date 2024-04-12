@@ -13,6 +13,7 @@ import { BoardTable } from "./BaordTable"
 export function BoardDetails() {
     const { boardId } = useParams()
     const [rsbIsOpen, setRsbIsOpen] = useState(false)
+    const [viewType, setViewType] = useState('board')
     const board = useSelector(storeState => storeState.boardModule.board)
 
     useEffect(() => {
@@ -67,10 +68,10 @@ export function BoardDetails() {
     if (!board) return <div>loading</div>
     return (<>
         <section className={`board-details ${rsbIsOpen ? 'rsb-open' : ''}`} style={{ backgroundImage: `url(${board.style?.backgroundImage})` }}>
-            <BoardHeader board={board} setRsbIsOpen={setRsbIsOpen}/>
-            <BoardSideBar />
-            <GroupList board={board} saveGroup={saveGroup} removeGroup={removeGroup} saveTask={saveTask} removeTask={removeTask} />
-            {/* <BoardTable/> */}
+            <BoardHeader board={board} setRsbIsOpen={setRsbIsOpen} setViewType={setViewType} viewType={viewType}/>
+            <BoardSideBar setViewType={setViewType}/>
+            {viewType === 'board' && <GroupList board={board} saveGroup={saveGroup} removeGroup={removeGroup} saveTask={saveTask} removeTask={removeTask} />}
+            {viewType === 'table' &&  <BoardTable/>}
             <div className="board-fade"></div>
              <BoardRightSideBar setRsbIsOpen={setRsbIsOpen} />
         </section>

@@ -1,0 +1,107 @@
+.todo-edit-form {
+    display: grid;
+    grid-template-columns: rem(35px) 1fr;
+    font-size: rem(14px);
+    // margin-inline-start: rem(40px);
+    margin-block-start: rem(4px);
+
+
+
+    & input {
+        cursor: pointer;
+        width: rem(16px);
+        height: rem(16px);
+        margin: 9px 1.3px 0 0;
+        place-self: start center;
+    }
+
+    & .content {
+        grid-column: 2;
+
+        &.edit {
+            padding: rem(8px);
+            margin-inline-start: rem(0px);
+            background-color: var(--ds-background-neutral, #091e420f);
+            border-radius: rem(12px);
+
+            & #cancel-btn {
+                &.x {
+                    padding: rem(2px);
+                    display: grid;
+                    place-items: center;
+                }                
+                &:hover {
+                    background-color: transparent;
+                }
+                & .svg-container {
+                    @include svg-container(24px, 24px);
+                    margin: 0;
+                }
+            }
+        }
+    }
+
+    & .todo-title-edit {
+        overflow: hidden;
+        overflow-wrap: break-word;
+        height: 56px;
+        background-color: var(--ds-background-input, #fff);
+        box-shadow: inset 0 0 0 2px var(--ds-border-focused, #388bff);
+        color: var(--ds-text, #172b4d);
+        cursor: text;
+        float: none;
+        resize: none;
+        width: 100%;
+        outline: none;
+        padding: rem(8px) rem(12px) rem(28px);
+        line-height: rem(20px);
+        border-radius: rem(3px);
+        font-weight: 400;
+    }
+
+    & .edit-todo-actions {
+        display: flex;
+        margin-block-start: rem(8px);
+
+        & .add-todo-btn {
+            background-color: var(--ds-background-brand-bold, #0c66e4);
+            color: white;
+            width: rem(55px);
+            margin-inline-end: rem(4px);
+
+            &:hover {
+                background-color: var(--ds-background-brand-bold-hovered, #05c);
+            }
+        }
+
+        & .t-btn {
+            @include reg-btn();
+            padding: rem(8px) rem(12px);
+            width: max-content;
+            background-color: transparent;
+            display: flex;
+            align-items: center;
+
+            & .svg-container {
+                @include svg-container(16px, 16px);
+                place-self: center;
+                grid-area: svg;
+                margin-inline-end: rem(4px);
+            }
+
+            &:hover {
+                background-color: var(--ds-background-neutral-hovered, #091e4224);
+                color: var(--ds-text, #172b4d);
+            }
+        }
+
+        & .assign-and-date {
+            display: flex;
+            flex-grow: 1;
+            flex-direction: row-reverse;
+            color: var(--ds-text-subtle, #44546f);
+            font-weight: 400;
+            gap: rem(4px);
+        }
+    }
+}
