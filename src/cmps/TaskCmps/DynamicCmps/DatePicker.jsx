@@ -3,9 +3,10 @@ import { Calendar, DateRange } from "react-date-range";
 import { x_icon } from "../../UtilCmps/SVGs";
 import { useEffect, useState } from 'react';
 import { utilService } from "../../../services/util.service";
+import { boardService } from "../../../services/board/board.service.local";
 
 
-export function DatePicker({ groupId, setActionType, task, saveTask }) {
+export function DatePicker({ group,groupId, setActionType, task, saveTask }) {
 
     const [inputDateState, setInputDateState] = useState(task.date?.startDate ? true : false)
     const [inputDateTimeState, setInputDateTimeState] = useState(task.date?.dueDate ? true : false || task.date?.startDate ? false : true)
@@ -106,7 +107,9 @@ export function DatePicker({ groupId, setActionType, task, saveTask }) {
         const date = taskDate
         console.log("date", date)
         time ? taskDate.time = time : ''
-        saveTask({ ...task, date: taskDate }, groupId)
+         //todo add the member !!! now its 0 for development
+        const activity = boardService.getActivity(`set ${task.title} due time`,0,group,task)
+        saveTask({ ...task, date: taskDate }, groupId ,activity)
         setActionType(null)
     }
 
