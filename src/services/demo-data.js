@@ -480,7 +480,8 @@ members: [
                     "date": {
                         "startDate": 1712610000000,
                         "dueDate": 1714078800000,
-                        "time": "5:46 PM"
+                        "time": "5:46 PM",
+                        "isDone": false
                     }
                 },
                 {
@@ -512,7 +513,8 @@ members: [
                     "memberIds": [],
                     "date": {
                         "dueDate": 1713301200000,
-                        "time": "5:46 PM"
+                        "time": "5:46 PM",
+                        "isDone": false
                     }
                 },
                 {
@@ -555,7 +557,8 @@ members: [
                     },
                     "date": {
                         "dueDate": 1712178000000,
-                        "time": "1:22 Am"
+                        "time": "1:22 Am",
+                        "isDone": false
                     },
                     "attach": [
                         "https://res.cloudinary.com/dobrmrt0g/image/upload/v1712739980/pvncdj8kpf1r4n6hjgll.png"
@@ -619,7 +622,8 @@ members: [
                     ],
                     "date": {
                         "dueDate": 1712782800000,
-                        "time": "8:20 AM"
+                        "time": "8:20 AM",
+                        "isDone": true
                     }
                 },
                 {
@@ -634,7 +638,8 @@ members: [
                     "memberIds": [],
                     "date": {
                         "dueDate": 1712782800000,
-                        "time": "5:46 PM"
+                        "time": "5:46 PM",
+                        "isDone": false
                     }
                 },
                 {
@@ -664,7 +669,8 @@ members: [
                     "labelIds": [],
                     "date": {
                         "dueDate": 1712178000000,
-                        "time": "2:51 PM"
+                        "time": "2:51 PM",
+                        "isDone": false
                     }
                 },
                 {
@@ -722,7 +728,8 @@ members: [
                     "id": "tdAbxQa",
                     "date": {
                         "dueDate": 1712178000000,
-                        "time": "2:51 PM"
+                        "time": "2:51 PM",
+                        "isDone": false
                     }
                 },
                 {
@@ -738,7 +745,8 @@ members: [
                     "checklists": [],
                     "id": "tOWJI8P",
                     "date": {
-                        "dueDate": 1712782800000
+                        "dueDate": 1712782800000,
+                        "isDone": true
                     },
                     "attach": [
                         "https://res.cloudinary.com/dobrmrt0g/image/upload/v1712741043/z4e4irohaznqx0vcjc0p.png"
@@ -817,7 +825,8 @@ members: [
                     "id": "tJyAis3",
                     "date": {
                         "dueDate": 1712178000000,
-                        "time": "2:42 PM"
+                        "time": "2:42 PM",
+                        "isDone": false
                     }
                 },
                 {
@@ -832,7 +841,8 @@ members: [
                     "id": "tqPyG23",
                     "date": {
                         "dueDate": 1722373200000,
-                        "time": "5:05 PM"
+                        "time": "5:05 PM",
+                        "isDone": false
                     }
                 },
                 {
@@ -863,7 +873,8 @@ members: [
                     ],
                     "date": {
                         "dueDate": 1713992400000,
-                        "time": "5:46 PM"
+                        "time": "5:46 PM",
+                        "isDone": false
                     }
                 },
                 {
@@ -885,7 +896,8 @@ members: [
                     "id": "tC9AMIQ",
                     "date": {
                         "dueDate": 1714683600000,
-                        "time": "1:22 PM"
+                        "time": "1:22 PM",
+                        "isDone": false
                     }
                 }
             ],
@@ -924,7 +936,8 @@ members: [
                     "id": "t2LxfhL",
                     "date": {
                         "dueDate": 1713733200000,
-                        "time": "1:19 PM"
+                        "time": "1:19 PM",
+                        "isDone": false
                     }
                 },
                 {

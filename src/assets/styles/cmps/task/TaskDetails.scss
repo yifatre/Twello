@@ -294,7 +294,7 @@
                 display: inline-flex;
                 align-items: center;
 
-                span {
+                & span:not(.due) {
                     @include svg-container
                 }
 
@@ -325,6 +325,30 @@
                     }
 
                 }
+
+                & .due {
+                    font-size: 12px;
+                    line-height: 16px;
+                    padding: 0 4px;
+                    border-radius: 2px;
+                    margin: auto 0 auto 8px;
+                    font-weight: 500;
+                    border-radius: 3px;
+
+                    &.soon {
+                        background-color: var(--ds-background-warning-bold, #e2b203)
+                    }
+
+                    &.over {
+                        color: var(--ds-text-inverse, #ffffff);
+                        background-color: var(--ds-background-danger-bold, #ca3521);
+                    }
+
+                    &.done {
+                        color: var(--ds-text-inverse, #ffffff);
+                        background-color: var(--ds-background-success-bold, #1f845a);
+                    }
+                }
             }
 
         }
@@ -335,7 +359,7 @@
         padding-block: rem(14px);
 
         .icon-span {
-            
+
             span {
                 @include svg-container(24px, 24px);
             }

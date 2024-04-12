@@ -59,6 +59,7 @@ export function TaskDetails() {
         setActionType(type)
     }
 
+    const due = task.date?.isDone ? 'Complete' : task.date?.dueDate - Date.now() < 0 ? 'Overdue' : task.date?.dueDate - Date.now() <= 24 * 60 * 60 * 1000 ? 'Due soon' : ''
     return <div className="task-details-backdrop">
         <ClickAwayListener onClickAway={closeTaskDetails}>
             <section className="task-details">
@@ -92,15 +93,16 @@ export function TaskDetails() {
                             <button className="label neutral-label" onClick={(ev) => onOpenModalFromList(ev, LABELS)}>{plus_icon}</button>
                         </div>
                     </div>}
-                    <div className="due-date">
+                    {task.date?.dueDate && <div className="due-date">
                         <h3>Due date</h3>
                         <div className="">
-                            <span className="box">
-                                {check_icon}
+                            <span className="box" onClick={() => saveTask({ ...task, date: { ...task.date, isDone: !task.date?.isDone } }, groupId)}>
+                                {task.date?.isDone && check_icon}
                             </span>
-                            <button>{utilService.getFormattedTime(new Date(task.date?.dueDate))}{arrow_down}</button>
+
+                            <button onClick={(ev) => onOpenModalFromList(ev, DATES)} className="tasks-btn">{utilService.getFormattedTime(new Date(task.date.dueDate))}<span className={`due ${due === 'Due soon' ? 'soon' : due === 'Overdue' ? 'over' : due === 'Complete' ? 'done' : ''}`}>{due}</span>{arrow_down}</button>
                         </div>
-                    </div>
+                    </div>}
                     {/* <section className="notifications"></section> */}
                 </section>
                 <span className="icon-span desc-icon">{bars_icon}</span>
@@ -113,14 +115,14 @@ export function TaskDetails() {
                 </section>
 
                 <section className="checklists">
-                <ChecklistIndex task={task} saveTask={saveTask} groupId={groupId}/>
+                    <ChecklistIndex task={task} saveTask={saveTask} groupId={groupId} />
                 </section>
 
                 <section className="actions">
                     <h3>Add to card</h3>
                     <a className="flex align-center" href="#" onClickCapture={(ev) => onSetActionType(ev, MEMBERS)} >{member_icon}Members</a>
                     <a className="flex align-center" href="#" onClick={(ev) => onSetActionType(ev, LABELS)}>{label_icon}Labels</a>
-                    <a className="flex align-center" href="#"onClick={(ev) => onSetActionType(ev, CHECKLIST)} >{checked_icon}Checklist</a>
+                    <a className="flex align-center" href="#" onClick={(ev) => onSetActionType(ev, CHECKLIST)} >{checked_icon}Checklist</a>
                     <a className="flex align-center" href="#" onClick={(ev) => onSetActionType(ev, DATES)}>{clock_icon}Dates</a>
                     <a className="flex align-center" href="#" onClick={(ev) => onSetActionType(ev, ATTACHMENT)}>{paperclip_icon}Attachment</a>
                     <a className="flex align-center" href="#">{location_icon}Location</a>
