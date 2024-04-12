@@ -14,7 +14,7 @@ export function TaskList({ group, saveTask, removeTask, board, isLabelsExtended,
                             <Draggable key={task.id} draggableId={task.id} index={idx} >
 
                                 {(provided, snapshot) => {
-                                    console.log('snapshot', snapshot.isClone = true)
+                                    // console.log('snapshot', snapshot.isClone = true)
                                     // console.log('provided.draggableProps?.style.', provided.draggableProps?.style, 'task.id', task.id)
                                     return <li key={task.id}
                                         ref={provided.innerRef}
@@ -40,7 +40,7 @@ export function TaskList({ group, saveTask, removeTask, board, isLabelsExtended,
                         )}
                         {<div style={{ background: 'blue' }}> {provided.placeholder}</div>}
                         {/* {provided.placeholder} */}
-                        {console.log("provided.dragHandleProps", provided.dragHandleProps)}
+                        {/* {console.log("provided.dragHandleProps", provided.dragHandleProps)} */}
 
                         {/* {console.log("provided.placeholder", provided)} */}
                         {isAddMode && <DynEntityAdd setIsAddMode={setIsAddMode} saveEntity={saveTask} groupId={group.id} />}

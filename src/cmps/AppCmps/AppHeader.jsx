@@ -3,17 +3,18 @@ import { ClickAwayListener } from '@mui/base/ClickAwayListener'
 
 import { arrow_down, bell_icon, info_btn, logo, more_icon, search_icon } from '../UtilCmps/SVGs'
 import { CREATE_BOARD, DynamicCmp } from '../TaskCmps/DynamicCmps/DynamicCmp'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { utilService } from '../../services/util.service'
 
 export function AppHeader() {
     const { pathname } = useLocation()
     const [isAddBoard, setIsAddBoard] = useState(false)
     const [modalPosition, setModalPosition] = useState({ top: 0, left: 0 })
+    const refTrigger = useRef(null)
 
     function onAddBoard(ev) {
         const { currentTarget } = ev
-        setModalPosition(utilService.getModalPosition(currentTarget, 0, currentTarget.getBoundingClientRect().height + 8))
+
         setIsAddBoard(true)
     }
 
@@ -53,7 +54,7 @@ export function AppHeader() {
                 {/* <button className='main-nav-btn'>Recent <span className='arrow-down'>{arrow_down}</span></button> */}
                 {/* <button className='main-nav-btn'>Starred <span className='arrow-down'>{arrow_down}</span></button> */}
                 {/* <button className='main-nav-btn'>Templates <span className='arrow-down'>{arrow_down}</span></button> */}
-                <button className='create-btn' onClick={onAddBoard}>Create</button>
+                <button className='create-btn' onClick={onAddBoard} ref={refTrigger}>Create</button>
             </div>
             <div className='flex'>
 
@@ -71,8 +72,8 @@ export function AppHeader() {
 
         </header>
         {isAddBoard && <ClickAwayListener onClickAway={onCloseAddModal}>
-            <div style={{zIndex:110}}>
-                <DynamicCmp cmp={CREATE_BOARD} setIsAddBoard={setIsAddBoard} position={modalPosition} />
+            <div style={{ zIndex: 110 }}>
+                <DynamicCmp cmp={CREATE_BOARD} setIsAddBoard={setIsAddBoard} position={modalPosition} refTrigger={refTrigger} offset={{ x: 0, y: refTrigger.current.getBoundingClientRect().height + 8 }} />
             </div>
         </ClickAwayListener>
         }

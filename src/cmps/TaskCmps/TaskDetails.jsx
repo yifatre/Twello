@@ -4,7 +4,7 @@ import { arrow_down, bars_icon, check_icon, checked_icon, clock_icon, cover_icon
 import { utilService } from "../../services/util.service"
 import { ClickAwayListener } from '@mui/base/ClickAwayListener'
 import { useOutletContext } from "react-router-dom"
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { ATTACHMENT, CHECKLIST, COVER, DATES, DynamicCmp, LABELS, MEMBERS } from "./DynamicCmps/DynamicCmp"
 import { useSelector } from "react-redux"
 import { AvatarPreview } from "../UtilCmps/AvatarPreview"
@@ -16,7 +16,6 @@ export function TaskDetails() {
     const { boardId, groupId, taskId } = useParams()
     const [saveTask] = useOutletContext()
     const board = useSelector(storeState => storeState.boardModule.board)
-    const [modalPosition, setModalPosition] = useState({ top: 0, left: 0 })
     const [actionType, setActionType] = useState(null)
     const [isDescriptionEdit, setIsDescriptionEdit] = useState(false)
 
@@ -24,8 +23,11 @@ export function TaskDetails() {
     const [titleToEdit, setTitleToEdit] = useState(task.title)
     const navigate = useNavigate()
 
+    const refTrigger = useRef(null)
+
     useEffect(() => {
         setTask(board.groups.find(group => group.id === groupId).tasks.find(task => task.id === taskId))
+        console.log('refTrigger', refTrigger)
     }, [board])
 
     useEffect(() => {
@@ -46,16 +48,11 @@ export function TaskDetails() {
         setTitleToEdit(value)
     }
 
-    // function onOpenModalFromList(ev, type) {
-    //     ev.preventDefault()
-    //     ev.stopPropagation()
-    //     onSetActionType(ev, type, 0, ev.currentTarget.getBoundingClientRect().height + 8)
-    // }
-
     function onSetActionType(ev, type) {
+        console.log('ev', ev)
         ev.preventDefault()
         ev.stopPropagation()
-        setModalPosition(utilService.getModalPosition(ev.currentTarget, 0, ev.currentTarget.getBoundingClientRect().height + 8))
+        refTrigger.current = ev.currentTarget
         setActionType(type)
     }
 
@@ -119,19 +116,16 @@ export function TaskDetails() {
                         <span className="icon-span attach-icon">{paperclip_icon}</span>
                         <section className="attachments">
                             <h3>Attachments</h3>
-                            {task.attach.map(attach => {
+                            {task.attach.map((attach, idx) => {
                                 const imgTypes = ['png', 'jpg', 'gif', 'svg']
                                 let fileName = attach.split('/')
 
-                                return <div className="attach-details">
+                                return <div className="attach-details" key={idx}>
                                     <div className="attach_img" style={{ background: `url(${attach})` }}>
-                                        {/* {imgTypes.find(type => type === attach.slice(-3).toLowerCase()) && <img src={attach} alt="" />} */}
                                         {!imgTypes.find(type => type === attach.slice(-3).toLowerCase()) && attach.slice(-3)}
 
                                     </div>
-                                    {/* <span >{fileName[fileName.length - 1]}</span> */}
                                     <a className="fileName" target="_blank" href={attach} download>{fileName[fileName.length - 1]} ↗</a>
-                                    {/* <span className="deleteAttach">Delete</span> */}
 
                                 </div>
                             })}
@@ -151,9 +145,9 @@ export function TaskDetails() {
                     <a className="flex align-center" href="#" onClick={(ev) => onSetActionType(ev, ATTACHMENT)}>{paperclip_icon}Attachment</a>
                     <a className="flex align-center" href="#">{location_icon}Location</a>
                     {!(task.style?.backgroundColor || task.style?.backgroundImage) && <a className="flex align-center" href="#" onClick={(ev) => onSetActionType(ev, COVER)}>{cover_icon}Cover</a>}
-                    <ClickAwayListener onClickAway={() => setActionType(null)}>
+                    <ClickAwayListener onClickAway={() => { setActionType(null); refTrigger.current = null }}>
                         <div>
-                            {actionType && <DynamicCmp setActionType={setActionType} groupId={groupId} cmp={actionType} task={task} position={modalPosition} board={board} saveTask={saveTask} />}
+                            {actionType && <DynamicCmp setActionType={setActionType} groupId={groupId} cmp={actionType} task={task} board={board} saveTask={saveTask} refTrigger={refTrigger} offset={{ x: 0, y: refTrigger.current.getBoundingClientRect().height + 8 }} />}
                         </div>
                     </ClickAwayListener>
                 </section>

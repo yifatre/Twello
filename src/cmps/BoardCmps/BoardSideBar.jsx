@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { arrow_down, calender_icon, member_icon, plus_icon, settings_icon, side_arrow_icon, star, star_outline, table_icon, trello_icon } from "../UtilCmps/SVGs"
 import { useSelector } from "react-redux"
 import { loadBoard, loadBoards, updateBoard } from "../../store/board/board.actions"
@@ -15,6 +15,7 @@ export function BoardSideBar() {
     const boards = useSelector(storeState => storeState.boardModule.boards)
     const board = useSelector(storeState => storeState.boardModule.board)
     const { boardId } = useParams()
+    const refTrigger = useRef(null)
 
     useEffect(() => {
         loadBoards()
@@ -94,7 +95,7 @@ export function BoardSideBar() {
                         </div>
                         <div className="sep-title">
                             <h4 >Your boards</h4>
-                            <button onClick={onAddBoard}>{plus_icon}</button>
+                            <button onClick={onAddBoard} ref={refTrigger}>{plus_icon}</button>
                         </div>
                         <ul className="board-preview-list clean-list">
                             {
@@ -125,7 +126,7 @@ export function BoardSideBar() {
         </div>
         {isAddBoard && <ClickAwayListener onClickAway={onCloseAddModal}>
             <div style={{ zIndex: 110 }}>
-                <DynamicCmp cmp={CREATE_BOARD} setIsAddBoard={setIsAddBoard} position={modalPosition} />
+                <DynamicCmp cmp={CREATE_BOARD} setIsAddBoard={setIsAddBoard} refTrigger={refTrigger} offset={{ x: refTrigger.current.getBoundingClientRect().width + 8, y: 0 }} />
             </div>
         </ClickAwayListener>
         }</>
