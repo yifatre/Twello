@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from "react-router"
 import { DescriptionEdit } from "./DescriptionEdit"
-import { arrow_down, bars_icon, check_icon, checked_icon, clock_icon, cover_icon, eye_icon, label_icon, location_icon, member_icon, paperclip_icon, plus_icon, window_icon, x_icon } from "../UtilCmps/SVGs"
+import { arrow_down, bars_icon, check_icon, checked_icon, clock_icon, cover_icon, eye_icon, label_icon, location_icon, member_icon, paperclip_icon, plus_icon, right_up_arrow, window_icon, x_icon } from "../UtilCmps/SVGs"
 import { utilService } from "../../services/util.service"
 import { ClickAwayListener } from '@mui/base/ClickAwayListener'
 import { useOutletContext } from "react-router-dom"
@@ -113,6 +113,30 @@ export function TaskDetails() {
                         {isDescriptionEdit && <div className="desc-editor"><DescriptionEdit groupId={groupId} task={task} saveTask={saveTask} setIsDescriptionEdit={setIsDescriptionEdit} /></div>}
                     </div>
                 </section>
+
+                {task.attach?.length > 0 &&
+                    <>
+                        <span className="icon-span attach-icon">{paperclip_icon}</span>
+                        <section className="attachments">
+                            <h3>Attachments</h3>
+                            {task.attach.map(attach => {
+                                const imgTypes = ['png', 'jpg', 'gif', 'svg']
+                                let fileName = attach.split('/')
+
+                                return <div className="attach-details">
+                                    <div className="attach_img" style={{ background: `url(${attach})` }}>
+                                        {/* {imgTypes.find(type => type === attach.slice(-3).toLowerCase()) && <img src={attach} alt="" />} */}
+                                        {!imgTypes.find(type => type === attach.slice(-3).toLowerCase()) && attach.slice(-3)}
+
+                                    </div>
+                                    {/* <span >{fileName[fileName.length - 1]}</span> */}
+                                    <a className="fileName" target="_blank" href={attach} download>{fileName[fileName.length - 1]} ↗</a>
+                                    {/* <span className="deleteAttach">Delete</span> */}
+
+                                </div>
+                            })}
+                        </section>
+                    </>}
 
                 <section className="checklists">
                     <ChecklistIndex task={task} saveTask={saveTask} groupId={groupId} />

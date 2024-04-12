@@ -395,6 +395,61 @@
         }
     }
 
+    .attach-icon{
+        grid-area: attach-icon;
+    }
+
+    .attachments {
+        grid-area: attach;
+
+        & h3 {
+            margin-block: rem(14px);
+            font-size: 1rem;
+            line-height: 1.25rem;
+            font-weight: 600;
+        }
+
+        & .attach-details {
+
+            &:hover {
+                background-color: #091E4224;
+            }
+
+            margin-block-end: rem(8px);
+            padding-block: rem(2px);
+            display: grid;
+            grid-template-columns: rem(112px) 1fr;
+            grid-template-rows: repeat(2, max-content);
+            column-gap: rem(16px);
+            word-wrap: break-word;
+            border-radius: rem(3px);
+
+            & .fileName {
+                font-weight: 700;
+
+                & .rightup{
+                    @include svg-container
+                }
+            }
+
+            & .deleteAttach {
+                text-decoration: underline;
+            }
+
+            & .attach_img {
+                grid-column: 1;
+                grid-row: 1/-1;
+                height: rem(80px);
+                width: rem(112px);
+                background-size: contain;
+                background-position: center;
+                border-radius: rem(3px);
+                background-color: var(--ds-background-neutral, #091e420f);
+                color: var(--ds-text-subtle, #44546f);
+            }
+        }
+    }
+
     .actions {
         border-end-end-radius: rem(12px);
         width: rem(192px);
