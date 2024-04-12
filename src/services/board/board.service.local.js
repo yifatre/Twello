@@ -13,7 +13,7 @@ export const boardService = {
     remove,
     getEmptyBoard,
     getEmptyTask,
-    getEmptyActivity,
+    getActivity,
     getEmptyGroup,
     getEmptyLabel,
     getEmptyTodo
@@ -118,21 +118,24 @@ function getEmptyTask() {
     }
 }
 
-function getEmptyTodo(){
+function getEmptyTodo() {
     return {
         title: '',
         isDone: false,
     }
 }
 
-function getEmptyActivity() {
+function getActivity(txt, byMemberId, group, task) {
+   const miniGroup = group ?{ id: group.id, title: group.title }:{}
+   const miniTask = task ?{ id: task.id, title: task.title }:{}
+     
     return {
         id: utilService.makeId('a'),
         createdAt: Date.now(),
-        txt: '',
-        byMemberId: '',
-        group: {},
-        task: {},
+        txt,
+        byMemberId,
+        group: miniGroup,
+        task: miniTask,
     }
 }
 
@@ -148,3 +151,4 @@ function _createBoards() {
     const boards = utilService.loadFromStorage(STORAGE_KEY)
     if (!boards) utilService.saveToStorage(STORAGE_KEY, boardsDemoData2)
 }
+

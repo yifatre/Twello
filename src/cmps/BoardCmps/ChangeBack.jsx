@@ -14,11 +14,13 @@ import { updateBoard } from "../../store/board/board.actions"
 import axios from "axios"
 import { utilService } from "../../services/util.service"
 import { uploadService } from "../../services/upload.service"
+import { boardService } from "../../services/board/board.service.local"
 
 export function ChangeBack({ setTopHead, board, setBackTo, topHead }) {
     const [search, setSearch] = useState('aurora')
     const gradients = [gradIce, gradWave, gradMagic, gradRainbow, gradPeach, gradFlower, gradEarth, gradAline, gradLava]
     const [images, setImages] = useState()
+    const [boardImgs, setBoardImgs] = useState(board.style.images)
 
     const [imgData, setImgData] = useState({
         imgUrl: null,
@@ -34,7 +36,7 @@ export function ChangeBack({ setTopHead, board, setBackTo, topHead }) {
 
     async function onUploadFile(ev) {
         const { secure_url, height, width } = await uploadService.uploadImg(ev)
-        changeBgImg(secure_url)
+        changeBgImg(secure_url, true)
     }
 
     async function getPhotos() {
@@ -48,10 +50,17 @@ export function ChangeBack({ setTopHead, board, setBackTo, topHead }) {
         }
     }
 
-    function changeBgImg(grad) {
-
+    function changeBgImg(grad, isUpload) {
+        const activity = boardService.getActivity('change background of this board', 0)
+        console.log("activity", activity)
         const boardToChange = board
         boardToChange.style.backgroundImage = grad
+        boardToChange.activities.push(activity)
+        console.log("boardToChange", boardToChange)
+       
+        if (isUpload) {
+            boardToChange.style.images.push(grad)
+        }
         updateBoard(boardToChange, true)
     }
 
@@ -95,21 +104,37 @@ export function ChangeBack({ setTopHead, board, setBackTo, topHead }) {
 
                     </header>
                     <hr />
-                    <div className="flex column head-img-card-container">
+                    <div className="flex column img-container">
                         {/* <div onClick={onUploadFile} className="img-card neutral"> */}
+                        <div className="images flex flex-warp">
+
                             <label htmlFor="attachment" className="img-card neutral">{plus_icon}</label>
                             <input className="hide" type="file" name="attachment" id="attachment" onChange={onUploadFile} />
-                            
+
+                            {boardImgs &&
+                                boardImgs.map((img, idx) =>
+                                    <div className="img-card" key={idx} onClick={() => changeBgImg(img)} >
+                                        <img src={img} alt="" />
+                                    </div>
+                                )
+
+                            }
+                        </div>
+                        {/* 
+                        {boardImgs && boardImgs.map((img, idx) =>
+                            <div className="img-card" key={idx} onClick={() => changeBgImg(img)} style={{ backgroundImage: `url(${img})` }}>
+                            </div>)} */}
                         {/* </div> */}
                     </div>
                 </>
             }
             <main className="img-container flex column">
 
-                {topHead === 'Color' &&
-                    gradients.map((grad, idx) =>
+                {topHead === 'Color' && <div className="images flex flex-warp">
+                    {gradients.map((grad, idx) =>
                         <div className="img-card" key={idx} onClick={() => changeBgImg(grad)} style={{ backgroundImage: `url(${grad})` }}>
-                        </div>)
+                        </div>)}
+                </div>
                 }
 
                 {topHead === 'Photos from Unsplash' &&
