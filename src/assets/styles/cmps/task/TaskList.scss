@@ -2,11 +2,7 @@
    overflow-y: auto;
    scrollbar-color: var(--ds-background-neutral-hovered);
    scrollbar-width: thin;
-   padding-inline: rem(8px);
-
-   &.scrolling {
-      padding-inline-end: rem(4px);
-   }
+   padding-inline: rem(8px) rem(4px);
 
    .task-list {
       display: flex;

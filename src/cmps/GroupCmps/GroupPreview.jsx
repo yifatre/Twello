@@ -15,7 +15,7 @@ export function GroupPreview({ group, saveGroup, board, isLabelsExtended, setIsL
     const [titleToEdit, setTitleToEdit] = useState(group.title)
     const [isActionsOpen, setIsActionsOpen] = useState(false)
     const [modalPosition, setModalPosition] = useState({ top: 0, left: 0 })
-    const scrollRef = useRef(null)
+    // const scrollRef = useRef(null)
 
     function handleClickAway() {
         setIsEditTitle(false)
@@ -41,7 +41,7 @@ export function GroupPreview({ group, saveGroup, board, isLabelsExtended, setIsL
             <h4 className='tasks-number'>{group.tasks.length}</h4>
         </li>
         }
-        {isExtended && <div className={`group-preview ${group.style.themeColor || 'neutral'} ${scrollRef.current?.scrollHeight > scrollRef.current?.clientHeight ? 'scrolling' : ''}`}>
+        {isExtended && <div className={`group-preview ${group.style.themeColor || 'neutral'}`}>
 
             <div className="group-header">
                 {!isEditTitle && <h2 className="group-title" onClick={() => setIsEditTitle(true)}>{group.title}</h2>}
@@ -53,7 +53,7 @@ export function GroupPreview({ group, saveGroup, board, isLabelsExtended, setIsL
                 <button className="options" onClick={onOpenActionsMenu}>{ellipsis_icon}</button>
             </div>
 
-            <div className={`tasks-container ${scrollRef.current?.scrollHeight > scrollRef.current?.clientHeight ? 'scrolling' : ''}`} ref={scrollRef}>
+            <div className={`tasks-container `} >
                 <TaskList group={group} saveTask={saveTask} board={board} isLabelsExtended={isLabelsExtended} setIsLabelExtended={setIsLabelExtended} isAddMode={isAddMode} setIsAddMode={setIsAddMode} />
             </div>
 
