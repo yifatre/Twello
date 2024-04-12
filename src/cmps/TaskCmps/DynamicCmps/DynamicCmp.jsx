@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react"
 import { updateBoard } from "../../../store/board/board.actions"
 import { AttachmentPicker } from "./AttachmentPicker"
 import { CheckList } from "./CheckLlist"
@@ -7,6 +8,7 @@ import { DatePicker } from "./DatePicker"
 import { GroupActions } from "./GroupActios"
 import { LabelPicker } from "./LabelPicker"
 import { MemberPicker } from "./MemberPicker"
+import { utilService } from "../../../services/util.service"
 
 export const LABELS = 'LABELS'
 export const MEMBERS = 'MEMBERS'
@@ -18,7 +20,34 @@ export const GROUP_ACTIONS = 'GROUP_ACTIONS'
 export const CHECKLIST = 'CHECKLIST'
 
 
-export function DynamicCmp({setActionType, groupId, cmp, board, task, setIsAddBoard, position, saveTask, group, saveGroup, setIsActionsOpen }) {
+export function DynamicCmp({ setActionType, groupId, cmp, board, task, setIsAddBoard, saveTask, group, saveGroup, setIsActionsOpen, refTrigger, offset = { x: 0, y: 0 } }) {
+
+    const ref = useRef(null)
+    const [pos, setPos] = useState(utilService.getModalPosition(refTrigger.current, offset.x, refTrigger.current.getBoundingClientRect().height + offset.y))
+    const [windowSize, setWindowSize] = useState({ width: window.innerWidth, height: window.innerHeight })
+
+
+    useEffect(() => {
+        function updateSize() {
+            console.log('***resized***')
+            setWindowSize({ width: window.innerWidth, height: window.innerHeight })
+        }
+        window.addEventListener('resize', updateSize)
+        updateSize()
+        return () => { window.removeEventListener('resize', updateSize) }
+    }, [])
+
+    useEffect(() => {
+        console.log('useeffect')
+        if (ref.current) {
+            const modalDim = ref.current.getBoundingClientRect()
+            const triggerLocation = refTrigger.current.getBoundingClientRect()
+            if (triggerLocation.top + modalDim.height > window.innerHeight) setPos(prevPos => ({ ...prevPos, top: window.innerHeight - modalDim.height }))
+            else setPos(prevPos => ({ ...prevPos, top: triggerLocation.top  + offset.y }))
+            if (triggerLocation.left + modalDim.width > window.innerWidth) setPos(prevPos => ({ ...prevPos, left: window.innerWidth - modalDim.width }))
+            else setPos(prevPos => ({ ...prevPos, left: triggerLocation.left + offset.x }))
+        }
+    }, [windowSize, refTrigger.current])
 
     function onUpdateBoard(newLabel) {
         const boardToUpdate = { ...board }
@@ -106,10 +135,10 @@ export function DynamicCmp({setActionType, groupId, cmp, board, task, setIsAddBo
             break
 
         case CHECKLIST:
-            cmpType = <CheckList setActionType={setActionType}/>
+            cmpType = <CheckList setActionType={setActionType} />
             break
     }
-    return <div className={`dynamic-cmp ${cmp.toLowerCase()}`} style={{ top: position.top, left: position.left, zIndex: 150 }}>
+    return <div className={`dynamic-cmp ${cmp.toLowerCase()}`} style={{ top: pos.top, left: pos.left, zIndex: 150 }} ref={ref}>
         {cmpType}
     </div>
 }

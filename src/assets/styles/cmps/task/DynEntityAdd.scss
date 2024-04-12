@@ -1,5 +1,6 @@
 .dyn-entity-add-form {
     margin-block-start: rem(8px);
+    
     textarea {
         width: 100%;
         resize: none;
@@ -33,7 +34,7 @@
             place-items: center;
             border-radius: $btn-border-radius;
             padding: 0;
-
+            height: rem(32px);
             span {
                 width: 20px;
                 height: 20px;

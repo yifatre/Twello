@@ -1,1 +1,93 @@
+.qe-back-drop {
+    position: fixed;
+    display: grid;
+    place-items: center;
+    inset: 0;
+    background-color: hsla(0, 0%, 0%, 0.6);
+    z-index: 100;
 
+
+    & .task-quick-edit {
+        position: fixed;
+        display: flex;
+        gap: rem(8px);
+        // z-index: 100;
+
+        & .task-preview-container {
+
+            & .task-preview {
+                width: rem(256px);
+                height: max-content;
+
+                & .edit-icon {
+                    display: none;
+                }
+
+                & .task-preview-title.edit{
+                    width: 100%;
+                    border: none;
+                    outline: none;
+                    display: block;
+                    resize: none;
+                }
+
+                & .task-preview-title{
+                    display: none;
+                }
+            }
+
+            & .qe-save-btn {
+                background-color: var(--ds-background-brand-bold, #0c66e4);
+                box-shadow: none;
+                border: none;
+                color: var(--ds-text-inverse, #ffffff);
+                width: max-content;
+                font-size: rem(14px);
+                line-height: rem(20px);
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: rem(3px);
+                cursor: pointer;
+                padding: rem(6px) rem(12px);
+
+                &:hover {
+                    background-color: var(--ds-background-brand-bold-hovered, #0055cc);
+                }
+
+                &:active {
+                    background-color: var(--ds-background-brand-bold-pressed, #09326c);
+
+                }
+            }
+        }
+
+        & .actions {
+
+            & .qe-btn {
+                width: max-content;
+                height: rem(32px);
+                display: grid;
+                gap: rem(8px);
+                grid-auto-flow: column;
+                margin-bottom: 4px;
+                border-radius: 3px;
+                padding: 6px 12px 6px 10px;
+                background-color: var(--ds-background-accent-gray-subtlest, #f1f2f4);
+                color: var(--ds-text, #172b4d);
+                font-weight: 500;
+                align-items: center;
+
+                &:hover {
+                    background-color: var(--ds-background-accent-gray-subtler, #dcdfe4);
+                    color: var(--ds-text, #172b4d);
+                }
+
+                span {
+                    @include svg-container;
+                    color: inherit;
+                }
+            }
+        }
+    }
+}

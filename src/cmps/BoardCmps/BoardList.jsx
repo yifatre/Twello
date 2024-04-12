@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useRef, useState } from "react"
 import { ClickAwayListener } from '@mui/base/ClickAwayListener'
 
 import { CREATE_BOARD, DynamicCmp } from "../TaskCmps/DynamicCmps/DynamicCmp"
@@ -8,11 +8,11 @@ import { utilService } from "../../services/util.service"
 
 export function BoardList({ boards }) {
     const [isAddBoard, setIsAddBoard] = useState(false)
-    const [modalPosition, setModalPosition] = useState({ top: 0, left: 0 })
+    const refTrigger = useRef(null)
 
     function onAddBoard(ev) {
         const { currentTarget } = ev
-        setModalPosition(utilService.getModalPosition(currentTarget, currentTarget.getBoundingClientRect().width + 8, 0))
+        refTrigger.current = currentTarget
         setIsAddBoard(true)
     }
 
@@ -45,7 +45,7 @@ export function BoardList({ boards }) {
                 }
                 <li className="board-preview">
 
-                    <article className='new-board ' onClick={(ev) => onAddBoard(ev)}>
+                    <article className='new-board ' onClick={(ev) => onAddBoard(ev)} ref={refTrigger}>
                         Create new board
                     </article>
                 </li>
@@ -53,7 +53,7 @@ export function BoardList({ boards }) {
         </section>
         {isAddBoard && <ClickAwayListener onClickAway={onCloseAddModal}>
             <div>
-                <DynamicCmp cmp={CREATE_BOARD} setIsAddBoard={setIsAddBoard} position={modalPosition} />
+                <DynamicCmp cmp={CREATE_BOARD} setIsAddBoard={setIsAddBoard} refTrigger={refTrigger} offset={{ x: refTrigger.current.getBoundingClientRect().width + 8, y: 0 }} />
             </div>
         </ClickAwayListener>
         }

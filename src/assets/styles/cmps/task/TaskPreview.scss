@@ -5,9 +5,12 @@
     color: var(--ds-text);
     // width: rem(256px);
     margin-block-end: rem(8px);
+    overflow: hidden;
+    overflow-wrap: break-word;
+    white-space: normal;
 
 
-    .content {
+    & .content {
         padding: rem(8px) rem(12px) rem(4px);
     }
 
@@ -29,7 +32,7 @@
         margin-block-end: rem(4px);
     }
 
-    .edit-icon {
+    & .edit-icon {
         opacity: 0;
         position: absolute;
         right: 2px;
@@ -77,7 +80,7 @@
             }
         }
 
-        .task-preview-avatars {
+        & .task-preview-avatars {
             display: flex;
             flex-wrap: wrap;
             gap: rem(4px);
@@ -87,21 +90,21 @@
             margin-right: -4px;
             margin-bottom: 4px;
 
-            .avatar {
+            & .avatar {
                 @include avatar(24px)
             }
         }
     }
 
 
-    .labels {
+    & .labels {
         display: flex;
         flex-wrap: wrap;
         justify-content: start;
         gap: 4px;
         margin-block-end: rem(4px);
 
-        .label {
+        & .label {
             border-radius: rem(4px);
             height: rem(16px);
             flex-grow: 0.1;
@@ -173,6 +176,10 @@
         & .svg-container {
             color: inherit;
         }
+
+        & .box {
+            box-shadow: inset 0 0 0 1.5px var(--ds-text-accent-red, #ae2a19);
+        }
     }
 
     & #soon {
@@ -182,17 +189,57 @@
         & .svg-container {
             color: inherit;
         }
+
+        & .box {
+            box-shadow: inset 0 0 0 1.5px var(--ds-text-accent-yellow, #7f5f01);
+        }
     }
 
     & .date-preview {
         border-radius: rem(3px);
+
+        & .clock-icon {
+            height: rem(16px);
+        }
+
+        & .date-check-i {
+            display: none;
+        }
+
         &:hover {
             cursor: pointer;
             filter: saturate(85%) brightness(85%);
+
+            & .clock-icon {
+                display: none;
+            }
+
+            & .date-check-i {
+                display: inline-block;
+                height: rem(16px);
+                &.box {
+                    background-color: transparent;
+                    border-radius: 2px;
+                    box-shadow: inset 0 0 0 1.5px var(--ds-icon);
+                    flex-shrink: 0;
+                    overflow: hidden;
+                    position: relative;
+                    transition: all .2s ease-in-out;
+                    white-space: nowrap;
+                    width: rem(12px);
+                    height: rem(12px);
+                    margin-inline: rem(2px);
+                }
+            }
         }
+
         & .svg-container {
             color: inherit;
         }
+    }
+
+    & .task-preview-title.edit {
+        display: none;
     }
 }
 
@@ -201,5 +248,9 @@
         .task-preview {
             margin-block-end: 0;
         }
+    }
+
+    & .qe-save-btn {
+        display: none;
     }
 }

@@ -48,11 +48,13 @@ export function BoardTable() {
                             <div className="table-row cell">
                                 <div className="task-title cell">
                                     <div className="table-img" style={{ backgroundImage: `url(${board.style.backgroundImage})`, backgroundColor: board.style.backgroundColor }}></div>
-                                    {task.title}</div>
-                                <div className="group-title cell">{group.title}</div>
-                                {!!task.labelIds.length && <div className="board-labels cell">{getLabels(task).map(label =><div key={label.id} className={`label ${label.color || 'orange'}`}><span>{label.title}</span></div>)}</div>}
-                                {!!task.memberIds?.length && <div className="table-preview-avatars cell"><AvatarList users={getMembers(task)} /></div>}
-                                {!!task.date?.dueDate && <div className="table-date cell" id={getDateStatus(task)}><input type="checkbox"/><span>{time_icon}{getDateFormat(task)}</span></div>}
+                                    {task.title}
+                                    <span className="td-gradient"></span>
+                                    </div>
+                                <div className="group-title cell">{group.title}<span className="td-gradient"></span></div>
+                                {!!task.labelIds.length && <div className="board-labels cell">{getLabels(task).map(label =><div key={label.id} className={`label ${label.color || 'orange'}`}><span>{label.title}</span></div>)}<span className="td-gradient"></span></div>}
+                                {!!task.memberIds?.length && <div className="table-preview-avatars cell"><AvatarList users={getMembers(task)} /><span className="td-gradient"></span></div>}
+                                {!!task.date?.dueDate && <div className="table-date cell" id={getDateStatus(task)}><input type="checkbox"/><span>{time_icon}{getDateFormat(task)}</span><span className="td-gradient"></span></div>}
                             </div>
                         )
                     )}

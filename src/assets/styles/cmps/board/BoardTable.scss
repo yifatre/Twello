@@ -16,10 +16,12 @@
         border-bottom: 0.5px solid var(--ds-border, #091e4224);
         position: relative;
         align-items: center;
+        
     }
 
     .cell {
         padding-inline: rem(8px);
+        overflow: hidden;
     }
 
     & .table-head {
