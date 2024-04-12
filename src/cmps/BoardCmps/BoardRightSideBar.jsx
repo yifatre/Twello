@@ -54,7 +54,7 @@ export function BoardRightSideBar({ setRsbIsOpen }) {
                 <>
                         <div className="r-sidebar-header">
                             <span className="back-btn" onClick={() => onBack()}>{arrow_down}</span>
-                            <h2>{topHead}</h2>
+                            <h2>{topHead === 'Photos from Unsplash'?`Photos from`:topHead} {topHead === 'Photos from Unsplash'?<a style={{color:'#0c66e4'}} href="https://unsplash.com/?utm_source=trello&utm_medium=referral&utm_campaign=api-credit">Unsplash</a>:''}</h2>
                             <span onClick={() => onClose()}>{x_icon}</span>
                         </div>
                     <ChangeBack setTopHead={setTopHead} topHead={topHead} board={board} setBackTo={setBackTo} />

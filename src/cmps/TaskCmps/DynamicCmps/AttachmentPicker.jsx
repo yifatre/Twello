@@ -27,7 +27,6 @@ export function AttachmentPicker({ setActionType, board, groupId, task, saveTask
         task.attach.push(secure_url)
         saveTask({ ...task, style: { backgroundImage: secure_url } }, groupId)
         setActionType(null)
-
     }
 
 
