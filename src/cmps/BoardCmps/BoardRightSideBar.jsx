@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 import { about_icon, activity_icon, archive_icon, arrow_down, info_btn, label_icon, minus_icon, share_icon, x_icon } from "../UtilCmps/SVGs";
 import { useState } from "react";
 import { ChangeBack } from "./ChangeBack";
+import { SideBarLabels } from "./SideBarLabels";
 
 export function BoardRightSideBar({ setRsbIsOpen }) {
     const board = useSelector(storeState => storeState.boardModule.board)
@@ -60,6 +61,9 @@ export function BoardRightSideBar({ setRsbIsOpen }) {
                     <ChangeBack setTopHead={setTopHead} topHead={topHead} board={board} setBackTo={setBackTo} />
                 </>
                 : <></>
+            }
+            {topHead === 'Labels'&&
+            <SideBarLabels board={board}/>
             }
 
         </section >

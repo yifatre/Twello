@@ -151,6 +151,23 @@
             background-color: var(--ds-background-danger-bold);
         }
     }
+    
+    & .ul-labels-side-bar{
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        width: 100%;
+
+        & .label-side-bar{
+            width: 100%;
+            flex-grow: 1;
+
+            & .label-side-bar-label{
+                width: 100%
+                
+            }
+        }
+    }
 
 }
 
