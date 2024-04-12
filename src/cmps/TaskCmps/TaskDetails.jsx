@@ -138,7 +138,7 @@ export function TaskDetails() {
 
                 <section className="actions">
                     <h3>Add to card</h3>
-                    <a className="flex align-center" href="#" onClickCapture={(ev) => onSetActionType(ev, MEMBERS)} >{member_icon}Members</a>
+                    <a className="flex align-center" href="#" onClick={(ev) => onSetActionType(ev, MEMBERS)} >{member_icon}Members</a>
                     <a className="flex align-center" href="#" onClick={(ev) => onSetActionType(ev, LABELS)}>{label_icon}Labels</a>
                     <a className="flex align-center" href="#" onClick={(ev) => onSetActionType(ev, CHECKLIST)} >{checked_icon}Checklist</a>
                     <a className="flex align-center" href="#" onClick={(ev) => onSetActionType(ev, DATES)}>{clock_icon}Dates</a>

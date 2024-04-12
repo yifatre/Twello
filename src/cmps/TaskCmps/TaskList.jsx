@@ -1,9 +1,14 @@
 import { Droppable, Draggable } from '@atlaskit/pragmatic-drag-and-drop-react-beautiful-dnd-migration'
 import { TaskPreview } from "./TaskPreview"
 import { DynEntityAdd } from './DynEntityAdd'
+import { TaskQuickEdit } from './TaskQuickEdit'
+import { useState } from 'react'
+import { useNavigate } from 'react-router'
 
 export function TaskList({ group, saveTask, removeTask, board, isLabelsExtended, setIsLabelExtended, isAddMode, setIsAddMode }) {
-
+    const [taskQuickEdit, setTaskQuickEdit] = useState(false)
+    const navigate = useNavigate()
+    console.log(taskQuickEdit);
     return (
         <>
             <Droppable droppableId={group.id} type="task" direction='vertical'>
@@ -22,6 +27,7 @@ export function TaskList({ group, saveTask, removeTask, board, isLabelsExtended,
                                         {...provided.dragHandleProps}
                                         // style={snapshot.isDragging ? { opacity: 0.6, rotate: 4, ...provided.draggableProps?.style } : { ...provided.draggableProps?.style }}
                                         style={snapshot.isDragging ? { ...provided.draggableProps?.style, opacity: 0.6, rotate: '6deg', } : { ...provided.draggableProps?.style, cursor: 'pointer' }}
+                                        onClick={() => navigate(`/board/${board._id}/${group.id}/${task.id}`)}
                                     >
 
                                         <TaskPreview key={task.id}
@@ -33,11 +39,24 @@ export function TaskList({ group, saveTask, removeTask, board, isLabelsExtended,
                                             board={board}
                                             isLabelsExtended={isLabelsExtended}
                                             setIsLabelExtended={setIsLabelExtended}
+                                            setTaskQuickEdit={setTaskQuickEdit}
                                         />
                                     </li>
                                 }}
                             </Draggable>
                         )}
+                        {console.log(taskQuickEdit)}
+                        {taskQuickEdit && <TaskQuickEdit
+                            taskQuickEdit={taskQuickEdit}
+                            groupId={group.id}
+                            removeTask={removeTask}
+                            saveTask={saveTask}
+                            board={board}
+                            isLabelsExtended={isLabelsExtended}
+                            setIsLabelExtended={setIsLabelExtended}
+                            setTaskQuickEdit={setTaskQuickEdit}
+                        />}
+
                         {<div style={{ background: 'blue' }}> {provided.placeholder}</div>}
                         {/* {provided.placeholder} */}
                         {/* {console.log("provided.dragHandleProps", provided.dragHandleProps)} */}

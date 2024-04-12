@@ -1,10 +1,10 @@
 import { bars_icon, checked_icon, edit_icon, eye_icon, paperclip_icon, time_icon } from "../UtilCmps/SVGs"
-import { useNavigate, useParams } from "react-router-dom"
 import { AvatarList } from "../UtilCmps/AvatarList"
 import { useState } from "react"
+import { TextareaAutosize as MinTextArea } from '@mui/base/TextareaAutosize'
 
-export function TaskPreview({ task, groupId, removeTask, board, isLabelsExtended, setIsLabelExtended }) {
-    const navigate = useNavigate()
+export function TaskPreview({ task, groupId, removeTask, board, isLabelsExtended, setIsLabelExtended, setTaskQuickEdit, saveTask }) {
+    const [titleToEdit, setTitleToEdit] = useState(task.title)
     const [todosCount, setTodosCount] = useState(getTodoDoneCount())
 
     function getTodoDoneCount() {
@@ -22,13 +22,13 @@ export function TaskPreview({ task, groupId, removeTask, board, isLabelsExtended
 
     function getDateFormat() {
         const date = new Date(task.date.dueDate)
-        if(task.date.dueDate < Date.now()) return date.toString().slice(4, 7) + ' ' + date.getDate() + ', ' + date.getFullYear()
+        if (task.date.dueDate < Date.now()) return date.toString().slice(4, 7) + ' ' + date.getDate() + ', ' + date.getFullYear()
         return date.toString().slice(4, 7) + ' ' + date.getDate()
     }
 
     function getDateStatus() {
         const { dueDate } = task.date
-        // if(task.dueDate.done) return 'done'
+        if (task.date.done) return 'done'
         if (dueDate < Date.now()) return 'over'
         else if (dueDate < Date.now() + (1000 * 60 * 60 * 24)) return 'soon'
         return ''
@@ -47,9 +47,18 @@ export function TaskPreview({ task, groupId, removeTask, board, isLabelsExtended
         return board.members.filter(member => task.memberIds.includes(member._id))
     }
 
+    function handleTitleChange({ target }) {
+        setTitleToEdit(target.value)
+    }
+
+    function onUpdateTitle() {
+        saveTask({ ...task, title: titleToEdit }, groupId)
+        setTaskQuickEdit(null)
+    }
+
     const { title, style } = task
     return (
-        <div className="task-preview" onClick={() => navigate(`/board/${board._id}/${groupId}/${task.id}`)}
+        <><div className="task-preview"
             style={{
                 backgroundColor: style?.backgroundColor || '#ffffff',
             }}
@@ -57,13 +66,14 @@ export function TaskPreview({ task, groupId, removeTask, board, isLabelsExtended
         >
             {task.style?.backgroundImage && <div className="img-container"> <img src={task.style.backgroundImage} /></div>}
             <div className="content">
-                {!!task.labelIds.length &&
+                {!!task.labelIds?.length &&
                     <div className='labels'>
                         {getLabels().map(label => <div key={label.id} onClick={toggleExtendedLabels} className={`label ${!isLabelsExtended ? 'collapsed' : ''} ${label.color || 'orange'}`}><span>{isLabelsExtended ? label.title : label.title}</span></div>)}
                     </div>}
 
-                <i className="edit-icon">{edit_icon}</i>
+                <i className="edit-icon" onClick={ev => { ev.stopPropagation(); setTaskQuickEdit(task) }}>{edit_icon}</i>
                 <h4 className="task-preview-title">{title}</h4>
+                <MinTextArea className="task-preview-title edit" value={titleToEdit} autoFocus={true} onFocus={(ev) => ev.target.select()} onChange={handleTitleChange} onKeyDown={(ev) => { if (ev.code === 'Enter') handleClickAway() }} ></MinTextArea>
                 <div className="task-info-container">
                     <div className="task-info">
                         {/* <span className="icon-container">{eye_icon}</span> */}
@@ -78,5 +88,6 @@ export function TaskPreview({ task, groupId, removeTask, board, isLabelsExtended
                 </div>
             </div>
         </div>
+            <button className="qe-save-btn" onClick={onUpdateTitle}>Save</button></>
     )
 }
