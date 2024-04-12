@@ -13,24 +13,29 @@ import gradLava from "../../assets/img/gradients/lava.svg"
 import { updateBoard } from "../../store/board/board.actions"
 import axios from "axios"
 import { utilService } from "../../services/util.service"
+import { uploadService } from "../../services/upload.service"
 
 export function ChangeBack({ setTopHead, board, setBackTo, topHead }) {
     const [search, setSearch] = useState('aurora')
     const gradients = [gradIce, gradWave, gradMagic, gradRainbow, gradPeach, gradFlower, gradEarth, gradAline, gradLava]
     const [images, setImages] = useState()
 
-    const imgs = [
-        'https://images.unsplash.com/photo-1712291003261-5b3b5cea3f28?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3MDY2fDB8MXxjb2xsZWN0aW9ufDF8MzE3MDk5fHx8fHwyfHwxNzEyNDg2NjkwfA&ixlib=rb-4.0.3&q=80&w=400',
-        'https://images.unsplash.com/photo-1712148910821-8fe718c418af?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3MDY2fDB8MXxjb2xsZWN0aW9ufDJ8MzE3MDk5fHx8fHwyfHwxNzEyNDg2NjkwfA&ixlib=rb-4.0.3&q=80&w=400',
-        'https://images.unsplash.com/photo-1712107063586-a282f12c3973?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3MDY2fDB8MXxjb2xsZWN0aW9ufDN8MzE3MDk5fHx8fHwyfHwxNzEyNDg2NjkwfA&ixlib=rb-4.0.3&q=80&w=400',
-        'https://images.unsplash.com/photo-1711636418389-1ee93ebd56fb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3MDY2fDB8MXxjb2xsZWN0aW9ufDR8MzE3MDk5fHx8fHwyfHwxNzEyNDg2NjkwfA&ixlib=rb-4.0.3&q=80&w=400',
-        "https://images.unsplash.com/photo-1568607689150-17e625c1586e?q=80&w=3870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-    ]
+    const [imgData, setImgData] = useState({
+        imgUrl: null,
+        height: 500,
+        width: 500,
+    })
+
+    const [isUploading, setIsUploading] = useState(false)
+
 
     const API_KEY = 'NS7cNlul1WLl2FqtjtKmtATTQSgqEdXUWKXkgIwfDP8'
     const url = `https://api.unsplash.com/photos/random?query=${search}&count=30&per_page=30&client_id=${API_KEY}`
 
-
+    async function onUploadFile(ev) {
+        const { secure_url, height, width } = await uploadService.uploadImg(ev)
+        changeBgImg(secure_url)
+    }
 
     async function getPhotos() {
         console.log(url)
@@ -91,10 +96,12 @@ export function ChangeBack({ setTopHead, board, setBackTo, topHead }) {
                     </header>
                     <hr />
                     <div className="flex column head-img-card-container">
-                        <div className="img-card neutral">
-                            {plus_icon}
-                        </div>
-                        </div>
+                        {/* <div onClick={onUploadFile} className="img-card neutral"> */}
+                            <label htmlFor="attachment" className="img-card neutral">{plus_icon}</label>
+                            <input className="hide" type="file" name="attachment" id="attachment" onChange={onUploadFile} />
+                            
+                        {/* </div> */}
+                    </div>
                 </>
             }
             <main className="img-container flex column">
@@ -124,7 +131,7 @@ export function ChangeBack({ setTopHead, board, setBackTo, topHead }) {
                         </div>
                         }
                         <footer className="unsplash-disclaimer">
-                            By using images from Unsplash, you agree to their <a href="https://unsplash.com/license">license</a> and <a href="https://unsplash.com/terms">Therms of Service</a>
+                            By using images from Unsplash, you agree to their <a style={{ color: '#0c66e4' }} href="https://unsplash.com/license">license</a> and <a style={{ color: '#0c66e4' }} href="https://unsplash.com/terms">Therms of Service</a>
                         </footer>
                     </>
                 }
