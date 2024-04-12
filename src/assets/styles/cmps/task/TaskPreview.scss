@@ -4,6 +4,8 @@
     border-radius: $border-radius;
     color: var(--ds-text);
     // width: rem(256px);
+    margin-block-end: rem(8px);
+
 
     .content {
         padding: rem(8px) rem(12px) rem(4px);
@@ -11,7 +13,6 @@
 
     &>* {
         display: block;
-        margin-block-end: rem(8px);
     }
 
     &:hover {
@@ -196,8 +197,8 @@
 }
 
 .task-list {
-    & li:last-child {
-        .content {
+    & li:last-of-type {
+        .task-preview {
             margin-block-end: 0;
         }
     }

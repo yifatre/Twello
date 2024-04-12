@@ -7,11 +7,15 @@ import { TextareaAutosize as MinTextArea } from '@mui/base/TextareaAutosize'
 
 
 import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgress'
+import { TodoEdit } from "./TodoEdit"
+import { boardService } from "../../../services/board/board.service.local"
+import { utilService } from "../../../services/util.service"
 
 export function ChecklistList({ checklist, onRemoveList, onUpdateList }) {
     const [isEditTitle, setIsEditTitle] = useState(false)
     const [isAddTodo, setIsAddTodo] = useState(false)
     const [titleToEdit, setTitleToEdit] = useState(checklist.title)
+    const [todoToEdit, setTodoToEdit] = useState(true)
 
     function handleClickAway() {
         onUpdateTitle()
@@ -25,6 +29,19 @@ export function ChecklistList({ checklist, onRemoveList, onUpdateList }) {
 
     function handleTitleChange({ target }) {
         setTitleToEdit(target.value)
+    }
+
+    function saveTodo(todo) {
+        console.log(todo);
+
+        if (!todo.id) {
+            todo.id = utilService.makeId('t')
+            onUpdateList({ ...checklist, todos: [...checklist.todos, todo] })
+        }
+        else {
+            const _todos = checklist.todos.map(_todo => _todo.id === todo.id ? todo : _todo)
+            onUpdateList({ ...checklist, todos: _todos })
+        }
     }
 
     return (
@@ -53,29 +70,33 @@ export function ChecklistList({ checklist, onRemoveList, onUpdateList }) {
             <Droppable droppableId={checklist.id} type="todo">
                 {(provided) =>
                     <ul className="todo-list clean-list" {...provided.droppableProps} ref={provided.innerRef}>
-                        {checklist.todos?.map((todo, idx) =>
-                            <Draggable key={todo.id} draggableId={todo.id} index={idx}>
+                        {checklist.todos?.map((todo, idx) => <>
+                            {todoToEdit.id === todo.id && <TodoEdit todo={todoToEdit} setIsAddTodo={setTodoToEdit} saveTodo={saveTodo} />}
+                            {todoToEdit.id !== todo.id && <Draggable key={todo.id} draggableId={todo.id} index={idx}>
 
                                 {(provided, snapshot) =>
                                     <li key={todo.id}
                                         ref={provided.innerRef}
                                         {...provided.draggableProps}
-                                        {...provided.dragHandleProps}>
-
+                                        {...provided.dragHandleProps}
+                                        onClick={() => setTodoToEdit(todo)}
+                                    >
                                         <TodoPreview key={todo.id}
                                             id={todo.id}
                                             todo={todo}
                                             checklistId={checklist.id}
+                                            todoToEdit={todoToEdit}
                                         />
                                     </li>}
-                            </Draggable>
+                            </Draggable>}
+                        </>
                         )}
                         {provided.placeholder}
                     </ul>
                 }
             </Droppable >
-            <button className="add-todo">Add an item</button>
-            {/* {isAddTodo && <TodoAdd} */}
+            <button className="add-todo" onClick={() => setIsAddTodo(true)}>Add an item</button>
+            {isAddTodo && <TodoEdit todo={boardService.getEmptyTodo()} setIsAddTodo={setIsAddTodo} saveTodo={saveTodo} />}
         </section >
     )
 }
