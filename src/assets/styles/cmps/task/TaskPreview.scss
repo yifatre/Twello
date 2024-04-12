@@ -176,6 +176,10 @@
         & .svg-container {
             color: inherit;
         }
+
+        & .box {
+            box-shadow: inset 0 0 0 1.5px var(--ds-text-accent-red, #ae2a19);
+        }
     }
 
     & #soon {
@@ -185,14 +189,48 @@
         & .svg-container {
             color: inherit;
         }
+
+        & .box {
+            box-shadow: inset 0 0 0 1.5px var(--ds-text-accent-yellow, #7f5f01);
+        }
     }
 
     & .date-preview {
         border-radius: rem(3px);
 
+        & .clock-icon {
+            height: rem(16px);
+        }
+
+        & .date-check-i {
+            display: none;
+        }
+
         &:hover {
             cursor: pointer;
             filter: saturate(85%) brightness(85%);
+
+            & .clock-icon {
+                display: none;
+            }
+
+            & .date-check-i {
+                display: inline-block;
+                height: rem(16px);
+                &.box {
+                    background-color: transparent;
+                    border-radius: 2px;
+                    box-shadow: inset 0 0 0 1.5px var(--ds-icon);
+                    flex-shrink: 0;
+                    overflow: hidden;
+                    position: relative;
+                    transition: all .2s ease-in-out;
+                    white-space: nowrap;
+                    width: rem(12px);
+                    height: rem(12px);
+                    margin-inline: rem(2px);
+                }
+            }
         }
 
         & .svg-container {

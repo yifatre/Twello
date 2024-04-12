@@ -28,8 +28,8 @@ export function TaskPreview({ task, groupId, removeTask, board, isLabelsExtended
 
     function getDateStatus() {
         const { dueDate } = task.date
-        if (task.date.done) return 'done'
-        if (dueDate < Date.now()) return 'over'
+        if (task.date.isDone) return 'done'
+        else if (dueDate < Date.now()) return 'over'
         else if (dueDate < Date.now() + (1000 * 60 * 60 * 24)) return 'soon'
         return ''
     }
@@ -56,6 +56,11 @@ export function TaskPreview({ task, groupId, removeTask, board, isLabelsExtended
         setTaskQuickEdit(null)
     }
 
+    function onUpdateDate(ev) {
+        ev.stopPropagation()
+        saveTask({ ...task, date: { ...task.date, isDone: !task.date.isDone } }, groupId)
+    }
+
     const { title, style } = task
     return (
         <><div className="task-preview"
@@ -77,11 +82,20 @@ export function TaskPreview({ task, groupId, removeTask, board, isLabelsExtended
                 <div className="task-info-container">
                     <div className="task-info">
                         {/* <span className="icon-container">{eye_icon}</span> */}
-                        {!!task.date?.dueDate && <div className="txt-and-icon icon-container date-preview" id={getDateStatus()}>{time_icon}{getDateFormat()}</div>}
+
+                        {!!task.date?.dueDate &&
+                            <div className="txt-and-icon icon-container date-preview"
+                                onClick={onUpdateDate}
+                                id={getDateStatus()}>
+                                {task.date.isDone ? <span className="date-check-i">{checked_icon}</span> : <span className="date-check-i box"></span>}<span className="clock-icon">{time_icon}</span>{getDateFormat()}
+                            </div>}
+
                         {!!task.description && <span className="icon-container">{bars_icon}</span>}
                         {!!task.attachments && <div className="txt-and-icon icon-container">{paperclip_icon}{task.attachments.length}</div>}
-                        {!!task.checklists?.length
-                            && <div className={`txt-and-icon icon-container`} id={todosCount.done === todosCount.total ? 'done' : ''}>{checked_icon}{`${todosCount.done}/${todosCount.total}`}</div>}
+                        {!!task.checklists?.length && <div className={`txt-and-icon icon-container`}
+                            id={todosCount.done === todosCount.total ? 'done' : ''} >
+                            {checked_icon}{`${todosCount.done}/${todosCount.total}`}
+                        </div>}
                     </div>
                     {!!task.memberIds?.length && <div className="task-preview-avatars"><AvatarList users={getMembers()} /></div>}
 
