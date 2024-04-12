@@ -47,5 +47,18 @@
     & .img-container{
         gap: 8px;
         padding: 0 rem(4px) 0 rem(4px);
+
+        & input {
+            width: 100%;
+            border: 2px solid rgba(9, 30, 66, 0.137254902);
+            border-radius: 2px;
+            padding: 6px 12px;
+            line-height: 20px;
+    
+            &:focus {
+                outline: none !important;
+                border-color: #719ECE;
+            }
+        }
     }
 }

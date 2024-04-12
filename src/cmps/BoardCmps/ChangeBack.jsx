@@ -114,7 +114,11 @@ export function ChangeBack({ setTopHead, board, setBackTo, topHead }) {
                         />
                         {images && images.map((img, idx) => <div className="img-card" key={idx} onClick={() => changeBgImg(img.urls.full)} >
                             <img src={img.urls.regular} alt="" /> </div>
-                        )}
+                        )
+                        }
+                        <footer className="unsplash-disclaimer">
+                            By using images from Unsplash, you agree to their <a href="https://unsplash.com/license">license</a> and <a href="https://unsplash.com/terms">Therms of Service</a>
+                        </footer>
                     </>
                 }
             </main>
