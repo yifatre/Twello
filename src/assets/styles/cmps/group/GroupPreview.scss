@@ -61,7 +61,7 @@
             }
         }
 
-        button {
+        & .g-btn {
             @include reg-btn;
 
             &:hover {

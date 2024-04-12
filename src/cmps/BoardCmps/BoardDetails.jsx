@@ -31,6 +31,7 @@ export function BoardDetails() {
 
     async function saveTask(task, groupId) {
         const group = board.groups.find(group => group.id === groupId)
+        console.log(group);
         if (task.id) {
             const idx = group.tasks.findIndex(_task => _task.id === task.id)
             group.tasks[idx] = task
