@@ -3,6 +3,7 @@ import { about_icon, activity_icon, archive_icon, arrow_down, info_btn, label_ic
 import { useState } from "react";
 import { ChangeBack } from "./ChangeBack";
 import { SideBarLabels } from "./SideBarLabels";
+import { Activity } from "./Activity";
 
 export function BoardRightSideBar({ setRsbIsOpen }) {
     const board = useSelector(storeState => storeState.boardModule.board)
@@ -70,6 +71,16 @@ export function BoardRightSideBar({ setRsbIsOpen }) {
                         </div>
             {console.log('hi')}
             <SideBarLabels board={board}/>
+            </>
+            }
+            {topHead === 'Activity'&&
+            <>
+             <div className="r-sidebar-header">
+                            <span className="back-btn" onClick={() => onBack()}>{arrow_down}</span>
+                            <h2>{topHead}</h2>
+                            <span onClick={() => onClose()}>{x_icon}</span>
+                        </div>
+            <Activity board={board}/>
             </>
             }
 

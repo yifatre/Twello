@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react"
 import { x_icon } from "../../UtilCmps/SVGs"
 import { uploadService } from "../../../services/upload.service"
+import { boardService } from "../../../services/board/board.service.local"
 
 
-export function AttachmentPicker({ setActionType, board, groupId, task, saveTask }) {
+export function AttachmentPicker({ group,setActionType, board, groupId, task, saveTask }) {
     const [imgData, setImgData] = useState({
         imgUrl: null,
         height: 500,
@@ -25,7 +26,9 @@ export function AttachmentPicker({ setActionType, board, groupId, task, saveTask
         setIsUploading(false)
         if (!task.attach) task.attach = []
         task.attach.push(secure_url)
-        saveTask({ ...task, style: { backgroundImage: secure_url } }, groupId)
+         //todo add the member !!! now its 0 for development
+        const activity =boardService.getActivity(`attached ${ev.target.files[0].name}to${task.title}`,0,group,task)
+        saveTask({ ...task, style: { backgroundImage: secure_url } }, groupId,activity)
         setActionType(null)
     }
 
