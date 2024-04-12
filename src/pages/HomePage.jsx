@@ -69,7 +69,7 @@ export function HomePage() {
                 <img src="https://images.ctfassets.net/rz1oowkt5gyp/7KsuX6srvRqJVzeAIdIzIb/da1a3319c278d251ecbd078fcffdcd23/BigSwingFooterHeroGraphic__Right.svg" alt="" />
 
             </div>
-            <div className="footer-bottom-container">
+            {/* <div className="footer-bottom-container">
                 <div className="team-member-container flex justify-space-between">
                     <div className="img-container align-center flex justify-center">
                         <img src="/src/assets/img/twello-logo-white.png" alt="" />
@@ -100,7 +100,7 @@ export function HomePage() {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> */}
         </footer>
     </>
     )

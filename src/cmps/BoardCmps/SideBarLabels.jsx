@@ -36,7 +36,7 @@ export function SideBarLabels({board}) {
     function moreLabels() {
         setValue(labels.length)
     }
-
+console.log('hi');
     return <>
        
         <section className="picker-container">
