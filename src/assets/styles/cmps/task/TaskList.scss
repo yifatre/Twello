@@ -1,6 +1,6 @@
 .tasks-container {
    overflow-y: auto;
-   scrollbar-color: var(--ds-background-neutral-hovered);
+   scrollbar-color: var(--ds-background-neutral-hovered, #091e4224) var(--ds-background-neutral, #091e420f);
    scrollbar-width: thin;
    padding-inline: rem(8px) rem(4px);
 
