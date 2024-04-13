@@ -27,7 +27,7 @@ export function TaskList({ group, saveTask, removeTask, board, isLabelsExtended,
                                         {...provided.draggableProps}
                                         {...provided.dragHandleProps}
                                         // style={snapshot.isDragging ? { opacity: 0.6, rotate: 4, ...provided.draggableProps?.style } : { ...provided.draggableProps?.style }}
-                                        style={snapshot.isDragging ? { ...provided.draggableProps?.style, opacity: 0.6, rotate: '6deg', } : { ...provided.draggableProps?.style, cursor: 'pointer' }}
+                                        // style={snapshot.isDragging ? { ...provided.draggableProps?.style, opacity: 0.6, rotate: '6deg', } : { ...provided.draggableProps?.style, cursor: 'pointer' }}
                                         onClick={() => navigate(`/board/${board._id}/${group.id}/${task.id}`)}
                                     >
 
@@ -61,7 +61,9 @@ export function TaskList({ group, saveTask, removeTask, board, isLabelsExtended,
                         />}
 
                         {/* {<div style={{ background: 'blue' }}> {provided.placeholder}</div>} */}
+                        {/* <div style={{ marginBlock: '8px' }}> */}
                         {provided.placeholder}
+                        {/* </div> */}
                         {/* {console.log("provided.dragHandleProps", provided.dragHandleProps)} */}
 
                         {/* {console.log("provided.placeholder", provided)} */}

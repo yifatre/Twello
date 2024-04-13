@@ -5,13 +5,11 @@
     // margin-inline-start: rem(40px);
     margin-block-start: rem(4px);
 
-
-
     & input {
         cursor: pointer;
         width: rem(16px);
         height: rem(16px);
-        margin: 9px 1.3px 0 0;
+        margin: rem(9px) rem(3px) 0 0;
         place-self: start center;
     }
 

@@ -2,7 +2,7 @@ import { useNavigate } from "react-router"
 import { archive_icon, clock_icon, copy_icon, cover_icon, edit_icon, label_icon, member_icon, move_icon, window_icon } from "../UtilCmps/SVGs"
 import { TaskPreview } from "./TaskPreview"
 import { CHECKLIST, COVER, DATES, DynamicCmp, LABELS, MEMBERS } from "./DynamicCmps/DynamicCmp"
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useLayoutEffect, useRef, useState } from "react"
 import { ClickAwayListener } from '@mui/base/ClickAwayListener'
 import { utilService } from "../../services/util.service"
 
@@ -17,7 +17,6 @@ export function TaskQuickEdit({ taskQuickEdit, groupId, removeTask, board, isLab
 
 
     useEffect(() => {
-        console.log('position', position)
         function updateSize() {
             setWindowSize({ width: window.innerWidth, height: window.innerHeight })
         }
@@ -26,7 +25,7 @@ export function TaskQuickEdit({ taskQuickEdit, groupId, removeTask, board, isLab
         return () => { window.removeEventListener('resize', updateSize) }
     }, [])
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         if (ref.current) {
             const modalDim = ref.current.getBoundingClientRect()
             if (refTrigger.current.getBoundingClientRect().left + modalDim.width > windowSize.width) {

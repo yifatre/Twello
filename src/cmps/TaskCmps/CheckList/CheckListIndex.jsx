@@ -19,14 +19,14 @@ export function ChecklistIndex({ task, saveTask, groupId }) {
         if (!result.destination) {
             return
         }
-        console.log(result);
+        // console.log(result);
         const startIdx = result.source.index
         const endIdx = result.destination.index
 
         if (result.type === 'list') {
             const [checklist] = checklists.splice(startIdx, 1)
             checklists.splice(endIdx, 0, checklist)
-            console.log('checklist', checklist);
+            // console.log('checklist', checklist);
 
             saveTask({ ...task, checklists }, groupId)
         }
@@ -54,7 +54,9 @@ export function ChecklistIndex({ task, saveTask, groupId }) {
                                         // className="checklist-preview-container"
                                         ref={provided.innerRef}
                                         {...provided.draggableProps}
-                                        {...provided.dragHandleProps}>
+                                        {...provided.dragHandleProps}
+                                        style={{ ...provided.draggableProps?.style, cursor: 'default', }}
+                                        >
 
                                         <ChecklistList
                                             provided={provided}

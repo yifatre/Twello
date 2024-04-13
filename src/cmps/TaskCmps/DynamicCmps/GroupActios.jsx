@@ -23,8 +23,8 @@ export function GroupActions({ group, saveGroup, setIsActionsOpen }) {
         </header>
         <section className="actions flex column">
             <a href="#">Add card</a>
-            <a href="#">Copy list</a>
-            <a href="#">Move list</a>
+            {/* <a href="#">Copy list</a> */}
+            {/* <a href="#">Move list</a> */}
             {/* <a href="#">Watch</a> */}
         </section>
         <hr class="st-current"></hr>
