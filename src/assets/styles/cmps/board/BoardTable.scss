@@ -16,12 +16,17 @@
         border-bottom: 0.5px solid var(--ds-border, #091e4224);
         position: relative;
         align-items: center;
-        
+
     }
 
     .cell {
         padding-inline: rem(8px);
         overflow: hidden;
+        text-align: left;
+        vertical-align: middle;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
 
     & .table-head {
@@ -59,13 +64,15 @@
 
     & .board-labels {
         grid-area: labels;
-        display: flex;
+        // display: flex;
+
         flex-wrap: wrap;
         justify-content: start;
         gap: 4px;
         margin-block-end: rem(4px);
 
         .label {
+            display: inline-block;
             border-radius: rem(4px);
             height: rem(16px);
             flex-grow: 0.1;
@@ -73,6 +80,9 @@
             line-height: rem(16px);
             font-size: rem(12px);
             padding: 0 rem(8px);
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
 
             display: inline-flex;
 
@@ -112,8 +122,8 @@
         flex-direction: row;
         align-items: center;
         font-size: 12px;
-        
-        
+
+
         // &:hover {
         //     cursor: pointer;
         //     filter: saturate(85%) brightness(85%);
@@ -123,6 +133,7 @@
             align-items: center;
             margin-inline-end: rem(4px)
         }
+
         & .svg-container {
             @include svg-container(16px, 16px);
             color: inherit;
