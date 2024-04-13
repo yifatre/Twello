@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useLayoutEffect, useRef, useState } from "react"
 import { updateBoard } from "../../../store/board/board.actions"
 import { AttachmentPicker } from "./AttachmentPicker"
 import { CheckList } from "./CheckLlist"
@@ -26,7 +26,6 @@ export function DynamicCmp({ setActionType, groupId, cmp, board, task, setIsAddB
     const [pos, setPos] = useState(utilService.getModalPosition(refTrigger.current, offset.x, refTrigger.current.getBoundingClientRect().height + offset.y))
     const [windowSize, setWindowSize] = useState({ width: window.innerWidth, height: window.innerHeight })
 
-
     useEffect(() => {
         function updateSize() {
             // console.log('***resized***')
@@ -37,13 +36,14 @@ export function DynamicCmp({ setActionType, groupId, cmp, board, task, setIsAddB
         return () => { window.removeEventListener('resize', updateSize) }
     }, [])
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         console.log('useeffect')
+        console.log('refTrigger.current', refTrigger)
         if (ref.current) {
             const modalDim = ref.current.getBoundingClientRect()
             const triggerLocation = refTrigger.current.getBoundingClientRect()
             if (triggerLocation.top + modalDim.height > window.innerHeight) setPos(prevPos => ({ ...prevPos, top: window.innerHeight - modalDim.height }))
-            else setPos(prevPos => ({ ...prevPos, top: triggerLocation.top  + offset.y }))
+            else setPos(prevPos => ({ ...prevPos, top: triggerLocation.top + offset.y }))
             if (triggerLocation.left + modalDim.width > window.innerWidth) setPos(prevPos => ({ ...prevPos, left: window.innerWidth - modalDim.width }))
             else setPos(prevPos => ({ ...prevPos, left: triggerLocation.left + offset.x }))
         }
@@ -106,7 +106,7 @@ export function DynamicCmp({ setActionType, groupId, cmp, board, task, setIsAddB
         case MEMBERS:
             top += buttonHeight
             topHead = 'Member'
-            cmpType = <MemberPicker  group={group} setActionType={setActionType} members={board.members} task={task} saveTask={saveTask} groupId={groupId} />
+            cmpType = <MemberPicker group={group} setActionType={setActionType} members={board.members} task={task} saveTask={saveTask} groupId={groupId} />
             break
 
         case DATES:

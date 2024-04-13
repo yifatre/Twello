@@ -27,7 +27,6 @@ export function TaskDetails() {
 
     useEffect(() => {
         setTask(board.groups.find(group => group.id === groupId).tasks.find(task => task.id === taskId))
-        console.log('refTrigger', refTrigger)
     }, [board])
 
     useEffect(() => {
@@ -52,6 +51,7 @@ export function TaskDetails() {
         ev.preventDefault()
         ev.stopPropagation()
         refTrigger.current = ev.currentTarget
+        console.log('refTrigger.current from details', refTrigger.current)
         setActionType(type)
     }
 
@@ -146,7 +146,7 @@ export function TaskDetails() {
                     {!(task.style?.backgroundColor || task.style?.backgroundImage) && <a className="flex align-center" href="#" onClick={(ev) => onSetActionType(ev, COVER)}>{cover_icon}Cover</a>}
                     <ClickAwayListener onClickAway={() => { setActionType(null); refTrigger.current = null }}>
                         <div>
-                            {actionType && <DynamicCmp setActionType={setActionType} groupId={groupId} cmp={actionType} task={task} board={board} saveTask={saveTask} refTrigger={refTrigger} offset={{ x: 0, y: refTrigger.current.getBoundingClientRect().height + 8 }} />}
+                            {(actionType && refTrigger.current !== null) && <DynamicCmp setActionType={setActionType} groupId={groupId} cmp={actionType} task={task} board={board} saveTask={saveTask} refTrigger={refTrigger} offset={{ x: 0, y: refTrigger.current.getBoundingClientRect().height + 8 }} />}
                         </div>
                     </ClickAwayListener>
                 </section>

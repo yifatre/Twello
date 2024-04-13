@@ -1,7 +1,7 @@
 import { ClickAwayListener } from '@mui/base/ClickAwayListener'
 import { TaskList } from '../TaskCmps/TaskList'
 import { collapse_icon, ellipsis_icon, plus_icon, create_icon, extend_icon } from '../UtilCmps/SVGs'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { TextareaAutosize as MinTextArea } from '@mui/base/TextareaAutosize'
 
 import { DynamicCmp, GROUP_ACTIONS } from '../TaskCmps/DynamicCmps/DynamicCmp'
@@ -13,7 +13,9 @@ export function GroupPreview({ group, saveGroup, board, isLabelsExtended, setIsL
     const [isExtended, setIsExtended] = useState(true)
     const [titleToEdit, setTitleToEdit] = useState(group.title)
     const [isActionsOpen, setIsActionsOpen] = useState(false)
-    const [modalPosition, setModalPosition] = useState({ top: 0, left: 0 })
+    // const [modalPosition, setModalPosition] = useState({ top: 0, left: 0 })
+    const refTrigger = useRef(null)
+
     // const scrollRef = useRef(null)
 
     function handleClickAway() {
@@ -29,7 +31,7 @@ export function GroupPreview({ group, saveGroup, board, isLabelsExtended, setIsL
     function onOpenActionsMenu(ev) {
         ev.preventDefault()
         ev.stopPropagation()
-        setModalPosition(utilService.getModalPosition(ev.currentTarget, 0, ev.currentTarget.getBoundingClientRect().height + 7))
+        refTrigger.current = ev.currentTarget
         setIsActionsOpen(true)
     }
 
@@ -49,7 +51,7 @@ export function GroupPreview({ group, saveGroup, board, isLabelsExtended, setIsL
                         <MinTextArea className="title-edit" value={titleToEdit} autoFocus={true} onFocus={(ev) => ev.target.select()} onChange={handleHeaderChange} onKeyDown={(ev) => { if (ev.code === 'Enter') handleClickAway() }} ></MinTextArea>
                     </ClickAwayListener>}
                 <button className="collapse g-btn" onClick={() => setIsExtended(false)}>{collapse_icon}</button>
-                <button className="options g-btn" onClick={onOpenActionsMenu}>{ellipsis_icon}</button>
+                <button className="options g-btn" onClick={onOpenActionsMenu} ref={refTrigger}>{ellipsis_icon}</button>
             </div>
 
             <div className={`tasks-container `} >
@@ -64,7 +66,7 @@ export function GroupPreview({ group, saveGroup, board, isLabelsExtended, setIsL
         {isActionsOpen &&
             <ClickAwayListener onClickAway={() => setIsActionsOpen(false)}>
                 <div>
-                    <DynamicCmp setIsActionsOpen={setIsActionsOpen} cmp={GROUP_ACTIONS} position={modalPosition} group={group} saveGroup={saveGroup} />
+                    <DynamicCmp setIsActionsOpen={setIsActionsOpen} cmp={GROUP_ACTIONS} refTrigger={refTrigger} offset={{ x: 0, y: refTrigger.current.getBoundingClientRect().height + 9 }} group={group} saveGroup={saveGroup} />
                 </div>
             </ClickAwayListener >}
     </>
