@@ -23,7 +23,7 @@ export function TaskDetails() {
     const [task, setTask] = useState(board.groups.find(group => group.id === groupId).tasks.find(task => task.id === taskId))
     const [titleToEdit, setTitleToEdit] = useState(task.title)
     const navigate = useNavigate()
-    const fac = new FastAverageColor();
+    const fac = new FastAverageColor()
 
     const refTrigger = useRef(null)
 
@@ -66,6 +66,7 @@ export function TaskDetails() {
         ev.preventDefault()
         ev.stopPropagation()
         refTrigger.current = ev.currentTarget
+        console.log('refTrigger.current from details', refTrigger.current)
         setActionType(type)
     }
 
@@ -79,9 +80,9 @@ export function TaskDetails() {
         <ClickAwayListener onClickAway={closeTaskDetails}>
             <section className="task-details">
                 <button className="details-close-btn" onClick={closeTaskDetails}>{x_icon}</button>
-                {(task.style?.backgroundColor || task.style?.backgroundImage) && <section className="cover" style={{ backgroundColor: coverColor }}>
+                {(task.style?.backgroundColor || task.style?.backgroundImage) && <section className={`cover ${task.style.backgroundColor}`}>
                     <img src={task.style.backgroundImage} className="cover-img" alt="" />
-                    <a href="#">{cover_icon}Cover</a>
+                    <a href="#" onClick={(ev) => onSetActionType(ev, COVER)}>{cover_icon}Cover</a>
                 </section>}
                 <span className="icon-span title-icon">{window_icon}</span>
                 <section className="title">
@@ -166,7 +167,7 @@ export function TaskDetails() {
                     {!(task.style?.backgroundColor || task.style?.backgroundImage) && <a className="flex align-center" href="#" onClick={(ev) => onSetActionType(ev, COVER)}>{cover_icon}Cover</a>}
                     <ClickAwayListener onClickAway={() => { setActionType(null); refTrigger.current = null }}>
                         <div>
-                            {actionType && <DynamicCmp setActionType={setActionType} groupId={groupId} cmp={actionType} task={task} board={board} saveTask={saveTask} refTrigger={refTrigger} offset={{ x: 0, y: refTrigger.current.getBoundingClientRect().height + 8 }} />}
+                            {(actionType && refTrigger.current !== null) && <DynamicCmp setActionType={setActionType} groupId={groupId} cmp={actionType} task={task} board={board} saveTask={saveTask} refTrigger={refTrigger} offset={{ x: 0, y: refTrigger.current.getBoundingClientRect().height + 8 }} />}
                         </div>
                     </ClickAwayListener>
                 </section>

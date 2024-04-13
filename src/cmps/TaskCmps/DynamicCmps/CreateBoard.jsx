@@ -8,6 +8,7 @@ import gradWave from "../../../assets/img/gradients/wave.svg"
 import gradMagic from "../../../assets/img/gradients/magic.svg"
 import gradRainbow from "../../../assets/img/gradients/rainbow.svg"
 import gradPeach from "../../../assets/img/gradients/peach.svg"
+import gradEarth from "../../../assets/img/gradients/earth.svg"
 
 export function CreateBoard({ setIsAddBoard }) {
     const [boardToAdd, setBoardToAdd] = useState(boardService.getEmptyBoard())
@@ -23,13 +24,13 @@ export function CreateBoard({ setIsAddBoard }) {
     }
 
     const imgs = [
+        'https://images.unsplash.com/photo-1568607689150-17e625c1586e?q=80&w=3870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
         'https://images.unsplash.com/photo-1712291003261-5b3b5cea3f28?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3MDY2fDB8MXxjb2xsZWN0aW9ufDF8MzE3MDk5fHx8fHwyfHwxNzEyNDg2NjkwfA&ixlib=rb-4.0.3&q=80&w=400',
-        'https://images.unsplash.com/photo-1712148910821-8fe718c418af?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3MDY2fDB8MXxjb2xsZWN0aW9ufDJ8MzE3MDk5fHx8fHwyfHwxNzEyNDg2NjkwfA&ixlib=rb-4.0.3&q=80&w=400',
         'https://images.unsplash.com/photo-1712107063586-a282f12c3973?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3MDY2fDB8MXxjb2xsZWN0aW9ufDN8MzE3MDk5fHx8fHwyfHwxNzEyNDg2NjkwfA&ixlib=rb-4.0.3&q=80&w=400',
         'https://images.unsplash.com/photo-1711636418389-1ee93ebd56fb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3MDY2fDB8MXxjb2xsZWN0aW9ufDR8MzE3MDk5fHx8fHwyfHwxNzEyNDg2NjkwfA&ixlib=rb-4.0.3&q=80&w=400'
     ]
 
-    const gradients = [gradIce, gradWave, gradMagic, gradRainbow, gradPeach]
+    const gradients = [gradEarth, gradIce, gradWave, gradMagic, gradRainbow, gradPeach]
 
     async function onCreateBoard() {
         try {
@@ -62,7 +63,7 @@ export function CreateBoard({ setIsAddBoard }) {
                 </div>
                 <div className="gradients flex">
                     {gradients.map((grad, idx) => <div key={idx} onClick={() => changeBgImg(grad)} style={{ backgroundImage: `url(${grad})` }}><span>{boardToAdd.style?.backgroundImage === grad ? check_icon : ''}</span></div>)}
-                    <div className="more">{ellipsis_icon}</div>
+                    {/* <div className="more">{ellipsis_icon}</div> */}
 
                 </div>
             </div>
