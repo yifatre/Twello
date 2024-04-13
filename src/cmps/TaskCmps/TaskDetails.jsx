@@ -9,6 +9,7 @@ import { ATTACHMENT, CHECKLIST, COVER, DATES, DynamicCmp, LABELS, MEMBERS } from
 import { useSelector } from "react-redux"
 import { AvatarPreview } from "../UtilCmps/AvatarPreview"
 import { ChecklistIndex } from "./CheckList.jsx/ChecklistIndex"
+import { boardService } from "../../services/board/board.service.local"
 
 
 
@@ -55,6 +56,11 @@ export function TaskDetails() {
         setActionType(type)
     }
 
+    function onCheckDate(){
+        let activity = boardService.getActivity(`mark the due date on ${task.title} ${task.date?.isDone?'incomplete':'complete'}`, 0,board.groups.find(group => group.id === groupId),task)
+        saveTask({ ...task, date: { ...task.date, isDone: !task.date?.isDone } }, groupId,activity)
+    }
+
     const due = task.date?.isDone ? 'Complete' : task.date?.dueDate - Date.now() < 0 ? 'Overdue' : task.date?.dueDate - Date.now() <= 24 * 60 * 60 * 1000 ? 'Due soon' : ''
     return <div className="task-details-backdrop">
         <ClickAwayListener onClickAway={closeTaskDetails}>
@@ -92,7 +98,7 @@ export function TaskDetails() {
                     {task.date?.dueDate && <div className="due-date">
                         <h3>Due date</h3>
                         <div className="">
-                            <span className="box" onClick={() => saveTask({ ...task, date: { ...task.date, isDone: !task.date?.isDone } }, groupId)}>
+                            <span className="box" onClick={() => onCheckDate()}>
                                 {task.date?.isDone && check_icon}
                             </span>
 
