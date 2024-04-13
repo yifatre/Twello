@@ -66,8 +66,8 @@ export function TaskPreview({ task, groupId, removeTask, board, isLabelsExtended
 
     function onUpdateDate(ev) {
         ev.stopPropagation()
-        let activity = boardService.getActivity(`mark the due date on ${task.title} ${task.date?.isDone?'incomplete':'complete'}`, 0,board.groups.find(group => group.id === groupId),task)
-        saveTask({...task, date:{...task.date, isDone: !task.date.isDone}}, groupId,activity)
+        let activity = boardService.getActivity(`mark the due date on ${task.title} ${task.date?.isDone ? 'incomplete' : 'complete'}`, 0, board.groups.find(group => group.id === groupId), task)
+        saveTask({ ...task, date: { ...task.date, isDone: !task.date.isDone } }, groupId, activity)
     }
 
     const { title, style } = task
@@ -78,7 +78,7 @@ export function TaskPreview({ task, groupId, removeTask, board, isLabelsExtended
             }}
             ref={refTemp}
         >
-            {(style?.backgroundImage || style?.backgroundColor) && <div className="img-container" style={{backgroundColor: style.backgroundColor}}> <img src={task.style.backgroundImage} /></div>}
+            {(style?.backgroundImage || style?.backgroundColor) && <div className="img-container" style={{ backgroundColor: style.backgroundColor }}> <img src={task.style.backgroundImage} /></div>}
             <div className="content">
                 {!!task.labelIds?.length &&
                     <div className='labels'>

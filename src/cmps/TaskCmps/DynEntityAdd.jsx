@@ -50,7 +50,7 @@ export function DynEntityAdd({ setIsAddMode, saveEntity, groupId, type = 'TASK' 
 
                 <div className='btn-actions-container'>
                     <button id='add-btn'>Add {type === 'TASK' ? 'card' : 'list'}</button>
-                    <button className='flex align-center' type='button' onClick={() => setIsAddMode(false)}>{x_icon}</button>
+                    <button className='x-btn' type='button' onClick={() => setIsAddMode(false)}>{x_icon}</button>
                 </div>
 
             </form>
