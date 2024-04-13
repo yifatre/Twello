@@ -77,7 +77,7 @@ export function GroupList({ board, saveGroup, removeGroup, saveTask, removeTask 
                                             removeTask={removeTask}
                                             board={board} />
                                             {/* {console.log('ab', a, b)} */}
-                                            <DropIndicator/>
+                                            {/* <DropIndicator/> */}
                                     </li>}
                             </Draggable>
                         )}

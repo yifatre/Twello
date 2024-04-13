@@ -20,6 +20,7 @@
     "@tinymce/tinymce-react": "^5.0.1",
     "axios": "^1.6.8",
     "dayjs": "^1.11.10",
+    "fast-average-color": "^9.4.0",
     "react": "^18.2.0",
     "react-beautiful-dnd": "^13.1.1",
     "react-date-range": "^2.0.0-alpha.4",

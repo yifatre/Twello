@@ -58,10 +58,14 @@ export function TaskPreview({ task, groupId, removeTask, board, isLabelsExtended
     }
 
     function onOpenQuickEdit(ev) {
-        // console.log('ev', ev.currentTarget)
         ev.stopPropagation()
         refTrigger.current = refTemp.current
         setTaskQuickEdit(task)
+    }
+
+    function onUpdateDate(ev) {
+        ev.stopPropagation()
+        saveTask({...task, date:{...task.date, isDone: !task.date.isDone}}, groupId)
     }
 
     const { title, style } = task
@@ -88,7 +92,7 @@ export function TaskPreview({ task, groupId, removeTask, board, isLabelsExtended
 
                         {!!task.date?.dueDate &&
                             <div className="txt-and-icon icon-container date-preview"
-                                // onClick={onUpdateDate}
+                                onClick={onUpdateDate}
                                 id={getDateStatus()}>
                                 {task.date.isDone ? <span className="date-check-i">{checked_icon}</span> : <span className="date-check-i box"></span>}<span className="clock-icon">{time_icon}</span>{getDateFormat()}
                             </div>}
