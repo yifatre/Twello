@@ -1,10 +1,15 @@
 .activities-container {
+    height: 94%;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    margin-right: -8px;
 
     & .activity-container {
 
         display: grid;
         grid-template-columns: rem(40px) 1fr;
         grid-template-areas: "a d";
+
 
         & .avatar {
             grid-area: a;
@@ -30,7 +35,7 @@
                 display: inline;
             }
 
-            & .activity-time{
+            & .activity-time {
                 font-size: rem(12px);
             }
 
