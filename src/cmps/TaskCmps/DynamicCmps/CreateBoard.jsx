@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router"
+import { ClickAwayListener } from '@mui/base/ClickAwayListener'
 import { boardService } from "../../../services/board/board.service.local"
 import { addBoard } from "../../../store/board/board.actions"
 import { check_icon, ellipsis_icon, new_board_demo, x_icon } from "../../UtilCmps/SVGs"
@@ -10,12 +11,15 @@ import gradRainbow from "../../../assets/img/gradients/rainbow.svg"
 import gradPeach from "../../../assets/img/gradients/peach.svg"
 import gradEarth from "../../../assets/img/gradients/earth.svg"
 
+
 export function CreateBoard({ setIsAddBoard }) {
     const [boardToAdd, setBoardToAdd] = useState(boardService.getEmptyBoard())
+    const [reqClass, setReqClass] = useState('')
     const navigate = useNavigate()
 
     function handleChange({ target }) {
         const { type, value, name: field } = target
+        if (value) setReqClass('')
         setBoardToAdd(prevBoard => ({ ...prevBoard, [field]: value }))
     }
 
@@ -69,12 +73,12 @@ export function CreateBoard({ setIsAddBoard }) {
             </div>
             <div className="title-input">
                 <label htmlFor="title">Board title<span style={{ color: 'red' }}>*</span></label>
-                <input type="text" name="title" id="title" value={boardToAdd.title} onChange={handleChange} />
+                <ClickAwayListener onClickAway={() => !boardToAdd.title ? setReqClass('red') : ''}>
+                    <input className={reqClass} type="text" name="title" id="title" value={boardToAdd.title} onChange={handleChange} onKeyDown={(ev) => { if (ev.code === "Enter") onCreateBoard(ev) }} autoFocus />
+                </ClickAwayListener>
             </div>
-            <div className="req flex align-center"><span>👋</span><p> Board title is required</p></div>
-            {/* <label htmlFor="visibility">Visibility</label>
-            <select name="visibility" id="visibility"></select> */}
-            <button className="flex create-btn align-center justify-center" onClick={onCreateBoard}>Create</button>
+            {!boardToAdd.title && <div className="req flex align-center"><span>👋</span><p> Board title is required</p></div>}
+            <button className="flex create-btn align-center justify-center" onClick={onCreateBoard} disabled={!boardToAdd.title}>Create</button>
             <div className="terms">By using images from Unsplash, you agree to their <a href="https://unsplash.com/license" target="_blank">license</a> and <a href="https://unsplash.com/terms">Terms of Service</a></div>
         </div>
     </>
