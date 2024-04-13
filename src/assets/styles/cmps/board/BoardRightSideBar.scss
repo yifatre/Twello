@@ -26,16 +26,27 @@
 
     .r-sidebar-header {
         display: grid;
-        grid-template-columns:max-content 1fr max-content;
+        grid-template-columns: 32px 1fr 32px;
         line-height: rem(20px);
-        margin: rem(18px) rem(4px) rem(18px) rem(4px);
+        margin: rem(12px) rem(4px) rem(12px) rem(4px);
         overflow: hidden;
         text-align: center;
         text-overflow: ellipsis;
         white-space: nowrap;
+        align-items: center;
 
         & span {
             height: rem(20px);
+        }
+
+        & .r-sidebar-btn {
+            height: rem(32px);
+            width: rem(32px);
+            border-radius: rem(8px);
+            background-color: transparent;
+             &:hover{
+                background-color: var(--ds-background-neutral-subtle-hovered);
+             }
         }
 
         & h2 {
@@ -90,8 +101,10 @@
         }
 
     }
-    & .back-btn{
+
+    & .back-btn {
         rotate: 90deg;
         height: 25px;
+
     }
 }
