@@ -4,13 +4,12 @@ import { arrow_down, bars_icon, check_icon, checked_icon, clock_icon, cover_icon
 import { utilService } from "../../services/util.service"
 import { ClickAwayListener } from '@mui/base/ClickAwayListener'
 import { useOutletContext } from "react-router-dom"
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useLayoutEffect, useRef, useState } from "react"
 import { ATTACHMENT, CHECKLIST, COVER, DATES, DynamicCmp, LABELS, MEMBERS } from "./DynamicCmps/DynamicCmp"
 import { useSelector } from "react-redux"
 import { AvatarPreview } from "../UtilCmps/AvatarPreview"
 import { ChecklistIndex } from "./CheckList.jsx/ChecklistIndex"
-
-
+import { FastAverageColor } from 'fast-average-color'
 
 export function TaskDetails() {
     const { boardId, groupId, taskId } = useParams()
@@ -18,10 +17,12 @@ export function TaskDetails() {
     const board = useSelector(storeState => storeState.boardModule.board)
     const [actionType, setActionType] = useState(null)
     const [isDescriptionEdit, setIsDescriptionEdit] = useState(false)
+    const [coverColor, setCoverColor] = useState(false)
 
     const [task, setTask] = useState(board.groups.find(group => group.id === groupId).tasks.find(task => task.id === taskId))
     const [titleToEdit, setTitleToEdit] = useState(task.title)
     const navigate = useNavigate()
+    const fac = new FastAverageColor();
 
     const refTrigger = useRef(null)
 
@@ -34,6 +35,19 @@ export function TaskDetails() {
         saveTask({ ...task, title: titleToEdit }, groupId)
     }, [titleToEdit])
 
+    // useEffect(() => {
+    //      async () => {
+    //         try {
+    //             const color = await fac.getColorAsync(task.type.backgroundImage)
+    //             console.log(color);
+    //             setCoverColor(color.rgba)
+    //         }
+    //         catch (err) {
+    //             console.error(err)
+    //         }
+    //     }
+    // }, [])
+    console.log(coverColor);
     function onEditDescription(ev) {
         ev.preventDefault()
         setIsDescriptionEdit(true)
@@ -60,7 +74,8 @@ export function TaskDetails() {
         <ClickAwayListener onClickAway={closeTaskDetails}>
             <section className="task-details">
                 <button className="details-close-btn" onClick={closeTaskDetails}>{x_icon}</button>
-                {(task.style?.backgroundColor || task.style?.backgroundImage) && <section className="cover">
+                {(task.style?.backgroundColor || task.style?.backgroundImage) && <section className="cover" style={{ backgroundColor: coverColor }}>
+                    <img src={task.style.backgroundImage} className="cover-img" alt="" />
                     <a href="#">{cover_icon}Cover</a>
                 </section>}
                 <span className="icon-span title-icon">{window_icon}</span>
