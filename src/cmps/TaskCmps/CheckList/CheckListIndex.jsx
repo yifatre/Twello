@@ -54,7 +54,9 @@ export function ChecklistIndex({ task, saveTask, groupId }) {
                                         // className="checklist-preview-container"
                                         ref={provided.innerRef}
                                         {...provided.draggableProps}
-                                        {...provided.dragHandleProps}>
+                                        {...provided.dragHandleProps}
+                                        style={{ ...provided.draggableProps?.style, cursor: 'default', }}
+                                        >
 
                                         <ChecklistList
                                             provided={provided}

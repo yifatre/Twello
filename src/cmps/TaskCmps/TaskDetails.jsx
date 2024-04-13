@@ -8,7 +8,7 @@ import { useEffect, useLayoutEffect, useRef, useState } from "react"
 import { ATTACHMENT, CHECKLIST, COVER, DATES, DynamicCmp, LABELS, MEMBERS } from "./DynamicCmps/DynamicCmp"
 import { useSelector } from "react-redux"
 import { AvatarPreview } from "../UtilCmps/AvatarPreview"
-import { ChecklistIndex } from "./CheckList.jsx/ChecklistIndex"
+import { ChecklistIndex } from "./CheckList/ChecklistIndex"
 import { boardService } from "../../services/board/board.service.local"
 import { FastAverageColor } from 'fast-average-color'
 import { Activity } from "../BoardCmps/Activity"
