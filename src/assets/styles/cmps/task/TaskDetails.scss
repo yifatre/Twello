@@ -1,10 +1,21 @@
+.task-details-container{
+    left: 0;
+    position: absolute;
+    top: 0;
+    z-index: 100;
+}
+
+
 .task-details-backdrop {
-    background-color: #000000bf;
+    background: rgba(0, 0, 0, 0.75);
+    box-sizing: border-box;
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    overflow: auto;
+    width: 100vw;
     position: fixed;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 200;
+    align-items: flex-start;
 }
 
 .task-details {
@@ -29,8 +40,9 @@
     ;
     grid-template-columns: rem(56px) 1fr max-content;
     grid-template-rows: repeat(7, max-content);
-    position: fixed;
-    left: calc(50% - 0.5 * rem(768px));
+    position: relative;
+    // position: fixed;
+    // left: calc(50% - 0.5 * rem(768px));
     color: #172b4d;
 
 
