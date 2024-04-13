@@ -20,8 +20,7 @@ export function ChecklistList({ checklist, onRemoveList, onUpdateList }) {
     const [checklistProgress, setChecklistProgress] = useState(getProgress())
 
     useEffect(() => {
-        if (!checklist.todos)
-            setChecklistProgress(getProgress())
+        setChecklistProgress(getProgress())
     }, [checklist])
 
     useEffect(() => {
@@ -67,7 +66,7 @@ export function ChecklistList({ checklist, onRemoveList, onUpdateList }) {
     function getProgress() {
         if (checklist.todos?.length === 0) return '0%'
         const done = checklist.todos?.filter(todo => todo.isDone).length
-        return done / checklist.todos?.length * 100 + '%'
+        return Math.floor(done / checklist.todos?.length * 100) + '%'
     }
 
     return (
