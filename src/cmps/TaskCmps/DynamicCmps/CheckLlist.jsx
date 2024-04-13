@@ -1,14 +1,18 @@
 import { useState } from "react"
 import { x_icon } from "../../UtilCmps/SVGs"
+import { utilService } from "../../../services/util.service"
 
-export function CheckList({setActionType}) {
-    const [value, setValue] = useState('CheckList')
+export function CheckList({ setActionType, task, saveTask, groupId, }) {
+    const [title, setTitle] = useState('')
 
 
-    function handleChange(ev) {
-        let { value, name: field, type } = ev.target
-        if (type === 'number') value = +value
-        setValue(value)
+    function handleChange({ target }) {
+        setTitle(target.value)
+    }
+
+    function onCreate() {
+        const _checklist = { id: utilService.makeId(), title: title }
+        saveTask({ ...task, checklists: [...task.checklists, _checklist] }, groupId)
     }
 
     return (<>
@@ -21,12 +25,11 @@ export function CheckList({setActionType}) {
             <input
                 type="text"
                 name="txt"
-                value={value}
-
+                value={title}
                 onChange={handleChange}
             />
             <div className="flex ">
-                <button onClick={() => onCreate()} className='create-btn Add-checklist-btn'>Add</button>
+                <button onClick={onCreate} className='create-btn Add-checklist-btn'>Add</button>
             </div>
 
         </section>

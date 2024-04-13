@@ -121,7 +121,7 @@ export function DynamicCmp({ setActionType, groupId, cmp, board, task, setIsAddB
             break
 
         case CHECKLIST:
-            cmpType = <CheckList setActionType={setActionType} />
+            cmpType = <CheckList setActionType={setActionType} task={task} saveTask={saveTask} groupId={groupId}/>
             break
     }
     return <div className={`dynamic-cmp ${cmp.toLowerCase()}`} style={{ top: pos.top, left: pos.left, zIndex: 150 }} ref={ref}>

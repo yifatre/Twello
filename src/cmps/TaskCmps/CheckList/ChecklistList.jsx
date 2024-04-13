@@ -20,8 +20,16 @@ export function ChecklistList({ checklist, onRemoveList, onUpdateList }) {
     const [checklistProgress, setChecklistProgress] = useState(getProgress())
 
     useEffect(() => {
-        setChecklistProgress(getProgress())
+        if (!checklist.todos)
+            setChecklistProgress(getProgress())
     }, [checklist])
+
+    useEffect(() => {
+        if (!checklist.todos) {
+            checklist.todos = []
+            setIsAddTodo(true)
+        }
+    }, [])
 
     function handleClickAway() {
         onUpdateTitle()
@@ -57,8 +65,9 @@ export function ChecklistList({ checklist, onRemoveList, onUpdateList }) {
     }
 
     function getProgress() {
-        const done = checklist.todos.filter(todo => todo.isDone).length
-        return done / checklist.todos.length * 100 + '%'
+        if (checklist.todos?.length === 0) return '0%'
+        const done = checklist.todos?.filter(todo => todo.isDone).length
+        return done / checklist.todos?.length * 100 + '%'
     }
 
     return (
@@ -154,7 +163,7 @@ export function ChecklistList({ checklist, onRemoveList, onUpdateList }) {
                     </ul>
                 )}
             </Droppable>
-            <button className="add-todo" onClick={() => setIsAddTodo(true)}>
+            <button className="add-todo" style={isAddTodo ? { display: 'none' } : {}} onClick={() => setIsAddTodo(true)}>
                 Add an item
             </button>
             {isAddTodo && (

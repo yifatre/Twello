@@ -14,8 +14,8 @@ export function TaskPreview({ task, groupId, removeTask, board, isLabelsExtended
         const _todosCount = { done: 0, total: 0 }
 
         task.checklists.forEach((checklist) => {
-            _todosCount.total += checklist.todos.length
-            checklist.todos.forEach((todo) => {
+            _todosCount.total += checklist.todos?.length
+            checklist.todos?.forEach((todo) => {
                 if (todo.isDone) return _todosCount.done++
             })
         })
