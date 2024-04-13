@@ -18,9 +18,9 @@ export function DescriptionEdit({ task, saveTask, setIsDescriptionEdit, groupId 
     return (
         <>
             <Editor
-                apiKey={API_KEY}
                 onInit={(evt, editor) => editorRef.current = editor}
                 initialValue={task.description}
+                tinymceScriptSrc="./../../../node_modules/tinymce/tinymce.min.js"
                 init={{
                     height: 300,
                     menubar: false,
@@ -34,7 +34,8 @@ export function DescriptionEdit({ task, saveTask, setIsDescriptionEdit, groupId 
                         'anchor', 'searchreplace', 'visualblocks', 'codesample', 'help',
                     ],
                     toolbar: 'styles | bold italic strikethrough | alignleft aligncenter alignright alignjustify | outdent indent | link codesample',
-                    content_style: 'body {font - family:-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu, Droid Sans, Helvetica Neue, sans-serif; font-size:14px }'
+                    content_style: 'body {font - family:-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu, Droid Sans, Helvetica Neue, sans-serif; font-size:14px }',
+                    license_key: 'gpl'
                 }}
             />
             <button className='create-btn' onClick={onSave}>Save</button>
