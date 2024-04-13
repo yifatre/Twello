@@ -1,5 +1,5 @@
 import { checked_icon, x_icon } from "../../UtilCmps/SVGs"
-import { Droppable, Draggable } from '@atlaskit/pragmatic-drag-and-drop-react-beautiful-dnd-migration'
+import { Droppable, Draggable } from 'react-beautiful-dnd'
 import { TodoPreview } from "./TodoPreview"
 import { useState } from "react"
 import { ClickAwayListener } from '@mui/base/ClickAwayListener'
@@ -32,7 +32,6 @@ export function ChecklistList({ checklist, onRemoveList, onUpdateList }) {
     }
 
     function saveTodo(todo) {
-        console.log(todo);
 
         if (!todo.id) {
             todo.id = utilService.makeId('t')
@@ -42,6 +41,10 @@ export function ChecklistList({ checklist, onRemoveList, onUpdateList }) {
             const _todos = checklist.todos.map(_todo => _todo.id === todo.id ? todo : _todo)
             onUpdateList({ ...checklist, todos: _todos })
         }
+    }
+
+    function deleteTodo(todoId) {
+        onUpdateList({...checklist, todos: checklist.todos.filter(todo => todo.id !== todoId)})
     }
 
     return (
@@ -86,6 +89,8 @@ export function ChecklistList({ checklist, onRemoveList, onUpdateList }) {
                                             todo={todo}
                                             checklistId={checklist.id}
                                             todoToEdit={todoToEdit}
+                                            saveTodo={saveTodo}
+                                            deleteTodo={deleteTodo}
                                         />
                                     </li>}
                             </Draggable>}
