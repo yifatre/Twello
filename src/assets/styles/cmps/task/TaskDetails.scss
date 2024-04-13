@@ -96,7 +96,7 @@
         justify-self: center;
         margin-top: rem(4px);
         margin-inline-start: rem(8px);
-
+        color: var(--ds-icon, #44546f);
         span {
             @include svg-container(24px, 24px);
         }
@@ -106,10 +106,10 @@
 
     .title-icon {
         grid-area: title-icon;
-        margin-top: rem(16px);
+        margin-top: rem(12px);
 
         span {
-            @include svg-container(17px, 18px);
+            @include svg-container(24px, 24px);
         }
     }
 
@@ -426,10 +426,15 @@
             padding-block: rem(2px);
             display: grid;
             grid-template-columns: rem(112px) 1fr;
-            grid-template-rows: repeat(2, max-content);
+            grid-template-rows: max-content 1fr;
             column-gap: rem(16px);
             word-wrap: break-word;
             border-radius: rem(3px);
+
+            & div.download{
+                margin-block-start: rem(4px);
+
+            }
 
             & .fileName {
                 font-weight: 700;
@@ -446,6 +451,11 @@
             & .attach_img {
                 grid-column: 1;
                 grid-row: 1/-1;
+
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
                 height: rem(80px);
                 width: rem(112px);
                 background-size: contain;
@@ -453,6 +463,9 @@
                 border-radius: rem(3px);
                 background-color: var(--ds-background-neutral, #091e420f);
                 color: var(--ds-text-subtle, #44546f);
+                font-size: rem(22px);
+                font-weight: 650;
+                letter-spacing: 1px;
             }
         }
     }

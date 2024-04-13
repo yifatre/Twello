@@ -70,9 +70,9 @@ export function TaskDetails() {
         setActionType(type)
     }
 
-    function onCheckDate(){
-        let activity = boardService.getActivity(`mark the due date on ${task.title} ${task.date?.isDone?'incomplete':'complete'}`, 0,board.groups.find(group => group.id === groupId),task)
-        saveTask({ ...task, date: { ...task.date, isDone: !task.date?.isDone } }, groupId,activity)
+    function onCheckDate() {
+        let activity = boardService.getActivity(`mark the due date on ${task.title} ${task.date?.isDone ? 'incomplete' : 'complete'}`, 0, board.groups.find(group => group.id === groupId), task)
+        saveTask({ ...task, date: { ...task.date, isDone: !task.date?.isDone } }, groupId, activity)
     }
 
     const due = task.date?.isDone ? 'Complete' : task.date?.dueDate - Date.now() < 0 ? 'Overdue' : task.date?.dueDate - Date.now() <= 24 * 60 * 60 * 1000 ? 'Due soon' : ''
@@ -141,11 +141,16 @@ export function TaskDetails() {
                                 let fileName = attach.split('/')
 
                                 return <div className="attach-details" key={idx}>
-                                    <div className="attach_img" style={{ background: `url(${attach})` }}>
+                                    <div className="attach_img" style={{ backgroundImage: `url(${attach})` }}>
                                         {!imgTypes.find(type => type === attach.slice(-3).toLowerCase()) && attach.slice(-3)}
 
                                     </div>
-                                    <a className="fileName" target="_blank" href={attach} download>{fileName[fileName.length - 1]} ↗</a>
+                                    <div>
+                                        <a className="fileName" target="_blank" href={attach} download>{fileName[fileName.length - 1]} ↗</a>
+                                    </div>
+                                    <div className="download">
+                                        <a className="download" href={attach} download={fileName[fileName.length - 1]}>Download</a>
+                                    </div>
 
                                 </div>
                             })}
