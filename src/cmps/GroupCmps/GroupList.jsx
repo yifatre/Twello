@@ -1,6 +1,6 @@
 import { GroupPreview } from "./GroupPreview"
-import { DragDropContext, Droppable, Draggable } from '@atlaskit/pragmatic-drag-and-drop-react-beautiful-dnd-migration'
-import { DropIndicator } from '@atlaskit/pragmatic-drag-and-drop-react-drop-indicator/box-without-terminal';
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
+// import { DropIndicator } from '@atlaskit/pragmatic-drag-and-drop-react-drop-indicator/box-without-terminal';
 import { updateBoard } from "../../store/board/board.actions"
 import { utilService } from "../../services/util.service"
 import { useState } from "react"
