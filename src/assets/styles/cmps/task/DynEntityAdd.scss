@@ -33,11 +33,17 @@
             display: grid;
             place-items: center;
             border-radius: $btn-border-radius;
-            padding: 0;
+            padding: rem(6px);
             height: rem(32px);
-            span {
+            background-color: transparent;
+            & .svg-container {
                 width: 20px;
                 height: 20px;
+                color: var(--ds-text-accent-gray-bolder)
+            
+            }
+            &:hover {
+                background-color: var(--ds-background-neutral-hovered, #091e4224);
             }
         }
 
@@ -118,8 +124,16 @@
 
             & .btn-actions-container {
                 margin-block-start: rem(4px);
+                
+                & .x-btn {
+                    background-color: transparent;
+                    width: rem(32px);
 
-                button {
+                    & .svg-container {
+                        width: 20px;
+                        height: 20px;
+                    }
+
                     &:hover {
                         background-color: var(--ds-background-neutral-hovered, #091e4224);
                     }
