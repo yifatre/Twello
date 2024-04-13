@@ -1,4 +1,4 @@
-import { Droppable, Draggable } from '@atlaskit/pragmatic-drag-and-drop-react-beautiful-dnd-migration'
+import { Droppable, Draggable } from 'react-beautiful-dnd'
 import { TaskPreview } from "./TaskPreview"
 import { DynEntityAdd } from './DynEntityAdd'
 import { TaskQuickEdit } from './TaskQuickEdit'
@@ -60,8 +60,8 @@ export function TaskList({ group, saveTask, removeTask, board, isLabelsExtended,
                             refTrigger={refTrigger}
                         />}
 
-                        {<div style={{ background: 'blue' }}> {provided.placeholder}</div>}
-                        {/* {provided.placeholder} */}
+                        {/* {<div style={{ background: 'blue' }}> {provided.placeholder}</div>} */}
+                        {provided.placeholder}
                         {/* {console.log("provided.dragHandleProps", provided.dragHandleProps)} */}
 
                         {/* {console.log("provided.placeholder", provided)} */}

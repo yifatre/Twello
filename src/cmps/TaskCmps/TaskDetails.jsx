@@ -28,7 +28,6 @@ export function TaskDetails() {
 
     useEffect(() => {
         setTask(board.groups.find(group => group.id === groupId).tasks.find(task => task.id === taskId))
-        console.log('refTrigger', refTrigger)
     }, [board])
 
     useEffect(() => {
@@ -47,7 +46,7 @@ export function TaskDetails() {
     //         }
     //     }
     // }, [])
-    console.log(coverColor);
+
     function onEditDescription(ev) {
         ev.preventDefault()
         setIsDescriptionEdit(true)
