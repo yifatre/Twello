@@ -1,0 +1,43 @@
+.activities-container {
+
+    & .activity-container {
+
+        display: grid;
+        grid-template-columns: rem(40px) 1fr;
+        grid-template-areas: "a d";
+
+        & .avatar {
+            grid-area: a;
+            border-radius: 50%;
+            width: rem(32px);
+            height: rem(32px);
+            border: none;
+            display: inline-block;
+            padding: 0;
+            margin: 0;
+            cursor: pointer;
+            background-color: rgb(255, 255, 255);
+            @include avatar(32px);
+        }
+
+        & .activity {
+            grid-area: d;
+            font-size: rem(14px);
+            line-height: 20px;
+            padding: rem(8px) 0;
+
+            & h4 {
+                display: inline;
+            }
+
+            & .activity-time{
+                font-size: rem(12px);
+            }
+
+        }
+
+
+
+    }
+
+}

@@ -18,9 +18,6 @@ export function AttachmentPicker({ group,setActionType, board, groupId, task, sa
     }, [])
 
     async function onUploadFile(ev) {
-        console.log(ev.target.files[0])
-        console.log(task)
-        setIsUploading(true)
         const { secure_url, height, width } = await uploadService.uploadImg(ev)
         setImgData({ imgUrl: secure_url, width, height })
         setIsUploading(false)
