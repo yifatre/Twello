@@ -1,7 +1,7 @@
 .qe-back-drop {
     position: fixed;
-    display: grid;
-    place-items: center;
+    // display: grid;
+    // place-items: center;
     inset: 0;
     background-color: hsla(0, 0%, 0%, 0.6);
     z-index: 100;
@@ -23,7 +23,7 @@
                     display: none;
                 }
 
-                & .task-preview-title.edit{
+                & .task-preview-title.edit {
                     width: 100%;
                     border: none;
                     outline: none;
@@ -31,7 +31,7 @@
                     resize: none;
                 }
 
-                & .task-preview-title{
+                & .task-preview-title {
                     display: none;
                 }
             }
@@ -88,6 +88,19 @@
                     color: inherit;
                 }
             }
+
+            &.left-side {
+                display: flex;
+                flex-direction: column;
+                align-items: end;
+            }
         }
+
+        &.left-side {
+
+            flex-direction: row-reverse;
+
+        }
+
     }
 }

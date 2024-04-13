@@ -1,11 +1,12 @@
 import { bars_icon, checked_icon, edit_icon, eye_icon, paperclip_icon, time_icon } from "../UtilCmps/SVGs"
 import { AvatarList } from "../UtilCmps/AvatarList"
-import { useState } from "react"
+import { useRef, useState } from "react"
 import { TextareaAutosize as MinTextArea } from '@mui/base/TextareaAutosize'
 
-export function TaskPreview({ task, groupId, removeTask, board, isLabelsExtended, setIsLabelExtended, setTaskQuickEdit, saveTask }) {
+export function TaskPreview({ task, groupId, removeTask, board, isLabelsExtended, setIsLabelExtended, setTaskQuickEdit, saveTask, refTrigger }) {
     const [titleToEdit, setTitleToEdit] = useState(task.title)
     const [todosCount, setTodosCount] = useState(getTodoDoneCount())
+    const refTemp = useRef(null)
 
     function getTodoDoneCount() {
         if (!task.checklists) return
@@ -56,9 +57,11 @@ export function TaskPreview({ task, groupId, removeTask, board, isLabelsExtended
         setTaskQuickEdit(null)
     }
 
-    function onUpdateDate(ev) {
+    function onOpenQuickEdit(ev) {
+        // console.log('ev', ev.currentTarget)
         ev.stopPropagation()
-        saveTask({ ...task, date: { ...task.date, isDone: !task.date.isDone } }, groupId)
+        refTrigger.current = refTemp.current
+        setTaskQuickEdit(task)
     }
 
     const { title, style } = task
@@ -67,7 +70,7 @@ export function TaskPreview({ task, groupId, removeTask, board, isLabelsExtended
             style={{
                 backgroundColor: style?.backgroundColor || '#ffffff',
             }}
-
+            ref={refTemp}
         >
             {task.style?.backgroundImage && <div className="img-container"> <img src={task.style.backgroundImage} /></div>}
             <div className="content">
@@ -76,7 +79,7 @@ export function TaskPreview({ task, groupId, removeTask, board, isLabelsExtended
                         {getLabels().map(label => <div key={label.id} onClick={toggleExtendedLabels} className={`label ${!isLabelsExtended ? 'collapsed' : ''} ${label.color || 'orange'}`}><span>{isLabelsExtended ? label.title : label.title}</span></div>)}
                     </div>}
 
-                <i className="edit-icon" onClick={ev => { ev.stopPropagation(); setTaskQuickEdit(task) }}>{edit_icon}</i>
+                <i className="edit-icon" onClick={onOpenQuickEdit}>{edit_icon}</i>
                 <h4 className="task-preview-title">{title}</h4>
                 <MinTextArea className="task-preview-title edit" value={titleToEdit} autoFocus={true} onFocus={(ev) => ev.target.select()} onChange={handleTitleChange} onKeyDown={(ev) => { if (ev.code === 'Enter') handleClickAway() }} ></MinTextArea>
                 <div className="task-info-container">
@@ -85,7 +88,7 @@ export function TaskPreview({ task, groupId, removeTask, board, isLabelsExtended
 
                         {!!task.date?.dueDate &&
                             <div className="txt-and-icon icon-container date-preview"
-                                onClick={onUpdateDate}
+                                // onClick={onUpdateDate}
                                 id={getDateStatus()}>
                                 {task.date.isDone ? <span className="date-check-i">{checked_icon}</span> : <span className="date-check-i box"></span>}<span className="clock-icon">{time_icon}</span>{getDateFormat()}
                             </div>}

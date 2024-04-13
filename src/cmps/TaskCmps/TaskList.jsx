@@ -2,13 +2,14 @@ import { Droppable, Draggable } from '@atlaskit/pragmatic-drag-and-drop-react-be
 import { TaskPreview } from "./TaskPreview"
 import { DynEntityAdd } from './DynEntityAdd'
 import { TaskQuickEdit } from './TaskQuickEdit'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { useNavigate } from 'react-router'
 
 export function TaskList({ group, saveTask, removeTask, board, isLabelsExtended, setIsLabelExtended, isAddMode, setIsAddMode }) {
     const [taskQuickEdit, setTaskQuickEdit] = useState(false)
+    const refTrigger = useRef(null)
     const navigate = useNavigate()
-    console.log(taskQuickEdit);
+    // console.log(taskQuickEdit)
     return (
         <>
             <Droppable droppableId={group.id} type="task" direction='vertical'>
@@ -40,12 +41,13 @@ export function TaskList({ group, saveTask, removeTask, board, isLabelsExtended,
                                             isLabelsExtended={isLabelsExtended}
                                             setIsLabelExtended={setIsLabelExtended}
                                             setTaskQuickEdit={setTaskQuickEdit}
+                                            refTrigger={refTrigger}
                                         />
                                     </li>
                                 }}
                             </Draggable>
                         )}
-                        {console.log(taskQuickEdit)}
+                        {/* {console.log(taskQuickEdit)} */}
                         {taskQuickEdit && <TaskQuickEdit
                             taskQuickEdit={taskQuickEdit}
                             groupId={group.id}
@@ -55,6 +57,7 @@ export function TaskList({ group, saveTask, removeTask, board, isLabelsExtended,
                             isLabelsExtended={isLabelsExtended}
                             setIsLabelExtended={setIsLabelExtended}
                             setTaskQuickEdit={setTaskQuickEdit}
+                            refTrigger={refTrigger}
                         />}
 
                         {<div style={{ background: 'blue' }}> {provided.placeholder}</div>}

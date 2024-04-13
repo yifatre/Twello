@@ -49,7 +49,6 @@ export function TaskDetails() {
     }
 
     function onSetActionType(ev, type) {
-        console.log('ev', ev)
         ev.preventDefault()
         ev.stopPropagation()
         refTrigger.current = ev.currentTarget

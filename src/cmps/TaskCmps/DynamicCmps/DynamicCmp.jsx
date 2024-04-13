@@ -29,7 +29,7 @@ export function DynamicCmp({ setActionType, groupId, cmp, board, task, setIsAddB
 
     useEffect(() => {
         function updateSize() {
-            console.log('***resized***')
+            // console.log('***resized***')
             setWindowSize({ width: window.innerWidth, height: window.innerHeight })
         }
         window.addEventListener('resize', updateSize)
