@@ -11,6 +11,7 @@ export function GroupList({ board, saveGroup, removeGroup, saveTask, removeTask 
     const [isLabelsExtended, setIsLabelExtended] = useState(false)
     const [isAddGroup, setIsAddGroup] = useState(false)
     const { groups } = board
+    const [_groups, _setGroups] = useState(groups)
 
 
     function onDragStart(abc) {
@@ -31,17 +32,19 @@ export function GroupList({ board, saveGroup, removeGroup, saveTask, removeTask 
         const endIdx = result.destination.index
 
         if (result.type === 'group') {
-            const [group] = groups.splice(startIdx, 1)
-            groups.splice(endIdx, 0, group)
-            updateBoard({ ...board, groups })
+            const [group] = _groups.splice(startIdx, 1)
+            _groups.splice(endIdx, 0, group)
+            _setGroups(_groups)
+            updateBoard({ ...board, _groups })
         }
 
         if (result.type === 'task') {
-            const groupStart = groups.find(group => group.id === result.source.droppableId)
-            const groupEnd = groups.find(group => group.id === result.destination.droppableId)
+            const groupStart = _groups.find(group => group.id === result.source.droppableId)
+            const groupEnd = _groups.find(group => group.id === result.destination.droppableId)
             const [task] = groupStart.tasks.splice(startIdx, 1)
             groupEnd.tasks.splice(endIdx, 0, task)
-            updateBoard({ ...board, groups })
+            _setGroups(_groups)
+            updateBoard({ ...board, _groups })
         }
     }
 
@@ -56,10 +59,10 @@ export function GroupList({ board, saveGroup, removeGroup, saveTask, removeTask 
             <Droppable droppableId={'groups'} direction='horizontal' type="group">
                 {(provided, snapshot, a, b) => (
                     <ul className="clean-list flex group-list" {...provided.droppableProps} ref={provided.innerRef}>
-                        {groups?.map((group, idx) =>
+                        {_groups?.map((group, idx) =>
                             <Draggable key={group.id} draggableId={group.id} index={idx}>
                                 {(provided, snapshot) =>
-                                
+
                                     <li key={group.id}
                                         className="group-preview-container"
                                         ref={provided.innerRef}
@@ -76,8 +79,8 @@ export function GroupList({ board, saveGroup, removeGroup, saveTask, removeTask 
                                             saveTask={saveTask}
                                             removeTask={removeTask}
                                             board={board} />
-                                            {/* {console.log('ab', a, b)} */}
-                                            {/* <DropIndicator/> */}
+                                        {/* {console.log('ab', a, b)} */}
+                                        {/* <DropIndicator/> */}
                                     </li>}
                             </Draggable>
                         )}
