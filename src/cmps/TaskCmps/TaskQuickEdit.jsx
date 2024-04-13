@@ -17,7 +17,6 @@ export function TaskQuickEdit({ taskQuickEdit, groupId, removeTask, board, isLab
 
 
     useEffect(() => {
-        console.log('position', position)
         function updateSize() {
             setWindowSize({ width: window.innerWidth, height: window.innerHeight })
         }

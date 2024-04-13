@@ -20,7 +20,6 @@ export function CoverPicker({ setActionType, board, groupId, task, saveTask }) {
     }, [])
 
     useEffect(() => {
-        console.log('coverToEdit', coverToEdit)
         const activity = boardService.getActivity('changed the background of this task', 0)
         if (attach.current) {
             if (!task.attach) task.attach = []
@@ -45,7 +44,6 @@ export function CoverPicker({ setActionType, board, groupId, task, saveTask }) {
         try {
             const res = await axios.get(url)
             setImages(res.data)
-            console.log("res", res.data)
         } catch (error) {
             console.error(error)
         }

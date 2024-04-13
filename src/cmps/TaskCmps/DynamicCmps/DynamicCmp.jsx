@@ -37,8 +37,8 @@ export function DynamicCmp({ setActionType, groupId, cmp, board, task, setIsAddB
     }, [])
 
     useLayoutEffect(() => {
-        console.log('useeffect')
-        console.log('refTrigger.current', refTrigger)
+        // console.log('useeffect')
+        // console.log('refTrigger.current', refTrigger)
         if (ref.current) {
             const modalDim = ref.current.getBoundingClientRect()
             const triggerLocation = refTrigger.current.getBoundingClientRect()

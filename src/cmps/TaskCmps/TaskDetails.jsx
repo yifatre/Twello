@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from "react-router"
 import { DescriptionEdit } from "./DescriptionEdit"
-import { arrow_down, bars_icon, check_icon, checked_icon, clock_icon, cover_icon, eye_icon, label_icon, location_icon, member_icon, paperclip_icon, plus_icon, right_up_arrow, window_icon, x_icon } from "../UtilCmps/SVGs"
+import { activity_icon, arrow_down, bars_icon, check_icon, checked_icon, clock_icon, cover_icon, eye_icon, label_icon, location_icon, member_icon, paperclip_icon, plus_icon, right_up_arrow, window_icon, x_icon } from "../UtilCmps/SVGs"
 import { utilService } from "../../services/util.service"
 import { ClickAwayListener } from '@mui/base/ClickAwayListener'
 import { useOutletContext } from "react-router-dom"
@@ -11,6 +11,7 @@ import { AvatarPreview } from "../UtilCmps/AvatarPreview"
 import { ChecklistIndex } from "./CheckList.jsx/ChecklistIndex"
 import { boardService } from "../../services/board/board.service.local"
 import { FastAverageColor } from 'fast-average-color'
+import { Activity } from "../BoardCmps/Activity"
 
 export function TaskDetails() {
     const { boardId, groupId, taskId } = useParams()
@@ -66,7 +67,6 @@ export function TaskDetails() {
         ev.preventDefault()
         ev.stopPropagation()
         refTrigger.current = ev.currentTarget
-        console.log('refTrigger.current from details', refTrigger.current)
         setActionType(type)
     }
 
@@ -159,6 +159,13 @@ export function TaskDetails() {
 
                 <section className="checklists">
                     <ChecklistIndex task={task} saveTask={saveTask} groupId={groupId} />
+                </section>
+                <span className="icon-span activity-icon">{activity_icon}</span>
+                <section className="activity-heading">
+                    <h3>Activity</h3>
+                </section>
+                <section className="activity">
+                    <Activity taskId={taskId}/>
                 </section>
 
                 <section className="actions">

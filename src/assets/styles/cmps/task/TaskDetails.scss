@@ -8,6 +8,7 @@
 }
 
 .task-details {
+    // overflow-y: auto;
     border-radius: rem(12px);
     margin: rem(48px) 0;
     // position: absolute;
@@ -23,9 +24,11 @@
         "desc-icon   desc actions"
         "attach-icon attach actions"
         "checklist  checklist actions"
+        "activity-icon   activity-heading  actions"
+        "activity       activity  actions"
     ;
     grid-template-columns: rem(56px) 1fr max-content;
-    grid-template-rows: repeat(6, max-content);
+    grid-template-rows: repeat(7, max-content);
     position: fixed;
     left: calc(50% - 0.5 * rem(768px));
     color: #172b4d;
@@ -97,6 +100,7 @@
         margin-top: rem(4px);
         margin-inline-start: rem(8px);
         color: var(--ds-icon, #44546f);
+
         span {
             @include svg-container(24px, 24px);
         }
@@ -107,10 +111,6 @@
     .title-icon {
         grid-area: title-icon;
         margin-top: rem(12px);
-
-        span {
-            @include svg-container(24px, 24px);
-        }
     }
 
     .desc-icon {
@@ -431,7 +431,7 @@
             word-wrap: break-word;
             border-radius: rem(3px);
 
-            & div.download{
+            & div.download {
                 margin-block-start: rem(4px);
 
             }
@@ -468,6 +468,45 @@
                 letter-spacing: 1px;
             }
         }
+    }
+
+    .activity-icon {
+        grid-area: activity-icon;
+
+        span {
+            margin-inline-start: rem(1px);
+            @include svg-container(17px, 19px);
+        }
+    }
+
+    .activity-heading {
+        grid-area: activity-heading;
+
+        & h3 {
+            margin-block-start: rem(11px);
+            font-size: 1rem;
+            line-height: 1.25rem;
+            font-weight: 600;
+            margin-block-end: rem(10px);
+        }
+    }
+
+    &>.activity {
+        grid-area: activity;
+        margin-inline-start: rem(16px);
+
+        & .activities-container {
+            margin-right: 0;
+            & .activity-container {
+                grid-template-columns: max-content 1fr;
+                align-items: center;
+
+                & .activity {
+                    margin-inline-start: rem(8px);
+                }
+            }
+        }
+
     }
 
     .actions {

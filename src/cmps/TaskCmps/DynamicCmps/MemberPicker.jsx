@@ -19,7 +19,7 @@ export function MemberPicker({group,setActionType, members, task, saveTask, grou
         const regex = new RegExp(filter, 'i')
         let _members = members.filter(member => regex.test(member.fullName))
         setMemberFilter(_members)
-        console.log("filter", filter)
+        // console.log("filter", filter)
     }
 
     function onAddMember(memberId,name) {

@@ -61,7 +61,7 @@ export function LabelPicker({ setActionType, SaveLabel, deleteLabel, onUpdateBoa
         const regex = new RegExp(filter, 'i')
         let _labels = labels.filter(label => regex.test(label.title))
         setLabelsFilter(_labels)
-        console.log("filter", filter)
+        // console.log("filter", filter)
     }
 
     function removeColor() {
