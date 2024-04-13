@@ -30,6 +30,7 @@
     left: calc(50% - 0.5 * rem(768px));
     color: #172b4d;
 
+
     .details-close-btn {
         position: absolute;
         right: rem(8px);
@@ -63,10 +64,15 @@
         grid-area: cover;
         border-start-end-radius: rem(12px);
         border-start-start-radius: rem(12px);
-        height: rem(116px);
-        background-color: var(--ds-background-accent-yellow-subtle, #e2b203);
+        min-height: rem(116px);
         color: var(--ds-text-accent-yellow-bolder, #533f04);
         position: relative;
+        display: grid;
+
+        & .cover-img {
+            height: rem(160px);
+            place-self: center;
+        }
 
         a {
             display: inline-flex;
