@@ -5,9 +5,6 @@ import { useEffect, useState } from "react"
 import { ClickAwayListener } from "@mui/base/ClickAwayListener"
 import { TextareaAutosize as MinTextArea } from "@mui/base/TextareaAutosize"
 
-import LinearProgress, {
-    linearProgressClasses,
-} from "@mui/material/LinearProgress"
 import { TodoEdit } from "./TodoEdit"
 import { boardService } from "../../../services/board/board.service.local"
 import { utilService } from "../../../services/util.service"
