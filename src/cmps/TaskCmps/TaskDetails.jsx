@@ -22,7 +22,7 @@ export function TaskDetails() {
     const [task, setTask] = useState(board.groups.find(group => group.id === groupId).tasks.find(task => task.id === taskId))
     const [titleToEdit, setTitleToEdit] = useState(task.title)
     const navigate = useNavigate()
-    const fac = new FastAverageColor();
+    const fac = new FastAverageColor()
 
     const refTrigger = useRef(null)
 
@@ -46,7 +46,7 @@ export function TaskDetails() {
     //         }
     //     }
     // }, [])
-    console.log(coverColor);
+    console.log(coverColor)
     function onEditDescription(ev) {
         ev.preventDefault()
         setIsDescriptionEdit(true)
@@ -74,9 +74,9 @@ export function TaskDetails() {
         <ClickAwayListener onClickAway={closeTaskDetails}>
             <section className="task-details">
                 <button className="details-close-btn" onClick={closeTaskDetails}>{x_icon}</button>
-                {(task.style?.backgroundColor || task.style?.backgroundImage) && <section className="cover" style={{ backgroundColor: coverColor }}>
+                {(task.style?.backgroundColor || task.style?.backgroundImage) && <section className={`cover ${task.style.backgroundColor}`}>
                     <img src={task.style.backgroundImage} className="cover-img" alt="" />
-                    <a href="#">{cover_icon}Cover</a>
+                    <a href="#" onClick={(ev) => onSetActionType(ev, COVER)}>{cover_icon}Cover</a>
                 </section>}
                 <span className="icon-span title-icon">{window_icon}</span>
                 <section className="title">

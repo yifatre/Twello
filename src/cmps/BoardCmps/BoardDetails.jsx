@@ -30,20 +30,20 @@ export function BoardDetails() {
         }
     }
 
-    async function saveTask(task, groupId,activity) {
+    async function saveTask(task, groupId, activity = {}) {
         console.log("activity", activity)
         const group = board.groups.find(group => group.id === groupId)
-        console.log(group);
+        console.log(group)
         if (task.id) {
             const idx = group.tasks.findIndex(_task => _task.id === task.id)
             group.tasks[idx] = task
-            return await saveGroup(group,activity)
+            return await saveGroup(group, activity)
         } else {
             task.id = utilService.makeId('t')
             group.tasks.push(task)
-             //todo add the member !!! now its 0 for development
-            const newActivity = boardService.getActivity(`added ${task.title} to ${group.title}`,0,group,task)
-            return await saveGroup(group,newActivity)
+            //todo add the member !!! now its 0 for development
+            const newActivity = boardService.getActivity(`added ${task.title} to ${group.title}`, 0, group, task)
+            return await saveGroup(group, newActivity)
         }
     }
 
@@ -51,22 +51,22 @@ export function BoardDetails() {
         let group = board.groups.find(group => group.id === groupId)
         group = group.tasks.filter(task => task.id !== taskId)
         //todo when connected need to get group and task for the activity
-         //todo add the member !!! now its 0 for development
-        const activity = boardService.getActivity('archived ',0,group,task)
-        saveGroup(group,activity)
+        //todo add the member !!! now its 0 for development
+        const activity = boardService.getActivity('archived ', 0, group, task)
+        saveGroup(group, activity)
     }
 
-    async function saveGroup(group,activity) {
+    async function saveGroup(group, activity) {
         if (group.id) {
             const idx = board.groups.findIndex(_group => _group.id === group.id)
             board.groups[idx] = group
-           if(activity)board.activities.unshift(activity)
+            if (activity) board.activities.unshift(activity)
             return await updateBoard(board)
         } else {
             group.id = utilService.makeId('g')
             board.groups.push(group)
-             //todo add the member !!! now its 0 for development
-            board.activities.unshift(boardService.getActivity(`added ${group.title} to this board`,0,group))
+            //todo add the member !!! now its 0 for development
+            board.activities.unshift(boardService.getActivity(`added ${group.title} to this board`, 0, group))
             return await updateBoard(board)
         }
     }
@@ -79,12 +79,12 @@ export function BoardDetails() {
     if (!board) return <div>loading</div>
     return (<>
         <section className={`board-details ${rsbIsOpen ? 'rsb-open' : ''}`} style={{ backgroundImage: `url(${board.style?.backgroundImage})` }}>
-            <BoardHeader board={board} setRsbIsOpen={setRsbIsOpen} setViewType={setViewType} viewType={viewType}/>
-            <BoardSideBar setViewType={setViewType}/>
+            <BoardHeader board={board} setRsbIsOpen={setRsbIsOpen} setViewType={setViewType} viewType={viewType} />
+            <BoardSideBar setViewType={setViewType} />
             {viewType === 'board' && <GroupList board={board} saveGroup={saveGroup} removeGroup={removeGroup} saveTask={saveTask} removeTask={removeTask} />}
-            {viewType === 'table' &&  <BoardTable/>}
+            {viewType === 'table' && <BoardTable />}
             <div className="board-fade"></div>
-             <BoardRightSideBar setRsbIsOpen={setRsbIsOpen} />
+            <BoardRightSideBar setRsbIsOpen={setRsbIsOpen} />
         </section>
         <Outlet context={[saveTask]} />
     </>

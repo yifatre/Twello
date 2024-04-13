@@ -65,7 +65,8 @@
         border-start-end-radius: rem(12px);
         border-start-start-radius: rem(12px);
         min-height: rem(116px);
-        color: var(--ds-text-accent-yellow-bolder, #533f04);
+        background-color: var(--accent-background);
+        color: var(--accent-text-bolder, inherit);
         position: relative;
         display: grid;
 
@@ -401,7 +402,7 @@
         }
     }
 
-    .attach-icon{
+    .attach-icon {
         grid-area: attach-icon;
     }
 
@@ -433,7 +434,7 @@
             & .fileName {
                 font-weight: 700;
 
-                & .rightup{
+                & .rightup {
                     @include svg-container
                 }
             }
@@ -472,7 +473,7 @@
             line-height: 20px;
         }
 
-        a {
+        &>a {
             display: flex;
             gap: 8px;
             border-radius: rem(3px);
