@@ -46,7 +46,7 @@
 
         .title-edit-container {
             display: grid;
-            grid-template-columns: rem(32px)  rem(8px) max-content max-content 1fr;
+            grid-template-columns: rem(32px) rem(8px) max-content max-content 1fr;
             grid-template-areas:
                 "svg . ta ta ta"
                 ". . btn btn2 ."
@@ -68,7 +68,7 @@
                 line-height: 20px;
                 width: 100%;
                 grid-area: ta;
-                
+
 
                 &:focus {
                     outline: 2px solid var(--ds-border-focused);
@@ -125,13 +125,14 @@
 
             & .todo-preview {
                 display: grid;
-                grid-template-columns: rem(32px) 1fr;
+                grid-template-columns: rem(32px) 1fr max-content;
                 height: rem(36px);
                 font-size: rem(14px);
 
 
                 & .todo-title {
-                    display: grid;
+                    display: flex;
+                    justify-content: space-between;
                     align-items: center;
                     border-radius: rem(8px);
                     overflow-wrap: break-word;
@@ -139,14 +140,43 @@
 
                     &:hover {
                         background-color: var(--ds-background-neutral, #091e420f);
+                        & .todo-actions {
+                            display: block;
+                        }
                     }
+
+                    & .todo-actions {
+                        display: none;
+
+                        & .svg-container {
+                            @include svg-container;
+                            color: var(--ds-icon, #44546f);
+                        }
+
+                        & .ta-btn {
+                            background-color: var(--ds-background-neutral, #091e420f);
+                            border-radius: rem(12px);
+                            width: rem(24px);
+                            height: rem(24px);
+                            display: grid;
+                            place-items: center;
+                            cursor: pointer;
+
+                            &:hover {
+                                background-color: var(--ds-background-neutral-hovered, #091e4224);
+                                
+                            }
+                        }
+                    }
+
                 }
+
 
                 & input {
                     cursor: pointer;
                     width: rem(16px);
                     height: rem(16px);
-                    margin: 0 0 rem(4px) 0;
+                    margin: 0 0 rem(0px) 0;
                     place-self: center;
                 }
 
@@ -165,6 +195,7 @@
                     height: rem(16px);
                     place-self: center;
                 }
+
 
             }
         }
