@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from "react-router"
 import { DescriptionEdit } from "./DescriptionEdit"
-import { arrow_down, bars_icon, check_icon, checked_icon, clock_icon, cover_icon, eye_icon, label_icon, location_icon, member_icon, paperclip_icon, plus_icon, right_up_arrow, window_icon, x_icon } from "../UtilCmps/SVGs"
+import { activity_icon, arrow_down, bars_icon, check_icon, checked_icon, clock_icon, cover_icon, eye_icon, label_icon, location_icon, member_icon, paperclip_icon, plus_icon, right_up_arrow, window_icon, x_icon } from "../UtilCmps/SVGs"
 import { utilService } from "../../services/util.service"
 import { ClickAwayListener } from '@mui/base/ClickAwayListener'
 import { useOutletContext } from "react-router-dom"
@@ -11,6 +11,7 @@ import { AvatarPreview } from "../UtilCmps/AvatarPreview"
 import { ChecklistIndex } from "./CheckList/ChecklistIndex"
 import { boardService } from "../../services/board/board.service.local"
 import { FastAverageColor } from 'fast-average-color'
+import { Activity } from "../BoardCmps/Activity"
 
 export function TaskDetails() {
     const { boardId, groupId, taskId } = useParams()
@@ -66,13 +67,12 @@ export function TaskDetails() {
         ev.preventDefault()
         ev.stopPropagation()
         refTrigger.current = ev.currentTarget
-        console.log('refTrigger.current from details', refTrigger.current)
         setActionType(type)
     }
 
-    function onCheckDate(){
-        let activity = boardService.getActivity(`mark the due date on ${task.title} ${task.date?.isDone?'incomplete':'complete'}`, 0,board.groups.find(group => group.id === groupId),task)
-        saveTask({ ...task, date: { ...task.date, isDone: !task.date?.isDone } }, groupId,activity)
+    function onCheckDate() {
+        let activity = boardService.getActivity(`mark the due date on ${task.title} ${task.date?.isDone ? 'incomplete' : 'complete'}`, 0, board.groups.find(group => group.id === groupId), task)
+        saveTask({ ...task, date: { ...task.date, isDone: !task.date?.isDone } }, groupId, activity)
     }
 
     const due = task.date?.isDone ? 'Complete' : task.date?.dueDate - Date.now() < 0 ? 'Overdue' : task.date?.dueDate - Date.now() <= 24 * 60 * 60 * 1000 ? 'Due soon' : ''
@@ -141,11 +141,16 @@ export function TaskDetails() {
                                 let fileName = attach.split('/')
 
                                 return <div className="attach-details" key={idx}>
-                                    <div className="attach_img" style={{ background: `url(${attach})` }}>
+                                    <div className="attach_img" style={{ backgroundImage: `url(${attach})` }}>
                                         {!imgTypes.find(type => type === attach.slice(-3).toLowerCase()) && attach.slice(-3)}
 
                                     </div>
-                                    <a className="fileName" target="_blank" href={attach} download>{fileName[fileName.length - 1]} ↗</a>
+                                    <div>
+                                        <a className="fileName" target="_blank" href={attach} download>{fileName[fileName.length - 1]} ↗</a>
+                                    </div>
+                                    <div className="download">
+                                        <a className="download" href={attach} download={fileName[fileName.length - 1]}>Download</a>
+                                    </div>
 
                                 </div>
                             })}
@@ -154,6 +159,13 @@ export function TaskDetails() {
 
                 <section className="checklists">
                     <ChecklistIndex task={task} saveTask={saveTask} groupId={groupId} />
+                </section>
+                <span className="icon-span activity-icon">{activity_icon}</span>
+                <section className="activity-heading">
+                    <h3>Activity</h3>
+                </section>
+                <section className="activity">
+                    <Activity taskId={taskId}/>
                 </section>
 
                 <section className="actions">

@@ -34,7 +34,7 @@ export function BoardRightSideBar({ setRsbIsOpen }) {
                 <div className="r-sidebar-header">
                     <div></div>
                     <h2>{topHead}</h2>
-                    <span onClick={() => onClose()}>{x_icon}</span>
+                    <button className="r-sidebar-btn" onClick={() => onClose()}>{x_icon}</button>
                 </div>
                 <hr className="header-sep" />
                 <div className="r-sidebar-content">
@@ -54,33 +54,33 @@ export function BoardRightSideBar({ setRsbIsOpen }) {
             {(topHead === 'Change background' ||topHead === 'Color' ||topHead === 'Photos from Unsplash') ?
                 <>
                         <div className="r-sidebar-header">
-                            <span className="back-btn" onClick={() => onBack()}>{arrow_down}</span>
+                            <button className="back-btn r-sidebar-btn" onClick={() => onBack()}>{arrow_down}</button>
                             <h2>{topHead === 'Photos from Unsplash'?`Photos from`:topHead} {topHead === 'Photos from Unsplash'?<a style={{color:'#0c66e4'}} href="https://unsplash.com/?utm_source=trello&utm_medium=referral&utm_campaign=api-credit">Unsplash</a>:''}</h2>
-                            <span onClick={() => onClose()}>{x_icon}</span>
+                            <button className="r-sidebar-btn" onClick={() => onClose()}>{x_icon}</button>
                         </div>
                     <ChangeBack setTopHead={setTopHead} topHead={topHead} board={board} setBackTo={setBackTo} />
                 </>
                 : <></>
             }
-            {topHead === 'Labels'&&
+            {(topHead === 'Labels' || topHead === 'Create new label')&&
             <>
              <div className="r-sidebar-header">
-                            <span className="back-btn" onClick={() => onBack()}>{arrow_down}</span>
+                            <button className="back-btn r-sidebar-btn" onClick={() => onBack()}>{arrow_down}</button>
                             <h2>{topHead}</h2>
-                            <span onClick={() => onClose()}>{x_icon}</span>
+                            <button className="r-sidebar-btn" onClick={() => onClose()}>{x_icon}</button>
                         </div>
             {console.log('hi')}
-            <SideBarLabels board={board}/>
+            <SideBarLabels topHead={topHead} setBackTo={setBackTo}  setTopHead={setTopHead} board={board}/>
             </>
             }
             {topHead === 'Activity'&&
             <>
              <div className="r-sidebar-header">
-                            <span className="back-btn" onClick={() => onBack()}>{arrow_down}</span>
+                            <button className="back-btn r-sidebar-btn" onClick={() => onBack()}>{arrow_down}</button>
                             <h2>{topHead}</h2>
-                            <span onClick={() => onClose()}>{x_icon}</span>
+                            <button className="r-sidebar-btn" onClick={() => onClose()}>{x_icon}</button>
                         </div>
-            <Activity board={board}/>
+            <Activity  board={board}/>
             </>
             }
 

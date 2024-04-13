@@ -14,7 +14,7 @@ const pallet = ['green', 'yellow', 'orange', 'red', 'purple',
 
 // todo connect btn's and add the on update 
 
-export function SideBarLabels({ board }) {
+export function SideBarLabels({topHead, board,setBackTo,setTopHead }) {
     const [toggle, setToggle] = useState(false)
     const [labels, setLabels] = useState(board.labels)
     const [labelsFilter, setLabelsFilter] = useState(board.labels)
@@ -25,6 +25,13 @@ export function SideBarLabels({ board }) {
     const [labelId, setLabelId] = useState('')
 
     function toggleBtn(label) {
+        if(topHead === 'Labels'){
+            setTopHead('Create new label')
+            setBackTo('Labels')
+        }else {
+            setTopHead('Labels')
+            setBackTo('Menu')
+        }
         setCurrentColor('green-subtle')
         setLabelContent('')
         if (label) {
@@ -107,7 +114,7 @@ export function SideBarLabels({ board }) {
     }
 
     {
-        if (!toggle) return <>
+        if (topHead === 'Labels') return <>
 
             <section className="picker-container">
                 <input
