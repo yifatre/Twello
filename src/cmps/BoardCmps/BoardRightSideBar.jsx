@@ -69,7 +69,6 @@ export function BoardRightSideBar({ setRsbIsOpen }) {
                             <h2>{topHead}</h2>
                             <button className="r-sidebar-btn" onClick={() => onClose()}>{x_icon}</button>
                         </div>
-            {console.log('hi')}
             <SideBarLabels topHead={topHead} setBackTo={setBackTo}  setTopHead={setTopHead} board={board}/>
             </>
             }
