@@ -2,6 +2,7 @@ import { bars_icon, checked_icon, edit_icon, eye_icon, paperclip_icon, time_icon
 import { AvatarList } from "../UtilCmps/AvatarList"
 import { useRef, useState } from "react"
 import { TextareaAutosize as MinTextArea } from '@mui/base/TextareaAutosize'
+import { boardService } from "../../services/board/board.service.local"
 
 export function TaskPreview({ task, groupId, removeTask, board, isLabelsExtended, setIsLabelExtended, setTaskQuickEdit, saveTask, refTrigger }) {
     const [titleToEdit, setTitleToEdit] = useState(task.title)
@@ -65,18 +66,19 @@ export function TaskPreview({ task, groupId, removeTask, board, isLabelsExtended
 
     function onUpdateDate(ev) {
         ev.stopPropagation()
-        saveTask({...task, date:{...task.date, isDone: !task.date.isDone}}, groupId)
+        let activity = boardService.getActivity(`mark the due date on ${task.title} ${task.date?.isDone?'incomplete':'complete'}`, 0,board.groups.find(group => group.id === groupId),task)
+        saveTask({...task, date:{...task.date, isDone: !task.date.isDone}}, groupId,activity)
     }
 
     const { title, style } = task
     return (
         <><div className="task-preview"
             style={{
-                backgroundColor: style?.backgroundColor || '#ffffff',
+                backgroundColor: '#ffffff',
             }}
             ref={refTemp}
         >
-            {task.style?.backgroundImage && <div className="img-container"> <img src={task.style.backgroundImage} /></div>}
+            {(style?.backgroundImage || style?.backgroundColor) && <div className="img-container" style={{backgroundColor: style.backgroundColor}}> <img src={task.style.backgroundImage} /></div>}
             <div className="content">
                 {!!task.labelIds?.length &&
                     <div className='labels'>

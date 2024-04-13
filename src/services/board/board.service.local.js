@@ -127,14 +127,14 @@ function getEmptyTodo() {
 }
 
 function getActivity(txt, byMemberId, group, task) {
-   const miniGroup = group ?{ id: group.id, title: group.title }:{}
-   const miniTask = task ?{ id: task.id, title: task.title }:{}
-     
+    const miniGroup = group ? { id: group.id, title: group.title } : {}
+    const miniTask = task ? { id: task.id, title: task.title } : {}
+    const byMember = byMemberId === 0 ? 'u107' : byMemberId
     return {
         id: utilService.makeId('a'),
         createdAt: Date.now(),
         txt,
-        byMemberId,
+        byMemberId:byMember,
         group: miniGroup,
         task: miniTask,
     }

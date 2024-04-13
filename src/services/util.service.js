@@ -10,7 +10,8 @@ export const utilService = {
     getModalPosition,
     getInitials,
     getDateFormat,
-    timeAgo
+    timeAgo,
+    deleteLabelIdFromEverywhere
 }
 
 function makeId(firstLetter = '', length = 6) {
@@ -209,4 +210,19 @@ function timeAgo(dateParam) {
     }
 
     return _getFormattedDate(date); // 10. January 2017. at 10:20
+}
+
+function deleteLabelIdFromEverywhere(data, labelIdToDelete) {
+    const updatedData = data.map(group => {
+        const updatedTasks = group.tasks.map(task => {
+            const updatedTask = { ...task }
+            const labelIndex = updatedTask.labelIds.indexOf(labelIdToDelete)
+            if (labelIndex !== -1) {
+                updatedTask.labelIds.splice(labelIndex, 1)
+            }
+            return updatedTask
+        })
+        return { ...group, tasks: updatedTasks }
+    })
+    return updatedData
 }

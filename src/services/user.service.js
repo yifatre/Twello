@@ -1,7 +1,12 @@
 import { storageService } from './async-storage.service'
+import { userDemoData } from './demo-data'
 import { httpService } from './http.service'
+import { utilService } from './util.service'
 
 const STORAGE_KEY_LOGGEDIN_USER = 'loggedinUser'
+const STORAGE_KEY = 'user'
+
+_createUsers()
 
 export const userService = {
     login,
@@ -100,6 +105,11 @@ function getLoggedInUser() {
     }
 }
 
+
+function _createUsers() {
+    const user = utilService.loadFromStorage(STORAGE_KEY)
+    if (!user) utilService.saveToStorage(STORAGE_KEY, userDemoData)
+}
 
 // ;(async ()=>{
 //     await userService.signup({fullname: 'Puki Norma', username: 'puki', password:'123',score: 10000, isAdmin: false})

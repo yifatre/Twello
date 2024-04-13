@@ -71,26 +71,12 @@ export function DynamicCmp({ setActionType, groupId, cmp, board, task, setIsAddB
         const labels = Board.labels.filter(label => label.id !== labelId)
         Board.labels = labels
 
-        Board.groups = deleteLabelIdFromEverywhere(Board.groups, labelId)
+        Board.groups = utilService.deleteLabelIdFromEverywhere(Board.groups, labelId)
 
         updateBoard(Board)
     }
 
-    function deleteLabelIdFromEverywhere(data, labelIdToDelete) {
-        const updatedData = data.map(group => {
-            const updatedTasks = group.tasks.map(task => {
-                const updatedTask = { ...task }
-                const labelIndex = updatedTask.labelIds.indexOf(labelIdToDelete)
-                if (labelIndex !== -1) {
-                    updatedTask.labelIds.splice(labelIndex, 1)
-                }
-                return updatedTask
-            })
-            return { ...group, tasks: updatedTasks }
-        })
-        return updatedData
-    }
-
+    
 
     var cmpType
     var topHead

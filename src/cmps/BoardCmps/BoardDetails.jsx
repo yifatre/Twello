@@ -30,7 +30,7 @@ export function BoardDetails() {
         }
     }
 
-    async function saveTask(task, groupId, activity = {}) {
+    async function saveTask(task, groupId, activity) {
         console.log("activity", activity)
         const group = board.groups.find(group => group.id === groupId)
         console.log(group)

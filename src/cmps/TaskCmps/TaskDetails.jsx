@@ -9,6 +9,7 @@ import { ATTACHMENT, CHECKLIST, COVER, DATES, DynamicCmp, LABELS, MEMBERS } from
 import { useSelector } from "react-redux"
 import { AvatarPreview } from "../UtilCmps/AvatarPreview"
 import { ChecklistIndex } from "./CheckList.jsx/ChecklistIndex"
+import { boardService } from "../../services/board/board.service.local"
 import { FastAverageColor } from 'fast-average-color'
 
 export function TaskDetails() {
@@ -46,7 +47,7 @@ export function TaskDetails() {
     //         }
     //     }
     // }, [])
-    console.log(coverColor)
+
     function onEditDescription(ev) {
         ev.preventDefault()
         setIsDescriptionEdit(true)
@@ -67,6 +68,11 @@ export function TaskDetails() {
         refTrigger.current = ev.currentTarget
         console.log('refTrigger.current from details', refTrigger.current)
         setActionType(type)
+    }
+
+    function onCheckDate(){
+        let activity = boardService.getActivity(`mark the due date on ${task.title} ${task.date?.isDone?'incomplete':'complete'}`, 0,board.groups.find(group => group.id === groupId),task)
+        saveTask({ ...task, date: { ...task.date, isDone: !task.date?.isDone } }, groupId,activity)
     }
 
     const due = task.date?.isDone ? 'Complete' : task.date?.dueDate - Date.now() < 0 ? 'Overdue' : task.date?.dueDate - Date.now() <= 24 * 60 * 60 * 1000 ? 'Due soon' : ''
@@ -107,7 +113,7 @@ export function TaskDetails() {
                     {task.date?.dueDate && <div className="due-date">
                         <h3>Due date</h3>
                         <div className="">
-                            <span className="box" onClick={() => saveTask({ ...task, date: { ...task.date, isDone: !task.date?.isDone } }, groupId)}>
+                            <span className="box" onClick={() => onCheckDate()}>
                                 {task.date?.isDone && check_icon}
                             </span>
 

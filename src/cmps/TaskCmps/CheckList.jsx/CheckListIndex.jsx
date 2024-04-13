@@ -1,4 +1,4 @@
-import { DragDropContext, Droppable, Draggable } from '@atlaskit/pragmatic-drag-and-drop-react-beautiful-dnd-migration'
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 import { ChecklistList } from './ChecklistList'
 
 export function ChecklistIndex({ task, saveTask, groupId }) {
@@ -10,7 +10,6 @@ export function ChecklistIndex({ task, saveTask, groupId }) {
     }
 
     function onUpdateList(_checklist) {
-        console.log(_checklist);
         const listIdx = checklists.findIndex(checklist => checklist.id === _checklist.id)
         task.checklists[listIdx] = _checklist
         saveTask(task, groupId)
