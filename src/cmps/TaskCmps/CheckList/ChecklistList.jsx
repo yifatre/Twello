@@ -24,6 +24,7 @@ export function ChecklistList({ checklist, onRemoveList, onUpdateList }) {
         if (!checklist.todos) {
             checklist.todos = []
             setIsAddTodo(true)
+            setChecklistProgress('0%')
         }
     }, [])
 

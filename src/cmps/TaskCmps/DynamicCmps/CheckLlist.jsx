@@ -13,6 +13,7 @@ export function CheckList({ setActionType, task, saveTask, groupId, }) {
     function onCreate() {
         const _checklist = { id: utilService.makeId(), title: title }
         saveTask({ ...task, checklists: [...task.checklists, _checklist] }, groupId)
+        setActionType(null)
     }
 
     return (<>
