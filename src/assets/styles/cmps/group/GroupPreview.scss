@@ -138,6 +138,15 @@
             text-overflow: ellipsis;
             white-space: nowrap;
             padding: rem(4px);
+
+        }
+
+        &.neutral {
+            &:hover {
+                background-color: var(--ds-background-accent-gray-subtle-hovered);
+                color: var(--accent-text-bolder, var(--ds-icon, #44546f));
+
+            }
         }
 
         h4 {
