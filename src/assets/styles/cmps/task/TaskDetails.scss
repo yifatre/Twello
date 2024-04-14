@@ -19,11 +19,8 @@
 }
 
 .task-details {
-    // overflow-y: auto;
     border-radius: rem(12px);
     margin: rem(48px) 0;
-    // position: absolute;
-    // padding-inline: rem(16px);
     background-color: #F1F2F4;
     width: rem(768px);
     min-height: rem(600px);
@@ -41,10 +38,9 @@
     grid-template-columns: rem(56px) 1fr max-content;
     grid-template-rows: repeat(7, max-content);
     position: relative;
-    // position: fixed;
-    // left: calc(50% - 0.5 * rem(768px));
-    color: #172b4d;
 
+    color: #172b4d;
+    padding-block-end: rem(16px);
 
     .details-close-btn {
         position: absolute;

@@ -119,7 +119,7 @@ export function TaskDetails() {
                                     {task.date?.isDone && check_icon}
                                 </span>
 
-                                <button onClick={(ev) => onSetActionType(ev, DATES)} className="tasks-btn">{utilService.getFormattedTime(new Date(task.date.dueDate))}<span className={`due ${due === 'Due soon' ? 'soon' : due === 'Overdue' ? 'over' : due === 'Complete' ? 'done' : ''}`}>{due}</span>{arrow_down}</button>
+                                <button onClick={(ev) => onSetActionType(ev, DATES)} className="tasks-btn">{utilService.getFormattedTime(new Date(task.date.dueDate))} {task.date.time}<span className={`due ${due === 'Due soon' ? 'soon' : due === 'Overdue' ? 'over' : due === 'Complete' ? 'done' : ''}`}>{due}</span>{arrow_down}</button>
                             </div>
                         </div>}
                         {/* <section className="notifications"></section> */}
