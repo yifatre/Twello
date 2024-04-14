@@ -33,7 +33,7 @@ export function GroupList({ board, saveGroup, removeGroup, saveTask, removeTask 
         if (result.type === 'group') {
             const [group] = groups.splice(startIdx, 1)
             groups.splice(endIdx, 0, group)
-            _setGroups(groups)
+            // _setGroups(groups)
             updateBoard({ ...board, groups })
         }
 
@@ -42,7 +42,7 @@ export function GroupList({ board, saveGroup, removeGroup, saveTask, removeTask 
             const groupEnd = groups.find(group => group.id === result.destination.droppableId)
             const [task] = groupStart.tasks.splice(startIdx, 1)
             groupEnd.tasks.splice(endIdx, 0, task)
-            _setGroups(groups)
+            // _setGroups(groups)
             updateBoard({ ...board, groups })
         }
     }
