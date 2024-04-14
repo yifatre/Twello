@@ -108,7 +108,7 @@ export function TaskDetails() {
                         {!!task.labelIds.length && <div className="labels">
                             <h3>Labels</h3>
                             <div className="">
-                                {task.labelIds?.map(labelId => <div key={labelId} className={`label ${board.labels.find(label => label.id === labelId).color}`}>{board.labels.find(label => label.id === labelId).title}</div>)}
+                                {task.labelIds?.map(labelId => <div onClick={(ev) => onSetActionType(ev, LABELS)} key={labelId} className={`label ${board.labels.find(label => label.id === labelId).color}`}>{board.labels.find(label => label.id === labelId).title}</div>)}
                                 <button className="label neutral-label" onClick={(ev) => onSetActionType(ev, LABELS)}>{plus_icon}</button>
                             </div>
                         </div>}
