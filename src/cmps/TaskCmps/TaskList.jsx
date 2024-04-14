@@ -26,8 +26,8 @@ export function TaskList({ group, saveTask, removeTask, board, isLabelsExtended,
                                         ref={provided.innerRef}
                                         {...provided.draggableProps}
                                         {...provided.dragHandleProps}
-                                        // style={snapshot.isDragging ? { opacity: 0.6, rotate: 4, ...provided.draggableProps?.style } : { ...provided.draggableProps?.style }}
-                                        // style={snapshot.isDragging ? { ...provided.draggableProps?.style, opacity: 0.6, rotate: '6deg', } : { ...provided.draggableProps?.style, cursor: 'pointer' }}
+                                        // style={{ ...provided.draggableProps?.style,  }}
+                                        style={snapshot.isDragging ? { ...provided.draggableProps?.style, opacity: 0.6, rotate: '6deg', } : { ...provided.draggableProps?.style, cursor: 'pointer' }}
                                         onClick={() => navigate(`/board/${board._id}/${group.id}/${task.id}`)}
                                     >
 
