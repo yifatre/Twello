@@ -12,7 +12,7 @@ export function Activity({taskId}){
     console.log("activities", activities)
     
     return (
-        <section className="activities-container ">
+        <section className={taskId?'activity-task':'activities-container'} >
             {activities && (taskActivity? taskActivity : activities).map(activity =>{
                 const user = members.find(member => member._id === activity.byMemberId)
                return <div key={activity.id} className="activity-container flex ">
