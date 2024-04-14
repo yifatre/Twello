@@ -145,13 +145,12 @@ export function TaskDetails() {
                                     return <div className="attach-details" key={idx}>
                                         <div className="attach_img" style={{ backgroundImage: `url(${attach})` }}>
                                             {!imgTypes.find(type => type === attach.slice(-3).toLowerCase()) && attach.slice(-3)}
-
                                         </div>
                                         <div>
                                             <a className="fileName" target="_blank" href={attach} download>{fileName[fileName.length - 1]} ↗</a>
                                         </div>
                                         <div className="download">
-                                            <a className="download" href={attach} download={fileName[fileName.length - 1]}>Download</a>
+                                            <a className="download" href={attach} target="_blank" download={fileName[fileName.length - 1]}>Download</a>
                                         </div>
 
                                     </div>
