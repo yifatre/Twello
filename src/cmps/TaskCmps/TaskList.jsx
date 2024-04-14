@@ -10,9 +10,32 @@ export function TaskList({ group, saveTask, removeTask, board, isLabelsExtended,
     const refTrigger = useRef(null)
     const navigate = useNavigate()
     // console.log(taskQuickEdit)
+
+    // function getStyle(style, snapshot) {
+    //     if (!snapshot.isDropAnimating) {
+    //         return style
+    //     }
+    //     const { moveTo, curve, duration } = snapshot.dropAnimation
+    //     // move to the right spot
+    //     const translate = `translate(${moveTo.x}px, ${moveTo.y}px)`
+    //     // add a bit of turn for fun
+    //     const rotate = 'rotate(6deg)'
+
+    //     // patching the existing style
+    //     return {
+    //         ...style,
+    //         opacity: 0.6,
+    //         transform: `${translate} ${rotate}`,
+    //         // slowing down the drop because we can
+    //         transition: `all ${curve} ${duration + 1}s`,
+    //         transitionDuration: `0.001s`
+    //     }
+    // }
+
     return (
         <>
-            <Droppable droppableId={group.id} type="task" direction='vertical'>
+            <Droppable droppableId={group.id} type="task" direction='vertical'
+            >
                 {(provided) =>
                     <ul className="task-list clean-list" {...provided.droppableProps} ref={provided.innerRef}>
 
@@ -20,14 +43,16 @@ export function TaskList({ group, saveTask, removeTask, board, isLabelsExtended,
                             <Draggable key={task.id} draggableId={task.id} index={idx} >
 
                                 {(provided, snapshot) => {
-                                    // console.log('snapshot', snapshot.isClone = true)
-                                    // console.log('provided.draggableProps?.style.', provided.draggableProps?.style, 'task.id', task.id)
+
                                     return <li key={task.id}
                                         ref={provided.innerRef}
                                         {...provided.draggableProps}
+                                        {...provided.snapshot}
                                         {...provided.dragHandleProps}
-                                        // style={{ ...provided.draggableProps?.style,  }}
-                                        style={snapshot.isDragging ? { ...provided.draggableProps?.style, opacity: 0.6, rotate: '6deg', } : { ...provided.draggableProps?.style, cursor: 'pointer' }}
+                                        isDragging={snapshot.isDragging && !snapshot.isDropAnimating}
+                                        style={snapshot.isDragging && !snapshot.isDropAnimating ? { ...provided.draggableProps?.style, opacity: 0.6, rotate: '6deg' } : { ...provided.draggableProps?.style, cursor: 'pointer', transitionDuration: `0.01s` }}
+                                        // style={getStyle(provided.draggableProps.style, snapshot)}
+                                        // className={snapshot.isDragging ? '.dragged-task' : ''}
                                         onClick={() => navigate(`/board/${board._id}/${group.id}/${task.id}`)}
                                     >
 

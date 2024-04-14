@@ -10,5 +10,12 @@
       min-height: 1px;
       height: 100%;
       padding-block: 2px;
+
    }
+}
+
+.dragged-task {
+   opacity: 0.6;
+   rotate: 6deg;
+   transform: rotate('6deg') ;
 }
