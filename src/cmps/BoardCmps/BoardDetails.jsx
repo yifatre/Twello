@@ -51,11 +51,12 @@ export function BoardDetails() {
 
     function removeTask(taskId, groupId) {
         let group = board.groups.find(group => group.id === groupId)
-        group = group.tasks.filter(task => task.id !== taskId)
+        // group = group.tasks.filter(task => task.id !== taskId)
         //todo when connected need to get group and task for the activity
         //todo add the member !!! now its 0 for development
-        const activity = boardService.getActivity('archived ', 0, group, task)
-        saveGroup(group, activity)
+        console.log('group', group)
+        const activity = boardService.getActivity('deleted ', 0, group, taskId)
+        saveGroup({ ...group, tasks: group.tasks.filter(task => task.id !== taskId) }, activity)
     }
 
     async function saveGroup(group, activity) {

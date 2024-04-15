@@ -55,7 +55,7 @@ export function GroupPreview({ group, saveGroup, board, isLabelsExtended, setIsL
             </div>
 
             <div className={`tasks-container `} >
-                <TaskList group={group} saveTask={saveTask} board={board} isLabelsExtended={isLabelsExtended} setIsLabelExtended={setIsLabelExtended} isAddMode={isAddMode} setIsAddMode={setIsAddMode} />
+                <TaskList group={group} saveTask={saveTask} board={board} isLabelsExtended={isLabelsExtended} setIsLabelExtended={setIsLabelExtended} isAddMode={isAddMode} setIsAddMode={setIsAddMode} removeTask={removeTask} />
             </div>
 
             {!isAddMode && <div className='add'>
