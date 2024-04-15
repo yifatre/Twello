@@ -1,4 +1,4 @@
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useParams } from 'react-router-dom'
 import { ClickAwayListener } from '@mui/base/ClickAwayListener'
 
 import { arrow_down, bell_icon, info_btn, logo, more_icon, search_icon } from '../UtilCmps/SVGs'
@@ -8,9 +8,13 @@ import { utilService } from '../../services/util.service'
 
 export function AppHeader() {
     const { pathname } = useLocation()
+    console.log("pathname", pathname)
     const [isAddBoard, setIsAddBoard] = useState(false)
     const [modalPosition, setModalPosition] = useState({ top: 0, left: 0 })
     const refTrigger = useRef(null)
+
+   const params =  useParams()
+
 
     function onAddBoard(ev) {
         const { currentTarget } = ev
@@ -54,7 +58,7 @@ export function AppHeader() {
                 {/* <button className='main-nav-btn'>Recent <span className='arrow-down'>{arrow_down}</span></button> */}
                 {/* <button className='main-nav-btn'>Starred <span className='arrow-down'>{arrow_down}</span></button> */}
                 {/* <button className='main-nav-btn'>Templates <span className='arrow-down'>{arrow_down}</span></button> */}
-                <button className='create-btn' onClick={onAddBoard} ref={refTrigger}>Create</button>
+                <button className={`create-btn ${pathname !== '/board'? 'create-btn-in-board':''}`} onClick={onAddBoard} ref={refTrigger}>Create</button>
             </div>
             <div className='flex'>
 
