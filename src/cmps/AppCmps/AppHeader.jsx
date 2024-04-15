@@ -23,6 +23,8 @@ export function AppHeader() {
         setIsAddBoard(false)
     }
 
+    if(pathname ==='/login')return
+
     if (pathname === '/') return (
         <header className="app-header-home ">
             <section className='justify-space-between flex' >
