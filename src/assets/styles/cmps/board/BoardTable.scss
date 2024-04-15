@@ -23,13 +23,24 @@
     }
 
     .cell {
+        position: relative;
         padding-inline: rem(8px);
         overflow: hidden;
         text-align: left;
         vertical-align: middle;
-        overflow: hidden;
-        text-overflow: ellipsis;
+        // overflow: hidden;
+        // text-overflow: ellipsis;
         white-space: nowrap;
+
+        .td-fade {
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            width: 18px;
+            background: linear-gradient(90deg, rgba(255,255,255,0) 10%, rgba(255,255,255,0.8954175420168067) 53%, rgba(255,255,255,1) 83%);
+
+        }
     }
 
     & .table-head {
@@ -51,30 +62,33 @@
 
     & .table-preview-avatars {
         grid-area: members;
-        display: flex;
-        flex-wrap: wrap;
-        gap: rem(4px);
-        width: max-content;
-        justify-content: right;
-        flex-grow: 1;
+        display: inline-flex;
+        flex-wrap: nowrap;
         margin-right: -4px;
-        margin-bottom: 4px;
+        white-space: nowrap;
 
         .avatar {
-            @include avatar(24px)
+            @include avatar(24px);
+            overflow: visible;
+            white-space: nowrap;
+            width: 24px;
+            flex-shrink: 0;
+
+            & img {
+                width: 24px;
+            }
         }
     }
 
     & .board-labels {
         grid-area: labels;
-        // display: flex;
-
-        flex-wrap: wrap;
-        justify-content: start;
+        display: flex;
+        flex-wrap: nowrap;
         gap: 4px;
-        margin-block-end: rem(4px);
+        white-space: nowrap;
 
         .label {
+            min-width: 56px;
             display: inline-block;
             border-radius: rem(4px);
             height: rem(16px);
@@ -87,12 +101,10 @@
             overflow: hidden;
             white-space: nowrap;
 
-            display: inline-flex;
 
             background-color: var(--accent-background);
             color: var(--accent-text);
 
-            display: inline-flex;
             align-items: center;
             justify-content: center;
         }
