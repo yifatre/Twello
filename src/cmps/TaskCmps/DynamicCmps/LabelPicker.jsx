@@ -13,8 +13,8 @@ const pallet = ['green', 'yellow', 'orange', 'red', 'purple',
 
 // todo connect btn's and add the on update 
 
-export function LabelPicker({ setActionType, SaveLabel, deleteLabel, onUpdateBoard, labels, task, saveTask, groupId }) {
-    const [labelsFilter,setLabelsFilter] = useState(labels)
+export function LabelPicker({ setActionType, SaveLabel, deleteLabel, onUpdateBoard, labels, task, saveTask, groupId, updateSize }) {
+    const [labelsFilter, setLabelsFilter] = useState(labels)
     const [value, setValue] = useState(8)
     const [toggle, setToggle] = useState(false)
     const [currentColor, setCurrentColor] = useState('green-subtle')
@@ -25,8 +25,12 @@ export function LabelPicker({ setActionType, SaveLabel, deleteLabel, onUpdateBoa
 
     useEffect(() => {
         saveTask({ ...task, labelIds: labelsFromTask }, groupId)
-        console.log('im not good');
+        console.log('im not good')
     }, [labelsFromTask])
+
+    useEffect(() => {
+        updateSize()
+    }, [value])
 
     function toggleBtn(label) {
         setCurrentColor('green-subtle')

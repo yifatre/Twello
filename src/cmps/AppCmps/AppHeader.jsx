@@ -75,7 +75,7 @@ export function AppHeader() {
         </header>
         {isAddBoard && <ClickAwayListener onClickAway={onCloseAddModal}>
             <div style={{ zIndex: 110 }}>
-                <DynamicCmp cmp={CREATE_BOARD} setIsAddBoard={setIsAddBoard} position={modalPosition} refTrigger={refTrigger} offset={{ x: 0, y: refTrigger.current.getBoundingClientRect().height + 8 }} />
+                <DynamicCmp cmp={{ type: CREATE_BOARD }} setIsAddBoard={setIsAddBoard} position={modalPosition} refTrigger={refTrigger} offset={{ x: 0, y: refTrigger.current.getBoundingClientRect().height + 8 }} />
             </div>
         </ClickAwayListener>
         }

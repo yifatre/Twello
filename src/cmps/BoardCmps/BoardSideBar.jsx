@@ -13,7 +13,7 @@ export function BoardSideBar({ setViewType }) {
     const [modalPosition, setModalPosition] = useState({ top: 0, left: 0 })
     const [isAddBoard, setIsAddBoard] = useState(false)
     const boards = useSelector(storeState => storeState.boardModule.miniBoards)
-    
+
     const refTrigger = useRef(null)
 
     useEffect(() => {
@@ -80,11 +80,11 @@ export function BoardSideBar({ setViewType }) {
                             <h4 >Board views</h4>
                             {/* <button>{plus_icon}</button> */}
                         </div>
-                        <button className="line italic" onClick={() =>  setViewType('board') }>
+                        <button className="line italic" onClick={() => setViewType('board')}>
                             {board_icon}
                             <span>Board</span>
                         </button>
-                        <button className="line italic" onClick={() =>  setViewType('table') }>
+                        <button className="line italic" onClick={() => setViewType('table')}>
                             {table_icon}
                             <span>Table</span>
                         </button>
@@ -125,7 +125,7 @@ export function BoardSideBar({ setViewType }) {
         </div>
         {isAddBoard && <ClickAwayListener onClickAway={onCloseAddModal}>
             <div style={{ zIndex: 110 }}>
-                <DynamicCmp cmp={CREATE_BOARD} setIsAddBoard={setIsAddBoard} refTrigger={refTrigger} offset={{ x: refTrigger.current.getBoundingClientRect().width + 8, y: 0 }} />
+                <DynamicCmp cmp={{ type: CREATE_BOARD }} setIsAddBoard={setIsAddBoard} refTrigger={refTrigger} offset={{ x: refTrigger.current.getBoundingClientRect().width + 8, y: 0 }} />
             </div>
         </ClickAwayListener>
         }</>
