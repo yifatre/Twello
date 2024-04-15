@@ -6,7 +6,7 @@ import { ClickAwayListener } from "@mui/base/ClickAwayListener"
 import { TextareaAutosize as MinTextArea } from "@mui/base/TextareaAutosize"
 
 import { TodoEdit } from "./TodoEdit"
-import { boardService } from "../../../services/board/board.service-local"
+import { boardService } from "../../../services/board/board.service.local"
 import { utilService } from "../../../services/util.service"
 
 export function ChecklistList({ checklist, onRemoveList, onUpdateList }) {

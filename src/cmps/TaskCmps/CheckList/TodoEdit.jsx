@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react"
 import { clock_icon, member_icon, x_icon } from "../../UtilCmps/SVGs"
 import { TextareaAutosize as MinTextArea } from "@mui/base/TextareaAutosize"
 import { ClickAwayListener } from "@mui/base/ClickAwayListener"
-import { boardService } from "../../../services/board/board.service-local"
+import { boardService } from "../../../services/board/board.service.local"
 
 export function TodoEdit({ todo, saveTodo, setIsAddTodo, isFirst }) {
     const [todoToEdit, setTodoToEdit] = useState(todo)

@@ -2,15 +2,15 @@ import { boardService } from '../../services/board/board.service.local.js'
 // import { userService } from '../../services/user.service.js'
 import { store } from '../store.js'
 import { showSuccessMsg, showErrorMsg } from '../../services/event-bus.service.js'
-import { ADD_BOARD, REMOVE_BOARD, SET_BOARD, SET_BOARDS, UNDO_REMOVE_BOARD, UPDATE_BOARD, UPDATE_MINI_BOARD } from './board.reducer.js'
+import { ADD_MINI_BOARD, REMOVE_BOARD, SET_BOARD, SET_MINI_BOARDS, UNDO_REMOVE_BOARD, UPDATE_BOARD, UPDATE_MINI_BOARD, UNDO_UPDATE_BOARD, UNDO_UPDATE_MINI_BOARDS } from './board.reducer.js'
 
-export async function loadBoards() {
+export async function loadMiniBoards() {
     try {
-        const boards = await boardService.query()
-        console.log('Boards from DB:', boards)
+        const miniBoards = await boardService.query()
+        console.log('Boards from DB:', miniBoards)
         store.dispatch({
-            type: SET_BOARDS,
-            boards
+            type: SET_MINI_BOARDS,
+            miniBoards
         })
         console.log('loading boards')
     } catch (err) {
@@ -48,7 +48,7 @@ export async function addBoard(board) {
     try {
         const savedBoard = await boardService.save(board)
         console.log('Added Board', savedBoard)
-        store.dispatch({ type: ADD_BOARD, board: { _id: savedBoard._id, title: savedBoard.title, style: { backgroundImage: savedBoard.style.backgroundImage }, isStarred: savedBoard.isStarred } })
+        store.dispatch({ type: ADD_MINI_BOARD, board: { _id: savedBoard._id, title: savedBoard.title, style: { backgroundImage: savedBoard.style.backgroundImage }, isStarred: savedBoard.isStarred } })
         store.dispatch({ type: SET_BOARD, savedBoard })
         return savedBoard
     } catch (err) {
@@ -57,38 +57,60 @@ export async function addBoard(board) {
     }
 }
 
-export async function updateBoard(board, isUpdateMiniBoard = false) {
+// export async function updateBoard(board, isUpdateMiniBoard = false) {
+//     try {
+//         const savedBoard = await boardService.save(board)
+//         console.log('Updated Board:', savedBoard)
+//         store.dispatch({ type: UPDATE_BOARD, board })
+//         if (isUpdateMiniBoard) store.dispatch({ type: UPDATE_MINI_BOARD, board: { _id: board._id, title: board.title, style: { backgroundImage: board.style?.backgroundImage }, isStarred: board.isStarred } })
+//         return savedBoard
+//     }
+//     catch (err) {
+//         console.log('Cannot save board', err)
+//         throw err
+//     }
+// }
+
+export async function updateBoardOptimistic(board, isUpdateMiniBoard = false) {
+    store.dispatch({
+        type: UPDATE_BOARD,
+        board
+    })
     try {
+        if (isUpdateMiniBoard) store.dispatch({ type: UPDATE_MINI_BOARD, board: { _id: board._id, title: board.title, style: { backgroundImage: board.style?.backgroundImage }, isStarred: board.isStarred } })
         const savedBoard = await boardService.save(board)
         console.log('Updated Board:', savedBoard)
-        store.dispatch({ type: UPDATE_BOARD, board })
-        if (isUpdateMiniBoard) store.dispatch({ type: UPDATE_MINI_BOARD, board: { _id: board._id, title: board.title, style: { backgroundImage: board.style?.backgroundImage }, isStarred: board.isStarred } })
         return savedBoard
     }
     catch (err) {
-        console.log('Cannot save board', err)
+        console.log('optimistic', err)
+
+        store.dispatch({
+            type: UNDO_UPDATE_BOARD,
+        })
+        store.dispatch({
+            type: UNDO_UPDATE_MINI_BOARDS,
+        })
         throw err
     }
 }
 
-// Demo for Optimistic Mutation 
-// (IOW - Assuming the server call will work, so updating the UI first)
-export function onRemoveBoardOptimistic(boardId) {
-    store.dispatch({
-        type: REMOVE_BOARD,
-        boardId
-    })
-    showSuccessMsg('Board removed')
+export async function onRemoveBoardOptimistic(boardId) {
 
-    boardService.remove(boardId)
-        .then(() => {
-            console.log('Server Reported - Deleted Successfully')
+    try {
+        store.dispatch({
+            type: REMOVE_BOARD,
+            boardId
         })
-        .catch(err => {
-            showErrorMsg('Cannot remove board')
-            console.log('Cannot load boards', err)
-            store.dispatch({
-                type: UNDO_REMOVE_BOARD,
-            })
+        await boardService.remove(boardId)
+        console.log('Server Reported - Deleted Successfully')
+
+    }
+    catch (err) {
+        console.log('Cannot delete board', err)
+        store.dispatch({
+            type: UNDO_REMOVE_BOARD,
         })
+    }
+
 }

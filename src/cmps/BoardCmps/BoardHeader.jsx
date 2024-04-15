@@ -1,5 +1,5 @@
 import { userDemoData } from "../../services/demo-data"
-import { updateBoard } from "../../store/board/board.actions"
+import { updateBoardOptimistic } from "../../store/board/board.actions"
 import { AvatarList } from "../UtilCmps/AvatarList"
 import { arrow_down, board_icon, ellipsis_icon, filter_icon, flash_icon, group_icon, rocket_icon, share_icon, star, star_outline, table_icon } from "../UtilCmps/SVGs"
 
@@ -8,7 +8,7 @@ export function BoardHeader({ board, setRsbIsOpen, setViewType, viewType }) {
         ev.stopPropagation()
         ev.preventDefault()
         try {
-            updateBoard({ ...board, isStarred: !board.isStarred }, true)
+            updateBoardOptimistic({ ...board, isStarred: !board.isStarred }, true)
         }
         catch (err) {
             console.error(err)
