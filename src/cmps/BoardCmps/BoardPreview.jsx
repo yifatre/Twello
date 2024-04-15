@@ -1,7 +1,7 @@
 import { Link, NavLink } from 'react-router-dom'
 import { star, star_outline } from '../UtilCmps/SVGs'
 import { useState } from 'react'
-import { updateBoard } from '../../store/board/board.actions'
+import { updateBoardOptimistic } from '../../store/board/board.actions'
 import { boardService } from '../../services/board/board.service.local'
 
 
@@ -13,7 +13,7 @@ export function BoardPreview({ board }) {
         ev.preventDefault()
         try {
             const fullBoard = await boardService.getById(board._id)
-            updateBoard({ ...fullBoard, isStarred: !fullBoard.isStarred }, true)
+            updateBoardOptimistic({ ...fullBoard, isStarred: !fullBoard.isStarred }, true)
         }
         catch (err) {
             console.error(err)

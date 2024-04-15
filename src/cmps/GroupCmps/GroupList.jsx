@@ -1,7 +1,7 @@
 import { GroupPreview } from "./GroupPreview"
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 // import { DropIndicator } from '@atlaskit/pragmatic-drag-and-drop-react-drop-indicator/box-without-terminal';
-import { updateBoard } from "../../store/board/board.actions"
+import { updateBoardOptimistic } from "../../store/board/board.actions"
 import { utilService } from "../../services/util.service"
 import { useState } from "react"
 import { plus_icon } from "../UtilCmps/SVGs"
@@ -11,7 +11,6 @@ export function GroupList({ board, saveGroup, removeGroup, saveTask, removeTask 
     const [isLabelsExtended, setIsLabelExtended] = useState(false)
     const [isAddGroup, setIsAddGroup] = useState(false)
     const { groups } = board
-    // const [_groups, _setGroups] = useState(groups)
 
     function onDragStart(abc) {
         // console.log('abc', abc)
@@ -33,8 +32,7 @@ export function GroupList({ board, saveGroup, removeGroup, saveTask, removeTask 
         if (result.type === 'group') {
             const [group] = groups.splice(startIdx, 1)
             groups.splice(endIdx, 0, group)
-            _setGroups(groups)
-            updateBoard({ ...board, groups })
+            updateBoardOptimistic({ ...board, groups })
         }
 
         if (result.type === 'task') {
@@ -42,8 +40,7 @@ export function GroupList({ board, saveGroup, removeGroup, saveTask, removeTask 
             const groupEnd = groups.find(group => group.id === result.destination.droppableId)
             const [task] = groupStart.tasks.splice(startIdx, 1)
             groupEnd.tasks.splice(endIdx, 0, task)
-            _setGroups(groups)
-            updateBoard({ ...board, groups })
+            updateBoardOptimistic({ ...board, groups })
         }
     }
 

@@ -1,5 +1,5 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react"
-import { updateBoard } from "../../../store/board/board.actions"
+import { updateBoardOptimistic } from "../../../store/board/board.actions"
 import { AttachmentPicker } from "./AttachmentPicker"
 import { CheckList } from "./CheckLlist"
 import { CoverPicker } from "./CoverPicker"
@@ -52,7 +52,7 @@ export function DynamicCmp({ setActionType, groupId, cmp, board, task, setIsAddB
     function onUpdateBoard(newLabel) {
         const boardToUpdate = { ...board }
         boardToUpdate.labels.push(newLabel)
-        updateBoard(boardToUpdate)
+        updateBoardOptimistic(boardToUpdate)
     }
 
     function SaveLabel(editLabel) {
@@ -62,7 +62,7 @@ export function DynamicCmp({ setActionType, groupId, cmp, board, task, setIsAddB
         })
         const boardToUpdate = { ...board }
         boardToUpdate.labels = newLabels
-        updateBoard(boardToUpdate)
+        updateBoardOptimistic(boardToUpdate)
     }
 
     function deleteLabel(labelId) {
@@ -73,7 +73,7 @@ export function DynamicCmp({ setActionType, groupId, cmp, board, task, setIsAddB
 
         Board.groups = utilService.deleteLabelIdFromEverywhere(Board.groups, labelId)
 
-        updateBoard(Board)
+        updateBoardOptimistic(Board)
     }
 
     

@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 
 import { BoardHeader } from "./BoardHeader"
 import { BoardSideBar } from "./BoardSideBar"
-import { loadBoard, loadBoards, updateBoard } from "../../store/board/board.actions"
+import { loadBoard, updateBoardOptimistic } from "../../store/board/board.actions"
 import { useSelector } from "react-redux"
 import { utilService } from "../../services/util.service"
 import { BoardRightSideBar } from "./BoardRightSideBar"
@@ -35,15 +35,17 @@ export function BoardDetails() {
         const group = board.groups.find(group => group.id === groupId)
         // console.log(group)
         if (task.id) {
-            const idx = group.tasks.findIndex(_task => _task.id === task.id)
-            group.tasks[idx] = task
-            return await saveGroup(group, activity)
+            // const idx = group.tasks.findIndex(_task => _task.id === task.id)
+            // group.tasks[idx] = task
+            const tasks = group.tasks.map(_task => _task.id !== task.id ? _task : task)
+            return await saveGroup({...group, tasks}, activity)
         } else {
             task.id = utilService.makeId('t')
-            group.tasks.push(task)
+            // group.tasks.push(task)
+            
             //todo add the member !!! now its 0 for development
             const newActivity = boardService.getActivity(`added ${task.title} to ${group.title}`, 0, group, task)
-            return await saveGroup(group, newActivity)
+            return await saveGroup({...group, tasks:[...group.tasks, task]}, newActivity)
         }
     }
 
@@ -58,22 +60,23 @@ export function BoardDetails() {
 
     async function saveGroup(group, activity) {
         if (group.id) {
-            const idx = board.groups.findIndex(_group => _group.id === group.id)
-            board.groups[idx] = group
+            // const idx = board.groups.findIndex(_group => _group.id === group.id)
+            // board.groups[idx] = group
+            const groups = board.groups.map(_group => _group.id !== group.id ? _group : group)
             if (activity) board.activities.unshift(activity)
-            return await updateBoard(board)
+            return await updateBoardOptimistic({...board, groups})
         } else {
             group.id = utilService.makeId('g')
-            board.groups.push(group)
+            // board.groups.push(group)
             //todo add the member !!! now its 0 for development
             board.activities.unshift(boardService.getActivity(`added ${group.title} to this board`, 0, group))
-            return await updateBoard(board)
+            return await updateBoardOptimistic({...board, groups:[...board.groups, group]})
         }
     }
 
     function removeGroup(groupId) {
         const board = board.groups.filter(group => group.id !== groupId)
-        updateBoard(board)
+        updateBoardOptimistic(board)
     }
 
     if (!board) return <div>loading</div>

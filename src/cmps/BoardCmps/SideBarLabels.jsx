@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { edit_icon, x_icon } from "../UtilCmps/SVGs"
 import { utilService } from "../../services/util.service"
 import { boardService } from "../../services/board/board.service.local"
-import { updateBoard } from "../../store/board/board.actions"
+import { updateBoardOptimistic } from "../../store/board/board.actions"
 import { useSelector } from "react-redux"
 
 
@@ -78,7 +78,7 @@ export function SideBarLabels({ topHead, board, setBackTo, setTopHead }) {
         newLabel.color = currentColor
         const boardToUpdate = board
         boardToUpdate.labels.push(newLabel)
-        updateBoard(boardToUpdate)
+        updateBoardOptimistic(boardToUpdate)
         setToggle(!toggle)
     }
 
@@ -93,7 +93,7 @@ export function SideBarLabels({ topHead, board, setBackTo, setTopHead }) {
         })
         const boardToUpdate = { ...board }
         boardToUpdate.labels = newLabels
-        updateBoard(boardToUpdate)
+        updateBoardOptimistic(boardToUpdate)
     }
 
     function onDeleteLabel(labelId) {
@@ -104,7 +104,7 @@ export function SideBarLabels({ topHead, board, setBackTo, setTopHead }) {
 
         Board.groups = utilService.deleteLabelIdFromEverywhere(Board.groups, labelId)
 
-        updateBoard(Board)
+        updateBoardOptimistic(Board)
     }
 
     function onSaveLabel(labelId) {

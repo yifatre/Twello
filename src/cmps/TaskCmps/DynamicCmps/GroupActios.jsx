@@ -5,12 +5,9 @@ export function GroupActions({ group, saveGroup, setIsActionsOpen }) {
 
     const [colorToEdit, setColorToEdit] = useState(group.style?.themeColor)
 
-    useEffect(() => {
-        saveGroup({ ...group, style: { ...group.style, themeColor: colorToEdit } })
-    }, [colorToEdit])
-
     function colorChange(color) {
         setColorToEdit(color)
+        saveGroup({ ...group, style: { ...group.style, themeColor: color } })
     }
 
     const pallet = ['green-subtle', 'yellow-subtle', 'orange-subtle', 'red-subtle', 'purple-subtle',

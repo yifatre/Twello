@@ -10,7 +10,7 @@ import gradAline from "../../assets/img/gradients/alien.svg"
 import gradEarth from "../../assets/img/gradients/earth.svg"
 import gradFlower from "../../assets/img/gradients/flower.svg"
 import gradLava from "../../assets/img/gradients/lava.svg"
-import { updateBoard } from "../../store/board/board.actions"
+import { updateBoardOptimistic } from "../../store/board/board.actions"
 import axios from "axios"
 import { utilService } from "../../services/util.service"
 import { uploadService } from "../../services/upload.service"
@@ -60,7 +60,7 @@ export function ChangeBack({ setTopHead, board, setBackTo, topHead }) {
         if (isUpload) {
             boardToChange.style.images.push(grad)
         }
-        updateBoard(boardToChange, true)
+        updateBoardOptimistic(boardToChange, true)
     }
 
     function onselect(name) {

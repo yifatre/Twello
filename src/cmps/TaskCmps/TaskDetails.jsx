@@ -24,7 +24,7 @@ export function TaskDetails() {
     const [task, setTask] = useState(board.groups.find(group => group.id === groupId).tasks.find(task => task.id === taskId))
     const [titleToEdit, setTitleToEdit] = useState(task.title)
     const navigate = useNavigate()
-    const fac = new FastAverageColor()
+    // const fac = new FastAverageColor()
 
     const refTrigger = useRef(null)
 
@@ -32,22 +32,7 @@ export function TaskDetails() {
         setTask(board.groups.find(group => group.id === groupId).tasks.find(task => task.id === taskId))
     }, [board])
 
-    useEffect(() => {
-        saveTask({ ...task, title: titleToEdit }, groupId)
-    }, [titleToEdit])
-
-    // useEffect(() => {
-    //      async () => {
-    //         try {
-    //             const color = await fac.getColorAsync(task.type.backgroundImage)
-    //             console.log(color);
-    //             setCoverColor(color.rgba)
-    //         }
-    //         catch (err) {
-    //             console.error(err)
-    //         }
-    //     }
-    // }, [])
+   
 
     function onEditDescription(ev) {
         ev.preventDefault()
@@ -75,6 +60,18 @@ export function TaskDetails() {
         saveTask({ ...task, date: { ...task.date, isDone: !task.date?.isDone } }, groupId, activity)
     }
 
+    function titleOnKeyDown(ev) {
+        if (ev.code === 'Enter') {
+            saveTask({ ...task, title: titleToEdit }, groupId)
+            ev.target.blur()
+        }
+        else if (ev.code === 'Escape') {
+            setTitleToEdit(task.title)
+            ev.target.blur()
+        }
+
+    }
+
     const due = task.date?.isDone ? 'Complete' : task.date?.dueDate - Date.now() < 0 ? 'Overdue' : task.date?.dueDate - Date.now() <= 24 * 60 * 60 * 1000 ? 'Due soon' : ''
     return <div className="task-details-container">
 
@@ -90,7 +87,7 @@ export function TaskDetails() {
                     <section className="title">
                         <div className="title-txt">
                             <h2 hidden>{task.title}</h2>
-                            <textarea name="title" id="title" value={titleToEdit} onChange={handleChange}></textarea>
+                            <textarea name="title" id="title" value={titleToEdit} onChange={handleChange} onKeyDown={titleOnKeyDown}></textarea>
                         </div>
                         <div className="list-txt">
                             <p>in list <a href="#">{'list name'}</a></p>
@@ -108,7 +105,7 @@ export function TaskDetails() {
                         {!!task.labelIds.length && <div className="labels">
                             <h3>Labels</h3>
                             <div className="">
-                                {task.labelIds?.map(labelId => <div key={labelId} className={`label ${board.labels.find(label => label.id === labelId).color}`}>{board.labels.find(label => label.id === labelId).title}</div>)}
+                                {task.labelIds?.map(labelId => <div onClick={(ev) => onSetActionType(ev, LABELS)} key={labelId} className={`label ${board.labels.find(label => label.id === labelId).color}`}>{board.labels.find(label => label.id === labelId).title}</div>)}
                                 <button className="label neutral-label" onClick={(ev) => onSetActionType(ev, LABELS)}>{plus_icon}</button>
                             </div>
                         </div>}
@@ -119,7 +116,7 @@ export function TaskDetails() {
                                     {task.date?.isDone && check_icon}
                                 </span>
 
-                                <button onClick={(ev) => onSetActionType(ev, DATES)} className="tasks-btn">{utilService.getFormattedTime(new Date(task.date.dueDate))}<span className={`due ${due === 'Due soon' ? 'soon' : due === 'Overdue' ? 'over' : due === 'Complete' ? 'done' : ''}`}>{due}</span>{arrow_down}</button>
+                                <button onClick={(ev) => onSetActionType(ev, DATES)} className="tasks-btn">{utilService.getFormattedTime(new Date(task.date.dueDate))} {task.date.time}<span className={`due ${due === 'Due soon' ? 'soon' : due === 'Overdue' ? 'over' : due === 'Complete' ? 'done' : ''}`}>{due}</span>{arrow_down}</button>
                             </div>
                         </div>}
                         {/* <section className="notifications"></section> */}
@@ -145,13 +142,12 @@ export function TaskDetails() {
                                     return <div className="attach-details" key={idx}>
                                         <div className="attach_img" style={{ backgroundImage: `url(${attach})` }}>
                                             {!imgTypes.find(type => type === attach.slice(-3).toLowerCase()) && attach.slice(-3)}
-
                                         </div>
                                         <div>
                                             <a className="fileName" target="_blank" href={attach} download>{fileName[fileName.length - 1]} ↗</a>
                                         </div>
                                         <div className="download">
-                                            <a className="download" href={attach} download={fileName[fileName.length - 1]}>Download</a>
+                                            <a className="download" href={attach} target="_blank" download={fileName[fileName.length - 1]}>Download</a>
                                         </div>
 
                                     </div>

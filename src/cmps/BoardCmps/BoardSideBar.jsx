@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react"
 import { arrow_down, board_icon, calender_icon, member_icon, plus_icon, settings_icon, side_arrow_icon, star, star_outline, table_icon, trello_icon } from "../UtilCmps/SVGs"
 import { useSelector } from "react-redux"
-import { loadBoard, loadBoards, updateBoard } from "../../store/board/board.actions"
+import { loadBoard, loadMiniBoards, updateBoardOptimistic } from "../../store/board/board.actions"
 import { Link, NavLink, useParams } from "react-router-dom"
 import { utilService } from "../../services/util.service"
 import { ClickAwayListener } from '@mui/base/ClickAwayListener'
@@ -12,25 +12,20 @@ export function BoardSideBar({ setViewType }) {
     const [isOpen, setIsOpen] = useState(true)
     const [modalPosition, setModalPosition] = useState({ top: 0, left: 0 })
     const [isAddBoard, setIsAddBoard] = useState(false)
-    const boards = useSelector(storeState => storeState.boardModule.boards)
-    const board = useSelector(storeState => storeState.boardModule.board)
-    const { boardId } = useParams()
+    const boards = useSelector(storeState => storeState.boardModule.miniBoards)
+    
     const refTrigger = useRef(null)
 
     useEffect(() => {
-        loadBoards()
+        loadMiniBoards()
     }, [])
-
-    useEffect(() => {
-        loadBoard(boardId)
-    }, [boardId])
 
     async function toggleStarBoard(ev, boardId) {
         ev.stopPropagation()
         ev.preventDefault()
         try {
             const fullBoard = await boardService.getById(boardId)
-            updateBoard({ ...fullBoard, isStarred: !fullBoard.isStarred }, true)
+            updateBoardOptimistic({ ...fullBoard, isStarred: !fullBoard.isStarred }, true)
         }
         catch (err) {
             console.error(err)
