@@ -9,7 +9,7 @@ import { TodoEdit } from "./TodoEdit"
 import { boardService } from "../../../services/board/board.service.local"
 import { utilService } from "../../../services/util.service"
 
-export function ChecklistList({ checklist, onRemoveList, onUpdateList }) {
+export function ChecklistList({ checklist, onRemoveList, onUpdateList, group, task }) {
     const [isEditTitle, setIsEditTitle] = useState(false)
     const [isAddTodo, setIsAddTodo] = useState(false)
     const [titleToEdit, setTitleToEdit] = useState(checklist.title)
@@ -43,6 +43,10 @@ export function ChecklistList({ checklist, onRemoveList, onUpdateList }) {
     }
 
     function saveTodo(todo) {
+        let activity
+        if (todo.isDone) {
+            activity = boardService.getActivity(`completed ${todo.title} on ${task.title}`, 0, group, task)
+        }
         if (!todo.id) {
             todo.id = utilService.makeId("t")
             onUpdateList({ ...checklist, todos: [...checklist.todos, todo] })
@@ -50,7 +54,7 @@ export function ChecklistList({ checklist, onRemoveList, onUpdateList }) {
             const _todos = checklist.todos.map((_todo) =>
                 _todo.id === todo.id ? todo : _todo
             )
-            onUpdateList({ ...checklist, todos: _todos })
+            onUpdateList({ ...checklist, todos: _todos }, activity)
         }
     }
 

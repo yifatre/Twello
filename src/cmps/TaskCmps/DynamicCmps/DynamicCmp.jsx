@@ -75,11 +75,6 @@ export function DynamicCmp({ setActionType, groupId, cmp, board, task, setIsAddB
 
     }, [cmp])
 
-    useEffect(() => {
-        console.log('*****',)
-        console.log('trigger', trigger)
-    }, [refTrigger.current])
-
     useLayoutEffect(() => {
         if (ref.current) {
             const modalDim = ref.current.getBoundingClientRect()
@@ -109,10 +104,8 @@ export function DynamicCmp({ setActionType, groupId, cmp, board, task, setIsAddB
 
     function deleteLabel(labelId) {
         const Board = board
-
         const labels = Board.labels.filter(label => label.id !== labelId)
         Board.labels = labels
-
         Board.groups = utilService.deleteLabelIdFromEverywhere(Board.groups, labelId)
 
         updateBoardOptimistic(Board)

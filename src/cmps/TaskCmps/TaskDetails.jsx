@@ -171,7 +171,7 @@ export function TaskDetails() {
                         <a className="flex align-center" href="#" onClick={(ev) => onSetActionType(ev, CHECKLIST)} >{checked_icon}Checklist</a>
                         <a className="flex align-center" href="#" onClick={(ev) => onSetActionType(ev, DATES)}>{clock_icon}Dates</a>
                         <a className="flex align-center" href="#" onClick={(ev) => onSetActionType(ev, ATTACHMENT)}>{paperclip_icon}Attachment</a>
-                        <a className="flex align-center" href="#">{location_icon}Location</a>
+                        {/* <a className="flex align-center" href="#">{location_icon}Location</a> */}
                         {!(task.style?.backgroundColor || task.style?.backgroundImage) && <a className="flex align-center" href="#" onClick={(ev) => onSetActionType(ev, COVER)}>{cover_icon}Cover</a>}
                         <ClickAwayListener onClickAway={() => { setActionType(null); refTrigger.current = null }}>
                             <div>
