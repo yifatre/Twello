@@ -26,7 +26,6 @@ export function DynamicCmp({ setActionType, groupId, cmp, board, task, setIsAddB
     const [pos, setPos] = useState(utilService.getModalPosition(refTrigger.current, offset.x, refTrigger.current.getBoundingClientRect().height + offset.y))
     const [windowSize, setWindowSize] = useState({ width: window.innerWidth, height: window.innerHeight })
     const [cmpType, setCmpType] = useState(null)
-    const [trigger, setTrigger] = useState(refTrigger.current)
 
     useEffect(() => {
         function updateSize() {
@@ -41,38 +40,63 @@ export function DynamicCmp({ setActionType, groupId, cmp, board, task, setIsAddB
     useEffect(() => {
         switch (cmp.type) {
             case LABELS:
-                setCmpType(<LabelPicker updateSize={() => setWindowSize({ width: window.innerWidth, height: window.innerHeight })} setActionType={setActionType} SaveLabel={SaveLabel} deleteLabel={deleteLabel} onUpdateBoard={onUpdateBoard} task={task} labels={board.labels} saveTask={saveTask} groupId={groupId} />)
+                setCmpType(<LabelPicker
+                    updateSize={() => setWindowSize({ width: window.innerWidth, height: window.innerHeight })}
+                    SaveLabel={SaveLabel} deleteLabel={deleteLabel} labels={board.labels}
+                    setActionType={setActionType}
+                    onUpdateBoard={onUpdateBoard}
+                    task={task} saveTask={saveTask}
+                    groupId={groupId} />)
                 break
 
             case MEMBERS:
-                setCmpType(<MemberPicker group={group} setActionType={setActionType} members={board.members} task={task} saveTask={saveTask} groupId={groupId} />)
+                setCmpType(<MemberPicker
+                    members={board.members}
+                    setActionType={setActionType}
+                    task={task} saveTask={saveTask}
+                    group={group} groupId={groupId} />)
                 break
 
             case DATES:
-                setCmpType(<DatePicker group={group} saveTask={saveTask} setActionType={setActionType} task={task} groupId={groupId} />)
+                setCmpType(<DatePicker
+                    setActionType={setActionType}
+                    task={task} saveTask={saveTask}
+                    group={group} groupId={groupId} />)
                 break
 
             case ATTACHMENT:
-                setCmpType(<AttachmentPicker group={group} setActionType={setActionType} board={board} groupId={groupId} task={task} saveTask={saveTask} />)
+                setCmpType(<AttachmentPicker
+                    setActionType={setActionType}
+                    group={group} groupId={groupId}
+                    task={task} saveTask={saveTask} />)
                 break
 
             case COVER:
-                setCmpType(<CoverPicker updateSize={() => setWindowSize({ width: window.innerWidth, height: window.innerHeight })} setActionType={setActionType} board={board} groupId={groupId} task={task} saveTask={saveTask} />)
+                setCmpType(<CoverPicker
+                    updateSize={() => setWindowSize({ width: window.innerWidth, height: window.innerHeight })}
+                    setActionType={setActionType}
+                    groupId={groupId}
+                    task={task} saveTask={saveTask} />)
                 break
 
             case CREATE_BOARD:
-                setCmpType(<CreateBoard setIsAddBoard={setIsAddBoard} />)
+                setCmpType(<CreateBoard
+                    setIsAddBoard={setIsAddBoard} />)
                 break
 
             case GROUP_ACTIONS:
-                setCmpType(<GroupActions setIsActionsOpen={setIsActionsOpen} group={group} saveGroup={saveGroup} />)
+                setCmpType(<GroupActions
+                    setIsActionsOpen={setIsActionsOpen}
+                    group={group} saveGroup={saveGroup} />)
                 break
 
             case CHECKLIST:
-                setCmpType(<CheckList setActionType={setActionType} task={task} saveTask={saveTask} groupId={groupId} />)
+                setCmpType(<CheckList
+                    setActionType={setActionType}
+                    groupId={groupId}
+                    task={task} saveTask={saveTask} />)
                 break
         }
-
     }, [cmp])
 
     useLayoutEffect(() => {

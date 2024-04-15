@@ -136,16 +136,19 @@ export function TaskDetails() {
                                 {task.attach.map((attach, idx) => {
                                     const imgTypes = ['png', 'jpg', 'gif', 'svg']
                                     let fileName = attach.split('/')
-
+                                    const fileType = attach.slice(attach.lastIndexOf('.') + 1, attach.length)
                                     return <div className="attach-details" key={idx}>
+                                        {/* fl_attachment */}
                                         <div className="attach_img" style={{ backgroundImage: `url(${attach})` }}>
-                                            {!imgTypes.find(type => type === attach.slice(-3).toLowerCase()) && attach.slice(-3)}
+                                            {!imgTypes.find(type => type === fileType.toLowerCase()) && fileType}
                                         </div>
                                         <div>
                                             <a className="fileName" target="_blank" href={attach} download>{fileName[fileName.length - 1]} ↗</a>
                                         </div>
                                         <div className="download">
                                             <a className="download" href={attach} target="_blank" download={fileName[fileName.length - 1]}>Download</a>
+                                            {/* {cloudinary.v2.api.resources_by_asset_ids(["e12345b5c456c8901bbb0efc00c0fcf", "f12345a5c789c1234bbb0efc00c0f12"],
+                                            function(error, result) {console.log(result, error); })} */}
                                         </div>
 
                                     </div>
