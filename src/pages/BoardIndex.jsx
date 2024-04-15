@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import { loadBoards, addBoard, updateBoard, removeBoard } from '../store/board/board.actions.js'
+import { loadMiniBoards, removeBoard } from '../store/board/board.actions.js'
 
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
 
@@ -9,10 +9,10 @@ import { AppSideBar } from '../cmps/AppCmps/AppSideBar.jsx'
 
 export function BoardIndex() {
 
-    const boards = useSelector(storeState => storeState.boardModule.boards)
+    const boards = useSelector(storeState => storeState.boardModule.miniBoards)
 
     useEffect(() => {
-        loadBoards()
+        loadMiniBoards()
     }, [])
 
     return (

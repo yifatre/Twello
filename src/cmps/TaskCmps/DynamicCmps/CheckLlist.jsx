@@ -3,7 +3,7 @@ import { x_icon } from "../../UtilCmps/SVGs"
 import { utilService } from "../../../services/util.service"
 
 export function CheckList({ setActionType, task, saveTask, groupId, }) {
-    const [title, setTitle] = useState('')
+    const [title, setTitle] = useState('Checklist')
 
 
     function handleChange({ target }) {
@@ -28,6 +28,8 @@ export function CheckList({ setActionType, task, saveTask, groupId, }) {
                 name="txt"
                 value={title}
                 onChange={handleChange}
+                onFocus={(ev) => ev.target.select()}
+                autoFocus
             />
             <div className="flex ">
                 <button onClick={onCreate} className='create-btn Add-checklist-btn'>Add</button>

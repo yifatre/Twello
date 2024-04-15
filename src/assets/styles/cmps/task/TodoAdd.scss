@@ -5,6 +5,10 @@
     // margin-inline-start: rem(40px);
     margin-block-start: rem(4px);
 
+    &.first{
+        margin-block-start: rem(12px);
+    }
+
     & input {
         cursor: pointer;
         width: rem(16px);

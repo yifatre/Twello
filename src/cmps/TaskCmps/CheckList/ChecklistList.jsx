@@ -168,6 +168,7 @@ export function ChecklistList({ checklist, onRemoveList, onUpdateList }) {
                     todo={boardService.getEmptyTodo()}
                     setIsAddTodo={setIsAddTodo}
                     saveTodo={saveTodo}
+                    isFirst={checklist.todos.length <= 0}
                 />
             )}
         </section>

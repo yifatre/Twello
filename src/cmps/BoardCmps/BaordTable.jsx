@@ -33,7 +33,6 @@ export function BoardTable() {
 
     return (
         <>
-            <header></header>
             <main className="board-table">
                 <div className="table-head table-row">
                     <div>Card</div>
