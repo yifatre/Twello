@@ -24,7 +24,7 @@ export function TaskDetails() {
     const [task, setTask] = useState(board.groups.find(group => group.id === groupId).tasks.find(task => task.id === taskId))
     const [titleToEdit, setTitleToEdit] = useState(task.title)
     const navigate = useNavigate()
-    const fac = new FastAverageColor()
+    // const fac = new FastAverageColor()
 
     const refTrigger = useRef(null)
 
@@ -32,22 +32,7 @@ export function TaskDetails() {
         setTask(board.groups.find(group => group.id === groupId).tasks.find(task => task.id === taskId))
     }, [board])
 
-    useEffect(() => {
-        saveTask({ ...task, title: titleToEdit }, groupId)
-    }, [titleToEdit])
-
-    // useEffect(() => {
-    //      async () => {
-    //         try {
-    //             const color = await fac.getColorAsync(task.type.backgroundImage)
-    //             console.log(color);
-    //             setCoverColor(color.rgba)
-    //         }
-    //         catch (err) {
-    //             console.error(err)
-    //         }
-    //     }
-    // }, [])
+   
 
     function onEditDescription(ev) {
         ev.preventDefault()
@@ -75,6 +60,18 @@ export function TaskDetails() {
         saveTask({ ...task, date: { ...task.date, isDone: !task.date?.isDone } }, groupId, activity)
     }
 
+    function titleOnKeyDown(ev) {
+        if (ev.code === 'Enter') {
+            saveTask({ ...task, title: titleToEdit }, groupId)
+            ev.target.blur()
+        }
+        else if (ev.code === 'Escape') {
+            setTitleToEdit(task.title)
+            ev.target.blur()
+        }
+
+    }
+
     const due = task.date?.isDone ? 'Complete' : task.date?.dueDate - Date.now() < 0 ? 'Overdue' : task.date?.dueDate - Date.now() <= 24 * 60 * 60 * 1000 ? 'Due soon' : ''
     return <div className="task-details-container">
 
@@ -90,7 +87,7 @@ export function TaskDetails() {
                     <section className="title">
                         <div className="title-txt">
                             <h2 hidden>{task.title}</h2>
-                            <textarea name="title" id="title" value={titleToEdit} onChange={handleChange}></textarea>
+                            <textarea name="title" id="title" value={titleToEdit} onChange={handleChange} onKeyDown={titleOnKeyDown}></textarea>
                         </div>
                         <div className="list-txt">
                             <p>in list <a href="#">{'list name'}</a></p>
