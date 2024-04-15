@@ -72,6 +72,7 @@ export function GroupList({ board, saveGroup, removeGroup, saveTask, removeTask,
                                             isLabelsExtended={isLabelsExtended}
                                             setIsLabelExtended={setIsLabelExtended}
                                             saveGroup={saveGroup}
+                                            removeGroup={removeGroup}
                                             saveTask={saveTask}
                                             removeTask={removeTask}
                                             board={board} />

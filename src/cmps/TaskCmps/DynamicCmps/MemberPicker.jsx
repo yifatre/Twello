@@ -5,13 +5,13 @@ import { AvatarPreview } from "../../UtilCmps/AvatarPreview"
 import { boardService } from "../../../services/board/board.service"
 
 
-export function MemberPicker({group,setActionType, members, task, saveTask, groupId }) {
+export function MemberPicker({ group, setActionType, members, task, saveTask, groupId }) {
     const [memberIdsToUpdate, setMemberIdsToUpdate] = useState(task.memberIds)
-    const [memberFilter,setMemberFilter]=useState(members)
-    const [activity, setActivity] = useState() 
-
+    const [memberFilter, setMemberFilter] = useState(members)
+    const [activity, setActivity] = useState()
     useEffect(() => {
-        saveTask({ ...task, memberIds: memberIdsToUpdate }, groupId,activity)
+        console.log('members', memberIdsToUpdate)
+        saveTask({ ...task, memberIds: memberIdsToUpdate }, groupId, activity)
     }, [memberIdsToUpdate])
 
     function handleChangeFilter({ target }) {
@@ -22,23 +22,23 @@ export function MemberPicker({group,setActionType, members, task, saveTask, grou
         // console.log("filter", filter)
     }
 
-    function onAddMember(memberId,name) {
-         //todo add the member !!! now its 0 for development
-        setActivity(boardService.getActivity(`added ${name}`,0,group,task))
+    function onAddMember(memberId, name) {
+        //todo add the member !!! now its 0 for development
+        setActivity(boardService.getActivity(`added ${name}`, 0, group, task))
         if (!task.memberIds) task.memberIds = []
         setMemberIdsToUpdate([...memberIdsToUpdate, memberId])
     }
 
-    function onRemoveMember(memberId,name) {
-         //todo add the member !!! now its 0 for development
-        setActivity(boardService.getActivity(`removed  ${name}`,0,group,task))
+    function onRemoveMember(memberId, name) {
+        //todo add the member !!! now its 0 for development
+        setActivity(boardService.getActivity(`removed  ${name}`, 0, group, task))
         setMemberIdsToUpdate(prevMembers => prevMembers.filter(_memberId => _memberId !== memberId))
     }
 
     return (<>
         <header className="dynamic-head-container">
             <h2>Members</h2>
-            <button onClick={()=>setActionType(null)} className="tasks-btn close-btn">{x_icon}</button>
+            <button onClick={() => setActionType(null)} className="tasks-btn close-btn">{x_icon}</button>
         </header>
         <section className="picker-container">
             <input
@@ -54,7 +54,7 @@ export function MemberPicker({group,setActionType, members, task, saveTask, grou
                     <ul className="clean-list ul-labels">
                         {memberIdsToUpdate.map(memberId => {
                             const member = members.find(_member => _member._id === memberId)
-                            return <li key={memberId} className="flex align-center member-li" onClick={() => onRemoveMember(memberId,member.fullName)}>
+                            return <li key={memberId} className="flex align-center member-li" onClick={() => onRemoveMember(memberId, member.fullName)}>
                                 <AvatarPreview user={member} />
                                 <div>{member.fullName}</div>
                             </li>
@@ -67,7 +67,7 @@ export function MemberPicker({group,setActionType, members, task, saveTask, grou
                     <p>Board members</p>
                     <ul className="clean-list ul-labels">
                         {memberFilter.filter(member => !memberIdsToUpdate.includes(member._id)).map(member => {
-                            return <li key={member._id} className="flex align-center member-li" onClick={() => onAddMember(member._id,member.fullName)}>
+                            return <li key={member._id} className="flex align-center member-li" onClick={() => onAddMember(member._id, member.fullName)}>
                                 <AvatarPreview user={member} />
                                 <div>{member.fullName}</div>
                             </li>

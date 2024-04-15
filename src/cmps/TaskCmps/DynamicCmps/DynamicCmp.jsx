@@ -20,7 +20,7 @@ export const GROUP_ACTIONS = 'GROUP_ACTIONS'
 export const CHECKLIST = 'CHECKLIST'
 
 
-export function DynamicCmp({ setActionType, groupId, cmp, board, task, setIsAddBoard, saveTask, group, saveGroup, setIsActionsOpen, refTrigger, offset = { x: 0, y: 0 } }) {
+export function DynamicCmp({ setActionType, groupId, cmp, board, task, setIsAddBoard, saveTask, group, saveGroup, removeGroup, setIsActionsOpen, refTrigger, offset = { x: 0, y: 0 } }) {
 
     const ref = useRef(null)
     const [pos, setPos] = useState(utilService.getModalPosition(refTrigger.current, offset.x, refTrigger.current.getBoundingClientRect().height + offset.y))
@@ -87,7 +87,7 @@ export function DynamicCmp({ setActionType, groupId, cmp, board, task, setIsAddB
             case GROUP_ACTIONS:
                 setCmpType(<GroupActions
                     setIsActionsOpen={setIsActionsOpen}
-                    group={group} saveGroup={saveGroup} />)
+                    group={group} saveGroup={saveGroup} removeGroup={removeGroup} />)
                 break
 
             case CHECKLIST:

@@ -2,7 +2,7 @@ import { useRef, useState } from "react"
 import { ClickAwayListener } from '@mui/base/ClickAwayListener'
 
 import { CREATE_BOARD, DynamicCmp } from "../TaskCmps/DynamicCmps/DynamicCmp"
-import { star_outline } from "../UtilCmps/SVGs"
+import { member_icon, star_outline } from "../UtilCmps/SVGs"
 import { BoardPreview } from "./BoardPreview"
 import { utilService } from "../../services/util.service"
 
@@ -34,7 +34,7 @@ export function BoardList({ boards }) {
             </ul>
         </section>}
         <section className="board-list-container">
-            <h3 className="flex align-center">Your boards</h3>
+            <h3 className="flex align-center"><span>{member_icon}</span> Your boards</h3>
             <ul className="board-list flex justify-start clean-list">
                 {
                     boards.map(board => {

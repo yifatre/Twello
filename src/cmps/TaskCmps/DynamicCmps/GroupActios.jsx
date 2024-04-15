@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react"
-import { x_icon } from "../../UtilCmps/SVGs"
+import { trello_icon, x_icon } from "../../UtilCmps/SVGs"
 
-export function GroupActions({ group, saveGroup, setIsActionsOpen }) {
+export function GroupActions({ group, saveGroup, setIsActionsOpen, removeGroup }) {
 
     const [colorToEdit, setColorToEdit] = useState(group.style?.themeColor)
+    // isDelete
+    const [isDelete, setIsDelete] = useState(null)
 
     function colorChange(color) {
         setColorToEdit(color)
@@ -13,15 +15,21 @@ export function GroupActions({ group, saveGroup, setIsActionsOpen }) {
     const pallet = ['green-subtle', 'yellow-subtle', 'orange-subtle', 'red-subtle', 'purple-subtle',
         'blue-subtle', 'teal-subtle', 'lime-subtle', 'magenta-subtle', 'gray-subtle']
 
+    function onDelete() {
+        removeGroup(group.id)
+    }
+
     return <>
         <header className="dynamic-head-container">
             <h2>List actions</h2>
             <button className="tasks-btn close-btn" onClick={() => setIsActionsOpen(false)}>{x_icon}</button>
         </header>
         <section className="actions flex column">
-            <a href="#">Add card</a>
+            <a className="action-list-item" href="#">Add card</a>
             {/* <a href="#">Copy list</a> */}
             {/* <a href="#">Move list</a> */}
+            <a className="action-list-item" href="#" onClick={() => setIsDelete(true)}>Delete list</a>
+            {isDelete && <div className="action-list-item confirmation">Are you sure? <button className="tasks-btn" onClick={() => setIsDelete(false)}>Cancel</button><button className="tasks-btn del-btn" onClick={onDelete}>Delete</button></div>}
             {/* <a href="#">Watch</a> */}
         </section>
         <hr class="st-current"></hr>
