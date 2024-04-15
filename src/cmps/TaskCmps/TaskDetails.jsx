@@ -4,7 +4,7 @@ import { activity_icon, arrow_down, bars_icon, check_icon, checked_icon, clock_i
 import { utilService } from "../../services/util.service"
 import { ClickAwayListener } from '@mui/base/ClickAwayListener'
 import { useOutletContext } from "react-router-dom"
-import { useEffect, useLayoutEffect, useRef, useState } from "react"
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react"
 import { ATTACHMENT, CHECKLIST, COVER, DATES, DynamicCmp, LABELS, MEMBERS } from "./DynamicCmps/DynamicCmp"
 import { useSelector } from "react-redux"
 import { AvatarPreview } from "../UtilCmps/AvatarPreview"
@@ -32,8 +32,6 @@ export function TaskDetails() {
         setTask(board.groups.find(group => group.id === groupId).tasks.find(task => task.id === taskId))
     }, [board])
 
-   
-
     function onEditDescription(ev) {
         ev.preventDefault()
         setIsDescriptionEdit(true)
@@ -52,7 +50,7 @@ export function TaskDetails() {
         ev.preventDefault()
         ev.stopPropagation()
         refTrigger.current = ev.currentTarget
-        setActionType(type)
+        setActionType({ type })
     }
 
     function onCheckDate() {

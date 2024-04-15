@@ -25,20 +25,62 @@ export function DynamicCmp({ setActionType, groupId, cmp, board, task, setIsAddB
     const ref = useRef(null)
     const [pos, setPos] = useState(utilService.getModalPosition(refTrigger.current, offset.x, refTrigger.current.getBoundingClientRect().height + offset.y))
     const [windowSize, setWindowSize] = useState({ width: window.innerWidth, height: window.innerHeight })
+    const [cmpType, setCmpType] = useState(null)
+    const [trigger, setTrigger] = useState(refTrigger.current)
 
     useEffect(() => {
         function updateSize() {
-            // console.log('***resized***')
             setWindowSize({ width: window.innerWidth, height: window.innerHeight })
         }
         window.addEventListener('resize', updateSize)
         updateSize()
+
         return () => { window.removeEventListener('resize', updateSize) }
     }, [])
 
+    useEffect(() => {
+        switch (cmp.type) {
+            case LABELS:
+                setCmpType(<LabelPicker updateSize={() => setWindowSize({ width: window.innerWidth, height: window.innerHeight })} setActionType={setActionType} SaveLabel={SaveLabel} deleteLabel={deleteLabel} onUpdateBoard={onUpdateBoard} task={task} labels={board.labels} saveTask={saveTask} groupId={groupId} />)
+                break
+
+            case MEMBERS:
+                setCmpType(<MemberPicker group={group} setActionType={setActionType} members={board.members} task={task} saveTask={saveTask} groupId={groupId} />)
+                break
+
+            case DATES:
+                setCmpType(<DatePicker group={group} saveTask={saveTask} setActionType={setActionType} task={task} groupId={groupId} />)
+                break
+
+            case ATTACHMENT:
+                setCmpType(<AttachmentPicker group={group} setActionType={setActionType} board={board} groupId={groupId} task={task} saveTask={saveTask} />)
+                break
+
+            case COVER:
+                setCmpType(<CoverPicker updateSize={() => setWindowSize({ width: window.innerWidth, height: window.innerHeight })} setActionType={setActionType} board={board} groupId={groupId} task={task} saveTask={saveTask} />)
+                break
+
+            case CREATE_BOARD:
+                setCmpType(<CreateBoard setIsAddBoard={setIsAddBoard} />)
+                break
+
+            case GROUP_ACTIONS:
+                setCmpType(<GroupActions setIsActionsOpen={setIsActionsOpen} group={group} saveGroup={saveGroup} />)
+                break
+
+            case CHECKLIST:
+                setCmpType(<CheckList setActionType={setActionType} task={task} saveTask={saveTask} groupId={groupId} />)
+                break
+        }
+
+    }, [cmp])
+
+    useEffect(() => {
+        console.log('*****',)
+        console.log('trigger', trigger)
+    }, [refTrigger.current])
+
     useLayoutEffect(() => {
-        // console.log('useeffect')
-        // console.log('refTrigger.current', refTrigger)
         if (ref.current) {
             const modalDim = ref.current.getBoundingClientRect()
             const triggerLocation = refTrigger.current.getBoundingClientRect()
@@ -47,7 +89,7 @@ export function DynamicCmp({ setActionType, groupId, cmp, board, task, setIsAddB
             if (triggerLocation.left + modalDim.width > window.innerWidth) setPos(prevPos => ({ ...prevPos, left: window.innerWidth - modalDim.width }))
             else setPos(prevPos => ({ ...prevPos, left: triggerLocation.left + offset.x }))
         }
-    }, [windowSize, refTrigger.current])
+    }, [windowSize, cmpType])
 
     function onUpdateBoard(newLabel) {
         const boardToUpdate = { ...board }
@@ -76,55 +118,7 @@ export function DynamicCmp({ setActionType, groupId, cmp, board, task, setIsAddB
         updateBoardOptimistic(Board)
     }
 
-    
-
-    var cmpType
-    var topHead
-    let top = 24
-    const buttonHeight = 40
-    switch (cmp) {
-        case LABELS:
-            top += buttonHeight * 2
-            topHead = 'Labels'
-            cmpType = <LabelPicker setActionType={setActionType} SaveLabel={SaveLabel} deleteLabel={deleteLabel} onUpdateBoard={onUpdateBoard} task={task} labels={board.labels} saveTask={saveTask} groupId={groupId} />
-            break
-
-        case MEMBERS:
-            top += buttonHeight
-            topHead = 'Member'
-            cmpType = <MemberPicker group={group} setActionType={setActionType} members={board.members} task={task} saveTask={saveTask} groupId={groupId} />
-            break
-
-        case DATES:
-            top += buttonHeight * 4
-            topHead = 'Date'
-            cmpType = <DatePicker group={group} saveTask={saveTask} setActionType={setActionType} task={task} groupId={groupId} />
-            break
-
-        case ATTACHMENT:
-            top += buttonHeight * 5
-            topHead = 'Attachment'
-            cmpType = <AttachmentPicker group={group} setActionType={setActionType} board={board} groupId={groupId} task={task} saveTask={saveTask} />
-            break
-
-        case COVER:
-            topHead = 'Cover'
-            cmpType = <CoverPicker setActionType={setActionType} board={board} groupId={groupId} task={task} saveTask={saveTask} />
-            break
-
-        case CREATE_BOARD:
-            cmpType = <CreateBoard setIsAddBoard={setIsAddBoard} />
-            break
-
-        case GROUP_ACTIONS:
-            cmpType = <GroupActions setIsActionsOpen={setIsActionsOpen} group={group} saveGroup={saveGroup} />
-            break
-
-        case CHECKLIST:
-            cmpType = <CheckList setActionType={setActionType} task={task} saveTask={saveTask} groupId={groupId}/>
-            break
-    }
-    return <div className={`dynamic-cmp ${cmp.toLowerCase()}`} style={{ top: pos.top, left: pos.left, zIndex: 150 }} ref={ref}>
+    return <div className={`dynamic-cmp ${cmp.type.toLowerCase()}`} style={{ top: pos.top, left: pos.left, zIndex: 150 }} ref={ref}>
         {cmpType}
     </div>
 }

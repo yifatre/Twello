@@ -53,7 +53,7 @@ export function BoardList({ boards }) {
         </section>
         {isAddBoard && <ClickAwayListener onClickAway={onCloseAddModal}>
             <div>
-                <DynamicCmp cmp={CREATE_BOARD} setIsAddBoard={setIsAddBoard} refTrigger={refTrigger} offset={{ x: refTrigger.current.getBoundingClientRect().width + 8, y: 0 }} />
+                <DynamicCmp cmp={{ type: CREATE_BOARD }} setIsAddBoard={setIsAddBoard} refTrigger={refTrigger} offset={{ x: refTrigger.current.getBoundingClientRect().width + 8, y: 0 }} />
             </div>
         </ClickAwayListener>
         }
