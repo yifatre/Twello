@@ -2,7 +2,7 @@
     position: relative;
     display: grid;
     grid-template-rows: max-content;
-    z-index: 105;
+    z-index: 95;
     margin: rem(12px);
     grid-area: body;
     background-color: var(--ds-surface, #ffffff);
@@ -33,7 +33,7 @@
             width: 100%;
             position: absolute;
             top: rem(32px);
-            z-index: 110;
+            z-index: 96;
 
             &:hover {
                 & .inline-add {
@@ -77,6 +77,12 @@
             & .title-input {
                 width: 100%;
                 padding: rem(6px) rem(12px);
+                border-radius: rem(3px);
+                border: 2px solid #388bff;
+
+                &:focus {
+                    outline: none;
+                }
             }
             
         }
@@ -107,7 +113,7 @@
         }
 
         & .arrow-down {
-            display: none;
+            opacity: 0;
             background-color: inherit;
             position: absolute;
             height: rem(26px);
@@ -115,7 +121,7 @@
             right: 0;
             border-radius: rem(3px);
             padding: 4px;
-            z-index: 107;
+            z-index: 97;
             margin-inline-end: rem(8px);
             color: #172b4d;
             font-weight: 200;
@@ -128,7 +134,8 @@
         }
 
         & .plus-btn {
-            display: none;
+            display: flex;
+            opacity: 0;
             background-color: transparent;
             padding: 6px;
             padding-inline-start: 4px;
@@ -160,7 +167,7 @@
             }
 
             & .arrow-down {
-                display: inline;
+                opacity: 1;
             }
 
             & .dot {
@@ -168,7 +175,7 @@
             }
 
             & .plus-btn {
-                display: flex;
+                opacity: 1;
                 align-items: center;
             }
         }
@@ -279,7 +286,7 @@
             right: 0;
             border-radius: rem(3px);
             padding: 4px;
-            z-index: 107;
+            z-index: 98;
             margin-inline-end: rem(8px);
 
             & .svg-container {
@@ -385,7 +392,7 @@
         }
 
         &:hover {
-            background: #091e42;
+            background: #DCDFE4;
         }
     }
 }
