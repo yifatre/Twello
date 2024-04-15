@@ -1,8 +1,9 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { edit_icon, x_icon } from "../UtilCmps/SVGs"
 import { utilService } from "../../services/util.service"
 import { boardService } from "../../services/board/board.service.local"
 import { updateBoard } from "../../store/board/board.actions"
+import { useSelector } from "react-redux"
 
 
 const pallet = ['green', 'yellow', 'orange', 'red', 'purple',
@@ -12,23 +13,26 @@ const pallet = ['green', 'yellow', 'orange', 'red', 'purple',
     'blue-subtle', 'teal-subtle', 'lime-subtle', 'magenta-subtle', 'gray-subtle',
     'blue-bolder', 'teal-bolder', 'lime-bolder', 'magenta-bolder', 'gray-bolder']
 
-// todo connect btn's and add the on update 
 
-export function SideBarLabels({topHead, board,setBackTo,setTopHead }) {
+export function SideBarLabels({ topHead, board, setBackTo, setTopHead }) {
     const [toggle, setToggle] = useState(false)
-    const [labels, setLabels] = useState(board.labels)
-    const [labelsFilter, setLabelsFilter] = useState(board.labels)
+    const labels = useSelector(storeState => storeState.boardModule.board.labels)
+    const [labelsFilter, setLabelsFilter] = useState(labels)
     const [value, setValue] = useState(8)
     const [currentColor, setCurrentColor] = useState('green-subtle')
     const [labelContent, setLabelContent] = useState('')
     const [dark, setDark] = useState(new Array(pallet.length).fill(false))
     const [labelId, setLabelId] = useState('')
 
+    useEffect(() => {
+        setLabelsFilter(labels)
+    }, [labels])
+
     function toggleBtn(label) {
-        if(topHead === 'Labels'){
+        if (topHead === 'Labels') {
             setTopHead('Create new label')
             setBackTo('Labels')
-        }else {
+        } else {
             setTopHead('Labels')
             setBackTo('Menu')
         }
