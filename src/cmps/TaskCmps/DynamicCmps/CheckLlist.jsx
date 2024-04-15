@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { x_icon } from "../../UtilCmps/SVGs"
 import { utilService } from "../../../services/util.service"
-import { boardService } from "../../../services/board/board.service.local"
+import { boardService } from "../../../services/board/board.service"
 
 export function CheckList({ setActionType, task, saveTask, groupId, group }) {
     const [title, setTitle] = useState('Checklist')

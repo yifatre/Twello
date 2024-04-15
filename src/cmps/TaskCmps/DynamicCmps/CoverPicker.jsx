@@ -3,7 +3,7 @@ import { cover_preview, x_icon } from "../../UtilCmps/SVGs"
 
 import axios from "axios"
 import { utilService } from "../../../services/util.service"
-import { boardService } from "../../../services/board/board.service.local"
+import { boardService } from "../../../services/board/board.service"
 import { uploadService } from "../../../services/upload.service"
 
 

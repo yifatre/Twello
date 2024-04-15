@@ -2,7 +2,7 @@ import { bars_icon, checked_icon, edit_icon, eye_icon, paperclip_icon, time_icon
 import { AvatarList } from "../UtilCmps/AvatarList"
 import { useRef, useState } from "react"
 import { TextareaAutosize as MinTextArea } from '@mui/base/TextareaAutosize'
-import { boardService } from "../../services/board/board.service.local"
+import { boardService } from "../../services/board/board.service"
 
 export function TaskPreview({ task, groupId, removeTask, board, isLabelsExtended, setIsLabelExtended, setTaskQuickEdit, saveTask, refTrigger }) {
     const [titleToEdit, setTitleToEdit] = useState(task.title)
@@ -24,7 +24,7 @@ export function TaskPreview({ task, groupId, removeTask, board, isLabelsExtended
 
     function getDateFormat() {
         const date = new Date(task.date.dueDate)
-        if (task.date.dueDate < Date.now()) return date.toString().slice(4, 7) + ' ' + date.getDate() + ', ' + date.getFullYear()
+        if (date.getFullYear() !== new Date().getFullYear()) return date.toString().slice(4, 7) + ' ' + date.getDate() + ', ' + date.getFullYear()
         return date.toString().slice(4, 7) + ' ' + date.getDate()
     }
 

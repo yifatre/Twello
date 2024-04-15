@@ -1,7 +1,6 @@
 import { useSelector } from "react-redux"
 import { utilService } from "../../services/util.service"
 import { AvatarPreview } from "../UtilCmps/AvatarPreview"
-import { userService } from "../../services/user.service"
 import { useState } from "react"
 
 export function Activity({taskId}){

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { arrow_down, edit_icon, new_board_demo, x_icon } from "../../UtilCmps/SVGs"
-import { boardService } from "../../../services/board/board.service.local"
+import { boardService } from "../../../services/board/board.service"
 import { LABELS } from "./DynamicCmp"
 import { useSelector } from "react-redux"
 

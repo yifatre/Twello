@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { x_icon } from "../../UtilCmps/SVGs"
 import { MEMBERS } from "./DynamicCmp"
 import { AvatarPreview } from "../../UtilCmps/AvatarPreview"
-import { boardService } from "../../../services/board/board.service.local"
+import { boardService } from "../../../services/board/board.service"
 
 
 export function MemberPicker({group,setActionType, members, task, saveTask, groupId }) {
@@ -26,7 +26,7 @@ export function MemberPicker({group,setActionType, members, task, saveTask, grou
          //todo add the member !!! now its 0 for development
         setActivity(boardService.getActivity(`added ${name}`,0,group,task))
         if (!task.memberIds) task.memberIds = []
-        setMemberIdsToUpdate([...task.memberIds, memberId])
+        setMemberIdsToUpdate([...memberIdsToUpdate, memberId])
     }
 
     function onRemoveMember(memberId,name) {

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { x_icon } from "../../UtilCmps/SVGs"
 import { uploadService } from "../../../services/upload.service"
-import { boardService } from "../../../services/board/board.service.local"
+import { boardService } from "../../../services/board/board.service"
 
 
 export function AttachmentPicker({ group,setActionType, groupId, task, saveTask }) {

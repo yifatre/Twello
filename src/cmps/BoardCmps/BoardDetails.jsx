@@ -9,7 +9,7 @@ import { useSelector } from "react-redux"
 import { utilService } from "../../services/util.service"
 import { BoardRightSideBar } from "./BoardRightSideBar"
 import { BoardTable } from "./BaordTable"
-import { boardService } from "../../services/board/board.service.local"
+import { boardService } from "../../services/board/board.service"
 
 export function BoardDetails() {
     const { boardId } = useParams()
@@ -39,6 +39,7 @@ export function BoardDetails() {
             // group.tasks[idx] = task
             const tasks = group.tasks.map(_task => _task.id !== task.id ? _task : task)
             return await saveGroup({...group, tasks}, activity)
+            // return await saveGroup(group)
         } else {
             task.id = utilService.makeId('t')
             // group.tasks.push(task)
@@ -65,6 +66,7 @@ export function BoardDetails() {
             const groups = board.groups.map(_group => _group.id !== group.id ? _group : group)
             if (activity) board.activities.unshift(activity)
             return await updateBoardOptimistic({...board, groups})
+            // return await updateBoard(board)
         } else {
             group.id = utilService.makeId('g')
             // board.groups.push(group)
@@ -79,13 +81,39 @@ export function BoardDetails() {
         updateBoardOptimistic(board)
     }
 
+    function onDragEnd(result) {
+        // console.log('result', result)
+        if (!result.destination) {
+            return
+        }
+
+        const {groups} = board
+
+        const startIdx = result.source.index
+        const endIdx = result.destination.index
+
+        if (result.type === 'group') {
+            const [group] = groups.splice(startIdx, 1)
+            groups.splice(endIdx, 0, group)
+            updateBoardOptimistic({ ...board, groups })
+        }
+
+        if (result.type === 'task') {
+            const groupStart = groups.find(group => group.id === result.source.droppableId)
+            const groupEnd = groups.find(group => group.id === result.destination.droppableId)
+            const [task] = groupStart.tasks.splice(startIdx, 1)
+            groupEnd.tasks.splice(endIdx, 0, task)
+            updateBoardOptimistic({ ...board, groups })
+        }
+    }
+
     if (!board) return <div>loading</div>
     return (<>
         <section className={`board-details ${rsbIsOpen ? 'rsb-open' : ''}`} style={{ backgroundImage: `url(${board.style?.backgroundImage})` }}>
             <BoardHeader board={board} setRsbIsOpen={setRsbIsOpen} setViewType={setViewType} viewType={viewType} />
             <BoardSideBar setViewType={setViewType} />
-            {viewType === 'board' && <GroupList board={board} saveGroup={saveGroup} removeGroup={removeGroup} saveTask={saveTask} removeTask={removeTask} />}
-            {viewType === 'table' && <BoardTable />}
+            {viewType === 'board' && <GroupList board={board} saveGroup={saveGroup} removeGroup={removeGroup} saveTask={saveTask} removeTask={removeTask} onDragEnd={onDragEnd}/>}
+            {viewType === 'table' && <BoardTable board={board} saveGroup={saveGroup} removeGroup={removeGroup} saveTask={saveTask} removeTask={removeTask} onDragEnd={onDragEnd}/>}
             <div className="board-fade"></div>
             <BoardRightSideBar setRsbIsOpen={setRsbIsOpen} />
         </section>
