@@ -5,7 +5,7 @@ import { httpService } from './http.service.js'
 const BASE_URL = 'auth/'
 const STORAGE_KEY_LOGGEDIN = 'loggedinUser'
 
-export const userServiceHttp = {
+export const                                                                                                                                                                                                                                                                                                                                                                                                            userServiceHttp = {
     login,
     logout,
     signup,
@@ -26,8 +26,8 @@ function login({ email, password }) {
         })
 }
 
-function signup({ username, password, fullname }) {
-    const user = { username, password, fullname, score: 10000, isAdmin: false}
+function signup({email, username, password, fullname }) {
+    const user = { email,username, password, fullname, isAdmin: false}
     return httpService.post(BASE_URL + 'signup', user)
         .then(user => {
             if (user) return _setLoggedinUser(user)

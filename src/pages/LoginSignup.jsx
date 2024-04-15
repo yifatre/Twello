@@ -15,11 +15,7 @@ export function LoginSignUp(props) {
     }, [])
 
     //todo delete on production
-    async function loadUsers() {
-        const users = await userService.getUsers()
-        console.log(users);
-        setUsers(users)
-    }
+    
 
     async function onContinue() {
         try {
@@ -132,7 +128,7 @@ export function LoginSignUp(props) {
                     <input
                         type="text"
                         name="fullName"
-                        value={credentials.fullName}
+                        value={credentials.fullname}
                         placeholder="FullName"
                         onChange={handleChange}
                         required
