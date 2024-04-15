@@ -7,7 +7,7 @@ import { BoardIndex } from './pages/BoardIndex'
 import { BoardDetails } from './cmps/BoardCmps/BoardDetails'
 import { TaskDetails } from './cmps/TaskCmps/TaskDetails'
 import { BoardTable } from './cmps/BoardCmps/BaordTable'
-import { LoginSignup } from './pages/LoginSignup'
+import { LoginSignUp } from './pages/LoginSignup'
 
 export function App() {
 
@@ -17,7 +17,7 @@ export function App() {
             <main className='main-content'>
                 <Routes>
                     <Route path="/" element={<HomePage />} />
-                    <Route path="/login" element={<LoginSignup />} />
+                    <Route path="/login" element={<LoginSignUp />} />
                     <Route path="/board" element={<BoardIndex />} />
                     <Route path="/board/:boardId" element={<BoardDetails />}>
                         <Route path="/board/:boardId/table" element={<BoardTable />} />

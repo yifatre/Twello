@@ -1,0 +1,48 @@
+.login-page-layout {
+    display: grid;
+    height: 100vh;
+    grid-template-columns: 1fr 400px 1fr;
+    grid-template-rows: 1fr 709px 1fr;
+
+    & .login-logout-container {
+        grid-area: 2/2/3/3;
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 10px;
+        padding: rem(25px) rem(32px) rem(40px) rem(32px);
+        text-align: center;
+
+
+        & .logo-login {
+            position: relative;
+            align-items: center;
+
+            & img {
+                position: absolute;
+                width: 23px;
+                height: 23px;
+                left: 106px;
+                top: 13px;
+            }
+
+            & svg {
+                // position: absolute;
+                height: 52px;
+            }
+
+        }
+
+        & h3 {
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 20px;
+            margin-top: 18px;
+        }
+
+        & .continue{
+            margin-top: 10px;
+            height: rem(40px);
+            border-radius: 5px;
+            background-color: var(--ds-background-brand-bold-hovered);
+            color: #fff;
+        }
+    }
+}
