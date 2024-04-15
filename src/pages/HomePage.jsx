@@ -18,7 +18,7 @@ export function HomePage() {
                         <p>Keep everything in the same place-even if your team isn't.</p>
                     </div>
                     <Link to='/board'>
-                        <button>Try - it's free</button>
+                        <button>Try now for free</button>
                     </Link>
                 </div>
                 <div className="top-img-container">
@@ -62,7 +62,7 @@ export function HomePage() {
                 <div>
                     <h1>Get started with Twello today</h1>
                     <Link to='/board'>
-                        <button>Try - it's free</button>
+                        <button>Try now for free </button>
                     </Link>
                 </div>
 

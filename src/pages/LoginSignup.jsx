@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { userService } from '../services/user.service'
-import { ImgUploader } from '../cmps/UtilCmps/ImgUploader'
+// import { ImgUploader } from '../cmps/UtilCmps/ImgUploader'
 
 export function LoginSignup(props) {
     const [credentials, setCredentials] = useState({ username: '', password: '', fullname: '' })
@@ -108,7 +108,7 @@ export function LoginSignup(props) {
                         onChange={handleChange}
                         required
                     />
-                    <ImgUploader onUploaded={onUploaded} />
+                    {/* <ImgUploader onUploaded={onUploaded} /> */}
                     <button >Signup!</button>
                 </form>}
             </div>

@@ -13,9 +13,6 @@ export function AppHeader() {
     const [modalPosition, setModalPosition] = useState({ top: 0, left: 0 })
     const refTrigger = useRef(null)
 
-   const params =  useParams()
-
-
     function onAddBoard(ev) {
         const { currentTarget } = ev
 
@@ -25,7 +22,6 @@ export function AppHeader() {
     function onCloseAddModal() {
         setIsAddBoard(false)
     }
-
 
     if (pathname === '/') return (
         <header className="app-header-home ">
@@ -37,7 +33,7 @@ export function AppHeader() {
                     </div>
                 </Link>
                 <nav>
-                    <Link className='a-right login-home-header' >Log in</Link>
+                    <Link to='/login' className='a-right login-home-header' >Log in</Link>
                     <Link to='/board' className='a-right free-trial'>Get Twello for free</Link>
                 </nav>
             </section>
@@ -58,7 +54,7 @@ export function AppHeader() {
                 {/* <button className='main-nav-btn'>Recent <span className='arrow-down'>{arrow_down}</span></button> */}
                 {/* <button className='main-nav-btn'>Starred <span className='arrow-down'>{arrow_down}</span></button> */}
                 {/* <button className='main-nav-btn'>Templates <span className='arrow-down'>{arrow_down}</span></button> */}
-                <button className={`create-btn ${pathname !== '/board'? 'create-btn-in-board':''}`} onClick={onAddBoard} ref={refTrigger}>Create</button>
+                <button className={`create-btn ${pathname !== '/board' ? 'create-btn-in-board' : ''}`} onClick={onAddBoard} ref={refTrigger}>Create</button>
             </div>
             <div className='flex'>
 

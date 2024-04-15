@@ -3,7 +3,7 @@ import { x_icon } from "../../UtilCmps/SVGs"
 import { utilService } from "../../../services/util.service"
 import { boardService } from "../../../services/board/board.service.local"
 
-export function CheckList({ setActionType, task, saveTask, groupId, }) {
+export function CheckList({ setActionType, task, saveTask, groupId, group }) {
     const [title, setTitle] = useState('Checklist')
 
 
@@ -12,9 +12,13 @@ export function CheckList({ setActionType, task, saveTask, groupId, }) {
     }
 
     function onCreate() {
+        if (task.checklists) {
+            task.checklists = []
+        }
         const _checklist = { id: utilService.makeId(), title: title }
-        boardService.getActivity()
-        saveTask({ ...task, checklists: [...task.checklists, _checklist] }, groupId)
+        // todo add logged in user
+        const activity = boardService.getActivity(`added Checklist to ${task.title}`, 0, group, task,)
+        saveTask({ ...task, checklists: [...task.checklists, _checklist] }, groupId, activity)
         setActionType(null)
     }
 

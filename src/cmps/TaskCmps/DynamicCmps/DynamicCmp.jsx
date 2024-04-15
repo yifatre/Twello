@@ -67,10 +67,8 @@ export function DynamicCmp({ setActionType, groupId, cmp, board, task, setIsAddB
 
     function deleteLabel(labelId) {
         const Board = board
-
         const labels = Board.labels.filter(label => label.id !== labelId)
         Board.labels = labels
-
         Board.groups = utilService.deleteLabelIdFromEverywhere(Board.groups, labelId)
 
         updateBoardOptimistic(Board)
@@ -121,7 +119,7 @@ export function DynamicCmp({ setActionType, groupId, cmp, board, task, setIsAddB
             break
 
         case CHECKLIST:
-            cmpType = <CheckList setActionType={setActionType} task={task} saveTask={saveTask} groupId={groupId}/>
+            cmpType = <CheckList group={group} setActionType={setActionType} task={task} saveTask={saveTask} groupId={groupId}/>
             break
     }
     return <div className={`dynamic-cmp ${cmp.toLowerCase()}`} style={{ top: pos.top, left: pos.left, zIndex: 150 }} ref={ref}>

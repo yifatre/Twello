@@ -1,32 +1,33 @@
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 import { ChecklistList } from './ChecklistList'
+import { boardService } from '../../../services/board/board.service.local'
 
-export function ChecklistIndex({ task, saveTask, groupId }) {
+export function ChecklistIndex({ task, saveTask, groupId,group }) {
     const checklists = task.checklists
 
     function onRemoveList(_checklist) {
         const _checkListsFiltered = checklists.filter(checklist => checklist.id !== _checklist.id)
-        saveTask({ ...task, checklists: _checkListsFiltered }, groupId)
+        const activity = boardService.getActivity(`delete Checklist to ${task.title}`,0,group,task)
+        saveTask({ ...task, checklists: _checkListsFiltered }, groupId,activity)
     }
 
-    function onUpdateList(_checklist) {
+    function onUpdateList(_checklist ,activity) {
         const listIdx = checklists.findIndex(checklist => checklist.id === _checklist.id)
         task.checklists[listIdx] = _checklist
-        saveTask(task, groupId)
+        saveTask(task, groupId,activity)
     }
 
     function onDragEnd(result) {
         if (!result.destination) {
             return
         }
-        // console.log(result);
+
         const startIdx = result.source.index
         const endIdx = result.destination.index
 
         if (result.type === 'list') {
             const [checklist] = checklists.splice(startIdx, 1)
             checklists.splice(endIdx, 0, checklist)
-            // console.log('checklist', checklist);
 
             saveTask({ ...task, checklists }, groupId)
         }
@@ -63,6 +64,8 @@ export function ChecklistIndex({ task, saveTask, groupId }) {
                                             checklist={checklist}
                                             onRemoveList={onRemoveList}
                                             onUpdateList={onUpdateList}
+                                            group={group}
+                                            task={task}
                                         />
                                     </li>}
                             </Draggable>
