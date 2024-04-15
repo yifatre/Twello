@@ -1,4 +1,4 @@
-import { boardService } from '../../services/board/board.service.local.js'
+import { boardService } from '../../services/board/board.service.js'
 // import { userService } from '../../services/user.service.js'
 import { store } from '../store.js'
 import { showSuccessMsg, showErrorMsg } from '../../services/event-bus.service.js'
@@ -57,19 +57,19 @@ export async function addBoard(board) {
     }
 }
 
-// export async function updateBoard(board, isUpdateMiniBoard = false) {
-//     try {
-//         const savedBoard = await boardService.save(board)
-//         console.log('Updated Board:', savedBoard)
-//         store.dispatch({ type: UPDATE_BOARD, board })
-//         if (isUpdateMiniBoard) store.dispatch({ type: UPDATE_MINI_BOARD, board: { _id: board._id, title: board.title, style: { backgroundImage: board.style?.backgroundImage }, isStarred: board.isStarred } })
-//         return savedBoard
-//     }
-//     catch (err) {
-//         console.log('Cannot save board', err)
-//         throw err
-//     }
-// }
+export async function updateBoard(board, isUpdateMiniBoard = false) {
+    try {
+        const savedBoard = await boardService.save(board)
+        console.log('Updated Board:', savedBoard)
+        store.dispatch({ type: UPDATE_BOARD, board })
+        if (isUpdateMiniBoard) store.dispatch({ type: UPDATE_MINI_BOARD, board: { _id: board._id, title: board.title, style: { backgroundImage: board.style?.backgroundImage }, isStarred: board.isStarred } })
+        return savedBoard
+    }
+    catch (err) {
+        console.log('Cannot save board', err)
+        throw err
+    }
+}
 
 export async function updateBoardOptimistic(board, isUpdateMiniBoard = false) {
     store.dispatch({
