@@ -7,7 +7,7 @@ import { TextareaAutosize as MinTextArea } from '@mui/base/TextareaAutosize'
 import { DynamicCmp, GROUP_ACTIONS } from '../TaskCmps/DynamicCmps/DynamicCmp'
 import { utilService } from '../../services/util.service'
 
-export function GroupPreview({ group, saveGroup, board, isLabelsExtended, setIsLabelExtended, saveTask, removeTask }) {
+export function GroupPreview({ group, saveGroup, board, isLabelsExtended, setIsLabelExtended, saveTask, removeTask, removeGroup }) {
     const [isAddMode, setIsAddMode] = useState(false)
     const [isEditTitle, setIsEditTitle] = useState(false)
     const [isExtended, setIsExtended] = useState(true)
@@ -66,7 +66,7 @@ export function GroupPreview({ group, saveGroup, board, isLabelsExtended, setIsL
         {isActionsOpen &&
             <ClickAwayListener onClickAway={() => setIsActionsOpen(false)}>
                 <div>
-                    <DynamicCmp setIsActionsOpen={setIsActionsOpen} cmp={GROUP_ACTIONS} refTrigger={refTrigger} offset={{ x: 0, y: refTrigger.current.getBoundingClientRect().height + 9 }} group={group} saveGroup={saveGroup} />
+                    <DynamicCmp setIsActionsOpen={setIsActionsOpen} cmp={{ type: GROUP_ACTIONS }} refTrigger={refTrigger} offset={{ x: 0, y: refTrigger.current.getBoundingClientRect().height + 9 }} group={group} saveGroup={saveGroup} removeGroup={removeGroup} />
                 </div>
             </ClickAwayListener >}
     </>

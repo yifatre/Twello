@@ -13,8 +13,8 @@
 
     & .actions {
         color: var(--ds-text, #172b4d);
-        
-        & a {
+
+        & .action-list-item {
             color: inherit;
             display: inline-flex;
             padding: rem(6px) rem(12px);
@@ -24,6 +24,30 @@
 
             &:hover {
                 background-color: var(--ds-background-neutral-hovered, #091e4224);
+            }
+
+            &.confirmation {
+                justify-content: center;
+                align-items: center;
+                gap: rem(8px);
+
+                & .del-btn {
+                    background-color: var(--ds-background-danger-bold, #ca3521);
+                    color: white;
+
+                    &:hover {
+                        background-color: var(--ds-background-danger-bold-hovered, #ae2a19);
+                    }
+
+                    &:active {
+                        background-color: var(--ds-background-danger-bold-pressed, #601e16);
+                    }
+                }
+
+                &:hover {
+                    background-color: inherit;
+                    cursor: default;
+                }
             }
         }
 
