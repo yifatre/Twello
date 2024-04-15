@@ -2,9 +2,9 @@ import { useEffect, useRef, useState } from "react"
 import { clock_icon, member_icon, x_icon } from "../../UtilCmps/SVGs"
 import { TextareaAutosize as MinTextArea } from "@mui/base/TextareaAutosize"
 import { ClickAwayListener } from "@mui/base/ClickAwayListener"
-import { boardService } from "../../../services/board/board.service.local"
+import { boardService } from "../../../services/board/board.service-local"
 
-export function TodoEdit({ todo, saveTodo, setIsAddTodo }) {
+export function TodoEdit({ todo, saveTodo, setIsAddTodo, isFirst }) {
     const [todoToEdit, setTodoToEdit] = useState(todo)
     const editRef = useRef(null)
 
@@ -35,7 +35,7 @@ export function TodoEdit({ todo, saveTodo, setIsAddTodo }) {
 
     return (
         <ClickAwayListener onClickAway={() => setIsAddTodo(false)}>
-            <form className="todo-edit-form" onSubmit={onSaveTodo} ref={editRef}>
+            <form className={`todo-edit-form ${isFirst ? 'first' : ''}`} onSubmit={onSaveTodo} ref={editRef}>
                 {todo.id && <input type="checkbox" checked={todoToEdit.isDone} onChange={handleDoneChange}/>}
                 <div className={`content ${todo.id ? "edit" : "add"}`}>
                     <MinTextArea
