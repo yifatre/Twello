@@ -4,7 +4,7 @@ import { activity_icon, arrow_down, bars_icon, check_icon, checked_icon, clock_i
 import { utilService } from "../../services/util.service"
 import { ClickAwayListener } from '@mui/base/ClickAwayListener'
 import { useOutletContext } from "react-router-dom"
-import { useEffect, useLayoutEffect, useRef, useState } from "react"
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react"
 import { ATTACHMENT, CHECKLIST, COVER, DATES, DynamicCmp, LABELS, MEMBERS } from "./DynamicCmps/DynamicCmp"
 import { useSelector } from "react-redux"
 import { AvatarPreview } from "../UtilCmps/AvatarPreview"
@@ -32,8 +32,6 @@ export function TaskDetails() {
         setTask(board.groups.find(group => group.id === groupId).tasks.find(task => task.id === taskId))
     }, [board])
 
-   
-
     function onEditDescription(ev) {
         ev.preventDefault()
         setIsDescriptionEdit(true)
@@ -52,7 +50,7 @@ export function TaskDetails() {
         ev.preventDefault()
         ev.stopPropagation()
         refTrigger.current = ev.currentTarget
-        setActionType(type)
+        setActionType({ type })
     }
 
     function onCheckDate() {
@@ -138,16 +136,19 @@ export function TaskDetails() {
                                 {task.attach.map((attach, idx) => {
                                     const imgTypes = ['png', 'jpg', 'gif', 'svg']
                                     let fileName = attach.split('/')
-
+                                    const fileType = attach.slice(attach.lastIndexOf('.') + 1, attach.length)
                                     return <div className="attach-details" key={idx}>
+                                        {/* fl_attachment */}
                                         <div className="attach_img" style={{ backgroundImage: `url(${attach})` }}>
-                                            {!imgTypes.find(type => type === attach.slice(-3).toLowerCase()) && attach.slice(-3)}
+                                            {!imgTypes.find(type => type === fileType.toLowerCase()) && fileType}
                                         </div>
                                         <div>
                                             <a className="fileName" target="_blank" href={attach} download>{fileName[fileName.length - 1]} ↗</a>
                                         </div>
                                         <div className="download">
                                             <a className="download" href={attach} target="_blank" download={fileName[fileName.length - 1]}>Download</a>
+                                            {/* {cloudinary.v2.api.resources_by_asset_ids(["e12345b5c456c8901bbb0efc00c0fcf", "f12345a5c789c1234bbb0efc00c0f12"],
+                                            function(error, result) {console.log(result, error); })} */}
                                         </div>
 
                                     </div>
@@ -173,7 +174,7 @@ export function TaskDetails() {
                         <a className="flex align-center" href="#" onClick={(ev) => onSetActionType(ev, CHECKLIST)} >{checked_icon}Checklist</a>
                         <a className="flex align-center" href="#" onClick={(ev) => onSetActionType(ev, DATES)}>{clock_icon}Dates</a>
                         <a className="flex align-center" href="#" onClick={(ev) => onSetActionType(ev, ATTACHMENT)}>{paperclip_icon}Attachment</a>
-                        <a className="flex align-center" href="#">{location_icon}Location</a>
+                        {/* <a className="flex align-center" href="#">{location_icon}Location</a> */}
                         {!(task.style?.backgroundColor || task.style?.backgroundImage) && <a className="flex align-center" href="#" onClick={(ev) => onSetActionType(ev, COVER)}>{cover_icon}Cover</a>}
                         <ClickAwayListener onClickAway={() => { setActionType(null); refTrigger.current = null }}>
                             <div>

@@ -28,13 +28,19 @@ export function TaskQuickEdit({ taskQuickEdit, groupId, removeTask, board, isLab
     useLayoutEffect(() => {
         if (ref.current) {
             const modalDim = ref.current.getBoundingClientRect()
+            let top
+
+            if (refTrigger.current.getBoundingClientRect().top + modalDim.height + 4 > windowSize.height) {
+                top = windowSize.height - modalDim.height - 4
+            }
+            else top = refTrigger.current.getBoundingClientRect().top
             if (refTrigger.current.getBoundingClientRect().left + modalDim.width > windowSize.width) {
                 setMenuSideClass('left-side')
-                setPosition({ top: refTrigger.current.getBoundingClientRect().top, right: windowSize.width - refTrigger.current.getBoundingClientRect().right })
+                setPosition({ top, right: windowSize.width - refTrigger.current.getBoundingClientRect().right })
             }
             else {
                 setMenuSideClass('')
-                setPosition({ top: refTrigger.current.getBoundingClientRect().top, left: refTrigger.current.getBoundingClientRect().left })
+                setPosition({ top, left: refTrigger.current.getBoundingClientRect().left })
             }
         }
     }, [windowSize])
@@ -43,7 +49,7 @@ export function TaskQuickEdit({ taskQuickEdit, groupId, removeTask, board, isLab
         ev.preventDefault()
         ev.stopPropagation()
         refActionTrigger.current = ev.currentTarget
-        setActionType(type)
+        setActionType({ type })
     }
 
     function onSaveTask(task, groupId) {

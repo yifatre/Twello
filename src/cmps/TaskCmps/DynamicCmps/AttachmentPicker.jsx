@@ -4,7 +4,7 @@ import { uploadService } from "../../../services/upload.service"
 import { boardService } from "../../../services/board/board.service.local"
 
 
-export function AttachmentPicker({ group,setActionType, board, groupId, task, saveTask }) {
+export function AttachmentPicker({ group,setActionType, groupId, task, saveTask }) {
     const [imgData, setImgData] = useState({
         imgUrl: null,
         height: 500,

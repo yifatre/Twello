@@ -8,12 +8,15 @@ import { uploadService } from "../../../services/upload.service"
 
 
 
-export function CoverPicker({ setActionType, board, groupId, task, saveTask }) {
+export function CoverPicker({ setActionType, groupId, task, saveTask, updateSize }) {
     const [coverToEdit, setCoverToEdit] = useState(task.style)
     const attach = useRef(null)
     const [search, setSearch] = useState('')
-    const [images, setImages] = useState()
+    const [images, setImages] = useState(null)
 
+    useEffect(() => {
+        updateSize()
+    }, [images])
 
     useEffect(() => {
         getPhotos()

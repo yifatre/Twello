@@ -18,7 +18,7 @@ export function HomePage() {
                         <p>Keep everything in the same place-even if your team isn't.</p>
                     </div>
                     <Link to='/board'>
-                        <button>Try - it's free</button>
+                        <button>Try now for free</button>
                     </Link>
                 </div>
                 <div className="top-img-container">
@@ -48,7 +48,7 @@ export function HomePage() {
                     </div>
                     <div className="explain-img-container">
                         <div className={`explain-img-grid ${selected}`}>
-                            <div className="explain-first explain-img "><img src="https://images.ctfassets.net/rz1oowkt5gyp/3N2U3C71rApm61cGFxnc2E/970b010002488a09a420282df5e7b43a/Carousel_Image_Boards_2x.png?w=1140&fm=webp" alt="" /></div>
+                            <div className="explain-first explain-img "><img src="https://res.cloudinary.com/dobrmrt0g/image/upload/v1713180598/Carousel_Image_Boards_2x_pzuyvx.webp" alt="" /></div>
                             <div className="explain-second explain-img"><img src="https://images.ctfassets.net/rz1oowkt5gyp/4U0VUZYX2tQmB5KVGxBabp/7321ac088fe8ec39dbe3069c47d7df99/Carousel_Image_Lists_2x.png?w=1140&fm=webp" alt="" /></div>
                             <div className="explain-third explain-img"><img src="https://images.ctfassets.net/rz1oowkt5gyp/26CA6JZeRgoOK4nuRHnIlY/060702a80cf7c3be3651d9297d196267/Carousel_Image_Cards_2x.png?w=1140&fm=webp" alt="" /></div>
                         </div>
@@ -62,7 +62,7 @@ export function HomePage() {
                 <div>
                     <h1>Get started with Twello today</h1>
                     <Link to='/board'>
-                        <button>Try - it's free</button>
+                        <button>Try now for free </button>
                     </Link>
                 </div>
 

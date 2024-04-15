@@ -1,7 +1,13 @@
 .desc-editor {
+
     & .create-btn,
     & .tasks-btn {
         margin-block-start: rem(8px);
+    }
+
+    & .create-btn {
+
+        margin-inline-start: 0;
     }
 
     & .tasks-btn {
@@ -10,5 +16,11 @@
         &:hover {
             background-color: #091E4224;
         }
+    }
+
+    .tox-tinymce {
+        border-radius: rem(3px);
+        margin-inline-start: rem(-2px);
+        margin-block-start: rem(8px);
     }
 }

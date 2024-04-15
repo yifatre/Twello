@@ -9,28 +9,6 @@ export function TaskList({ group, saveTask, removeTask, board, isLabelsExtended,
     const [taskQuickEdit, setTaskQuickEdit] = useState(false)
     const refTrigger = useRef(null)
     const navigate = useNavigate()
-    // console.log(taskQuickEdit)
-
-    // function getStyle(style, snapshot) {
-    //     if (!snapshot.isDropAnimating) {
-    //         return style
-    //     }
-    //     const { moveTo, curve, duration } = snapshot.dropAnimation
-    //     // move to the right spot
-    //     const translate = `translate(${moveTo.x}px, ${moveTo.y}px)`
-    //     // add a bit of turn for fun
-    //     const rotate = 'rotate(6deg)'
-
-    //     // patching the existing style
-    //     return {
-    //         ...style,
-    //         opacity: 0.6,
-    //         transform: `${translate} ${rotate}`,
-    //         // slowing down the drop because we can
-    //         transition: `all ${curve} ${duration + 1}s`,
-    //         transitionDuration: `0.001s`
-    //     }
-    // }
 
     return (
         <>
@@ -50,7 +28,7 @@ export function TaskList({ group, saveTask, removeTask, board, isLabelsExtended,
                                         {...provided.snapshot}
                                         {...provided.dragHandleProps}
                                         isDragging={snapshot.isDragging && !snapshot.isDropAnimating}
-                                        style={snapshot.isDragging && !snapshot.isDropAnimating ? { ...provided.draggableProps?.style, opacity: 0.6, rotate: '6deg' } : { ...provided.draggableProps?.style, cursor: 'pointer', transitionDuration: `0.01s` }}
+                                        style={snapshot.isDragging && !snapshot.isDropAnimating ? { ...provided.draggableProps?.style, opacity: 0.6, rotate: '6deg' } : { ...provided.draggableProps?.style, cursor: 'pointer', transitionDuration: `0.2s` }}
                                         // style={getStyle(provided.draggableProps.style, snapshot)}
                                         // className={snapshot.isDragging ? '.dragged-task' : ''}
                                         onClick={() => navigate(`/board/${board._id}/${group.id}/${task.id}`)}
