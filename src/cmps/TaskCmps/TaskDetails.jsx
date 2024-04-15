@@ -9,7 +9,7 @@ import { ATTACHMENT, CHECKLIST, COVER, DATES, DynamicCmp, LABELS, MEMBERS } from
 import { useSelector } from "react-redux"
 import { AvatarPreview } from "../UtilCmps/AvatarPreview"
 import { ChecklistIndex } from "./CheckList/ChecklistIndex"
-import { boardService } from "../../services/board/board.service.local"
+import { boardService } from "../../services/board/board.service"
 import { FastAverageColor } from 'fast-average-color'
 import { Activity } from "../BoardCmps/Activity"
 
@@ -136,16 +136,19 @@ export function TaskDetails() {
                                 {task.attach.map((attach, idx) => {
                                     const imgTypes = ['png', 'jpg', 'gif', 'svg']
                                     let fileName = attach.split('/')
-
+                                    const fileType = attach.slice(attach.lastIndexOf('.') + 1, attach.length)
                                     return <div className="attach-details" key={idx}>
+                                        {/* fl_attachment */}
                                         <div className="attach_img" style={{ backgroundImage: `url(${attach})` }}>
-                                            {!imgTypes.find(type => type === attach.slice(-3).toLowerCase()) && attach.slice(-3)}
+                                            {!imgTypes.find(type => type === fileType.toLowerCase()) && fileType}
                                         </div>
                                         <div>
                                             <a className="fileName" target="_blank" href={attach} download>{fileName[fileName.length - 1]} ↗</a>
                                         </div>
                                         <div className="download">
                                             <a className="download" href={attach} target="_blank" download={fileName[fileName.length - 1]}>Download</a>
+                                            {/* {cloudinary.v2.api.resources_by_asset_ids(["e12345b5c456c8901bbb0efc00c0fcf", "f12345a5c789c1234bbb0efc00c0f12"],
+                                            function(error, result) {console.log(result, error); })} */}
                                         </div>
 
                                     </div>
@@ -173,11 +176,11 @@ export function TaskDetails() {
                         <a className="flex align-center" href="#" onClick={(ev) => onSetActionType(ev, ATTACHMENT)}>{paperclip_icon}Attachment</a>
                         {/* <a className="flex align-center" href="#">{location_icon}Location</a> */}
                         {!(task.style?.backgroundColor || task.style?.backgroundImage) && <a className="flex align-center" href="#" onClick={(ev) => onSetActionType(ev, COVER)}>{cover_icon}Cover</a>}
-                        <ClickAwayListener onClickAway={() => { setActionType(null); refTrigger.current = null }}>
+                        {(actionType && refTrigger.current !== null) &&<ClickAwayListener onClickAway={() => { setActionType(null); refTrigger.current = null }}>
                             <div>
-                                {(actionType && refTrigger.current !== null) && <DynamicCmp setActionType={setActionType} groupId={groupId} cmp={actionType} task={task} board={board} saveTask={saveTask} refTrigger={refTrigger} offset={{ x: 0, y: refTrigger.current.getBoundingClientRect().height + 8 }} />}
+                                 <DynamicCmp setActionType={setActionType} groupId={groupId} cmp={actionType} task={task} board={board} saveTask={saveTask} refTrigger={refTrigger} offset={{ x: 0, y: refTrigger.current.getBoundingClientRect().height + 8 }} />
                             </div>
-                        </ClickAwayListener>
+                        </ClickAwayListener>}
                     </section>
                 </section>
             </ClickAwayListener>

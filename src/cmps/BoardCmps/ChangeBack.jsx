@@ -14,7 +14,7 @@ import { updateBoardOptimistic } from "../../store/board/board.actions"
 import axios from "axios"
 import { utilService } from "../../services/util.service"
 import { uploadService } from "../../services/upload.service"
-import { boardService } from "../../services/board/board.service.local"
+import { boardService } from "../../services/board/board.service"
 
 export function ChangeBack({ setTopHead, board, setBackTo, topHead }) {
     const [search, setSearch] = useState('aurora')

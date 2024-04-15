@@ -1,34 +1,40 @@
 import { useState, useEffect } from 'react'
-import { userService } from '../services/user.service'
 import { logo, logo_no_icon } from '../cmps/UtilCmps/SVGs'
-import { userServiceHttp } from '../services/user.service copy'
+import { userServiceHttp } from '../services/user.service'
+import { useNavigate } from 'react-router'
 // import { ImgUploader } from '../cmps/UtilCmps/ImgUploader'
 
 export function LoginSignUp(props) {
-    const [credentials, setCredentials] = useState({ email: '', username: '', password: '', fullName: '' })
+    const [credentials, setCredentials] = useState({ email: '', username: '', password: '', fullname: '' })
     const [isSignup, setIsSignup] = useState(false)
     const [users, setUsers] = useState([])
     const [login, setLogin] = useState({ email: '', password: '' })
+    const navigate = useNavigate()
 
     useEffect(() => {
         loadUsers()
     }, [])
 
     //todo delete on production
-    
+    async function loadUsers() {
+        const users = await userServiceHttp.getUsers()
+        console.log(users);
+        setUsers(users)
+    }
 
     async function onContinue() {
         try {
             const user = await userServiceHttp.login(login)
+            console.log(user);
             // showSuccessMsg(`Welcome: ${user.fullName}`)
             navigate('/board')
         } catch (err) {
-            console.log('Cannot login')
+            console.log('Cannot login', err)
         }
     }
 
     function clearState() {
-        setCredentials({ username: '', password: '', fullName: '', imgUrl: '' })
+        setCredentials({ username: '', password: '', fullname: '', email: '', imgUrl: '' })
         setIsSignup(false)
     }
 
@@ -48,7 +54,7 @@ export function LoginSignUp(props) {
 
     async function Login(credentials) {
         try {
-            const user = await userService.login(credentials)
+            const user = await userServiceHttp.login(credentials)
             // showSuccessMsg(`Welcome: ${user.fullName}`)
             // navigate('/')
         } catch (err) {
@@ -59,18 +65,16 @@ export function LoginSignUp(props) {
 
     async function SignUp(credentials) {
         try {
-            const user = await signup(credentials)
-            // showSuccessMsg(`Welcome new user: ${user.fullname}`)
-            // navigate('/')
+            const user = await userServiceHttp.signup(credentials)
+            navigate('/board')
         } catch (err) {
-            // showErrorMsg('Cannot signup')
             console.log('Cannot signup')
         }
     }
 
     function onSignUp(ev = null) {
         if (ev) ev.preventDefault()
-        if (!credentials.username || !credentials.password || !credentials.fullName) return
+        if (!credentials.username || !credentials.password || !credentials.fullname) return
         SignUp(credentials)
         clearState()
     }
@@ -109,11 +113,11 @@ export function LoginSignUp(props) {
                         onChange={handleChange}
                     />
                     <button onClick={onContinue} className='continue'>Continue</button>
-                <hr />
+                    <hr />
 
-                <p>
-                    <button className="btn-link" onClick={toggleSignup}>Create an account</button>
-                </p>
+                    <p>
+                        <button className="btn-link" onClick={toggleSignup}>Create an account</button>
+                    </p>
                 </div>}
 
                 {isSignup && <form className="signup-form" onSubmit={onSignUp}>
@@ -127,7 +131,7 @@ export function LoginSignUp(props) {
                     />
                     <input
                         type="text"
-                        name="fullName"
+                        name="fullname"
                         value={credentials.fullname}
                         placeholder="FullName"
                         onChange={handleChange}
@@ -150,9 +154,9 @@ export function LoginSignUp(props) {
                         required
                     />
                     {/* <ImgUploader onUploaded={onUploaded} /> */}
-                    <button  className='continue'>Signup</button>
+                    <button className='continue'>Signup</button>
                 </form>}
-                
+
                 {!isSignup && <form className="login-form" onSubmit={onLogin}>
                     <select
                         name="username"
@@ -160,7 +164,7 @@ export function LoginSignUp(props) {
                         onChange={handleChange}
                     >
                         <option value="">Select User</option>
-                        {users.map(user => <option key={user._id} value={user.username}>{user.fullName}</option>)}
+                        {users.map(user => <option key={user._id} value={user.username}>{user.fullname}</option>)}
                     </select>
                     {/* <input
                         type="text"

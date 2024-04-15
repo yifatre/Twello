@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router"
 import { ClickAwayListener } from '@mui/base/ClickAwayListener'
-import { boardService } from "../../../services/board/board.service.local"
+import { boardService } from "../../../services/board/board.service"
 import { addBoard } from "../../../store/board/board.actions"
 import { check_icon, ellipsis_icon, new_board_demo, x_icon } from "../../UtilCmps/SVGs"
 import gradIce from "../../../assets/img/gradients/ice.svg"

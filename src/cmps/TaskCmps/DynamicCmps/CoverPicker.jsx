@@ -3,12 +3,12 @@ import { cover_preview, x_icon } from "../../UtilCmps/SVGs"
 
 import axios from "axios"
 import { utilService } from "../../../services/util.service"
-import { boardService } from "../../../services/board/board.service.local"
+import { boardService } from "../../../services/board/board.service"
 import { uploadService } from "../../../services/upload.service"
 
 
 
-export function CoverPicker({ setActionType, board, groupId, task, saveTask, updateSize }) {
+export function CoverPicker({ setActionType, groupId, task, saveTask, updateSize }) {
     const [coverToEdit, setCoverToEdit] = useState(task.style)
     const attach = useRef(null)
     const [search, setSearch] = useState('')

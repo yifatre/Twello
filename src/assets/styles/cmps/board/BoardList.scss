@@ -3,7 +3,7 @@
 
     &>h3 {
         font-size: rem(16px);
-
+        color: var(--ds-text);
         & span {
             @include svg-container(24px);
             margin-right: rem(8px);

@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router"
-import { archive_icon, clock_icon, copy_icon, cover_icon, edit_icon, label_icon, member_icon, move_icon, window_icon } from "../UtilCmps/SVGs"
+import { archive_icon, clock_icon, copy_icon, cover_icon, edit_icon, label_icon, member_icon, move_icon, trash_icon, window_icon } from "../UtilCmps/SVGs"
 import { TaskPreview } from "./TaskPreview"
 import { CHECKLIST, COVER, DATES, DynamicCmp, LABELS, MEMBERS } from "./DynamicCmps/DynamicCmp"
 import { useEffect, useLayoutEffect, useRef, useState } from "react"
@@ -66,8 +66,8 @@ export function TaskQuickEdit({ taskQuickEdit, groupId, removeTask, board, isLab
         setTaskQuickEdit(null)
     }
 
-    function onArchiveTask() {
-
+    function onDeleteTask() {
+        removeTask(taskQuickEdit.id, groupId)
     }
 
     return (
@@ -92,7 +92,8 @@ export function TaskQuickEdit({ taskQuickEdit, groupId, removeTask, board, isLab
                     <button className="qe-btn" onClick={(ev) => onSetActionType(ev, DATES)}>{clock_icon}Edit dates</button>
                     <button className="qe-btn" >{move_icon}Move</button>
                     <button className="qe-btn" >{copy_icon}Copy</button>
-                    <button className="qe-btn" onClick={onArchiveTask}>{archive_icon}Archive</button>
+                    {/* <button className="qe-btn" onClick={onArchiveTask}>{archive_icon}Archive</button> */}
+                    <button className="qe-btn" onClick={onDeleteTask}>{trash_icon}Delete</button>
 
                     <ClickAwayListener onClickAway={() => setActionType(null)}>
                         <div>

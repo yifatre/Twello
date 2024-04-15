@@ -6,7 +6,7 @@ import { Link, NavLink, useParams } from "react-router-dom"
 import { utilService } from "../../services/util.service"
 import { ClickAwayListener } from '@mui/base/ClickAwayListener'
 import { CREATE_BOARD, DynamicCmp } from "../TaskCmps/DynamicCmps/DynamicCmp"
-import { boardService } from "../../services/board/board.service.local"
+import { boardService } from "../../services/board/board.service"
 
 export function BoardSideBar({ setViewType }) {
     const [isOpen, setIsOpen] = useState(true)

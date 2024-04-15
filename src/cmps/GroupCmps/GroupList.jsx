@@ -7,53 +7,53 @@ import { useState } from "react"
 import { plus_icon } from "../UtilCmps/SVGs"
 import { DynEntityAdd } from "../TaskCmps/DynEntityAdd"
 
-export function GroupList({ board, saveGroup, removeGroup, saveTask, removeTask }) {
+export function GroupList({ board, saveGroup, removeGroup, saveTask, removeTask, onDragEnd }) {
     const [isLabelsExtended, setIsLabelExtended] = useState(false)
     const [isAddGroup, setIsAddGroup] = useState(false)
     const { groups } = board
 
-    function onDragStart(abc) {
-        // console.log('abc', abc)
-    }
+    // function onDragStart(abc) {
+    //     // console.log('abc', abc)
+    // }
 
-    function onDragUpdate(ev) {
-        // console.log('ev', ev)
-    }
+    // function onDragUpdate(ev) {
+    //     // console.log('ev', ev)
+    // }
 
-    function onDragEnd(result) {
-        // console.log('result', result)
-        if (!result.destination) {
-            return
-        }
+    // function onDragEnd(result) {
+    //     // console.log('result', result)
+    //     if (!result.destination) {
+    //         return
+    //     }
 
-        const startIdx = result.source.index
-        const endIdx = result.destination.index
+    //     const startIdx = result.source.index
+    //     const endIdx = result.destination.index
 
-        if (result.type === 'group') {
-            const [group] = groups.splice(startIdx, 1)
-            groups.splice(endIdx, 0, group)
-            updateBoardOptimistic({ ...board, groups })
-        }
+    //     if (result.type === 'group') {
+    //         const [group] = groups.splice(startIdx, 1)
+    //         groups.splice(endIdx, 0, group)
+    //         updateBoardOptimistic({ ...board, groups })
+    //     }
 
-        if (result.type === 'task') {
-            const groupStart = groups.find(group => group.id === result.source.droppableId)
-            const groupEnd = groups.find(group => group.id === result.destination.droppableId)
-            const [task] = groupStart.tasks.splice(startIdx, 1)
-            groupEnd.tasks.splice(endIdx, 0, task)
-            updateBoardOptimistic({ ...board, groups })
-        }
-    }
+    //     if (result.type === 'task') {
+    //         const groupStart = groups.find(group => group.id === result.source.droppableId)
+    //         const groupEnd = groups.find(group => group.id === result.destination.droppableId)
+    //         const [task] = groupStart.tasks.splice(startIdx, 1)
+    //         groupEnd.tasks.splice(endIdx, 0, task)
+    //         updateBoardOptimistic({ ...board, groups })
+    //     }
+    // }
 
     return (
         <DragDropContext
             // onBeforeCapture={onBeforeCapture}
             // onBeforeDragStart={onBeforeDragStart}
-            onDragStart={onDragStart}
-            onDragUpdate={onDragUpdate}
+            // onDragStart={onDragStart}
+            // onDragUpdate={onDragUpdate}
             onDragEnd={onDragEnd}
         >
             <Droppable droppableId={'groups'} direction='horizontal' type="group">
-                {(provided, snapshot, a, b) => (
+                {(provided, snapshot) => (
                     <ul className="clean-list flex group-list" {...provided.droppableProps} ref={provided.innerRef}>
                         {groups?.map((group, idx) =>
                             <Draggable key={group.id} draggableId={group.id} index={idx}>
@@ -72,6 +72,7 @@ export function GroupList({ board, saveGroup, removeGroup, saveTask, removeTask 
                                             isLabelsExtended={isLabelsExtended}
                                             setIsLabelExtended={setIsLabelExtended}
                                             saveGroup={saveGroup}
+                                            removeGroup={removeGroup}
                                             saveTask={saveTask}
                                             removeTask={removeTask}
                                             board={board} />

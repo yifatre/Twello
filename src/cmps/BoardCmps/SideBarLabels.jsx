@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { edit_icon, x_icon } from "../UtilCmps/SVGs"
 import { utilService } from "../../services/util.service"
-import { boardService } from "../../services/board/board.service.local"
+import { boardService } from "../../services/board/board.service"
 import { updateBoardOptimistic } from "../../store/board/board.actions"
 import { useSelector } from "react-redux"
 
