@@ -13,7 +13,8 @@ const pallet = ['green', 'yellow', 'orange', 'red', 'purple',
 
 // todo connect btn's and add the on update 
 
-export function LabelPicker({ setActionType, SaveLabel, deleteLabel, onUpdateBoard, labels, task, saveTask, groupId, updateSize }) {
+export function LabelPicker({ setActionType, SaveLabel, deleteLabel, onUpdateBoard, task, saveTask, groupId, updateSize }) {
+    const labels = useSelector(storeState => storeState.boardModule.board.labels)
     const [labelsFilter, setLabelsFilter] = useState(labels)
     const [value, setValue] = useState(8)
     const [toggle, setToggle] = useState(false)
@@ -25,8 +26,9 @@ export function LabelPicker({ setActionType, SaveLabel, deleteLabel, onUpdateBoa
 
     useEffect(() => {
         saveTask({ ...task, labelIds: labelsFromTask }, groupId)
+        setLabelsFilter(labels)
         console.log('im not good')
-    }, [labelsFromTask])
+    }, [labelsFromTask,labels])
 
     useEffect(() => {
         updateSize()
@@ -77,10 +79,10 @@ export function LabelPicker({ setActionType, SaveLabel, deleteLabel, onUpdateBoa
 
         newLabel.title = labelContent
         newLabel.color = currentColor
+        setLabelsFromTask(prevLabels => [...prevLabels, newLabel.id])
         onUpdateBoard(newLabel)
         toggleBtn()
 
-        setLabelsFromTask(prevLabels => [...prevLabels, newLabel.id])
     }
 
 
@@ -133,7 +135,7 @@ export function LabelPicker({ setActionType, SaveLabel, deleteLabel, onUpdateBoa
                         if (value > index) {
 
                             return <li key={label.id} className="flex align-center">
-                                <input defaultChecked={task.labelIds ? task.labelIds.find(id => label.id === id) : false} onChange={onCheckLabel} className="checkbox" type="checkBox" id={label.id} />
+                                <input defaultChecked={labelsFromTask ? labelsFromTask.find(id => label.id === id) : false} onChange={onCheckLabel} className="checkbox" type="checkBox" id={label.id} />
                                 <label htmlFor={label.id}> <div className={`label-picker ${label.color}`}> {label.title}</div></label>
                                 <button onClick={() => toggleBtn(label)} className="edit-label">{edit_icon}</button>
                             </li>

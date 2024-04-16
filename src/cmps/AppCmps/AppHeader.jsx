@@ -24,7 +24,7 @@ export function AppHeader() {
         setIsAddBoard(false)
     }
 
-    if(pathname ==='/login')return
+    if (pathname === '/login') return
 
     if (pathname === '/') return (
         <header className="app-header-home ">
@@ -47,7 +47,7 @@ export function AppHeader() {
         <header className="app-header flex justify-space-between">
             <div className='flex'>
 
-                <button className='main-nav-btn arrow-down more-btn'>{more_icon}</button>
+                <Link to='/'><button  className='main-nav-btn arrow-down more-btn'>{more_icon}</button></Link>
                 <div className='logo-inside-head flex align-center justify-center'>
                     <Link to='/board'>
                         <h3 className='flex'><span className='logo-svg'>{logo}</span></h3>
@@ -69,7 +69,7 @@ export function AppHeader() {
 
                     <button className='alarm-btn top-header-btn'>{bell_icon}</button>
                     <button className='info-btn top-header-btn'>{info_btn}</button>
-                    <button className='user-btn top-header-btn avatar-top-header'><AvatarPreview user={user}/></button>
+                    <button className='user-btn top-header-btn avatar-top-header'><AvatarPreview user={user} /></button>
                 </div>
             </div>
 

@@ -16,8 +16,7 @@ export const boardService = {
     getEmptyTask,
     getEmptyTodo,
     getActivity,
-    getEmptyLabel,
-    getGuestUser
+    getEmptyLabel
 }
 window.cs = boardService
 
@@ -54,7 +53,7 @@ function getEmptyBoard() {
         title: "",
         isStarred: false,
         archivedAt: null,
-        createdById: "u101",
+        createdById: getLoggedinUser._id,
         style: {
             background: null,
             backgroundImage: "https://images.unsplash.com/photo-1568607689150-17e625c1586e?q=80&w=3870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
@@ -144,10 +143,3 @@ function getEmptyLabel() {
     }
 }
 
-function getGuestUser() {
-    return {
-        _id: 'u107',
-        fullName: 'Guest',
-        imgUrl: 'https://res.cloudinary.com/dobrmrt0g/image/upload/v1713014057/png-clipart-orb-os-x-icon-man-s-profile-icon-inside-white-circle-thumbnail_simwdv.png'
-    }
-}
