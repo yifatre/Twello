@@ -1,6 +1,6 @@
 import { bars_icon, checked_icon, edit_icon, eye_icon, paperclip_icon, time_icon } from "../UtilCmps/SVGs"
 import { AvatarList } from "../UtilCmps/AvatarList"
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { TextareaAutosize as MinTextArea } from '@mui/base/TextareaAutosize'
 import { boardService } from "../../services/board/board.service"
 
@@ -8,6 +8,10 @@ export function TaskPreview({ task, groupId, removeTask, board, isLabelsExtended
     const [titleToEdit, setTitleToEdit] = useState(task.title)
     const [todosCount, setTodosCount] = useState(getTodoDoneCount())
     const refTemp = useRef(null)
+    
+    useEffect(()=>{
+        setTodosCount(getTodoDoneCount())
+    },[task.checklists])
 
     function getTodoDoneCount() {
         if (!task.checklists) return
@@ -19,6 +23,7 @@ export function TaskPreview({ task, groupId, removeTask, board, isLabelsExtended
                 if (todo.isDone) return _todosCount.done++
             })
         })
+        if (!_todosCount.total) _todosCount.total = 0
         return _todosCount
     }
 
@@ -101,8 +106,9 @@ export function TaskPreview({ task, groupId, removeTask, board, isLabelsExtended
 
                         {!!task.description && <span className="icon-container">{bars_icon}</span>}
                         {!!task.attachments && <div className="txt-and-icon icon-container">{paperclip_icon}{task.attachments.length}</div>}
+                        {/* {console.log(task.title, task.checklists)} */}
                         {!!task.checklists?.length && <div className={`txt-and-icon icon-container`}
-                            id={todosCount.done === todosCount.total ? 'done' : ''} >
+                            id={todosCount.done === todosCount.total && todosCount.total !== 0 ? 'done' : ''} >
                             {checked_icon}{`${todosCount.done}/${todosCount.total}`}
                         </div>}
                     </div>
