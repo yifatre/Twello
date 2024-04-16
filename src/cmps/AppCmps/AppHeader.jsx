@@ -24,7 +24,7 @@ export function AppHeader() {
         setIsAddBoard(false)
     }
 
-    if(pathname ==='/login')return
+    if (pathname === '/login') return
 
     if (pathname === '/') return (
         <header className="app-header-home ">
@@ -69,7 +69,7 @@ export function AppHeader() {
 
                     <button className='alarm-btn top-header-btn'>{bell_icon}</button>
                     <button className='info-btn top-header-btn'>{info_btn}</button>
-                    <button className='user-btn top-header-btn avatar-top-header'><AvatarPreview user={user}/></button>
+                    <button className='user-btn top-header-btn avatar-top-header'><AvatarPreview user={user} /></button>
                 </div>
             </div>
 

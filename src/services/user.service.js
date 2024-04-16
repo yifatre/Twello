@@ -12,12 +12,12 @@ export const userServiceHttp = {
     getById,
     getLoggedinUser,
     getEmptyCredentials,
-    getUsers
+    getUsers,
+    getGuestUser
 }
 
 
 async function login({ email, password }) {
-
     try {
         const user = await httpService.post(BASE_URL + 'login', { email, password })
         return _setLoggedinUser(user)
@@ -28,7 +28,6 @@ async function login({ email, password }) {
 }
 
 async function signup({ username, password, fullName, email }) {
-
     try {
         const userToSingUp = { username, password, fullName, email, isAdmin: false }
         const user = await httpService.post(BASE_URL + 'signup', userToSingUp)
@@ -56,7 +55,9 @@ function getById(userId) {
 }
 
 function getLoggedinUser() {
-    return JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN))
+    const loggedinUser = JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN))
+    if (loggedinUser) return loggedinUser
+    else return getGuestUser()
 }
 
 function _setLoggedinUser(user) {
@@ -75,10 +76,18 @@ function getEmptyCredentials() {
         username: '',
         password: '',
         fullName: ''
-      
+
     }
 }
 
 async function getUsers() {
     return await httpService.get(`user`)
+}
+
+function getGuestUser() {
+    return {
+        _id: 'u107',
+        fullName: 'Guest',
+        imgUrl: 'https://res.cloudinary.com/dobrmrt0g/image/upload/v1713014057/png-clipart-orb-os-x-icon-man-s-profile-icon-inside-white-circle-thumbnail_simwdv.png'
+    }
 }
