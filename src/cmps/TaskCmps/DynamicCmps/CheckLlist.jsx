@@ -36,6 +36,7 @@ export function CheckList({ setActionType, task, saveTask, groupId, group }) {
                 onChange={handleChange}
                 onFocus={(ev) => ev.target.select()}
                 autoFocus
+                onKeyDown={(ev) => { if (ev.key === 'Enter') onCreate() }}
             />
             <div className="flex ">
                 <button onClick={onCreate} className='create-btn Add-checklist-btn'>Add</button>

@@ -58,6 +58,7 @@ export function TaskQuickEdit({ taskQuickEdit, groupId, removeTask, board, isLab
     }
 
     function onClickAway() {
+        console.log('quick away');
         if (!actionType) setTaskQuickEdit(null)
     }
 
@@ -82,7 +83,9 @@ export function TaskQuickEdit({ taskQuickEdit, groupId, removeTask, board, isLab
                         board={board}
                         isLabelsExtended={isLabelsExtended}
                         setIsLabelExtended={setIsLabelExtended}
-                        setTaskQuickEdit={setTaskQuickEdit} />
+                        setTaskQuickEdit={setTaskQuickEdit} 
+                        isQuickEdit={true}
+                        />
                 </div>
                 <div className={`actions ${menuSideClass}`}>
                     <button className="qe-btn" onClick={onNavigate}>{window_icon}Open card</button>
@@ -95,11 +98,11 @@ export function TaskQuickEdit({ taskQuickEdit, groupId, removeTask, board, isLab
                     {/* <button className="qe-btn" onClick={onArchiveTask}>{archive_icon}Archive</button> */}
                     <button className="qe-btn" onClick={onDeleteTask}>{trash_icon}Delete</button>
 
-                    <ClickAwayListener onClickAway={() => setActionType(null)}>
+                    {actionType && <ClickAwayListener onClickAway={() => setActionType(null)}>
                         <div>
-                            {actionType && <DynamicCmp setActionType={setActionType} groupId={groupId} cmp={actionType} task={taskQuickEdit} refTrigger={refActionTrigger} offset={{ x: 0, y: refActionTrigger.current.getBoundingClientRect().height + 4 }} board={board} saveTask={onSaveTask} />}
+                            <DynamicCmp setActionType={setActionType} groupId={groupId} cmp={actionType} task={taskQuickEdit} refTrigger={refActionTrigger} offset={{ x: 0, y: refActionTrigger.current.getBoundingClientRect().height + 4 }} board={board} saveTask={onSaveTask} />
                         </div>
-                    </ClickAwayListener>
+                    </ClickAwayListener>}
                 </div>
             </div>
         </div>
