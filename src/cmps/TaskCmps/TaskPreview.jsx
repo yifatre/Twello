@@ -85,7 +85,7 @@ export function TaskPreview({ task, groupId, removeTask, board, isLabelsExtended
             }}
             ref={refTemp}
         >
-            {(style?.backgroundImage || style?.backgroundColor) && <div className="img-container" style={{ backgroundColor: style.backgroundColor }}> <img src={task.style.backgroundImage} /></div>}
+            {(style?.backgroundImage || style?.backgroundColor) && <div className={`img-container ${style.backgroundColor}`}> <img src={task.style.backgroundImage} /></div>}
             <div className="content">
                 {!!task.labelIds?.length &&
                     <div className='labels'>

@@ -6,7 +6,7 @@ import { useEffect, useLayoutEffect, useRef, useState } from "react"
 import { ClickAwayListener } from '@mui/base/ClickAwayListener'
 import { utilService } from "../../services/util.service"
 
-export function TaskQuickEdit({ taskQuickEdit, groupId, removeTask, board, isLabelsExtended, setIsLabelExtended, setTaskQuickEdit, saveTask, refTrigger }) {
+export function TaskQuickEdit({ taskQuickEdit, groupId, removeTask, board, isLabelsExtended, setIsLabelExtended, setTaskQuickEdit, saveTask, refTrigger, group }) {
     const [actionType, setActionType] = useState(null)
     const navigate = useNavigate()
     const refActionTrigger = useRef(null)
@@ -100,7 +100,7 @@ export function TaskQuickEdit({ taskQuickEdit, groupId, removeTask, board, isLab
 
                     {actionType && <ClickAwayListener onClickAway={() => setActionType(null)}>
                         <div>
-                            <DynamicCmp setActionType={setActionType} groupId={groupId} cmp={actionType} task={taskQuickEdit} refTrigger={refActionTrigger} offset={{ x: 0, y: refActionTrigger.current.getBoundingClientRect().height + 4 }} board={board} saveTask={onSaveTask} />
+                            <DynamicCmp setActionType={setActionType} group={group} groupId={groupId} cmp={actionType} task={taskQuickEdit} refTrigger={refActionTrigger} offset={{ x: 0, y: refActionTrigger.current.getBoundingClientRect().height + 4 }} board={board} saveTask={onSaveTask} />
                         </div>
                     </ClickAwayListener>}
                 </div>
