@@ -213,3 +213,9 @@ export const cover_preview = <svg id="Layer_1" data-name="Layer 1" version="1.1"
     <rect x="27" y="53" width="16" height="6" rx="1" ry="1" />
     <circle cx="127" cy="55" r="5" />
 </svg>
+
+export const loader = <svg className="loader" width="60" height="60">
+    <line class="line animated" x1="14" y1="10" x2="14" y2="50" />
+    <line class="line animated line2" x1="30" y1="10" x2="30" y2="50" />
+    <line class="line animated line3" x1="46" y1="10" x2="46" y2="50" />
+</svg>

@@ -21,7 +21,7 @@ export function BoardPreview({ board }) {
     }
 
     return (
-        <Link className='board-preview' to={`/board/${board._id}`}>
+        // <Link className='board-preview' to={`/board/${board._id}`}>
             <article className='' style={{ backgroundImage: `url(${board.style?.backgroundImage})` }}>
 
                 <div className='board-preview-fade'>
@@ -29,6 +29,6 @@ export function BoardPreview({ board }) {
                 <h3>{board.title}</h3>
                 <span onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} className={`${board.isStarred ? 'starred' : ''}`} onClick={(ev) => onToggleStar(ev)}>{(board.isStarred && !isHovered) ? star : star_outline}</span>
             </article>
-        </Link>
+        // </Link>
     )
 }
