@@ -88,7 +88,7 @@ export function TaskDetails() {
                     <section className="title">
                         <div className="title-txt">
                             <h2 hidden>{task.title}</h2>
-                            <textarea name="title" id="title" value={titleToEdit} onChange={handleChange} onKeyDown={titleOnKeyDown}></textarea>
+                            <textarea name="title" id="title" value={titleToEdit} onChange={handleChange} onKeyDown={titleOnKeyDown} onBlur={() => saveTask({ ...task, title: titleToEdit }, groupId)}></textarea>
                         </div>
                         <div className="list-txt">
                             <p>in list <a href="#">{'list name'}</a></p>
