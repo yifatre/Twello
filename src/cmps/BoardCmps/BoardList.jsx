@@ -14,7 +14,6 @@ import { Loader } from "../UtilCmps/Loader"
 
 export function BoardList({ boards }) {
     const [isAddBoard, setIsAddBoard] = useState(false)
-    const isLoading = useSelector(storeState => storeState.systemModule.isLoading)
     const refTrigger = useRef(null)
     const navigate = useNavigate()
 
@@ -43,7 +42,6 @@ export function BoardList({ boards }) {
     }
 
     return (<>
-        {isLoading && <Loader />}
         {boards.filter(board => board.isStarred).length > 0 && <section className="board-list-container">
             <h3 className="flex align-center"><span>{star_outline}</span> Starred boards</h3>
             <ul className="board-list flex justify-start clean-list">
