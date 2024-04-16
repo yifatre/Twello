@@ -75,11 +75,10 @@ function getEmptyCredentials() {
         username: '',
         password: '',
         fullName: ''
+      
     }
 }
 
 async function getUsers() {
     return await httpService.get(`user`)
 }
-
-
