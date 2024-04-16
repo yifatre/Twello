@@ -1,4 +1,4 @@
-.task-details-container{
+.task-details-container {
     left: 0;
     position: absolute;
     top: 0;
@@ -41,6 +41,26 @@
 
     color: #172b4d;
     padding-block-end: rem(16px);
+
+    @include for-mobile-layout {
+        grid-template-areas:
+            "cover          cover"
+            "title-icon     title"
+            "actions        actions"
+            "data           data"
+            "desc-icon      desc"
+            "attach-icon    attach"
+            "checklist      checklist"
+            "activity-icon  activity-heading"
+            "activity       activity"
+        ;
+
+        & section {
+            padding-inline-end: rem(16px);
+
+        }
+    }
+
 
     .details-close-btn {
         position: absolute;
@@ -206,6 +226,10 @@
         gap: rem(16px);
         margin-bottom: 3px;
         padding-block: rem(8px);
+
+        @include for-mobile-layout {
+            margin-inline: rem(20px);
+        }
 
         h3 {
             margin-bottom: rem(4px);
@@ -506,6 +530,7 @@
 
         & .activities-container {
             margin-right: 0;
+
             & .activity-container {
                 grid-template-columns: max-content 1fr;
                 align-items: center;
@@ -525,6 +550,15 @@
         padding-inline: rem(8px) rem(16px);
         position: relative;
 
+        @include for-mobile-layout {
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            column-gap: rem(8px);
+            padding-inline-end: rem(8px);
+            // justify-content: space-between;
+        }
+
         h3 {
             margin-bottom: rem(4px);
             color: var(--ds-text-subtle, #44546f);
@@ -532,6 +566,10 @@
             font-weight: 600;
             line-height: 16px;
             line-height: 20px;
+
+            @include for-mobile-layout {
+                display: none;
+            }
         }
 
         &>a {
@@ -544,8 +582,14 @@
             padding: rem(6px) rem(7px);
             margin-bottom: rem(8px);
 
+            @include for-mobile-layout {
+                flex-grow: 1;
+                justify-content: center;
+            }
+
             span {
-                @include svg-container
+                @include svg-container;
+
             }
 
             &:hover {
