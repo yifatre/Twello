@@ -81,7 +81,7 @@ export function CreateBoard({ setIsAddBoard }) {
             <div className="title-input">
                 <label htmlFor="title">Board title<span style={{ color: 'red' }}>*</span></label>
                 <ClickAwayListener onClickAway={() => !boardToAdd.title ? setReqClass('red') : ''}>
-                    <input className={reqClass} type="text" name="title" id="title" value={boardToAdd.title} onChange={handleChange} onKeyDown={(ev) => { if (ev.code === "Enter") onCreateBoard(ev) }} autoFocus />
+                    <input className={reqClass} type="text" name="title" id="title" value={boardToAdd.title} onChange={handleChange} onKeyDown={(ev) => { if (ev.key === "Enter") onCreateBoard(ev) }} autoFocus />
                 </ClickAwayListener>
             </div>
             {!boardToAdd.title && <div className="req flex align-center"><span>👋</span><p> Board title is required</p></div>}

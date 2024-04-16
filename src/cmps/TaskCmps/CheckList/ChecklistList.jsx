@@ -97,7 +97,7 @@ export function ChecklistList({ checklist, onRemoveList, onUpdateList, group, ta
                             onFocus={(ev) => ev.target.select()}
                             onChange={handleTitleChange}
                             onKeyDown={(ev) => {
-                                if (ev.code === "Enter") handleClickAway()
+                                if (ev.key === "Enter") handleClickAway()
                             }}
                         ></MinTextArea>
                     </ClickAwayListener>

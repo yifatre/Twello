@@ -43,7 +43,7 @@ export function DynEntityAdd({ setIsAddMode, saveEntity, groupId, type = 'TASK' 
                     className='entity-preview'
                     value={entity.title}
                     onChange={handleChange}
-                    onKeyDown={(ev) => { if (ev.code === 'Enter') onSaveEntity(ev) }}
+                    onKeyDown={(ev) => { if (ev.key === 'Enter') onSaveEntity(ev) }}
                     id="title"
                     placeholder={type === 'TASK' ? 'Enter a title for this card…' : 'Enter list title...'} autoFocus>
                 </MinTextArea>

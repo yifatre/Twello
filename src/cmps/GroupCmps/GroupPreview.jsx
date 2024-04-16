@@ -48,7 +48,7 @@ export function GroupPreview({ group, saveGroup, board, isLabelsExtended, setIsL
                 {!isEditTitle && <h2 className="group-title" onClick={() => setIsEditTitle(true)}>{group.title}</h2>}
                 {isEditTitle &&
                     <ClickAwayListener onClickAway={handleClickAway}>
-                        <MinTextArea className="title-edit" value={titleToEdit} autoFocus={true} onFocus={(ev) => ev.target.select()} onChange={handleHeaderChange} onKeyDown={(ev) => { if (ev.code === 'Enter') handleClickAway() }} ></MinTextArea>
+                        <MinTextArea className="title-edit" value={titleToEdit} autoFocus={true} onFocus={(ev) => ev.target.select()} onChange={handleHeaderChange} onKeyDown={(ev) => { if (ev.key === 'Enter') handleClickAway() }} ></MinTextArea>
                     </ClickAwayListener>}
                 <button className="collapse g-btn" onClick={() => setIsExtended(false)}>{collapse_icon}</button>
                 <button className="options g-btn" onClick={onOpenActionsMenu} ref={refTrigger}>{ellipsis_icon}</button>

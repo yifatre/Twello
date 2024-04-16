@@ -57,11 +57,11 @@ export function TaskDetails() {
     }
 
     function titleOnKeyDown(ev) {
-        if (ev.code === 'Enter') {
+        if (ev.key === 'Enter') {
             saveTask({ ...task, title: titleToEdit }, groupId)
             ev.target.blur()
         }
-        else if (ev.code === 'Escape') {
+        else if (ev.key === 'Escape') {
             setTitleToEdit(task.title)
             ev.target.blur()
         }

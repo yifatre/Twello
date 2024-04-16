@@ -47,7 +47,7 @@ export function TodoEdit({ todo, saveTodo, setIsAddTodo, isFirst }) {
                         onFocus={(ev) => ev.target.select()}
                         onChange={handleTitleChange}
                         onKeyDown={(ev) => {
-                            if (ev.code === "Enter") onSaveTodo(ev)
+                            if (ev.key === "Enter") onSaveTodo(ev)
                         }}
                     ></MinTextArea>
 

@@ -105,7 +105,7 @@ export function BoardTable({ saveGroup, removeGroup, saveTask, removeTask }) {
                                 {(isAdd && isAdd.groupIdx === groupIdx && isAdd.taskIdx === taskIdx) &&
                                     <ClickAwayListener onClickAway={() => setIsAdd(false)}>
                                         <div className="tt-add table-row">
-                                            <input type="text" className="title-input" placeholder="Add new card..." autoFocus onChange={handleTitleChange} onKeyDown={(ev) => { if (ev.code === 'Enter') onAddNewTask(group, taskIdx) }} />
+                                            <input type="text" className="title-input" placeholder="Add new card..." autoFocus onChange={handleTitleChange} onKeyDown={(ev) => { if (ev.key === 'Enter') onAddNewTask(group, taskIdx) }} />
                                             <div className="group-title cell">{group.title}<span className="td-fade"></span><button className="arrow-down">{arrow_down}</button></div>
                                         </div>
                                     </ClickAwayListener>
