@@ -65,7 +65,12 @@ export function TaskDetails() {
             setTitleToEdit(task.title)
             ev.target.blur()
         }
+    }
 
+    function onDeleteAttachment(attachIdx) {
+        const activity = boardService.getActivity(`detached ${task.attach[idx]} from ${task.title}`, 0, board.groups.find(group => group.id === groupId), task)
+        const attaches = task.attach.toSpliced(attachIdx, 1)
+        saveTask({ ...task, attach: attaches }, groupId, activity)
     }
 
     const due = task.date?.isDone ? 'Complete' : task.date?.dueDate - Date.now() < 0 ? 'Overdue' : task.date?.dueDate - Date.now() <= 24 * 60 * 60 * 1000 ? 'Due soon' : ''
@@ -132,11 +137,10 @@ export function TaskDetails() {
                             <section className="attachments">
                                 <h3>Attachments</h3>
                                 {task.attach.map((attach, idx) => {
-                                    const imgTypes = ['png', 'jpg', 'gif', 'svg']
+                                    const imgTypes = ['png', 'jpg', 'gif']
                                     let fileName = attach.split('/')
                                     const fileType = attach.slice(attach.lastIndexOf('.') + 1, attach.length)
                                     return <div className="attach-details" key={idx}>
-                                        {/* fl_attachment */}
                                         <div className="attach_img" style={{ backgroundImage: `url(${attach})` }}>
                                             {!imgTypes.find(type => type === fileType.toLowerCase()) && fileType}
                                         </div>
@@ -144,9 +148,7 @@ export function TaskDetails() {
                                             <a className="fileName" target="_blank" href={attach} download>{fileName[fileName.length - 1]} ↗</a>
                                         </div>
                                         <div className="download">
-                                            <a className="download" href={attach} target="_blank" download={fileName[fileName.length - 1]}>Download</a>
-                                            {/* {cloudinary.v2.api.resources_by_asset_ids(["e12345b5c456c8901bbb0efc00c0fcf", "f12345a5c789c1234bbb0efc00c0f12"],
-                                            function(error, result) {console.log(result, error); })} */}
+                                            <a className="download" href="#" onClick={() => onDeleteAttachment(idx)}>Delete</a>
                                         </div>
 
                                     </div>
@@ -174,9 +176,9 @@ export function TaskDetails() {
                         <a className="flex align-center" href="#" onClick={(ev) => onSetActionType(ev, ATTACHMENT)}>{paperclip_icon}Attachment</a>
                         {/* <a className="flex align-center" href="#">{location_icon}Location</a> */}
                         {!(task.style?.backgroundColor || task.style?.backgroundImage) && <a className="flex align-center" href="#" onClick={(ev) => onSetActionType(ev, COVER)}>{cover_icon}Cover</a>}
-                        {(actionType && refTrigger.current !== null) &&<ClickAwayListener onClickAway={() => { setActionType(null); refTrigger.current = null }}>
+                        {(actionType && refTrigger.current !== null) && <ClickAwayListener onClickAway={() => { setActionType(null); refTrigger.current = null }}>
                             <div>
-                                 <DynamicCmp setActionType={setActionType} groupId={groupId} cmp={actionType} task={task} board={board} saveTask={saveTask} refTrigger={refTrigger} offset={{ x: 0, y: refTrigger.current.getBoundingClientRect().height + 8 }} />
+                                <DynamicCmp setActionType={setActionType} groupId={groupId} cmp={actionType} task={task} board={board} saveTask={saveTask} refTrigger={refTrigger} offset={{ x: 0, y: refTrigger.current.getBoundingClientRect().height + 8 }} />
                             </div>
                         </ClickAwayListener>}
                     </section>
