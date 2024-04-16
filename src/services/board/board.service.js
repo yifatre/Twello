@@ -53,7 +53,7 @@ function getEmptyBoard() {
         title: "",
         isStarred: false,
         archivedAt: null,
-        createdById: getLoggedinUser._id,
+        createdById: userServiceHttp.getLoggedinUser()._id,
         style: {
             background: null,
             backgroundImage: "https://images.unsplash.com/photo-1568607689150-17e625c1586e?q=80&w=3870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
