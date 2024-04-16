@@ -13,13 +13,13 @@ import { boardService } from "../../services/board/board.service"
 import { Activity } from "../BoardCmps/Activity"
 
 export function TaskDetails() {
+    const activities = useSelector(storeState => storeState.boardModule.board.activities)
     const { boardId, groupId, taskId } = useParams()
     const [saveTask] = useOutletContext()
     const board = useSelector(storeState => storeState.boardModule.board)
     const [actionType, setActionType] = useState(null)
     const [isDescriptionEdit, setIsDescriptionEdit] = useState(false)
     const [coverColor, setCoverColor] = useState(false)
-
     const [task, setTask] = useState(board.groups.find(group => group.id === groupId).tasks.find(task => task.id === taskId))
     const [titleToEdit, setTitleToEdit] = useState(task.title)
     const navigate = useNavigate()
@@ -28,7 +28,7 @@ export function TaskDetails() {
 
     useEffect(() => {
         setTask(board.groups.find(group => group.id === groupId).tasks.find(task => task.id === taskId))
-    }, [board])
+    }, [board,activities])
 
     function onEditDescription(ev) {
         ev.preventDefault()

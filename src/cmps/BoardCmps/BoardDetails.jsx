@@ -16,10 +16,16 @@ export function BoardDetails() {
     const [rsbIsOpen, setRsbIsOpen] = useState(false)
     const [viewType, setViewType] = useState('board')
     const board = useSelector(storeState => storeState.boardModule.board)
+    const [boardFilter, setBoardFilter] = useState(board)
 
-    useEffect(() => {
-        getBoard()
-    }, [boardId])
+
+        useEffect(() => {
+            getBoard()
+        }, [boardId])
+
+        useEffect(() => {
+            setBoardFilter(board)
+        }, [board])
 
     async function getBoard() {
         try {
@@ -85,7 +91,7 @@ export function BoardDetails() {
             return
         }
 
-        const {groups} = board
+        const { groups } = board
 
         const startIdx = result.source.index
         const endIdx = result.destination.index
@@ -108,10 +114,10 @@ export function BoardDetails() {
     if (!board) return <div>loading</div>
     return (<>
         <section className={`board-details ${rsbIsOpen ? 'rsb-open' : ''}`} style={{ backgroundImage: `url(${board.style?.backgroundImage})` }}>
-            <BoardHeader board={board} setRsbIsOpen={setRsbIsOpen} setViewType={setViewType} viewType={viewType} />
+            <BoardHeader setBoardFilter={setBoardFilter} board={board} setRsbIsOpen={setRsbIsOpen} setViewType={setViewType} viewType={viewType} />
             <BoardSideBar setViewType={setViewType} />
-            {viewType === 'board' && <GroupList board={board} saveGroup={saveGroup} removeGroup={removeGroup} saveTask={saveTask} removeTask={removeTask} onDragEnd={onDragEnd}/>}
-            {viewType === 'table' && <BoardTable board={board} saveGroup={saveGroup} removeGroup={removeGroup} saveTask={saveTask} removeTask={removeTask} onDragEnd={onDragEnd}/>}
+            {viewType === 'board' && <GroupList boardFilter={boardFilter} board={board} saveGroup={saveGroup} removeGroup={removeGroup} saveTask={saveTask} removeTask={removeTask} onDragEnd={onDragEnd} />}
+            {viewType === 'table' && <BoardTable board={board} saveGroup={saveGroup} removeGroup={removeGroup} saveTask={saveTask} removeTask={removeTask} onDragEnd={onDragEnd} />}
             <div className="board-fade"></div>
             <BoardRightSideBar setRsbIsOpen={setRsbIsOpen} />
         </section>

@@ -10,6 +10,7 @@ import { LabelPicker } from "./LabelPicker"
 import { MemberPicker } from "./MemberPicker"
 import { utilService } from "../../../services/util.service"
 import { CopyMove } from "./CopyMove"
+import { AddBoardUsers } from "./AddBoardUsers"
 
 export const LABELS = 'LABELS'
 export const MEMBERS = 'MEMBERS'
@@ -20,6 +21,7 @@ export const CREATE_BOARD = 'CREATE_BOARD'
 export const GROUP_ACTIONS = 'GROUP_ACTIONS'
 export const CHECKLIST = 'CHECKLIST'
 export const COPYMOVE = 'COPYMOVE'
+export const ADD_BOARD_USER = 'ADD_BOARD_USER'
 
 
 export function DynamicCmp({ setActionType, groupId, cmp, board, task, setIsAddBoard, saveTask, group, saveGroup, removeGroup, setIsActionsOpen, refTrigger, offset = { x: 0, y: 0 } }) {
@@ -104,6 +106,14 @@ export function DynamicCmp({ setActionType, groupId, cmp, board, task, setIsAddB
                     setActionType={setActionType}
                     groupId={groupId}
                     task={task} saveTask={saveTask} />)
+                break
+                
+            case ADD_BOARD_USER:
+                setCmpType(<AddBoardUsers
+                    setActionType={setActionType}
+                    members={board.members}
+                    board={board}
+                     />)
                 break
         }
     }, [cmp])

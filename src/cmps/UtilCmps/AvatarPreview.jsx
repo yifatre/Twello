@@ -1,8 +1,11 @@
 import { utilService } from "../../services/util.service"
 
 export function AvatarPreview({ user }) {
-  
-    const initials = utilService.getInitials(user.fullName)
+    console.log("user", user)
+    let initials
+    if (!user.imgUrl) {
+        initials = utilService.getInitials((user.fullName?user.fullName:user.fullname))
+    }
     return <div className="avatar">
         {user.imgUrl
             ? <img src={user.imgUrl} />

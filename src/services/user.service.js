@@ -60,7 +60,11 @@ function getLoggedinUser() {
 }
 
 function _setLoggedinUser(user) {
-    const userToSave = { _id: user._id, fullName: user.fullName, score: user.score, isAdmin: user.isAdmin || '' }
+    console.log("user", user)
+    const userToSave = {
+        _id: user._id, fullName: user.fullName, imgUrl: user.
+            imgUrl, isAdmin: user.isAdmin || ''
+    }
     sessionStorage.setItem(STORAGE_KEY_LOGGEDIN, JSON.stringify(userToSave))
     return userToSave
 }
@@ -71,11 +75,10 @@ function getEmptyCredentials() {
         username: '',
         password: '',
         fullName: ''
+      
     }
 }
 
-function getUsers() {
-    return httpService.get(`user`)
+async function getUsers() {
+    return await httpService.get(`user`)
 }
-
-
