@@ -28,7 +28,6 @@ async function login({ email, password }) {
 }
 
 async function signup({ username, password, fullName, email }) {
-async function signup({ username, password, fullName, email }) {
 
     try {
         const userToSingUp = { username, password, fullName, email, isAdmin: false }
@@ -75,7 +74,6 @@ function getEmptyCredentials() {
     return {
         username: '',
         password: '',
-        fullName: ''
         fullName: ''
     }
 }

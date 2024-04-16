@@ -99,4 +99,38 @@
 
         }
     }
+    & .input-container {
+        position: relative;
+
+        & .svg-search {
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            color: #fff;
+            
+
+            & span {
+                @include svg-container(16px, 16px)
+            }
+        }
+
+        & .search-input {
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            padding: 0 rem(12px) 0 rem(30px);
+            z-index: 1;
+            margin: 0 4px 0 4px;
+            color: #fff;
+
+            &::placeholder {
+                color: #fff;
+            }
+
+            &:hover {
+                background-color: rgba(255, 255, 255, 0.4);
+
+            }
+        }
+    }
 }

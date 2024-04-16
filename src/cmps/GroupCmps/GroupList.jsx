@@ -7,7 +7,7 @@ import { useState } from "react"
 import { plus_icon } from "../UtilCmps/SVGs"
 import { DynEntityAdd } from "../TaskCmps/DynEntityAdd"
 
-export function GroupList({ board, saveGroup, removeGroup, saveTask, removeTask, onDragEnd }) {
+export function GroupList({ boardFilter, board, saveGroup, removeGroup, saveTask, removeTask, onDragEnd }) {
     const [isLabelsExtended, setIsLabelExtended] = useState(false)
     const [isAddGroup, setIsAddGroup] = useState(false)
     const { groups } = board
@@ -64,9 +64,10 @@ export function GroupList({ board, saveGroup, removeGroup, saveTask, removeTask,
                                         ref={provided.innerRef}
                                         {...provided.draggableProps}
                                         {...provided.dragHandleProps}
-                                        style={snapshot.isDragging ? { ...provided.draggableProps?.style, opacity: 0.6, rotate: '4deg',cursor: 'pointer' } : { ...provided.draggableProps?.style, cursor: 'pointer' }}
+                                        style={snapshot.isDragging ? { ...provided.draggableProps?.style, opacity: 0.6, rotate: '4deg', cursor: 'pointer' } : { ...provided.draggableProps?.style, cursor: 'pointer' }}
                                     >
                                         <GroupPreview
+                                            boardFilter={boardFilter}
                                             provided={provided}
                                             group={group}
                                             isLabelsExtended={isLabelsExtended}

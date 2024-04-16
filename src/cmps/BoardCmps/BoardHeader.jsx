@@ -2,12 +2,14 @@ import { useRef, useState } from "react"
 import { userDemoData } from "../../services/demo-data"
 import { updateBoardOptimistic } from "../../store/board/board.actions"
 import { AvatarList } from "../UtilCmps/AvatarList"
-import { arrow_down, board_icon, ellipsis_icon, filter_icon, flash_icon, group_icon, rocket_icon, share_icon, star, star_outline, table_icon } from "../UtilCmps/SVGs"
+import { arrow_down, board_icon, ellipsis_icon, filter_icon, flash_icon, group_icon, rocket_icon, search_icon, share_icon, star, star_outline, table_icon } from "../UtilCmps/SVGs"
 import { ClickAwayListener } from "@mui/base"
 import { ADD_BOARD_USER, CREATE_BOARD, DynamicCmp } from "../TaskCmps/DynamicCmps/DynamicCmp"
 
-export function BoardHeader({ board, setRsbIsOpen, setViewType, viewType }) {
+export function BoardHeader({ setBoardFilter, board, setRsbIsOpen, setViewType, viewType }) {
     const [isAddMember, setIsAddMember] = useState(false)
+    // Filter
+    const [Filter, setFilter] = useState(false)
     const refTrigger = useRef(null)
     async function onToggleStar(ev) {
         ev.stopPropagation()
@@ -18,6 +20,12 @@ export function BoardHeader({ board, setRsbIsOpen, setViewType, viewType }) {
         catch (err) {
             console.error(err)
         }
+    }
+
+    function handleChange(ev) {
+        let { value, name: field, type } = ev.target
+        if (type === 'number') value = +value
+        setBoardFilter(value)
     }
 
     function onAddMember(ev) {
@@ -42,7 +50,12 @@ export function BoardHeader({ board, setRsbIsOpen, setViewType, viewType }) {
             <span></span>
             {/* <button className="btn2">{rocket_icon}Power-Ups</button> */}
             {/* <button className="btn2">{flash_icon}Automation</button> */}
-            <button className="btn2">{filter_icon}Filters</button>
+            {!Filter && <button onClick={() => setFilter(true)} className="btn2">{filter_icon}Filters</button>}
+            {Filter &&
+                <div className='flex justify-center input-container'>
+                    <span className='svg-search'>{search_icon}</span>
+                    <input onChange={handleChange} placeholder='Search' className='search-input' type="text" />
+                </div>}
             <span className="sep"></span>
             <div className="users-avatars"><AvatarList users={userDemoData} maxUsers={5} /></div>
             <button className="btn2 board-share active" onClick={onAddMember} ref={refTrigger}>{share_icon}Share</button>
