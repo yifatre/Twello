@@ -79,7 +79,7 @@ export function DynamicCmp({ setActionType, groupId, cmp, board, task, setIsAddB
                 setCmpType(<CoverPicker
                     updateSize={() => setWindowSize({ width: window.innerWidth, height: window.innerHeight })}
                     setActionType={setActionType}
-                    groupId={groupId}
+                    groupId={groupId} group={group}
                     task={task} saveTask={saveTask} />)
                 break
 

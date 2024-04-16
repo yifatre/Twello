@@ -4,8 +4,13 @@ import { uploadService } from "../../../services/upload.service"
 import { boardService } from "../../../services/board/board.service"
 
 
-export function AttachmentPicker({ group,setActionType, groupId, task, saveTask }) {
-    const regex = new RegExp('image', 'i')
+export function AttachmentPicker({ group, setActionType, groupId, task, saveTask }) {
+    const [imgData, setImgData] = useState({
+        imgUrl: null,
+        height: 500,
+        width: 500,
+    })
+
     const [isUploading, setIsUploading] = useState(false)
 
     useEffect(() => {
@@ -19,11 +24,11 @@ export function AttachmentPicker({ group,setActionType, groupId, task, saveTask 
         if (!task.attach) task.attach = []
         task.attach.push(secure_url)
         //todo add the member !!! now its 0 for development
-        const activity =boardService.getActivity(`attached ${ev.target.files[0].name}to${task.title}`,0,group,task)
+        const activity =boardService.getActivity(`attached ${ev.target.files[0].name} to ${task.title}`,0,group,task)
         
         if(secure_url.includes('image')){
             if(!task.style.backgroundImage){
-                saveTask({ ...task, style: { backgroundImage: secure_url } }, groupId,activity)
+                saveTask({ ...task, style: { ...task.style, backgroundImage: secure_url } }, groupId, activity)
             }
             
         }

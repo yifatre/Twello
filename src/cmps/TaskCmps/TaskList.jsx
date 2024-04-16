@@ -5,7 +5,7 @@ import { TaskQuickEdit } from './TaskQuickEdit'
 import { useRef, useState } from 'react'
 import { useNavigate } from 'react-router'
 
-export function TaskList({ boardFilter, group, saveTask, removeTask, board, isLabelsExtended, setIsLabelExtended, isAddMode, setIsAddMode }) {
+export function TaskList({boardFilter, group, saveTask, removeTask, board, isLabelsExtended, setIsLabelExtended, isAddMode, setIsAddMode }) {
     const [taskQuickEdit, setTaskQuickEdit] = useState(false)
     const refTrigger = useRef(null)
     const navigate = useNavigate()
