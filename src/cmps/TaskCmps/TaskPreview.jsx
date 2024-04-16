@@ -1,13 +1,17 @@
 import { bars_icon, checked_icon, edit_icon, eye_icon, paperclip_icon, time_icon } from "../UtilCmps/SVGs"
 import { AvatarList } from "../UtilCmps/AvatarList"
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { TextareaAutosize as MinTextArea } from '@mui/base/TextareaAutosize'
 import { boardService } from "../../services/board/board.service"
 
-export function TaskPreview({ task, groupId, removeTask, board, isLabelsExtended, setIsLabelExtended, setTaskQuickEdit, saveTask, refTrigger }) {
+export function TaskPreview({ task, groupId, removeTask, board, isLabelsExtended, setIsLabelExtended, setTaskQuickEdit, saveTask, refTrigger, isQuickEdit }) {
     const [titleToEdit, setTitleToEdit] = useState(task.title)
     const [todosCount, setTodosCount] = useState(getTodoDoneCount())
     const refTemp = useRef(null)
+
+    useEffect(() => {
+        setTodosCount(getTodoDoneCount())
+    }, [task.checklists])
 
     function getTodoDoneCount() {
         if (!task.checklists) return
@@ -19,6 +23,7 @@ export function TaskPreview({ task, groupId, removeTask, board, isLabelsExtended
                 if (todo.isDone) return _todosCount.done++
             })
         })
+        if (!_todosCount.total) _todosCount.total = 0
         return _todosCount
     }
 
@@ -68,6 +73,8 @@ export function TaskPreview({ task, groupId, removeTask, board, isLabelsExtended
         ev.stopPropagation()
         let activity = boardService.getActivity(`mark the due date on ${task.title} ${task.date?.isDone ? 'incomplete' : 'complete'}`, 0, board.groups.find(group => group.id === groupId), task)
         saveTask({ ...task, date: { ...task.date, isDone: !task.date.isDone } }, groupId, activity)
+        if (isQuickEdit) setTaskQuickEdit({ ...task, date: { ...task.date, isDone: !task.date.isDone } })
+
     }
 
     const { title, style } = task
@@ -87,7 +94,7 @@ export function TaskPreview({ task, groupId, removeTask, board, isLabelsExtended
 
                 <i className="edit-icon" onClick={onOpenQuickEdit}>{edit_icon}</i>
                 <h4 className="task-preview-title">{title}</h4>
-                <MinTextArea className="task-preview-title edit" value={titleToEdit} autoFocus={true} onFocus={(ev) => ev.target.select()} onChange={handleTitleChange} onKeyDown={(ev) => { if (ev.key === 'Enter') handleClickAway() }} ></MinTextArea>
+                <MinTextArea className="task-preview-title edit" value={titleToEdit} autoFocus={true} onFocus={(ev) => ev.target.select()} onChange={handleTitleChange} onKeyDown={(ev) => { if (ev.key === 'Enter') onUpdateTitle() }} onClick={(ev) => ev.stopPropagation()}></MinTextArea>
                 <div className="task-info-container">
                     <div className="task-info">
                         {/* <span className="icon-container">{eye_icon}</span> */}
@@ -101,8 +108,9 @@ export function TaskPreview({ task, groupId, removeTask, board, isLabelsExtended
 
                         {!!task.description && <span className="icon-container">{bars_icon}</span>}
                         {!!task.attachments && <div className="txt-and-icon icon-container">{paperclip_icon}{task.attachments.length}</div>}
+                        {/* {console.log(task.title, task.checklists)} */}
                         {!!task.checklists?.length && <div className={`txt-and-icon icon-container`}
-                            id={todosCount.done === todosCount.total ? 'done' : ''} >
+                            id={todosCount.done === todosCount.total && todosCount.total !== 0 ? 'done' : ''} >
                             {checked_icon}{`${todosCount.done}/${todosCount.total}`}
                         </div>}
                     </div>

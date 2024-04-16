@@ -64,7 +64,7 @@ export function GroupList({ boardFilter, board, saveGroup, removeGroup, saveTask
                                         ref={provided.innerRef}
                                         {...provided.draggableProps}
                                         {...provided.dragHandleProps}
-                                        style={snapshot.isDragging ? { ...provided.draggableProps?.style, opacity: 0.6, rotate: '4deg', cursor: 'pointer' } : { ...provided.draggableProps?.style, cursor: 'pointer' }}
+                                        style={snapshot.isDragging && !snapshot.isDropAnimating ? { ...provided.draggableProps?.style, opacity: 0.6, rotate: '6deg' } : { ...provided.draggableProps?.style, cursor: 'pointer', transitionDuration: `0.4s` }}
                                     >
                                         <GroupPreview
                                             boardFilter={boardFilter}

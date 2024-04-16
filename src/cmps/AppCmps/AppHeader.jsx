@@ -47,7 +47,7 @@ export function AppHeader() {
         <header className="app-header flex justify-space-between">
             <div className='flex'>
 
-                <button className='main-nav-btn arrow-down more-btn'>{more_icon}</button>
+                <Link to='/'><button  className='main-nav-btn arrow-down more-btn'>{more_icon}</button></Link>
                 <div className='logo-inside-head flex align-center justify-center'>
                     <Link to='/board'>
                         <h3 className='flex'><span className='logo-svg'>{logo}</span></h3>

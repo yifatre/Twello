@@ -1,0 +1,2453 @@
+{
+    "_id": {
+        "$oid": "661e454636e18b6b8322dba5"
+    },
+    "title": "Twello",
+    "isStarred": true,
+    "archivedAt": null,
+    "createdById": "u101",
+    "style": {
+        "background": null,
+        "backgroundImage": "/src/assets/img/gradients/earth.svg"
+    },
+    "labels": [
+        {
+            "id": "lFfG6hJ",
+            "title": "Priority - high",
+            "color": "red-bolder"
+        },
+        {
+            "id": "ljhvrAm",
+            "title": "Priority - medium",
+            "color": "orange-bolder"
+        },
+        {
+            "id": "lHEkDpc",
+            "title": "Priority - low",
+            "color": "yellow-subtle"
+        }
+    ],
+    "members": [
+        {
+            "_id": "u107",
+            "fullName": "Guest",
+            "imgUrl": "https://res.cloudinary.com/dobrmrt0g/image/upload/v1713014057/png-clipart-orb-os-x-icon-man-s-profile-icon-inside-white-circle-thumbnail_simwdv.png"
+        },
+        {
+            "_id": "661e567136e18b6b8322dba6",
+            "fullName": "moshe benlolo",
+            "imgUrl": null
+        },
+        {
+            "_id": "661d78c270feea11720ec0a6",
+            "fullName": "moshe benlolo",
+            "imgUrl": null
+        },
+        {
+            "_id": "661e5a4536e18b6b8322dba7",
+            "fullName": "moshe benlolo",
+            "imgUrl": null
+        },
+        {
+            "_id": "661e1cdaf060fa051c61f5b1",
+            "fullName": "roi doron",
+            "imgUrl": "https://ca.slack-edge.com/T06BA1MNBK8-U06DZ6HS3S9-4a5ee76a0651-512"
+        }
+    ],
+    "groups": [
+        {
+            "id": "gp8wgIt",
+            "title": "🗒 Backlog",
+            "isExtended": true,
+            "style": {
+                "themeColor": "neutral"
+            },
+            "tasks": [
+                {
+                    "title": "🗒 Backlog",
+                    "description": "",
+                    "style": {},
+                    "labelIds": [],
+                    "memberIds": [],
+                    "checklists": [],
+                    "id": "tD7MR5L"
+                },
+                {
+                    "title": " Implement Board Templates",
+                    "description": "<p>Develop a set of predefined templates for boards to facilitate quicker setup for new users, catering to various use cases like project management, event planning, or daily chores.</p>",
+                    "style": {},
+                    "labelIds": [],
+                    "memberIds": [],
+                    "checklists": [],
+                    "id": "tb0ULo8"
+                },
+                {
+                    "title": "Advanced Search Functionality",
+                    "description": "<p>Enhance the search functionality to include filters and advanced query capabilities, allowing users to search by tags, due dates, attachments, and specific words within card descriptions.</p>",
+                    "style": {},
+                    "labelIds": [],
+                    "memberIds": [],
+                    "checklists": [],
+                    "id": "tjofhtL"
+                },
+                {
+                    "title": "Customizable Dashboard",
+                    "description": "<p>Introduce a customizable dashboard where users can view and manage multiple boards at once. Include widgets for quick overviews of task progress, upcoming deadlines, and personal metrics.</p>",
+                    "style": {},
+                    "labelIds": [],
+                    "memberIds": [],
+                    "checklists": [],
+                    "id": "tC7FHyQ"
+                },
+                {
+                    "title": "Integration with Third-Party Tools",
+                    "description": "<p>Plan for the integration of third-party tools such as Slack, Google Calendar, and GitHub, allowing users to sync their boards with these platforms for enhanced productivity.</p>",
+                    "style": {},
+                    "labelIds": [],
+                    "memberIds": [],
+                    "checklists": [],
+                    "id": "tFfuP8Y"
+                },
+                {
+                    "title": "Offline Mode",
+                    "description": "<p>Develop an offline mode that allows users to view and edit their boards without an internet connection. Changes should sync automatically once the connection is restored.</p>",
+                    "style": {},
+                    "labelIds": [],
+                    "memberIds": [],
+                    "checklists": [],
+                    "id": "ta22zzS"
+                },
+                {
+                    "title": "User Activity Logs",
+                    "description": "<p>Create detailed logs of user activity on each board, allowing board administrators to track changes made by team members, including time-stamped edits and deletions.</p>",
+                    "style": {},
+                    "labelIds": [],
+                    "memberIds": [],
+                    "checklists": [],
+                    "id": "tit292N"
+                },
+                {
+                    "title": "Enhanced Mobile Experience",
+                    "description": "<p>Optimize the mobile app experience to ensure full feature parity with the desktop version, including drag-and-drop support and real-time notifications.</p>",
+                    "style": {},
+                    "labelIds": [],
+                    "memberIds": [],
+                    "checklists": [],
+                    "id": "tB3XHHf"
+                }
+            ]
+        },
+        {
+            "title": "🖥️ Frontend Development",
+            "isExtended": true,
+            "style": {
+                "backgroundColor": "gray"
+            },
+            "tasks": [
+                {
+                    "title": "Frontend Development",
+                    "description": "",
+                    "style": {},
+                    "labelIds": [],
+                    "memberIds": [],
+                    "checklists": [],
+                    "id": "tmLXn7y"
+                },
+                {
+                    "title": "Setup Development Environment",
+                    "description": "<p>Prepare the local and shared development environments with all necessary tools and libraries for frontend development.</p>",
+                    "style": {},
+                    "labelIds": [],
+                    "memberIds": [],
+                    "checklists": [
+                        {
+                            "id": "maOdvx",
+                            "title": "To-do List",
+                            "todos": [
+                                {
+                                    "title": "Install Node.js and npm or yarn for package management.",
+                                    "isDone": false,
+                                    "id": "tUJIFJy"
+                                },
+                                {
+                                    "title": "Choose a JavaScript framework/library (React recommended) and set it up.",
+                                    "isDone": false,
+                                    "id": "tEMC2o5"
+                                },
+                                {
+                                    "title": "Configure Babel for JavaScript transpilation.",
+                                    "isDone": false,
+                                    "id": "tTFdwt8"
+                                },
+                                {
+                                    "title": "Set up Webpack for module bundling, or use Create React App for simplicity.",
+                                    "isDone": false,
+                                    "id": "tECkBsq"
+                                },
+                                {
+                                    "title": "Install essential libraries (e.g., React Router for routing, Axios for HTTP requests).",
+                                    "isDone": false,
+                                    "id": "tssTviB"
+                                },
+                                {
+                                    "title": "Configure ESLint and Prettier for code linting and formatting consistency.",
+                                    "isDone": false,
+                                    "id": "tRxT7yk"
+                                }
+                            ]
+                        }
+                    ],
+                    "id": "t7708Uz"
+                },
+                {
+                    "title": "Component Design and Implementation",
+                    "description": "<p>Design and develop reusable frontend components that match the app's design specifications and UX requirements.</p>",
+                    "style": {},
+                    "labelIds": [],
+                    "memberIds": [],
+                    "checklists": [
+                        {
+                            "id": "XSc56i",
+                            "title": "To-do List",
+                            "todos": [
+                                {
+                                    "title": "Design the UI components using a tool like Figma or Adobe XD based on wireframes.",
+                                    "isDone": false,
+                                    "id": "t0GikIJ"
+                                },
+                                {
+                                    "title": "Implement core components such as Boards, Lists, Cards, Menus, Modals, and Tooltips.",
+                                    "isDone": false,
+                                    "id": "tftpTxI"
+                                },
+                                {
+                                    "title": "Use React Hooks for state and lifecycle management in functional components.",
+                                    "isDone": false,
+                                    "id": "t1AADg7"
+                                },
+                                {
+                                    "title": "Ensure components are modular and reusable across the application.",
+                                    "isDone": false,
+                                    "id": "tZWHkcy"
+                                },
+                                {
+                                    "title": "Apply responsive design principles to all components for mobile and desktop compatibility.",
+                                    "isDone": false,
+                                    "id": "thWObW6"
+                                }
+                            ]
+                        }
+                    ],
+                    "id": "twBlE7I"
+                },
+                {
+                    "title": "Styling and Theming",
+                    "description": "<p>Create a cohesive style and theming system that can be easily modified and extended, using CSS or a CSS-in-JS solution like styled-components.</p>",
+                    "style": {},
+                    "labelIds": [],
+                    "memberIds": [],
+                    "checklists": [
+                        {
+                            "id": "Add6m1",
+                            "title": "To-do List",
+                            "todos": [
+                                {
+                                    "title": "Define a global style guide including color palette, typography, and spacing.",
+                                    "isDone": false,
+                                    "id": "tYD7ksF"
+                                },
+                                {
+                                    "title": "Implement the style guide using CSS variables or a theming context in React.",
+                                    "isDone": false,
+                                    "id": "tmqKn2M"
+                                },
+                                {
+                                    "title": "Create dark and light theme support.",
+                                    "isDone": false,
+                                    "id": "twGFreb"
+                                },
+                                {
+                                    "title": "Ensure that all UI components adhere to the defined themes and update dynamically when changes are made.",
+                                    "isDone": false,
+                                    "id": "tqSTw0j"
+                                }
+                            ]
+                        }
+                    ],
+                    "id": "t300S6x"
+                },
+                {
+                    "title": "Users Management",
+                    "description": "<h2 data-pm-slice=\"1 3 []\">System Activities</h2>\n<hr>\n<ul class=\"ak-ul\">\n<li>\n<p>Capture IP-Address for tracking</p>\n</li>\n<li>\n<p>Another activity</p>\n</li>\n</ul>\n<h2>Input Fields</h2>\n<hr>\n<ul class=\"ak-ul\">\n<li>\n<p>Account type (<span class=\"code\" spellcheck=\"false\">Admin</span> , <span class=\"code\" spellcheck=\"false\">Editor</span> , <span class=\"code\" spellcheck=\"false\">Owner</span>, &amp; <span class=\"code\" spellcheck=\"false\">Guest</span>)</p>\n</li>\n<li>\n<p>Name</p>\n</li>\n<li>\n<p>Email</p>\n</li>\n<li>\n<p>Password</p>\n</li>\n</ul>\n<h2>Rules</h2>\n<hr>\n<ul class=\"ak-ul\">\n<li>\n<p>Email must be a valid email format</p>\n</li>\n<li>\n<p>Password must be alphanumeric, min of 8</p>\n</li>\n</ul>\n<h2>Other Information</h2>\n<hr>\n<ul class=\"ak-ul\">\n<li>\n<p>Sample cities: (<span class=\"code\" spellcheck=\"false\">Lagos</span> / <span class=\"code\" spellcheck=\"false\">Ikeja</span> / <span class=\"code\" spellcheck=\"false\">Lekki</span>)</p>\n</li>\n<li>\n<p>The password input should be centered and disabled</p>\n</li>\n</ul>",
+                    "style": {},
+                    "labelIds": [],
+                    "memberIds": [],
+                    "checklists": [
+                        {
+                            "id": "fJwuo4",
+                            "title": "Task Review",
+                            "todos": [
+                                {
+                                    "title": "Document endpoint on postman",
+                                    "isDone": false,
+                                    "id": "t0urHuA"
+                                }
+                            ]
+                        },
+                        {
+                            "id": "eBVTKd",
+                            "title": "To-do List",
+                            "todos": [
+                                {
+                                    "title": "Create form to register a new user",
+                                    "isDone": true,
+                                    "id": "t5QQHAk"
+                                },
+                                {
+                                    "title": "Implement endpoint to register new user",
+                                    "isDone": true,
+                                    "id": "tXVouoP"
+                                },
+                                {
+                                    "title": "Implement endpoint to register new user",
+                                    "isDone": false,
+                                    "id": "t4vYC69"
+                                },
+                                {
+                                    "title": "Implement functionality to register a new user",
+                                    "isDone": false,
+                                    "id": "tOdVJz6"
+                                }
+                            ]
+                        }
+                    ],
+                    "id": "tROXK9z"
+                },
+                {
+                    "title": "Frontend Routing",
+                    "description": "<p>Set up client-side routing to manage navigation between different views and states within the application.</p>",
+                    "style": {},
+                    "labelIds": [],
+                    "memberIds": [],
+                    "checklists": [
+                        {
+                            "id": "IKutSu",
+                            "title": "To-do List",
+                            "todos": [
+                                {
+                                    "title": "Implement React Router for handling routes.",
+                                    "isDone": false,
+                                    "id": "tRgOOGi"
+                                },
+                                {
+                                    "title": "Define routes for core pages like Home, Board View, User Settings, etc.",
+                                    "isDone": false,
+                                    "id": "teCjlaZ"
+                                },
+                                {
+                                    "title": "Ensure routes are protected where necessary (e.g., require authentication).",
+                                    "isDone": false,
+                                    "id": "tVL8eu4"
+                                },
+                                {
+                                    "title": "Handle 404 errors with a custom \"Page Not Found\" view.",
+                                    "isDone": false,
+                                    "id": "tJhCWHB"
+                                },
+                                {
+                                    "title": "Optimize route transitions and animations for a smooth user experience.",
+                                    "isDone": false,
+                                    "id": "tU0Rwyg"
+                                }
+                            ]
+                        }
+                    ],
+                    "id": "tKH1KNM"
+                },
+                {
+                    "title": "Real-Time Updates",
+                    "description": "<p>Incorporate real-time functionalities to allow users to see updates across boards without needing to refresh the page.</p>",
+                    "style": {},
+                    "labelIds": [],
+                    "memberIds": [],
+                    "checklists": [
+                        {
+                            "id": "Vr79tT",
+                            "title": "To-do List",
+                            "todos": [
+                                {
+                                    "title": " Choose a real-time communication technology (WebSocket is recommended).",
+                                    "isDone": false,
+                                    "id": "tnJfJuK"
+                                },
+                                {
+                                    "title": " Set up a WebSocket server or use a service like Pusher for managing real-time updates.",
+                                    "isDone": false,
+                                    "id": "tLC3rY6"
+                                },
+                                {
+                                    "title": "Integrate WebSocket communications into the frontend.",
+                                    "isDone": false,
+                                    "id": "t7aDpSY"
+                                },
+                                {
+                                    "title": "Ensure that changes in one part of the system (like adding a card) are immediately visible on all connected clients.",
+                                    "isDone": false,
+                                    "id": "t3HKcpH"
+                                },
+                                {
+                                    "title": "Test real-time performance and handle reconnections gracefully.",
+                                    "isDone": false,
+                                    "id": "tc9CtV5"
+                                }
+                            ]
+                        }
+                    ],
+                    "id": "t09xyZk"
+                }
+            ],
+            "id": "gIcxeFQ"
+        },
+        {
+            "title": "⚙️ Backend Development",
+            "isExtended": true,
+            "style": {
+                "backgroundColor": "gray"
+            },
+            "tasks": [
+                {
+                    "title": "Backend Development",
+                    "description": "",
+                    "style": {},
+                    "labelIds": [],
+                    "memberIds": [],
+                    "checklists": [],
+                    "id": "tF3nqDt"
+                },
+                {
+                    "title": "API Design and Documentation",
+                    "description": "<p>Design RESTful API endpoints and create comprehensive documentation to guide developers and facilitate future integrations.</p>",
+                    "style": {},
+                    "labelIds": [],
+                    "memberIds": [],
+                    "checklists": [
+                        {
+                            "id": "x0x4TD",
+                            "title": "API Endpoint Design",
+                            "todos": [
+                                {
+                                    "title": "Define endpoints for boards, lists, cards, users.",
+                                    "isDone": false,
+                                    "id": "tXcnB3g"
+                                },
+                                {
+                                    "title": "Establish request/response formats.",
+                                    "isDone": false,
+                                    "id": "tOwXtdg"
+                                }
+                            ]
+                        },
+                        {
+                            "id": "MMunPz",
+                            "title": "Security",
+                            "todos": [
+                                {
+                                    "title": "Setup API authentication and authorization strategies.",
+                                    "isDone": false,
+                                    "id": "txEHxmk"
+                                }
+                            ]
+                        },
+                        {
+                            "id": "SXP13i",
+                            "title": "Documentation",
+                            "todos": [
+                                {
+                                    "title": "Document API endpoints using Swagger or a similar tool.",
+                                    "isDone": false,
+                                    "id": "t0SRwcq"
+                                }
+                            ]
+                        },
+                        {
+                            "id": "vC1wxR",
+                            "title": "Resources Needed:",
+                            "todos": [
+                                {
+                                    "title": "Backend Architect",
+                                    "isDone": false,
+                                    "id": "tjmRf3Z"
+                                },
+                                {
+                                    "title": "Technical Writer\n",
+                                    "isDone": false,
+                                    "id": "t1u0v3d"
+                                }
+                            ]
+                        }
+                    ],
+                    "id": "tmgZtRs"
+                },
+                {
+                    "title": "API Development - Boards",
+                    "description": "<p>Implement the API functionality for managing boards.</p>",
+                    "style": {},
+                    "labelIds": [],
+                    "memberIds": [],
+                    "checklists": [
+                        {
+                            "id": "YQtVOE",
+                            "title": "Checklist",
+                            "todos": [
+                                {
+                                    "title": "Develop CRUD operations for boards.",
+                                    "isDone": false,
+                                    "id": "thIJhux"
+                                },
+                                {
+                                    "title": " Implement board-specific business logic (e.g., permissions, sharing).",
+                                    "isDone": false,
+                                    "id": "tT7QPtf"
+                                },
+                                {
+                                    "title": "Set up unit tests for board operations.",
+                                    "isDone": false,
+                                    "id": "tOW7VrZ"
+                                }
+                            ]
+                        }
+                    ],
+                    "id": "tM9tUxq"
+                },
+                {
+                    "title": "API Development - Lists",
+                    "description": "<p>Develop the APIs required for handling list operations within boards</p>",
+                    "style": {},
+                    "labelIds": [],
+                    "memberIds": [],
+                    "checklists": [
+                        {
+                            "id": "xyjvsf",
+                            "title": "Implement CRUD operations for lists.",
+                            "todos": [
+                                {
+                                    "title": "Implement CRUD operations for lists.",
+                                    "isDone": false,
+                                    "id": "t19Owhj"
+                                }
+                            ]
+                        },
+                        {
+                            "id": "wXCjzA",
+                            "title": "Ensure lists maintain their order within a board.",
+                            "todos": []
+                        },
+                        {
+                            "id": "2PV6yu",
+                            "title": "Create unit tests for list functionalities.",
+                            "todos": []
+                        }
+                    ],
+                    "id": "tR0FSwY"
+                },
+                {
+                    "title": "API Development - Cards",
+                    "description": "<p>Create and implement the API endpoints needed for card manipulation and management.</p>",
+                    "style": {},
+                    "labelIds": [],
+                    "memberIds": [],
+                    "checklists": [
+                        {
+                            "id": "CTRhxr",
+                            "title": "To-do List",
+                            "todos": [
+                                {
+                                    "title": "Develop CRUD operations for cards.",
+                                    "isDone": false,
+                                    "id": "tGtqJlZ"
+                                },
+                                {
+                                    "title": "Handle card-specific functionalities like comments, attachments, deadlines.",
+                                    "isDone": false,
+                                    "id": "tTfM9LX"
+                                },
+                                {
+                                    "title": "Write unit tests for all card operations.",
+                                    "isDone": false,
+                                    "id": "trVZSuK"
+                                }
+                            ]
+                        }
+                    ],
+                    "id": "tCMUFAY"
+                },
+                {
+                    "title": "API Development - Users and Authentication",
+                    "description": "<p>Set up APIs for user management and authentication to ensure secure access to the Twello.</p>",
+                    "style": {},
+                    "labelIds": [],
+                    "memberIds": [],
+                    "checklists": [
+                        {
+                            "id": "F5EmJX",
+                            "title": "To-do List",
+                            "todos": [
+                                {
+                                    "title": "Develop user registration and login endpoints.",
+                                    "isDone": false,
+                                    "id": "tucxeFk"
+                                },
+                                {
+                                    "title": "Implement JWT-based authentication.\n",
+                                    "isDone": false,
+                                    "id": "t7LzBdB"
+                                },
+                                {
+                                    "title": "Create API endpoints for user profile management.",
+                                    "isDone": false,
+                                    "id": "tZEJjVv"
+                                },
+                                {
+                                    "title": "Develop security measures for user data protection.",
+                                    "isDone": false,
+                                    "id": "tIV6129"
+                                },
+                                {
+                                    "title": "Prepare unit and integration tests for authentication flows.",
+                                    "isDone": false,
+                                    "id": "t4I7XGc"
+                                }
+                            ]
+                        }
+                    ],
+                    "id": "tfIDYD4"
+                }
+            ],
+            "id": "gDcQGdP"
+        },
+        {
+            "id": "gU3T627",
+            "title": "📅 Working On",
+            "isExtended": true,
+            "style": {
+                "themeColor": "gray"
+            },
+            "tasks": [
+                {
+                    "title": "📅 Working On",
+                    "description": "",
+                    "style": {},
+                    "labelIds": [],
+                    "memberIds": [],
+                    "checklists": [],
+                    "id": "tFqny62"
+                },
+                {
+                    "title": "Frontend - Implement DnD for Cards",
+                    "description": "<p>This card outlines the task of implementing robust drag-and-drop functionality within our Twello application. The drag-and-drop feature will enhance the user experience by allowing easy manipulation of items within boards, lists, and cards, mimicking the intuitive interactions found in the original Trello.</p>\n<h3>&nbsp;</h3>\n<h2><strong><span style=\"text-decoration: underline;\">Objectives</span>:</strong></h2>\n<ol>\n<li>Implement a seamless drag-and-drop interface for board elements (cards, lists).</li>\n<li>Ensure compatibility and responsiveness across all platforms and devices.</li>\n<li>Optimize the performance to handle real-time updates with minimal lag.</li>\n<li>Integrate drag-and-drop for additional elements like attachments and labels.</li>\n</ol>",
+                    "style": {},
+                    "labelIds": [],
+                    "memberIds": [
+                        "661e1cdaf060fa051c61f5b1",
+                        "661e567136e18b6b8322dba6"
+                    ],
+                    "checklists": [
+                        {
+                            "id": "Al2stb",
+                            "title": "Feature Development",
+                            "todos": [
+                                {
+                                    "title": "Research best practices and libraries for drag-and-drop functionality.",
+                                    "isDone": false,
+                                    "id": "tLdmeT9"
+                                },
+                                {
+                                    "title": " Design a high-level architecture that supports DnD within the existing framework.",
+                                    "isDone": false,
+                                    "id": "tZyxb5s"
+                                },
+                                {
+                                    "title": "Implement DnD for moving cards within and between lists.",
+                                    "isDone": false,
+                                    "id": "tFBC96S"
+                                },
+                                {
+                                    "title": "Enable DnD for reordering lists within a board.",
+                                    "isDone": false,
+                                    "id": "tkOChAj"
+                                }
+                            ]
+                        },
+                        {
+                            "id": "X4QFWT",
+                            "title": "User Interface and Experience",
+                            "todos": [
+                                {
+                                    "title": " Create smooth animations and visual feedback for DnD actions.",
+                                    "isDone": false,
+                                    "id": "tawQlA2"
+                                },
+                                {
+                                    "title": "Ensure that DnD features are accessible, including keyboard navigation options.",
+                                    "isDone": false,
+                                    "id": "tyTSePB"
+                                },
+                                {
+                                    "title": "Test responsiveness and functionality on mobile devices.",
+                                    "isDone": false,
+                                    "id": "t1cGuRE"
+                                },
+                                {
+                                    "title": "Design fallback mechanisms for browsers that do not support HTML5 DnD.",
+                                    "isDone": false,
+                                    "id": "tmBLwGk"
+                                }
+                            ]
+                        },
+                        {
+                            "id": "4Wzl8E",
+                            "title": "Testing and Optimization",
+                            "todos": [
+                                {
+                                    "title": "Conduct unit tests for the drag-and-drop functionality.",
+                                    "isDone": false,
+                                    "id": "tgEV4gF"
+                                },
+                                {
+                                    "title": "Perform cross-browser testing to ensure compatibility.",
+                                    "isDone": false,
+                                    "id": "tLg0VI9"
+                                },
+                                {
+                                    "title": "Optimize performance to reduce drag delay and improve user interaction.",
+                                    "isDone": false,
+                                    "id": "tMsqfxK"
+                                },
+                                {
+                                    "title": "Set up user acceptance testing to gather feedback on the DnD feature.",
+                                    "isDone": false,
+                                    "id": "tDk5g0I"
+                                }
+                            ]
+                        },
+                        {
+                            "id": "kGZRdu",
+                            "title": "Documentation and Training",
+                            "todos": [
+                                {
+                                    "title": "Update developer documentation with DnD integration details.",
+                                    "isDone": true,
+                                    "id": "tsWIWTe"
+                                },
+                                {
+                                    "title": "Create user guides and tutorial videos on how to use the drag-and-drop features.",
+                                    "isDone": true,
+                                    "id": "tFrzyJC"
+                                },
+                                {
+                                    "title": "Train support staff on troubleshooting common issues with drag-and-drop.",
+                                    "isDone": false,
+                                    "id": "t0I30Fg"
+                                }
+                            ]
+                        }
+                    ],
+                    "id": "teBf6SP"
+                }
+            ]
+        },
+        {
+            "title": "📱Mobile Responsiveness",
+            "isExtended": true,
+            "style": {
+                "backgroundColor": "gray"
+            },
+            "tasks": [
+                {
+                    "title": "Mobile Responsiveness",
+                    "description": "",
+                    "style": {},
+                    "labelIds": [],
+                    "memberIds": [],
+                    "checklists": [],
+                    "id": "tZfRzj9"
+                },
+                {
+                    "title": "Responsive UI Design",
+                    "description": "<p>Design user interfaces that adapt seamlessly to different screen sizes and orientations, ensuring a consistent and optimal user experience across devices.</p>",
+                    "style": {},
+                    "labelIds": [],
+                    "memberIds": [],
+                    "checklists": [
+                        {
+                            "id": "WyrNJi",
+                            "title": "To-do List",
+                            "todos": [
+                                {
+                                    "title": "Analyze current UI and identify elements needing responsiveness improvement.",
+                                    "isDone": false,
+                                    "id": "t5Gq8i8"
+                                },
+                                {
+                                    "title": "Create wireframes for key components at different breakpoints (small, medium, large screens).",
+                                    "isDone": false,
+                                    "id": "teWLjsH"
+                                },
+                                {
+                                    "title": "Design flexible grids and layouts that adjust smoothly to screen changes.",
+                                    "isDone": false,
+                                    "id": "tFS8Teu"
+                                },
+                                {
+                                    "title": "Implement scalable vector graphics (SVGs) for icons and images.",
+                                    "isDone": false,
+                                    "id": "tRgWJyZ"
+                                },
+                                {
+                                    "title": "Test responsive designs on various devices and adjust as needed.",
+                                    "isDone": false,
+                                    "id": "t1JfY9L"
+                                }
+                            ]
+                        }
+                    ],
+                    "id": "tPe2Fcm"
+                },
+                {
+                    "title": "CSS Media Queries",
+                    "description": "<p>Utilize CSS media queries to apply different styling rules based on device characteristics like width, height, and orientation.</p>",
+                    "style": {},
+                    "labelIds": [],
+                    "memberIds": [],
+                    "checklists": [
+                        {
+                            "id": "35DHpA",
+                            "title": "To-do List",
+                            "todos": [
+                                {
+                                    "title": "Define breakpoints for mobile, tablet, and desktop views.",
+                                    "isDone": false,
+                                    "id": "tH9Dpz4"
+                                },
+                                {
+                                    "title": "Write CSS rules for each breakpoint to adjust layout, font sizes, and navigation elements.",
+                                    "isDone": false,
+                                    "id": "t6Hnw5y"
+                                },
+                                {
+                                    "title": "Ensure interactive elements like buttons and links are touch-friendly.",
+                                    "isDone": false,
+                                    "id": "tkI8D8r"
+                                },
+                                {
+                                    "title": "Optimize form elements for easy input on touch devices.",
+                                    "isDone": false,
+                                    "id": "tkJ4gXW"
+                                },
+                                {
+                                    "title": "Continuously test and refine CSS changes on real devices and emulators.",
+                                    "isDone": false,
+                                    "id": "tUSu3un"
+                                }
+                            ]
+                        }
+                    ],
+                    "id": "tmf4egd"
+                },
+                {
+                    "title": "Touch Optimizations",
+                    "description": "<p>Enhance the web application&rsquo;s interactivity by optimizing for touch gestures commonly used on mobile devices.</p>",
+                    "style": {},
+                    "labelIds": [],
+                    "memberIds": [],
+                    "checklists": [
+                        {
+                            "id": "B3YOc5",
+                            "title": "To-do List",
+                            "todos": [
+                                {
+                                    "title": "Implement touch-friendly drag-and-drop features using libraries like Touch Punch or similar.",
+                                    "isDone": false,
+                                    "id": "tGTy57m"
+                                },
+                                {
+                                    "title": "Optimize scrolling and swiping actions for performance and smoothness.",
+                                    "isDone": false,
+                                    "id": "tGfN6sO"
+                                },
+                                {
+                                    "title": "Adjust hover effects to work as touch events on mobile devices.",
+                                    "isDone": false,
+                                    "id": "tNNmwRG"
+                                },
+                                {
+                                    "title": "Ensure menus and dropdowns are easy to navigate using touch.",
+                                    "isDone": false,
+                                    "id": "tquFxTQ"
+                                },
+                                {
+                                    "title": "Test all touch interactions for responsiveness and intuitiveness.",
+                                    "isDone": false,
+                                    "id": "tRiwlWa"
+                                }
+                            ]
+                        }
+                    ],
+                    "id": "t4QAb7N"
+                },
+                {
+                    "title": "Performance Optimization",
+                    "description": "<p>Ensure that the mobile version of the web app performs well under various network conditions and on devices with limited resources.</p>",
+                    "style": {},
+                    "labelIds": [],
+                    "memberIds": [],
+                    "checklists": [
+                        {
+                            "id": "NKmI2U",
+                            "title": "To-do List",
+                            "todos": [
+                                {
+                                    "title": "Optimize images and assets for fast loading times.",
+                                    "isDone": false,
+                                    "id": "tCxvjdq"
+                                },
+                                {
+                                    "title": " Implement lazy loading for media and offscreen content.",
+                                    "isDone": false,
+                                    "id": "taM4jKv"
+                                },
+                                {
+                                    "title": "Minify CSS and JavaScript files to reduce load times.",
+                                    "isDone": false,
+                                    "id": "tIz2C2t"
+                                },
+                                {
+                                    "title": "Use caching strategies to enhance performance.",
+                                    "isDone": false,
+                                    "id": "tgM4L6J"
+                                },
+                                {
+                                    "title": "est and analyze performance using tools like Google Lighthouse.",
+                                    "isDone": false,
+                                    "id": "tBL07wO"
+                                }
+                            ]
+                        }
+                    ],
+                    "id": "tVgnjjP"
+                },
+                {
+                    "title": "Accessibility on Mobile",
+                    "description": "<p>Make sure that the web app is accessible on mobile devices for users with disabilities.</p>",
+                    "style": {},
+                    "labelIds": [],
+                    "memberIds": [],
+                    "checklists": [
+                        {
+                            "id": "EtNt6i",
+                            "title": "To-do List",
+                            "todos": [
+                                {
+                                    "title": "Ensure all interactive elements are accessible via screen readers.",
+                                    "isDone": false,
+                                    "id": "tF8VhSa"
+                                },
+                                {
+                                    "title": "Test color contrasts for readability on smaller screens.",
+                                    "isDone": false,
+                                    "id": "t30FNZm"
+                                },
+                                {
+                                    "title": "Make sure all media has appropriate alt text and transcripts.",
+                                    "isDone": false,
+                                    "id": "tUB3vWo"
+                                },
+                                {
+                                    "title": "Provide keyboard navigations and voice commands where feasible.",
+                                    "isDone": false,
+                                    "id": "tdZzQ7t"
+                                },
+                                {
+                                    "title": "Conduct usability testing with participants having diverse abilities.",
+                                    "isDone": false,
+                                    "id": "tnaWwsv"
+                                }
+                            ]
+                        }
+                    ],
+                    "id": "tc3Ahx8"
+                }
+            ],
+            "id": "gMb0cmU"
+        },
+        {
+            "title": "🐞 Bugs - open",
+            "isExtended": true,
+            "style": {
+                "backgroundColor": "gray",
+                "themeColor": "red"
+            },
+            "tasks": [
+                {
+                    "title": "Bugs",
+                    "description": "",
+                    "style": {},
+                    "labelIds": [],
+                    "memberIds": [],
+                    "checklists": [],
+                    "id": "tuVvwED"
+                },
+                {
+                    "title": "Login Page Error on Mobile",
+                    "description": "<p>Mobile users experience a '404 Not Found' error when attempting to access the login page through the footer link.</p>\n<p><strong>Steps to Reproduce:</strong></p>\n<ol>\n<li>Open the app on a mobile device.</li>\n<li>Scroll to the footer and click on the 'Login' link.</li>\n<li>The 404 error page is displayed.</li>\n</ol>\n<p><strong>Expected Behavior:</strong> The login page should load without issues on mobile devices.</p>\n<p><strong>Actual Behavior:</strong> The page shows a 404 error, indicating the link might be broken or misdirected.</p>",
+                    "style": {},
+                    "labelIds": [
+                        "ljhvrAm"
+                    ],
+                    "memberIds": [],
+                    "checklists": [],
+                    "id": "tZKh0lp"
+                },
+                {
+                    "title": "Email Notification Delay",
+                    "description": "<p>Users have reported significant delays in receiving email notifications related to board updates.</p>\n<p>&nbsp;</p>\n<p><strong>Steps to Reproduce:</strong></p>\n<ol>\n<li>Make changes to a board (like adding a new card).</li>\n<li>Observe the time taken to receive an email notification.</li>\n</ol>\n<p><strong>Expected Behavior:</strong> Email notifications should be received within a few minutes of the board update.</p>\n<p>&nbsp;</p>\n<p><strong>Actual Behavior:</strong> Notifications are taking up to an hour to arrive.</p>",
+                    "style": {},
+                    "labelIds": [
+                        "lHEkDpc",
+                        "ljhvrAm"
+                    ],
+                    "memberIds": [],
+                    "checklists": [],
+                    "id": "tNeLRS3"
+                },
+                {
+                    "title": "Memory Leak on Board Page",
+                    "description": "<p>There is a significant memory leak detected when users keep the board page open for extended periods.</p>\n<p><strong>Steps to Reproduce:</strong></p>\n<ol>\n<li>Open any board and leave it open for more than 30 minutes.</li>\n<li>Monitor the browser's memory usage over time.</li>\n</ol>\n<p><strong>Expected Behavior:</strong> Memory usage should remain stable over time.</p>\n<p><strong>Actual Behavior:</strong> Memory usage continuously increases, indicating a possible memory leak.</p>",
+                    "style": {},
+                    "labelIds": [
+                        "lFfG6hJ"
+                    ],
+                    "memberIds": [],
+                    "checklists": [],
+                    "id": "tZfFwSk"
+                },
+                {
+                    "title": "Incorrect Timezone Handling in Deadlines",
+                    "description": "",
+                    "style": {},
+                    "labelIds": [],
+                    "memberIds": [],
+                    "checklists": [],
+                    "id": "tRsJ0Ia"
+                }
+            ],
+            "id": "gNrwvau"
+        },
+        {
+            "title": "🧑🏾‍💻 Testing [Staging Server]",
+            "isExtended": true,
+            "style": {
+                "backgroundColor": "gray"
+            },
+            "tasks": [],
+            "id": "gf64LRz"
+        },
+        {
+            "title": "📆 Sprint - Done [ 1.2.0]",
+            "isExtended": true,
+            "style": {
+                "backgroundColor": "gray"
+            },
+            "tasks": [
+                {
+                    "title": "Database Optimization for Faster Query Performance",
+                    "description": "<p>Improved the database schema and added indices to crucial tables, which significantly reduced the query times and enhanced the overall performance of the application.</p>",
+                    "style": {},
+                    "labelIds": [],
+                    "memberIds": [],
+                    "checklists": [
+                        {
+                            "id": "TaHbWq",
+                            "title": "Tasks Completed",
+                            "todos": [
+                                {
+                                    "title": "Analyzed current database queries and identified bottlenecks.",
+                                    "isDone": true,
+                                    "id": "tBFTQsx"
+                                },
+                                {
+                                    "title": "Implemented indexing on the users, boards, and cards tables.",
+                                    "isDone": true,
+                                    "id": "tGBmVf1"
+                                },
+                                {
+                                    "title": "Refactored some of the complex queries to simpler forms for better efficiency.",
+                                    "isDone": true,
+                                    "id": "tyCb9bW"
+                                },
+                                {
+                                    "title": "Conducted stress testing to ensure stability under load.",
+                                    "isDone": false,
+                                    "id": "t8ci3oZ"
+                                }
+                            ]
+                        }
+                    ],
+                    "id": "tUdAx1H"
+                },
+                {
+                    "title": "User Interface Redesign for Board Page",
+                    "description": "<p>Redesigned the board page to improve usability and aesthetics. The new design is more intuitive and aligns with modern UI/UX practices.</p>",
+                    "style": {},
+                    "labelIds": [],
+                    "memberIds": [],
+                    "checklists": [
+                        {
+                            "id": "v0NcB3",
+                            "title": "Tasks Completed",
+                            "todos": [
+                                {
+                                    "title": "Gathered user feedback on the previous design.",
+                                    "isDone": false,
+                                    "id": "tmhTL9k"
+                                },
+                                {
+                                    "title": "Created wireframes and mockups for the new design.",
+                                    "isDone": false,
+                                    "id": "tN4lSNg"
+                                },
+                                {
+                                    "title": "Implemented the new front-end design.",
+                                    "isDone": false,
+                                    "id": "tWih2X3"
+                                },
+                                {
+                                    "title": "Conducted user testing and collected feedback.",
+                                    "isDone": false,
+                                    "id": "tx0hVC1"
+                                }
+                            ]
+                        }
+                    ],
+                    "id": "tctoB1R"
+                },
+                {
+                    "title": "Integration of Email Notification System",
+                    "description": "<p>Successfully integrated an email notification system that alerts users about updates to their boards, such as new tasks added or existing tasks updated.</p>",
+                    "style": {},
+                    "labelIds": [],
+                    "memberIds": [],
+                    "checklists": [
+                        {
+                            "id": "qRO03J",
+                            "title": "Tasks Completed",
+                            "todos": [
+                                {
+                                    "title": "Set up an SMTP server for outgoing emails.",
+                                    "isDone": false,
+                                    "id": "thh8ojP"
+                                },
+                                {
+                                    "title": "Developed email templates for various notifications.",
+                                    "isDone": false,
+                                    "id": "tlB5Ids"
+                                },
+                                {
+                                    "title": "Implemented logic for triggering emails based on user actions.",
+                                    "isDone": false,
+                                    "id": "tZi8MIX"
+                                },
+                                {
+                                    "title": "Tested email deliverability and responsiveness.\n",
+                                    "isDone": false,
+                                    "id": "tuGjREd"
+                                }
+                            ]
+                        }
+                    ],
+                    "id": "tajs2Ey"
+                }
+            ],
+            "id": "gUwYhwY"
+        },
+        {
+            "title": "🗄 Sprint - Done [ 1.1.0]",
+            "isExtended": true,
+            "style": {
+                "backgroundColor": "gray"
+            },
+            "tasks": [],
+            "id": "g45HUS7"
+        }
+    ],
+    "activities": [
+        {
+            "id": "aapxRvs",
+            "createdAt": 1713274613131,
+            "txt": "delete Checklist to Enhanced Mobile Experience",
+            "byMemberId": "661e5a4536e18b6b8322dba7",
+            "group": {},
+            "task": {
+                "id": "tB3XHHf",
+                "title": "Enhanced Mobile Experience"
+            }
+        },
+        {
+            "id": "aEF4Xqx",
+            "createdAt": 1713274610397,
+            "txt": "added Checklist to Enhanced Mobile Experience",
+            "byMemberId": "661e5a4536e18b6b8322dba7",
+            "group": {},
+            "task": {
+                "id": "tB3XHHf",
+                "title": "Enhanced Mobile Experience"
+            }
+        },
+        {
+            "id": "aSZVKsU",
+            "createdAt": 1713273401011,
+            "txt": "added Mobile Responsiveness to Mobile Responsiveness",
+            "byMemberId": "661e5a4536e18b6b8322dba7",
+            "group": {
+                "id": "gMb0cmU",
+                "title": "Mobile Responsiveness"
+            },
+            "task": {
+                "id": "tZfRzj9",
+                "title": "Mobile Responsiveness"
+            }
+        },
+        {
+            "id": "acXqTdN",
+            "createdAt": 1713273387188,
+            "txt": "added 📅 Working On to 📅 Working On",
+            "byMemberId": "661e5a4536e18b6b8322dba7",
+            "group": {
+                "id": "gU3T627",
+                "title": "📅 Working On"
+            },
+            "task": {
+                "id": "tFqny62",
+                "title": "📅 Working On"
+            }
+        },
+        {
+            "id": "aRiZNKK",
+            "createdAt": 1713273368739,
+            "txt": "added Frontend Development to Frontend Development",
+            "byMemberId": "661e5a4536e18b6b8322dba7",
+            "group": {
+                "id": "gIcxeFQ",
+                "title": "Frontend Development"
+            },
+            "task": {
+                "id": "tmLXn7y",
+                "title": "Frontend Development"
+            }
+        },
+        {
+            "id": "aU39TnK",
+            "createdAt": 1713273192230,
+            "txt": "added Checklist to Integration of Email Notification System",
+            "byMemberId": "661e5a4536e18b6b8322dba7",
+            "group": {},
+            "task": {
+                "id": "tajs2Ey",
+                "title": "Integration of Email Notification System"
+            }
+        },
+        {
+            "id": "aHrbtrZ",
+            "createdAt": 1713273164431,
+            "txt": "added Integration of Email Notification System to 📆 Sprint - Done [ 1.2.0]",
+            "byMemberId": "661e5a4536e18b6b8322dba7",
+            "group": {
+                "id": "gUwYhwY",
+                "title": "📆 Sprint - Done [ 1.2.0]"
+            },
+            "task": {
+                "id": "tajs2Ey",
+                "title": "Integration of Email Notification System"
+            }
+        },
+        {
+            "id": "ad8rGZ5",
+            "createdAt": 1713273090362,
+            "txt": "added Checklist to User Interface Redesign for Board Page",
+            "byMemberId": "661e5a4536e18b6b8322dba7",
+            "group": {},
+            "task": {
+                "id": "tctoB1R",
+                "title": "User Interface Redesign for Board Page"
+            }
+        },
+        {
+            "id": "aoDLPJk",
+            "createdAt": 1713273054638,
+            "txt": "added User Interface Redesign for Board Page to 📆 Sprint - Done [ 1.2.0]",
+            "byMemberId": "661e5a4536e18b6b8322dba7",
+            "group": {
+                "id": "gUwYhwY",
+                "title": "📆 Sprint - Done [ 1.2.0]"
+            },
+            "task": {
+                "id": "tctoB1R",
+                "title": "User Interface Redesign for Board Page"
+            }
+        },
+        {
+            "id": "aPrCUOH",
+            "createdAt": 1713273024754,
+            "txt": "completed Refactored some of the complex queries to simpler forms for better efficiency. on Database Optimization for Faster Query Performance",
+            "byMemberId": "661e5a4536e18b6b8322dba7",
+            "group": {},
+            "task": {
+                "id": "tUdAx1H",
+                "title": "Database Optimization for Faster Query Performance"
+            }
+        },
+        {
+            "id": "aclUwBw",
+            "createdAt": 1713273024105,
+            "txt": "completed Implemented indexing on the users, boards, and cards tables. on Database Optimization for Faster Query Performance",
+            "byMemberId": "661e5a4536e18b6b8322dba7",
+            "group": {},
+            "task": {
+                "id": "tUdAx1H",
+                "title": "Database Optimization for Faster Query Performance"
+            }
+        },
+        {
+            "id": "aA4czck",
+            "createdAt": 1713273008871,
+            "txt": "completed Analyzed current database queries and identified bottlenecks. on Database Optimization for Faster Query Performance",
+            "byMemberId": "661e5a4536e18b6b8322dba7",
+            "group": {},
+            "task": {
+                "id": "tUdAx1H",
+                "title": "Database Optimization for Faster Query Performance"
+            }
+        },
+        {
+            "id": "av9UIcB",
+            "createdAt": 1713273000286,
+            "txt": "added Checklist to Database Optimization for Faster Query Performance",
+            "byMemberId": "661e5a4536e18b6b8322dba7",
+            "group": {},
+            "task": {
+                "id": "tUdAx1H",
+                "title": "Database Optimization for Faster Query Performance"
+            }
+        },
+        {
+            "id": "aX3NjGG",
+            "createdAt": 1713272959554,
+            "txt": "added Database Optimization for Faster Query Performance to 📆 Sprint - Done [ 1.2.0]",
+            "byMemberId": "661e5a4536e18b6b8322dba7",
+            "group": {
+                "id": "gUwYhwY",
+                "title": "📆 Sprint - Done [ 1.2.0]"
+            },
+            "task": {
+                "id": "tUdAx1H",
+                "title": "Database Optimization for Faster Query Performance"
+            }
+        },
+        {
+            "id": "aTY5Fgo",
+            "createdAt": 1713272364623,
+            "txt": "added Enhanced Mobile Experience to 🗒 Backlog",
+            "byMemberId": "661e5a4536e18b6b8322dba7",
+            "group": {
+                "id": "gp8wgIt",
+                "title": "🗒 Backlog"
+            },
+            "task": {
+                "id": "tB3XHHf",
+                "title": "Enhanced Mobile Experience"
+            }
+        },
+        {
+            "id": "aek6m0t",
+            "createdAt": 1713272357109,
+            "txt": "added User Activity Logs to 🗒 Backlog",
+            "byMemberId": "661e5a4536e18b6b8322dba7",
+            "group": {
+                "id": "gp8wgIt",
+                "title": "🗒 Backlog"
+            },
+            "task": {
+                "id": "tit292N",
+                "title": "User Activity Logs"
+            }
+        },
+        {
+            "id": "a7gPyF5",
+            "createdAt": 1713272349892,
+            "txt": "added Offline Mode to 🗒 Backlog",
+            "byMemberId": "661e5a4536e18b6b8322dba7",
+            "group": {
+                "id": "gp8wgIt",
+                "title": "🗒 Backlog"
+            },
+            "task": {
+                "id": "ta22zzS",
+                "title": "Offline Mode"
+            }
+        },
+        {
+            "id": "anE74yz",
+            "createdAt": 1713272339981,
+            "txt": "added Integration with Third-Party Tools to 🗒 Backlog",
+            "byMemberId": "661e5a4536e18b6b8322dba7",
+            "group": {
+                "id": "gp8wgIt",
+                "title": "🗒 Backlog"
+            },
+            "task": {
+                "id": "tFfuP8Y",
+                "title": "Integration with Third-Party Tools"
+            }
+        },
+        {
+            "id": "awohH2I",
+            "createdAt": 1713272301038,
+            "txt": "added Customizable Dashboard to 🗒 Backlog",
+            "byMemberId": "661e5a4536e18b6b8322dba7",
+            "group": {
+                "id": "gp8wgIt",
+                "title": "🗒 Backlog"
+            },
+            "task": {
+                "id": "tC7FHyQ",
+                "title": "Customizable Dashboard"
+            }
+        },
+        {
+            "id": "aP5lxms",
+            "createdAt": 1713271904871,
+            "txt": "added dsfsa to 🗒 Backlog",
+            "byMemberId": "661e5a4536e18b6b8322dba7",
+            "group": {
+                "id": "gp8wgIt",
+                "title": "🗒 Backlog"
+            },
+            "task": {
+                "id": "tjofhtL",
+                "title": "dsfsa"
+            }
+        },
+        {
+            "id": "aXXLLvj",
+            "createdAt": 1713271364882,
+            "txt": "added Bugs to 🐞 Bugs - open",
+            "byMemberId": "661e5a4536e18b6b8322dba7",
+            "group": {
+                "id": "gNrwvau",
+                "title": "🐞 Bugs - open"
+            },
+            "task": {
+                "id": "tuVvwED",
+                "title": "Bugs"
+            }
+        },
+        {
+            "id": "asIpWga",
+            "createdAt": 1713271330440,
+            "txt": "added Login Page Error on Mobile to 🐞 Bugs - open",
+            "byMemberId": "661e5a4536e18b6b8322dba7",
+            "group": {
+                "id": "gNrwvau",
+                "title": "🐞 Bugs - open"
+            },
+            "task": {
+                "id": "tZKh0lp",
+                "title": "Login Page Error on Mobile"
+            }
+        },
+        {
+            "id": "azPRtDQ",
+            "createdAt": 1713271306729,
+            "txt": "deleted ",
+            "byMemberId": "661e5a4536e18b6b8322dba7",
+            "group": {
+                "id": "gNrwvau",
+                "title": "🐞 Bugs - open"
+            },
+            "task": {}
+        },
+        {
+            "id": "aSQQBdt",
+            "createdAt": 1713270739547,
+            "txt": "delete Checklist to Login Page Error on Mobile",
+            "byMemberId": "661e5a4536e18b6b8322dba7",
+            "group": {},
+            "task": {
+                "id": "tIJbXFb",
+                "title": "Login Page Error on Mobile"
+            }
+        },
+        {
+            "id": "aVk0E1G",
+            "createdAt": 1713270685992,
+            "txt": "added Checklist to Login Page Error on Mobile",
+            "byMemberId": "661e5a4536e18b6b8322dba7",
+            "group": {},
+            "task": {
+                "id": "tIJbXFb",
+                "title": "Login Page Error on Mobile"
+            }
+        },
+        {
+            "id": "axHCjmH",
+            "createdAt": 1713270629878,
+            "txt": "added Incorrect Timezone Handling in Deadlines to 🐞 Bugs",
+            "byMemberId": "661e5a4536e18b6b8322dba7",
+            "group": {
+                "id": "gNrwvau",
+                "title": "🐞 Bugs"
+            },
+            "task": {
+                "id": "tRsJ0Ia",
+                "title": "Incorrect Timezone Handling in Deadlines"
+            }
+        },
+        {
+            "id": "aIM5tYD",
+            "createdAt": 1713270618156,
+            "txt": "added Memory Leak on Board Page to 🐞 Bugs",
+            "byMemberId": "661e5a4536e18b6b8322dba7",
+            "group": {
+                "id": "gNrwvau",
+                "title": "🐞 Bugs"
+            },
+            "task": {
+                "id": "tZfFwSk",
+                "title": "Memory Leak on Board Page"
+            }
+        },
+        {
+            "id": "aQhXzJb",
+            "createdAt": 1713270610972,
+            "txt": "added Email Notification Delay to 🐞 Bugs",
+            "byMemberId": "661e5a4536e18b6b8322dba7",
+            "group": {
+                "id": "gNrwvau",
+                "title": "🐞 Bugs"
+            },
+            "task": {
+                "id": "tNeLRS3",
+                "title": "Email Notification Delay"
+            }
+        },
+        {
+            "id": "ajDJxfd",
+            "createdAt": 1713270602838,
+            "txt": "added Login Page Error on Mobile to 🐞 Bugs",
+            "byMemberId": "661e5a4536e18b6b8322dba7",
+            "group": {
+                "id": "gNrwvau",
+                "title": "🐞 Bugs"
+            },
+            "task": {
+                "id": "tIJbXFb",
+                "title": "Login Page Error on Mobile"
+            }
+        },
+        {
+            "id": "aDaqFOk",
+            "createdAt": 1713270390878,
+            "txt": "added Checklist to Real-Time Updates",
+            "byMemberId": "661e5a4536e18b6b8322dba7",
+            "group": {},
+            "task": {
+                "id": "t09xyZk",
+                "title": "Real-Time Updates"
+            }
+        },
+        {
+            "id": "aEpKfrU",
+            "createdAt": 1713270334494,
+            "txt": "added Checklist to Frontend Routing",
+            "byMemberId": "661e5a4536e18b6b8322dba7",
+            "group": {},
+            "task": {
+                "id": "tKH1KNM",
+                "title": "Frontend Routing"
+            }
+        },
+        {
+            "id": "aMyE7uV",
+            "createdAt": 1713270216037,
+            "txt": "added Checklist to Styling and Theming",
+            "byMemberId": "661e5a4536e18b6b8322dba7",
+            "group": {},
+            "task": {
+                "id": "t300S6x",
+                "title": "Styling and Theming"
+            }
+        },
+        {
+            "id": "aBGAyew",
+            "createdAt": 1713270158800,
+            "txt": "added Checklist to Component Design and Implementation",
+            "byMemberId": "661e5a4536e18b6b8322dba7",
+            "group": {},
+            "task": {
+                "id": "twBlE7I",
+                "title": "Component Design and Implementation"
+            }
+        },
+        {
+            "id": "aIgIW70",
+            "createdAt": 1713270100230,
+            "txt": "added Checklist to Setup Development Environment",
+            "byMemberId": "661e5a4536e18b6b8322dba7",
+            "group": {},
+            "task": {
+                "id": "t7708Uz",
+                "title": "Setup Development Environment"
+            }
+        },
+        {
+            "id": "aSgvAn8",
+            "createdAt": 1713270006627,
+            "txt": "added Real-Time Updates to Frontend Development",
+            "byMemberId": "661e5a4536e18b6b8322dba7",
+            "group": {
+                "id": "gIcxeFQ",
+                "title": "Frontend Development"
+            },
+            "task": {
+                "id": "t09xyZk",
+                "title": "Real-Time Updates"
+            }
+        },
+        {
+            "id": "ajbxyE3",
+            "createdAt": 1713269998595,
+            "txt": "added Frontend Routing to Frontend Development",
+            "byMemberId": "661e5a4536e18b6b8322dba7",
+            "group": {
+                "id": "gIcxeFQ",
+                "title": "Frontend Development"
+            },
+            "task": {
+                "id": "tKH1KNM",
+                "title": "Frontend Routing"
+            }
+        },
+        {
+            "id": "aUOy6At",
+            "createdAt": 1713269989348,
+            "txt": "added Styling and Theming to Frontend Development",
+            "byMemberId": "661e5a4536e18b6b8322dba7",
+            "group": {
+                "id": "gIcxeFQ",
+                "title": "Frontend Development"
+            },
+            "task": {
+                "id": "t300S6x",
+                "title": "Styling and Theming"
+            }
+        },
+        {
+            "id": "a5VxTjS",
+            "createdAt": 1713269982402,
+            "txt": "added Component Design and Implementation to Frontend Development",
+            "byMemberId": "661e5a4536e18b6b8322dba7",
+            "group": {
+                "id": "gIcxeFQ",
+                "title": "Frontend Development"
+            },
+            "task": {
+                "id": "twBlE7I",
+                "title": "Component Design and Implementation"
+            }
+        },
+        {
+            "id": "aPcUgTt",
+            "createdAt": 1713269976208,
+            "txt": "added Setup Development Environment to Frontend Development",
+            "byMemberId": "661e5a4536e18b6b8322dba7",
+            "group": {
+                "id": "gIcxeFQ",
+                "title": "Frontend Development"
+            },
+            "task": {
+                "id": "t7708Uz",
+                "title": "Setup Development Environment"
+            }
+        },
+        {
+            "id": "aQCLIGJ",
+            "createdAt": 1713269913316,
+            "txt": "added Frontend Development to this board",
+            "byMemberId": "661e5a4536e18b6b8322dba7",
+            "group": {
+                "id": "gIcxeFQ",
+                "title": "Frontend Development"
+            },
+            "task": {}
+        },
+        {
+            "id": "aj5Ohns",
+            "createdAt": 1713269794399,
+            "txt": "added Checklist to Accessibility on Mobile",
+            "byMemberId": "661e5a4536e18b6b8322dba7",
+            "group": {},
+            "task": {
+                "id": "tc3Ahx8",
+                "title": "Accessibility on Mobile"
+            }
+        },
+        {
+            "id": "a3KRBy9",
+            "createdAt": 1713269786717,
+            "txt": "added Accessibility on Mobile to Mobile Responsiveness",
+            "byMemberId": "661e5a4536e18b6b8322dba7",
+            "group": {
+                "id": "gMb0cmU",
+                "title": "Mobile Responsiveness"
+            },
+            "task": {
+                "id": "tc3Ahx8",
+                "title": "Accessibility on Mobile"
+            }
+        },
+        {
+            "id": "aegcQZG",
+            "createdAt": 1713269730430,
+            "txt": "added Checklist to Performance Optimization",
+            "byMemberId": "661e5a4536e18b6b8322dba7",
+            "group": {},
+            "task": {
+                "id": "tVgnjjP",
+                "title": "Performance Optimization"
+            }
+        },
+        {
+            "id": "aUmkDMb",
+            "createdAt": 1713269702460,
+            "txt": "added Performance Optimization to Mobile Responsiveness",
+            "byMemberId": "661e5a4536e18b6b8322dba7",
+            "group": {
+                "id": "gMb0cmU",
+                "title": "Mobile Responsiveness"
+            },
+            "task": {
+                "id": "tVgnjjP",
+                "title": "Performance Optimization"
+            }
+        },
+        {
+            "id": "augBe71",
+            "createdAt": 1713269652195,
+            "txt": "added Checklist to Touch Optimizations",
+            "byMemberId": "661e5a4536e18b6b8322dba7",
+            "group": {},
+            "task": {
+                "id": "t4QAb7N",
+                "title": "Touch Optimizations"
+            }
+        },
+        {
+            "id": "aULbaz1",
+            "createdAt": 1713269628422,
+            "txt": "added Touch Optimizations to Mobile Responsiveness",
+            "byMemberId": "661e5a4536e18b6b8322dba7",
+            "group": {
+                "id": "gMb0cmU",
+                "title": "Mobile Responsiveness"
+            },
+            "task": {
+                "id": "t4QAb7N",
+                "title": "Touch Optimizations"
+            }
+        },
+        {
+            "id": "aBQqOVG",
+            "createdAt": 1713269581206,
+            "txt": "added Checklist to CSS Media Queries",
+            "byMemberId": "661e5a4536e18b6b8322dba7",
+            "group": {},
+            "task": {
+                "id": "tmf4egd",
+                "title": "CSS Media Queries"
+            }
+        },
+        {
+            "id": "aWVqTNd",
+            "createdAt": 1713269553890,
+            "txt": "added CSS Media Queries to Mobile Responsiveness",
+            "byMemberId": "661e5a4536e18b6b8322dba7",
+            "group": {
+                "id": "gMb0cmU",
+                "title": "Mobile Responsiveness"
+            },
+            "task": {
+                "id": "tmf4egd",
+                "title": "CSS Media Queries"
+            }
+        },
+        {
+            "id": "aCYySgm",
+            "createdAt": 1713269484985,
+            "txt": "added Checklist to Responsive UI Design",
+            "byMemberId": "661e5a4536e18b6b8322dba7",
+            "group": {},
+            "task": {
+                "id": "tPe2Fcm",
+                "title": "Responsive UI Design"
+            }
+        },
+        {
+            "id": "aydOBl6",
+            "createdAt": 1713269449499,
+            "txt": "added Responsive UI Design to Mobile Responsiveness",
+            "byMemberId": "661e5a4536e18b6b8322dba7",
+            "group": {
+                "id": "gMb0cmU",
+                "title": "Mobile Responsiveness"
+            },
+            "task": {
+                "id": "tPe2Fcm",
+                "title": "Responsive UI Design"
+            }
+        },
+        {
+            "id": "aOuhKS7",
+            "createdAt": 1713269435716,
+            "txt": "added Mobile Responsiveness to this board",
+            "byMemberId": "661e5a4536e18b6b8322dba7",
+            "group": {
+                "id": "gMb0cmU",
+                "title": "Mobile Responsiveness"
+            },
+            "task": {}
+        },
+        {
+            "id": "aJsxf7V",
+            "createdAt": 1713269172550,
+            "txt": "added Backend Development to Backend Development",
+            "byMemberId": "661e5a4536e18b6b8322dba7",
+            "group": {
+                "id": "gDcQGdP",
+                "title": "Backend Development"
+            },
+            "task": {
+                "id": "tF3nqDt",
+                "title": "Backend Development"
+            }
+        },
+        {
+            "id": "aUgTGz1",
+            "createdAt": 1713269140884,
+            "txt": "delete Checklist to API Development - Cards",
+            "byMemberId": "661e5a4536e18b6b8322dba7",
+            "group": {},
+            "task": {
+                "id": "tCMUFAY",
+                "title": "API Development - Cards"
+            }
+        },
+        {
+            "id": "aczjzkM",
+            "createdAt": 1713269140300,
+            "txt": "delete Checklist to API Development - Cards",
+            "byMemberId": "661e5a4536e18b6b8322dba7",
+            "group": {},
+            "task": {
+                "id": "tCMUFAY",
+                "title": "API Development - Cards"
+            }
+        },
+        {
+            "id": "aBAVkOs",
+            "createdAt": 1713269139351,
+            "txt": "delete Checklist to API Development - Cards",
+            "byMemberId": "661e5a4536e18b6b8322dba7",
+            "group": {},
+            "task": {
+                "id": "tCMUFAY",
+                "title": "API Development - Cards"
+            }
+        },
+        {
+            "id": "aUTfoLX",
+            "createdAt": 1713269112651,
+            "txt": "added Checklist to API Development - Cards",
+            "byMemberId": "661e5a4536e18b6b8322dba7",
+            "group": {},
+            "task": {
+                "id": "tCMUFAY",
+                "title": "API Development - Cards"
+            }
+        },
+        {
+            "id": "ayKh1wD",
+            "createdAt": 1713269020613,
+            "txt": "added Checklist to API Development - Users and Authentication",
+            "byMemberId": "661e5a4536e18b6b8322dba7",
+            "group": {},
+            "task": {
+                "id": "tfIDYD4",
+                "title": "API Development - Users and Authentication"
+            }
+        },
+        {
+            "id": "aHegafa",
+            "createdAt": 1713268959846,
+            "txt": "added API Development - Users and Authentication to Backend Development",
+            "byMemberId": "661e5a4536e18b6b8322dba7",
+            "group": {
+                "id": "gDcQGdP",
+                "title": "Backend Development"
+            },
+            "task": {
+                "id": "tfIDYD4",
+                "title": "API Development - Users and Authentication"
+            }
+        },
+        {
+            "id": "alCqRZA",
+            "createdAt": 1713268941042,
+            "txt": "added Checklist to API Development - Cards",
+            "byMemberId": "661e5a4536e18b6b8322dba7",
+            "group": {},
+            "task": {
+                "id": "tCMUFAY",
+                "title": "API Development - Cards"
+            }
+        },
+        {
+            "id": "aC7zHN7",
+            "createdAt": 1713268929626,
+            "txt": "added Checklist to API Development - Cards",
+            "byMemberId": "661e5a4536e18b6b8322dba7",
+            "group": {},
+            "task": {
+                "id": "tCMUFAY",
+                "title": "API Development - Cards"
+            }
+        },
+        {
+            "id": "aHnT00x",
+            "createdAt": 1713268909926,
+            "txt": "added Checklist to API Development - Cards",
+            "byMemberId": "661e5a4536e18b6b8322dba7",
+            "group": {},
+            "task": {
+                "id": "tCMUFAY",
+                "title": "API Development - Cards"
+            }
+        },
+        {
+            "id": "aiovcQl",
+            "createdAt": 1713268879529,
+            "txt": "added API Development - Cards to Backend Development",
+            "byMemberId": "661e5a4536e18b6b8322dba7",
+            "group": {
+                "id": "gDcQGdP",
+                "title": "Backend Development"
+            },
+            "task": {
+                "id": "tCMUFAY",
+                "title": "API Development - Cards"
+            }
+        },
+        {
+            "id": "aeUt3R4",
+            "createdAt": 1713268856489,
+            "txt": "added Checklist to API Development - Lists",
+            "byMemberId": "661e5a4536e18b6b8322dba7",
+            "group": {},
+            "task": {
+                "id": "tR0FSwY",
+                "title": "API Development - Lists"
+            }
+        },
+        {
+            "id": "amPhOSO",
+            "createdAt": 1713268830489,
+            "txt": "added Checklist to API Development - Lists",
+            "byMemberId": "661e5a4536e18b6b8322dba7",
+            "group": {},
+            "task": {
+                "id": "tR0FSwY",
+                "title": "API Development - Lists"
+            }
+        },
+        {
+            "id": "aGz4qIk",
+            "createdAt": 1713268697299,
+            "txt": "added Checklist to API Development - Lists",
+            "byMemberId": "661e5a4536e18b6b8322dba7",
+            "group": {},
+            "task": {
+                "id": "tR0FSwY",
+                "title": "API Development - Lists"
+            }
+        },
+        {
+            "id": "aaza85f",
+            "createdAt": 1713268641095,
+            "txt": "added API Development - Lists to Backend Development",
+            "byMemberId": "661e5a4536e18b6b8322dba7",
+            "group": {
+                "id": "gDcQGdP",
+                "title": "Backend Development"
+            },
+            "task": {
+                "id": "tR0FSwY",
+                "title": "API Development - Lists"
+            }
+        },
+        {
+            "id": "asRkdd4",
+            "createdAt": 1713268588110,
+            "txt": "added Checklist to API Development - Boards",
+            "byMemberId": "661e5a4536e18b6b8322dba7",
+            "group": {},
+            "task": {
+                "id": "tM9tUxq",
+                "title": "API Development - Boards"
+            }
+        },
+        {
+            "id": "amyD9wg",
+            "createdAt": 1713268565718,
+            "txt": "added API Development - Boards to Backend Development",
+            "byMemberId": "661e5a4536e18b6b8322dba7",
+            "group": {
+                "id": "gDcQGdP",
+                "title": "Backend Development"
+            },
+            "task": {
+                "id": "tM9tUxq",
+                "title": "API Development - Boards"
+            }
+        },
+        {
+            "id": "aSLQAoE",
+            "createdAt": 1713268498989,
+            "txt": "added Checklist to API Design and Documentation",
+            "byMemberId": "661e5a4536e18b6b8322dba7",
+            "group": {},
+            "task": {
+                "id": "tmgZtRs",
+                "title": "API Design and Documentation"
+            }
+        },
+        {
+            "id": "aQY64kh",
+            "createdAt": 1713268457519,
+            "txt": "added Checklist to API Design and Documentation",
+            "byMemberId": "661e5a4536e18b6b8322dba7",
+            "group": {},
+            "task": {
+                "id": "tmgZtRs",
+                "title": "API Design and Documentation"
+            }
+        },
+        {
+            "id": "a69sA28",
+            "createdAt": 1713268439499,
+            "txt": "added Checklist to API Design and Documentation",
+            "byMemberId": "661e5a4536e18b6b8322dba7",
+            "group": {},
+            "task": {
+                "id": "tmgZtRs",
+                "title": "API Design and Documentation"
+            }
+        },
+        {
+            "id": "aIh1T15",
+            "createdAt": 1713268416351,
+            "txt": "added Checklist to API Design and Documentation",
+            "byMemberId": "661e5a4536e18b6b8322dba7",
+            "group": {},
+            "task": {
+                "id": "tmgZtRs",
+                "title": "API Design and Documentation"
+            }
+        },
+        {
+            "id": "aD2bpZT",
+            "createdAt": 1713268404029,
+            "txt": "added API Design and Documentation to Backend Development",
+            "byMemberId": "661e5a4536e18b6b8322dba7",
+            "group": {
+                "id": "gDcQGdP",
+                "title": "Backend Development"
+            },
+            "task": {
+                "id": "tmgZtRs",
+                "title": "API Design and Documentation"
+            }
+        },
+        {
+            "id": "auAAW1Z",
+            "createdAt": 1713268207379,
+            "txt": "added Backend API Development to this board",
+            "byMemberId": "661e5a4536e18b6b8322dba7",
+            "group": {
+                "id": "gDcQGdP",
+                "title": "Backend API Development"
+            },
+            "task": {}
+        },
+        {
+            "id": "aRi1Nmq",
+            "createdAt": 1713268124920,
+            "txt": "deleted ",
+            "byMemberId": "661e5a4536e18b6b8322dba7",
+            "group": {
+                "id": "gU3T627",
+                "title": "📅 Working On"
+            },
+            "task": {}
+        },
+        {
+            "id": "ary2jFw",
+            "createdAt": 1713268104701,
+            "txt": "added moshe benlolo",
+            "byMemberId": "661e5a4536e18b6b8322dba7",
+            "group": {},
+            "task": {
+                "id": "teBf6SP",
+                "title": "DnD"
+            }
+        },
+        {
+            "id": "aEC5I6Q",
+            "createdAt": 1713268103117,
+            "txt": "added roi doron",
+            "byMemberId": "661e5a4536e18b6b8322dba7",
+            "group": {},
+            "task": {
+                "id": "teBf6SP",
+                "title": "DnD"
+            }
+        },
+        {
+            "id": "aIKAOEN",
+            "createdAt": 1713265563743,
+            "txt": "completed Create user guides and tutorial videos on how to use the drag-and-drop features. on DnD",
+            "byMemberId": "661e5a4536e18b6b8322dba7",
+            "group": {},
+            "task": {
+                "id": "teBf6SP",
+                "title": "DnD"
+            }
+        },
+        {
+            "id": "a0VSdGG",
+            "createdAt": 1713265343761,
+            "txt": "added lnkgl;dsnf to 🗒 Backlog",
+            "byMemberId": "661e5a4536e18b6b8322dba7",
+            "group": {
+                "id": "gp8wgIt",
+                "title": "🗒 Backlog"
+            },
+            "task": {
+                "id": "tb0ULo8",
+                "title": "lnkgl;dsnf"
+            }
+        },
+        {
+            "id": "aMMyVUZ",
+            "createdAt": 1713264288763,
+            "txt": "completed Update developer documentation with DnD integration details. on DnD",
+            "byMemberId": "661e567136e18b6b8322dba6",
+            "group": {},
+            "task": {
+                "id": "teBf6SP",
+                "title": "DnD"
+            }
+        },
+        {
+            "id": "aLYUrBN",
+            "createdAt": 1713263642316,
+            "txt": "added Checklist to DnD",
+            "byMemberId": "u107",
+            "group": {},
+            "task": {
+                "id": "teBf6SP",
+                "title": "DnD"
+            }
+        },
+        {
+            "id": "amOXgEY",
+            "createdAt": 1713263593379,
+            "txt": "added Checklist to DnD",
+            "byMemberId": "u107",
+            "group": {},
+            "task": {
+                "id": "teBf6SP",
+                "title": "DnD"
+            }
+        },
+        {
+            "id": "a1LD0oU",
+            "createdAt": 1713263547645,
+            "txt": "added Checklist to DnD",
+            "byMemberId": "u107",
+            "group": {},
+            "task": {
+                "id": "teBf6SP",
+                "title": "DnD"
+            }
+        },
+        {
+            "id": "aHK5Jrx",
+            "createdAt": 1713263265580,
+            "txt": "added Checklist to DnD",
+            "byMemberId": "u107",
+            "group": {},
+            "task": {
+                "id": "teBf6SP",
+                "title": "DnD"
+            }
+        },
+        {
+            "id": "arvWpUj",
+            "createdAt": 1713262536608,
+            "txt": "added DnD to 📅 Working On",
+            "byMemberId": "u107",
+            "group": {
+                "id": "gU3T627",
+                "title": "📅 Working On"
+            },
+            "task": {
+                "id": "teBf6SP",
+                "title": "DnD"
+            }
+        },
+        {
+            "id": "aCPcXhg",
+            "createdAt": 1713262468492,
+            "txt": "added Checklist to Report Generator",
+            "byMemberId": "u107",
+            "group": {},
+            "task": {
+                "id": "tSZL5WH",
+                "title": "Report Generator"
+            }
+        },
+        {
+            "id": "auHuRB6",
+            "createdAt": 1713262282150,
+            "txt": "added Report Generator to 🗓 Sprint Backlog - [Timeline]",
+            "byMemberId": "u107",
+            "group": {
+                "id": "gkT6et1",
+                "title": "🗓 Sprint Backlog - [Timeline]"
+            },
+            "task": {
+                "id": "tSZL5WH",
+                "title": "Report Generator"
+            }
+        },
+        {
+            "id": "awDovYj",
+            "createdAt": 1713262049720,
+            "txt": "completed Implement endpoint to register new user on Users Management",
+            "byMemberId": "u107",
+            "group": {},
+            "task": {
+                "id": "tROXK9z",
+                "title": "Users Management"
+            }
+        },
+        {
+            "id": "a2p8mcz",
+            "createdAt": 1713262048721,
+            "txt": "completed Create form to register a new user on Users Management",
+            "byMemberId": "u107",
+            "group": {},
+            "task": {
+                "id": "tROXK9z",
+                "title": "Users Management"
+            }
+        },
+        {
+            "id": "aCsar2W",
+            "createdAt": 1713261845363,
+            "txt": "removed  Guest",
+            "byMemberId": "u107",
+            "group": {},
+            "task": {
+                "id": "tROXK9z",
+                "title": "Users Management"
+            }
+        },
+        {
+            "id": "aRuuUgj",
+            "createdAt": 1713261831926,
+            "txt": "added Guest",
+            "byMemberId": "u107",
+            "group": {},
+            "task": {
+                "id": "tROXK9z",
+                "title": "Users Management"
+            }
+        },
+        {
+            "id": "alIil17",
+            "createdAt": 1713261815094,
+            "txt": "added Checklist to sfsa",
+            "byMemberId": "u107",
+            "group": {},
+            "task": {
+                "id": "tRSoCB8",
+                "title": "sfsa"
+            }
+        },
+        {
+            "id": "aMCBTMN",
+            "createdAt": 1713261811464,
+            "txt": "added sfsa to 📅 Working On",
+            "byMemberId": "u107",
+            "group": {
+                "id": "gU3T627",
+                "title": "📅 Working On"
+            },
+            "task": {
+                "id": "tRSoCB8",
+                "title": "sfsa"
+            }
+        },
+        {
+            "id": "a2LHP7J",
+            "createdAt": 1713261710704,
+            "txt": "added Checklist to Users Management",
+            "byMemberId": "u107",
+            "group": {},
+            "task": {
+                "id": "tROXK9z",
+                "title": "Users Management"
+            }
+        },
+        {
+            "id": "aDOHvOd",
+            "createdAt": 1713261596201,
+            "txt": "added Checklist to Users Management",
+            "byMemberId": "u107",
+            "group": {},
+            "task": {
+                "id": "tROXK9z",
+                "title": "Users Management"
+            }
+        },
+        {
+            "id": "afnWfjD",
+            "createdAt": 1713261318358,
+            "txt": "added User mengment to 🗓 Sprint Backlog - [Timeline]",
+            "byMemberId": "u107",
+            "group": {
+                "id": "gkT6et1",
+                "title": "🗓 Sprint Backlog - [Timeline]"
+            },
+            "task": {
+                "id": "tROXK9z",
+                "title": "User mengment"
+            }
+        },
+        {
+            "id": "aCU41LK",
+            "createdAt": 1713261152377,
+            "txt": "added 🗄 Sprint - Done [ 1.1.0] to this board",
+            "byMemberId": "u107",
+            "group": {
+                "id": "g45HUS7",
+                "title": "🗄 Sprint - Done [ 1.1.0]"
+            },
+            "task": {}
+        },
+        {
+            "id": "aRQdkfI",
+            "createdAt": 1713261111490,
+            "txt": "added 📆 Sprint - Done [Version: 1.2.0] to this board",
+            "byMemberId": "u107",
+            "group": {
+                "id": "gUwYhwY",
+                "title": "📆 Sprint - Done [Version: 1.2.0]"
+            },
+            "task": {}
+        },
+        {
+            "id": "aDbnEIE",
+            "createdAt": 1713261070675,
+            "txt": "added 🧑🏾‍💻 Testing [Staging Server] to this board",
+            "byMemberId": "u107",
+            "group": {
+                "id": "gf64LRz",
+                "title": "🧑🏾‍💻 Testing [Staging Server]"
+            },
+            "task": {}
+        },
+        {
+            "id": "aEIZAWu",
+            "createdAt": 1713261032989,
+            "txt": "added 🧑🏾‍💻 Testing [Staging Server] to this board",
+            "byMemberId": "u107",
+            "group": {
+                "id": "grshA9t",
+                "title": "🧑🏾‍💻 Testing [Staging Server]"
+            },
+            "task": {}
+        },
+        {
+            "id": "a8X8BSJ",
+            "createdAt": 1713261020749,
+            "txt": "added 🐞 Bugs to this board",
+            "byMemberId": "u107",
+            "group": {
+                "id": "gNrwvau",
+                "title": "🐞 Bugs"
+            },
+            "task": {}
+        },
+        {
+            "id": "aPaB8oJ",
+            "createdAt": 1713260770735,
+            "txt": "added 🗒 Backlog to Backlog",
+            "byMemberId": "u107",
+            "group": {
+                "id": "gp8wgIt",
+                "title": "Backlog"
+            },
+            "task": {
+                "id": "tD7MR5L",
+                "title": "🗒 Backlog"
+            }
+        },
+        {
+            "id": "a2a1CEy",
+            "createdAt": 1713259928687,
+            "txt": "deleted ",
+            "byMemberId": "u107",
+            "group": {
+                "id": "gp8wgIt",
+                "title": "To do"
+            },
+            "task": {}
+        },
+        {
+            "id": "adg7lDL",
+            "createdAt": 1713259850807,
+            "txt": "added gfdagads to To do",
+            "byMemberId": "u107",
+            "group": {
+                "id": "gp8wgIt",
+                "title": "To do"
+            },
+            "task": {
+                "id": "tjlKPas",
+                "title": "gfdagads"
+            }
+        }
+    ],
+    "createdBy": null
+}

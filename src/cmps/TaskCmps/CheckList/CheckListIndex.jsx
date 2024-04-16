@@ -12,9 +12,10 @@ export function ChecklistIndex({ task, saveTask, groupId,group }) {
     }
 
     function onUpdateList(_checklist ,activity) {
-        const listIdx = checklists.findIndex(checklist => checklist.id === _checklist.id)
-        task.checklists[listIdx] = _checklist
-        saveTask(task, groupId,activity)
+        // const listIdx = checklists.findIndex(checklist => checklist.id === _checklist.id)
+        // task.checklists[listIdx] = _checklist
+        const _checklists = task.checklists.map(checklist => checklist.id !== _checklist.id ? checklist : _checklist)
+        saveTask({...task, checklists: _checklists}, groupId,activity)
     }
 
     function onDragEnd(result) {

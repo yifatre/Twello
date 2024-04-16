@@ -19,13 +19,19 @@ export function AttachmentPicker({ group, setActionType, groupId, task, saveTask
 
     async function onUploadFile(ev) {
         const { secure_url, height, width } = await uploadService.uploadImg(ev)
-        setImgData({ imgUrl: secure_url, width, height })
+        console.log("secure_url", secure_url)
         setIsUploading(false)
         if (!task.attach) task.attach = []
         task.attach.push(secure_url)
         //todo add the member !!! now its 0 for development
-        const activity = boardService.getActivity(`attached ${ev.target.files[0].name}to${task.title}`, 0, group, task)
-        saveTask({ ...task, style: { ...task.style, backgroundImage: secure_url } }, groupId, activity)
+        const activity =boardService.getActivity(`attached ${ev.target.files[0].name} to ${task.title}`,0,group,task)
+        
+        if(secure_url.includes('image')){
+            if(!task.style.backgroundImage){
+                saveTask({ ...task, style: { ...task.style, backgroundImage: secure_url } }, groupId, activity)
+            }
+            
+        }
         setActionType(null)
     }
 
