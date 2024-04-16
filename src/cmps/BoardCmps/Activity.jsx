@@ -14,6 +14,7 @@ export function Activity({taskId}){
         <section className={taskId?'activity-task':'activities-container'} >
             {activities && (taskActivity? taskActivity : activities).map(activity =>{
                 const user = members.find(member => member._id === activity.byMemberId)
+                
                return <div key={activity.id} className="activity-container flex ">
                     <AvatarPreview user={user}/>
                     <div className="activity  flex column" >

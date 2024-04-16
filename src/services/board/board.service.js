@@ -15,7 +15,8 @@ export const boardService = {
     getEmptyTask,
     getEmptyTodo,
     getActivity,
-    getEmptyLabel
+    getEmptyLabel,
+    getGuestUser
 }
 window.cs = boardService
 
@@ -136,5 +137,13 @@ function getEmptyLabel() {
         id: utilService.makeId('l'),
         title: '',
         color: 'green-subtle'
+    }
+}
+
+function getGuestUser() {
+    return {
+        _id: 'u107',
+        fullName: 'Guest',
+        imgUrl: 'https://res.cloudinary.com/dobrmrt0g/image/upload/v1713014057/png-clipart-orb-os-x-icon-man-s-profile-icon-inside-white-circle-thumbnail_simwdv.png'
     }
 }

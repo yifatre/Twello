@@ -12,6 +12,7 @@ import gradPeach from "../../../assets/img/gradients/peach.svg"
 import gradEarth from "../../../assets/img/gradients/earth.svg"
 import { store } from "../../../store/store"
 import { LOADING_DONE, LOADING_START } from "../../../store/system.reducer"
+import { userServiceHttp } from "../../../services/user.service"
 
 
 export function CreateBoard({ setIsAddBoard }) {
@@ -42,6 +43,7 @@ export function CreateBoard({ setIsAddBoard }) {
 
     async function onCreateBoard() {
         try {
+            boardToAdd.members.push(userServiceHttp.getLoggedinUser() || boardService.getGuestUser())
             store.dispatch({ type: LOADING_START })
             const savedBoard = await addBoard(boardToAdd)
             setIsAddBoard(false)
