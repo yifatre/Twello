@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router'
 // import { ImgUploader } from '../cmps/UtilCmps/ImgUploader'
 
 export function LoginSignUp(props) {
-    const [credentials, setCredentials] = useState({ email: '', username: '', password: '', fullname: '' })
+    const [credentials, setCredentials] = useState({ email: '', username: '', password: '', fullName: '' })
     const [isSignup, setIsSignup] = useState(false)
     const [users, setUsers] = useState([])
     const [login, setLogin] = useState({ email: '', password: '' })
@@ -34,7 +34,7 @@ export function LoginSignUp(props) {
     }
 
     function clearState() {
-        setCredentials({ username: '', password: '', fullname: '', email: '', imgUrl: '' })
+        setCredentials({ username: '', password: '', fullName: '', email: '', imgUrl: '' })
         setIsSignup(false)
     }
 
@@ -74,7 +74,7 @@ export function LoginSignUp(props) {
 
     function onSignUp(ev = null) {
         if (ev) ev.preventDefault()
-        if (!credentials.username || !credentials.password || !credentials.fullname) return
+        if (!credentials.username || !credentials.password || !credentials.fullName) return
         SignUp(credentials)
         clearState()
     }
@@ -131,8 +131,8 @@ export function LoginSignUp(props) {
                     />
                     <input
                         type="text"
-                        name="fullname"
-                        value={credentials.fullname}
+                        name="fullName"
+                        value={credentials.fullName}
                         placeholder="FullName"
                         onChange={handleChange}
                         required
@@ -164,7 +164,7 @@ export function LoginSignUp(props) {
                         onChange={handleChange}
                     >
                         <option value="">Select User</option>
-                        {users.map(user => <option key={user._id} value={user.username}>{user.fullname}</option>)}
+                        {users.map(user => <option key={user._id} value={user.username}>{user.fullName}</option>)}
                     </select>
                     {/* <input
                         type="text"

@@ -6,6 +6,8 @@ import { useState } from "react"
 export function Activity({taskId}){
     const activities = useSelector(storeState => storeState.boardModule.board.activities)
     const members = useSelector(storeState => storeState.boardModule.board.members)
+    console.log("members", members)
+    
     // taskActivity
     const [taskActivity, setTaskActivity] = useState(taskId? activities.filter(activity=>(activity.task.id === taskId)):'')
     console.log("activities", activities)

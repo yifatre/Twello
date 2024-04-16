@@ -1,6 +1,7 @@
 
 // import { storageService } from './async-storage.service.js'
 import { httpService } from '../http.service.js'
+import { userServiceHttp } from '../user.service.js'
 import { utilService } from '../util.service.js'
 
 
@@ -120,7 +121,10 @@ function getEmptyTodo() {
 function getActivity(txt, byMemberId, group, task) {
     const miniGroup = group ? { id: group.id, title: group.title } : {}
     const miniTask = task ? { id: task.id, title: task.title } : {}
-    const byMember = byMemberId === 0 ? 'u107' : byMemberId
+    let byMember = userServiceHttp.getLoggedinUser()._id
+    if(!byMember){
+        byMember = 0
+    }
     return {
         id: utilService.makeId('a'),
         createdAt: Date.now(),
@@ -128,7 +132,7 @@ function getActivity(txt, byMemberId, group, task) {
         byMemberId:byMember,
         group: miniGroup,
         task: miniTask,
-    }
+    } 
 }
 
 function getEmptyLabel() {

@@ -5,13 +5,14 @@ import { arrow_down, bell_icon, info_btn, logo, more_icon, search_icon } from '.
 import { CREATE_BOARD, DynamicCmp } from '../TaskCmps/DynamicCmps/DynamicCmp'
 import { useRef, useState } from 'react'
 import { utilService } from '../../services/util.service'
+import { AvatarPreview } from '../UtilCmps/AvatarPreview'
+import { userServiceHttp } from '../../services/user.service'
 
 export function AppHeader() {
     const { pathname } = useLocation()
-    console.log("pathname", pathname)
     const [isAddBoard, setIsAddBoard] = useState(false)
-    const [modalPosition, setModalPosition] = useState({ top: 0, left: 0 })
     const refTrigger = useRef(null)
+    let user = userServiceHttp.getLoggedinUser()
 
     function onAddBoard(ev) {
         const { currentTarget } = ev
@@ -68,14 +69,14 @@ export function AppHeader() {
 
                     <button className='alarm-btn top-header-btn'>{bell_icon}</button>
                     <button className='info-btn top-header-btn'>{info_btn}</button>
-                    <button className='user-btn top-header-btn'>user</button>
+                    <button className='user-btn top-header-btn avatar-top-header'><AvatarPreview user={user}/></button>
                 </div>
             </div>
 
         </header>
         {isAddBoard && <ClickAwayListener onClickAway={onCloseAddModal}>
             <div style={{ zIndex: 110 }}>
-                <DynamicCmp cmp={{ type: CREATE_BOARD }} setIsAddBoard={setIsAddBoard} position={modalPosition} refTrigger={refTrigger} offset={{ x: 0, y: refTrigger.current.getBoundingClientRect().height + 8 }} />
+                <DynamicCmp cmp={{ type: CREATE_BOARD }} setIsAddBoard={setIsAddBoard} refTrigger={refTrigger} offset={{ x: 0, y: refTrigger.current.getBoundingClientRect().height + 8 }} />
             </div>
         </ClickAwayListener>
         }
