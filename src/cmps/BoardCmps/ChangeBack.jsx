@@ -44,7 +44,7 @@ export function ChangeBack({ setTopHead, board, setBackTo, topHead }) {
         try {
             const res = await axios.get(url)
             setImages(res.data)
-            console.log("res", res.data)
+            console.log("get", res.data)
         } catch (error) {
             console.error(error)
         }

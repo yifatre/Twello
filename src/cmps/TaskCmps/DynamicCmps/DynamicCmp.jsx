@@ -112,10 +112,10 @@ export function DynamicCmp({ setActionType, groupId, cmp, board, task, setIsAddB
         if (ref.current) {
             const modalDim = ref.current.getBoundingClientRect()
             const triggerLocation = refTrigger.current.getBoundingClientRect()
-            if (triggerLocation.top + modalDim.height > window.innerHeight) setPos(prevPos => ({ ...prevPos, top: window.innerHeight - modalDim.height }))
-            else setPos(prevPos => ({ ...prevPos, top: triggerLocation.top + offset.y }))
-            if (triggerLocation.left + modalDim.width > window.innerWidth) setPos(prevPos => ({ ...prevPos, left: window.innerWidth - modalDim.width }))
-            else setPos(prevPos => ({ ...prevPos, left: triggerLocation.left + offset.x }))
+            if (triggerLocation.top + modalDim.height + offset.y + 4 > window.innerHeight) setPos(prevPos => ({ ...prevPos, top: window.innerHeight - modalDim.height - 4 }))
+            else setPos(prevPos => ({ ...prevPos, top: triggerLocation.top + offset.y + 4 }))
+            if (triggerLocation.left + modalDim.width + offset.x + 4 > window.innerWidth) setPos(prevPos => ({ ...prevPos, left: window.innerWidth - modalDim.width - 4 }))
+            else setPos(prevPos => ({ ...prevPos, left: triggerLocation.left + offset.x + 4 }))
         }
     }, [windowSize, cmpType])
 

@@ -10,8 +10,6 @@
     "preview": "vite ptask"
   },
   "dependencies": {
-    "@atlaskit/pragmatic-drag-and-drop-react-beautiful-dnd-migration": "^1.1.0",
-    "@atlaskit/pragmatic-drag-and-drop-react-drop-indicator": "^1.1.0",
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
     "@mui/base": "^5.0.0-beta.40",
@@ -20,7 +18,7 @@
     "@tinymce/tinymce-react": "^5.0.1",
     "axios": "^1.6.8",
     "dayjs": "^1.11.10",
-    "fast-average-color": "^9.4.0",
+  
     "react": "^18.2.0",
     "react-beautiful-dnd": "^13.1.1",
     "react-date-range": "^2.0.0-alpha.4",
@@ -31,7 +29,8 @@
     "redux": "^4.2.1",
     "socket.io-client": "^4.7.2",
     "styled-components": "^6.1.8",
-    "tinymce": "^7.0.1"
+    "tinymce": "^7.0.1",
+    "unsplash-js": "^7.0.19"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",

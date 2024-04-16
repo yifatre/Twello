@@ -28,6 +28,7 @@ export async function loadBoard(boardId) {
             board
         })
         console.log('loading board')
+        return board
     } catch (err) {
         console.log('Cannot load board', err)
         throw err

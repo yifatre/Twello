@@ -10,7 +10,6 @@ import { useSelector } from "react-redux"
 import { AvatarPreview } from "../UtilCmps/AvatarPreview"
 import { ChecklistIndex } from "./CheckList/ChecklistIndex"
 import { boardService } from "../../services/board/board.service"
-import { FastAverageColor } from 'fast-average-color'
 import { Activity } from "../BoardCmps/Activity"
 
 export function TaskDetails() {
@@ -24,7 +23,6 @@ export function TaskDetails() {
     const [task, setTask] = useState(board.groups.find(group => group.id === groupId).tasks.find(task => task.id === taskId))
     const [titleToEdit, setTitleToEdit] = useState(task.title)
     const navigate = useNavigate()
-    // const fac = new FastAverageColor()
 
     const refTrigger = useRef(null)
 
