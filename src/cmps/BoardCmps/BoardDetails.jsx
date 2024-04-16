@@ -16,16 +16,13 @@ export function BoardDetails() {
     const [rsbIsOpen, setRsbIsOpen] = useState(false)
     const [viewType, setViewType] = useState('board')
     const board = useSelector(storeState => storeState.boardModule.board)
-    const [boardFilter, setBoardFilter] = useState(board)
+    const [boardFilter, setBoardFilter] = useState('')
 
 
-        useEffect(() => {
-            getBoard()
-        }, [boardId])
+    useEffect(() => {
+        getBoard()
+    }, [boardId])
 
-        useEffect(() => {
-            setBoardFilter(board)
-        }, [board])
 
     async function getBoard() {
         try {

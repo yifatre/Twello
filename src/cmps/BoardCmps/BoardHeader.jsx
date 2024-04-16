@@ -26,6 +26,7 @@ export function BoardHeader({ setBoardFilter, board, setRsbIsOpen, setViewType, 
 
     function handleChange(ev) {
         let { value, name: field, type } = ev.target
+        console.log('value', value)
         if (type === 'number') value = +value
         setBoardFilter(value)
     }

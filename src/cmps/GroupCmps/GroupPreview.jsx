@@ -7,7 +7,7 @@ import { TextareaAutosize as MinTextArea } from '@mui/base/TextareaAutosize'
 import { DynamicCmp, GROUP_ACTIONS } from '../TaskCmps/DynamicCmps/DynamicCmp'
 import { utilService } from '../../services/util.service'
 
-export function GroupPreview({ group, saveGroup, board, isLabelsExtended, setIsLabelExtended, saveTask, removeTask, removeGroup }) {
+export function GroupPreview({boardFilter, group, saveGroup, board, isLabelsExtended, setIsLabelExtended, saveTask, removeTask, removeGroup }) {
     const [isAddMode, setIsAddMode] = useState(false)
     const [isEditTitle, setIsEditTitle] = useState(false)
     const [isExtended, setIsExtended] = useState(true)
@@ -55,7 +55,7 @@ export function GroupPreview({ group, saveGroup, board, isLabelsExtended, setIsL
             </div>
 
             <div className={`tasks-container `} >
-                <TaskList group={group} saveTask={saveTask} board={board} isLabelsExtended={isLabelsExtended} setIsLabelExtended={setIsLabelExtended} isAddMode={isAddMode} setIsAddMode={setIsAddMode} removeTask={removeTask} />
+                <TaskList boardFilter={boardFilter} group={group} saveTask={saveTask} board={board} isLabelsExtended={isLabelsExtended} setIsLabelExtended={setIsLabelExtended} isAddMode={isAddMode} setIsAddMode={setIsAddMode} removeTask={removeTask} />
             </div>
 
             {!isAddMode && <div className='add'>
