@@ -27,10 +27,10 @@ async function login({ email, password }) {
     }
 }
 
-async function signup({ username, password, fullname, email }) {
+async function signup({ username, password, fullName, email }) {
 
     try {
-        const userToSingUp = { username, password, fullname, email, isAdmin: false }
+        const userToSingUp = { username, password, fullName, email, isAdmin: false }
         const user = await httpService.post(BASE_URL + 'signup', userToSingUp)
         return _setLoggedinUser(user)
     }
@@ -60,7 +60,7 @@ function getLoggedinUser() {
 }
 
 function _setLoggedinUser(user) {
-    const userToSave = { _id: user._id, fullname: user.fullname, score: user.score, isAdmin: user.isAdmin || '' }
+    const userToSave = { _id: user._id, fullName: user.fullName, score: user.score, isAdmin: user.isAdmin || '' }
     sessionStorage.setItem(STORAGE_KEY_LOGGEDIN, JSON.stringify(userToSave))
     return userToSave
 }
@@ -70,7 +70,7 @@ function getEmptyCredentials() {
     return {
         username: '',
         password: '',
-        fullname: ''
+        fullName: ''
     }
 }
 
