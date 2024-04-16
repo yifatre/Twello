@@ -4,6 +4,7 @@
     &>h3 {
         font-size: rem(16px);
         color: var(--ds-text);
+
         & span {
             @include svg-container(24px);
             margin-right: rem(8px);
@@ -15,11 +16,6 @@
         flex-wrap: wrap;
         margin-bottom: rem(50px);
         gap: rem(16px);
-
-        & li {
-            // margin-right: rem(17px);
-
-        }
     }
 
     & .new-board {
@@ -39,3 +35,4 @@
 
     }
 }
+

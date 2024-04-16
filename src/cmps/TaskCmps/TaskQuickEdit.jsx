@@ -34,7 +34,7 @@ export function TaskQuickEdit({ taskQuickEdit, groupId, removeTask, board, isLab
                 top = windowSize.height - modalDim.height - 4
             }
             else top = refTrigger.current.getBoundingClientRect().top
-            if (refTrigger.current.getBoundingClientRect().left + modalDim.width > windowSize.width) {
+            if (refTrigger.current.getBoundingClientRect().left + modalDim.width + 4 > windowSize.width) {
                 setMenuSideClass('left-side')
                 setPosition({ top, right: windowSize.width - refTrigger.current.getBoundingClientRect().right })
             }

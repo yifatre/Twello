@@ -3,6 +3,7 @@
     grid-auto-flow: column;
     grid-template-columns: 1fr max-content 1fr;
     height: 100%;
+    position: relative;
 
 
     & main {
