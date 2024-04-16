@@ -5,10 +5,11 @@ import { TaskQuickEdit } from './TaskQuickEdit'
 import { useRef, useState } from 'react'
 import { useNavigate } from 'react-router'
 
-export function TaskList({ group, saveTask, removeTask, board, isLabelsExtended, setIsLabelExtended, isAddMode, setIsAddMode }) {
+export function TaskList({ boardFilter, group, saveTask, removeTask, board, isLabelsExtended, setIsLabelExtended, isAddMode, setIsAddMode }) {
     const [taskQuickEdit, setTaskQuickEdit] = useState(false)
     const refTrigger = useRef(null)
     const navigate = useNavigate()
+    const regex = new RegExp(boardFilter, 'i')
 
     return (
         <>
@@ -17,7 +18,7 @@ export function TaskList({ group, saveTask, removeTask, board, isLabelsExtended,
                 {(provided) =>
                     <ul className="task-list clean-list" {...provided.droppableProps} ref={provided.innerRef}>
 
-                        {group.tasks?.map((task, idx) =>
+                        {group.tasks?.filter(task => regex.test(task.title) || regex.test(task.description)).map((task, idx) =>
                             <Draggable key={task.id} draggableId={task.id} index={idx} >
 
                                 {(provided, snapshot) => {
