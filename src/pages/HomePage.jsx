@@ -18,7 +18,7 @@ export function HomePage() {
                         <p>Keep everything in the same place-even if your team isn't.</p>
                     </div>
                     <Link to='/board'>
-                        <button>Try now for free</button>
+                        <button>Try it now for free</button>
                     </Link>
                 </div>
                 <div className="top-img-container">
@@ -58,15 +58,15 @@ export function HomePage() {
         </section>
         <footer className="footer-home">
             <div className="footer-top-container">
-                <img src="https://images.ctfassets.net/rz1oowkt5gyp/6Q4l8SJeMZGSu1m6W9vAjL/1021a10f6940ce44c50d0ffaefec223e/BigSwingFooterHeroGraphic__Left.svg" alt="" />
-                <div>
+                <img className="img1" src="https://images.ctfassets.net/rz1oowkt5gyp/6Q4l8SJeMZGSu1m6W9vAjL/1021a10f6940ce44c50d0ffaefec223e/BigSwingFooterHeroGraphic__Left.svg" alt="" />
+                <div className="hp-footer-btn">
                     <h1>Get started with Twello today</h1>
                     <Link to='/board'>
-                        <button>Try now for free </button>
+                        <button>Try it now for free </button>
                     </Link>
                 </div>
 
-                <img src="https://images.ctfassets.net/rz1oowkt5gyp/7KsuX6srvRqJVzeAIdIzIb/da1a3319c278d251ecbd078fcffdcd23/BigSwingFooterHeroGraphic__Right.svg" alt="" />
+                <img className="img2" src="https://images.ctfassets.net/rz1oowkt5gyp/7KsuX6srvRqJVzeAIdIzIb/da1a3319c278d251ecbd078fcffdcd23/BigSwingFooterHeroGraphic__Right.svg" alt="" />
 
             </div>
             {/* <div className="footer-bottom-container">
