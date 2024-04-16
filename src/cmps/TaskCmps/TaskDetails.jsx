@@ -68,7 +68,7 @@ export function TaskDetails() {
     }
 
     function onDeleteAttachment(attachIdx) {
-        const activity = boardService.getActivity(`detached ${task.attach[idx]} from ${task.title}`, 0, board.groups.find(group => group.id === groupId), task)
+        const activity = boardService.getActivity(`detached ${task.attach[attachIdx]} from ${task.title}`, 0, board.groups.find(group => group.id === groupId), task)
         const attaches = task.attach.toSpliced(attachIdx, 1)
         saveTask({ ...task, attach: attaches }, groupId, activity)
     }

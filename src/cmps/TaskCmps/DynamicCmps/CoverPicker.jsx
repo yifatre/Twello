@@ -8,7 +8,7 @@ import { uploadService } from "../../../services/upload.service"
 
 
 
-export function CoverPicker({ setActionType, groupId, task, saveTask, updateSize }) {
+export function CoverPicker({ setActionType, groupId, task, saveTask, updateSize, group }) {
     const [coverToEdit, setCoverToEdit] = useState(task.style)
     const attach = useRef(null)
     const [search, setSearch] = useState('')
@@ -38,8 +38,10 @@ export function CoverPicker({ setActionType, groupId, task, saveTask, updateSize
     const url = `https://api.unsplash.com/photos/random?query=${search ? search : 'aurora'}&count=6&per_page=30&client_id=${API_KEY}`
 
     async function onUploadFile(ev) {
-        const { secure_url } = await uploadService.uploadImg(ev)
-        attach.current = true
+        const { secure_url, height, width } = await uploadService.uploadImg(ev)
+        if (!task.attach) task.attach = []
+        task.attach.push(secure_url)
+        const activity = boardService.getActivity(`added ${ev.target.files[0].name}cover to ${task.title}`, 0, group, task)
         changeCoverImg(secure_url)
     }
 
@@ -101,7 +103,9 @@ export function CoverPicker({ setActionType, groupId, task, saveTask, updateSize
             </div>
         </div>
         <section className="picker-container cover-picker-container">
-            <button onClick={onUploadFile} className="tasks-btn labels-btn ">Upload image</button>
+            {/* <button onClick={onUploadFile} className="tasks-btn labels-btn ">Upload image</button> */}
+            <label htmlFor="attachment" className="tasks-btn labels-btn attach-btn">Upload image</label>
+            <input className="hide" type="file" accept="image/*" name="attachment" id="attachment" onChange={onUploadFile} />
             <button onClick={onRemoveCover} disabled={!coverToEdit.backgroundColor && !coverToEdit.backgroundImage} className="tasks-btn labels-btn ">Remove cover</button>
             <p>Change cover color</p>
             <div className="color-pallet">

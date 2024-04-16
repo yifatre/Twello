@@ -60,7 +60,7 @@ export function BoardHeader({ setBoardFilter, board, setRsbIsOpen, setViewType, 
     return (<>
         <header className="board-header">
             <h1 className="board-title" style={{ display: 'none' }}>{board.title}</h1>
-            <input className="board-title" type="text" style={{ width: !titleToEdit.length ? 1 + 'ch' : titleToEdit.length * 1.1 + 'ch' }} name="board-title" id="board-title" value={titleToEdit} onChange={handleChangeTitle} onKeyDown={onKeyDown} onBlur={() => updateBoardOptimistic({ ...board, title: titleToEdit }, true)} />
+            <input className="board-title" type="text" style={{ width: !titleToEdit.length ? 1 + 'ch' : titleToEdit.length * 1.4 + 'ch' }} name="board-title" id="board-title" value={titleToEdit} onChange={handleChangeTitle} onKeyDown={onKeyDown} onBlur={() => updateBoardOptimistic({ ...board, title: titleToEdit }, true)} />
             <button className="board-star" onClick={onToggleStar}>{board.isStarred ? <span className="svg-container" style={{color: "var(--dynamic-star)"}}>{star}</span> : <span className="svg-container">{star_outline}</span>}</button>
         {/* <button className="btn2 visibility">{group_icon}Workspace visible</button> */}
         <button className={`btn2 board-view ${viewType === 'board' ? 'active' : ''}`} onClick={() => setViewType('board')}>{board_icon}Board</button>
