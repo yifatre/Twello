@@ -2,7 +2,7 @@ import { Link, NavLink } from 'react-router-dom'
 import { star, star_outline } from '../UtilCmps/SVGs'
 import { useState } from 'react'
 import { updateBoardOptimistic } from '../../store/board/board.actions'
-import { boardService } from '../../services/board/board.service.local'
+import { boardService } from '../../services/board/board.service'
 
 
 export function BoardPreview({ board }) {

@@ -1,4 +1,4 @@
-import { userService } from '../../services/user.service.js'
+import { userServiceHttp } from "../../services/user.service"
 
 export const INCREMENT = 'INCREMENT'
 export const DECREMENT = 'DECREMENT'
@@ -11,7 +11,7 @@ export const SET_SCORE = 'SET_SCORE'
 
 const initialState = {
     count: 10,
-    user: userService.getLoggedInUser(),
+    user: userServiceHttp.getLoggedinUser(),
     users: [],
     watchedUser: null
 }

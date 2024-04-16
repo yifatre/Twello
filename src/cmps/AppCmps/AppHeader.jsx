@@ -60,10 +60,10 @@ export function AppHeader() {
             </div>
             <div className='flex'>
 
-                <div className='flex justify-center input-container'>
+                {/* <div className='flex justify-center input-container'>
                     <span className='svg-search'>{search_icon}</span>
                     <input placeholder='Search' className='search-input' type="text" />
-                </div>
+                </div> */}
                 <div className='flex btn-right-head-container'>
 
                     <button className='alarm-btn top-header-btn'>{bell_icon}</button>

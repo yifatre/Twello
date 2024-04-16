@@ -3,7 +3,7 @@ import { TextareaAutosize as MinTextArea } from '@mui/base/TextareaAutosize'
 
 import { useEffect, useRef, useState } from "react"
 import { x_icon } from "../UtilCmps/SVGs"
-import { boardService } from '../../services/board/board.service.local'
+import { boardService } from '../../services/board/board.service'
 
 export function DynEntityAdd({ setIsAddMode, saveEntity, groupId, type = 'TASK' }) {
     const [entity, setEntity] = useState(type === 'TASK' ? boardService.getEmptyTask() : boardService.getEmptyGroup())

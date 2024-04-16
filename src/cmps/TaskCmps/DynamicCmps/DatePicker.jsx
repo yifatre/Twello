@@ -3,7 +3,7 @@ import { Calendar, DateRange } from "react-date-range";
 import { x_icon } from "../../UtilCmps/SVGs";
 import { useEffect, useState } from 'react';
 import { utilService } from "../../../services/util.service";
-import { boardService } from "../../../services/board/board.service.local";
+import { boardService } from "../../../services/board/board.service";
 
 
 export function DatePicker({ group,groupId, setActionType, task, saveTask }) {

@@ -1,6 +1,6 @@
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 import { ChecklistList } from './ChecklistList'
-import { boardService } from '../../../services/board/board.service.local'
+import { boardService } from '../../../services/board/board.service'
 
 export function ChecklistIndex({ task, saveTask, groupId,group }) {
     const checklists = task.checklists

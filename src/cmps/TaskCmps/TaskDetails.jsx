@@ -9,7 +9,7 @@ import { ATTACHMENT, CHECKLIST, COVER, DATES, DynamicCmp, LABELS, MEMBERS } from
 import { useSelector } from "react-redux"
 import { AvatarPreview } from "../UtilCmps/AvatarPreview"
 import { ChecklistIndex } from "./CheckList/ChecklistIndex"
-import { boardService } from "../../services/board/board.service.local"
+import { boardService } from "../../services/board/board.service"
 import { FastAverageColor } from 'fast-average-color'
 import { Activity } from "../BoardCmps/Activity"
 
@@ -176,11 +176,11 @@ export function TaskDetails() {
                         <a className="flex align-center" href="#" onClick={(ev) => onSetActionType(ev, ATTACHMENT)}>{paperclip_icon}Attachment</a>
                         {/* <a className="flex align-center" href="#">{location_icon}Location</a> */}
                         {!(task.style?.backgroundColor || task.style?.backgroundImage) && <a className="flex align-center" href="#" onClick={(ev) => onSetActionType(ev, COVER)}>{cover_icon}Cover</a>}
-                        <ClickAwayListener onClickAway={() => { setActionType(null); refTrigger.current = null }}>
+                        {(actionType && refTrigger.current !== null) &&<ClickAwayListener onClickAway={() => { setActionType(null); refTrigger.current = null }}>
                             <div>
-                                {(actionType && refTrigger.current !== null) && <DynamicCmp setActionType={setActionType} groupId={groupId} cmp={actionType} task={task} board={board} saveTask={saveTask} refTrigger={refTrigger} offset={{ x: 0, y: refTrigger.current.getBoundingClientRect().height + 8 }} />}
+                                 <DynamicCmp setActionType={setActionType} groupId={groupId} cmp={actionType} task={task} board={board} saveTask={saveTask} refTrigger={refTrigger} offset={{ x: 0, y: refTrigger.current.getBoundingClientRect().height + 8 }} />
                             </div>
-                        </ClickAwayListener>
+                        </ClickAwayListener>}
                     </section>
                 </section>
             </ClickAwayListener>

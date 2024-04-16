@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { x_icon } from "../../UtilCmps/SVGs"
 import { MEMBERS } from "./DynamicCmp"
 import { AvatarPreview } from "../../UtilCmps/AvatarPreview"
-import { boardService } from "../../../services/board/board.service.local"
+import { boardService } from "../../../services/board/board.service"
 
 
 export function MemberPicker({ group, setActionType, members, task, saveTask, groupId }) {
