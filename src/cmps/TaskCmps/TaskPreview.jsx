@@ -94,7 +94,7 @@ export function TaskPreview({ task, groupId, removeTask, board, isLabelsExtended
 
                 <i className="edit-icon" onClick={onOpenQuickEdit}>{edit_icon}</i>
                 <h4 className="task-preview-title">{title}</h4>
-                <MinTextArea className="task-preview-title edit" value={titleToEdit} autoFocus={true} onFocus={(ev) => ev.target.select()} onChange={handleTitleChange} onKeyDown={(ev) => { if (ev.key === 'Enter') handleClickAway() }} onClick={(ev) => ev.stopPropagation()}></MinTextArea>
+                <MinTextArea className="task-preview-title edit" value={titleToEdit} autoFocus={true} onFocus={(ev) => ev.target.select()} onChange={handleTitleChange} onKeyDown={(ev) => { if (ev.key === 'Enter') onUpdateTitle() }} onClick={(ev) => ev.stopPropagation()}></MinTextArea>
                 <div className="task-info-container">
                     <div className="task-info">
                         {/* <span className="icon-container">{eye_icon}</span> */}
