@@ -10,6 +10,7 @@ export function TaskList({boardFilter, group, saveTask, removeTask, board, isLab
     const refTrigger = useRef(null)
     const navigate = useNavigate()
     const regex = new RegExp(boardFilter, 'i')
+    
 
     return (
         <>

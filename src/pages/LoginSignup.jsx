@@ -106,7 +106,7 @@ export function LoginSignUp(props) {
                     />
 
                     <input
-                        type="text"
+                        type="password"
                         name="password"
                         value={login.password}
                         placeholder="Password"
@@ -156,7 +156,7 @@ export function LoginSignUp(props) {
                     {/* <ImgUploader onUploaded={onUploaded} /> */}
                     <button className='continue'>Signup</button>
                 </form>}
-
+{/* 
                 {!isSignup && <form className="login-form" onSubmit={onLogin}>
                     <select
                         name="username"
@@ -164,8 +164,8 @@ export function LoginSignUp(props) {
                         onChange={handleChange}
                     >
                         <option value="">Select User</option>
-                        {users.map(user => <option key={user._id} value={user.username}>{user.fullName}</option>)}
-                    </select>
+                        {users.map(user => <option key={user._id} value={user.username}>{user.fullName}</option>)} */}
+                    {/* </select> */}
                     {/* <input
                         type="text"
                         name="username"
@@ -183,8 +183,8 @@ export function LoginSignUp(props) {
                         onChange={handleChange}
                         required
                     /> */}
-                    <button>Login!</button>
-                </form>}
+                    {/* <button>Login!</button> */}
+                {/* </form>} */}
                 <div className="signup-section">
                     {/* {isSignup && <form className="signup-form" onSubmit={onSignUp}>
                         <input

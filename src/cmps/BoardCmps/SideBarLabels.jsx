@@ -14,7 +14,7 @@ const pallet = ['green', 'yellow', 'orange', 'red', 'purple',
     'blue-bolder', 'teal-bolder', 'lime-bolder', 'magenta-bolder', 'gray-bolder']
 
 
-export function SideBarLabels({ topHead, board, setBackTo, setTopHead }) {
+export function SideBarLabels({onBack, topHead, board, setBackTo, setTopHead }) {
     const [toggle, setToggle] = useState(false)
     const labels = useSelector(storeState => storeState.boardModule.board.labels)
     const [labelsFilter, setLabelsFilter] = useState(labels)
@@ -80,6 +80,7 @@ export function SideBarLabels({ topHead, board, setBackTo, setTopHead }) {
         boardToUpdate.labels.push(newLabel)
         updateBoardOptimistic(boardToUpdate)
         setToggle(!toggle)
+        onBack()
     }
 
     function moreLabels() {
@@ -105,6 +106,7 @@ export function SideBarLabels({ topHead, board, setBackTo, setTopHead }) {
         Board.groups = utilService.deleteLabelIdFromEverywhere(Board.groups, labelId)
 
         updateBoardOptimistic(Board)
+        onBack()
     }
 
     function onSaveLabel(labelId) {
@@ -115,6 +117,7 @@ export function SideBarLabels({ topHead, board, setBackTo, setTopHead }) {
         }
         SaveLabel(editLabel)
         toggleBtn()
+        onBack()
     }
 
     {
