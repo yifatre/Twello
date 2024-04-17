@@ -2,6 +2,7 @@
     display: flex;
     grid-area: sidebar;
     z-index: 100;
+    height: 100%;
 
     .board-sidebar-collapsed {
         padding: 0;
@@ -93,6 +94,12 @@
 
         & .sidebar-content {
             padding-block-start: rem(12px);
+            width: rem(260px);
+            overflow-y: auto;
+            overflow-x: hidden;
+            height: calc(100% - rem(57px));
+            scrollbar-width: none ;
+
 
             & .line {
                 display: grid;
@@ -101,6 +108,15 @@
                 text-decoration: none;
                 height: rem(32px);
                 background-color: transparent;
+                width: rem(260px);
+
+
+                &>span {
+                    width: 11.25rem;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                    text-wrap: nowrap;
+                }
 
                 &:hover {
                     & .star-container-outline {
@@ -112,10 +128,12 @@
 
                 &.italic {
                     font-style: italic;
+                    text-align: left;
                 }
 
                 &.bolder {
                     font-weight: 500;
+                    text-align: left;
                 }
 
                 & .svg-container {

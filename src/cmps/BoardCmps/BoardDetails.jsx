@@ -10,6 +10,8 @@ import { utilService } from "../../services/util.service"
 import { BoardRightSideBar } from "./BoardRightSideBar"
 import { BoardTable } from "./BaordTable"
 import { boardService } from "../../services/board/board.service"
+import { LOADING_DONE, LOADING_START } from "../../store/system.reducer"
+import { store } from "../../store/store"
 
 export function BoardDetails() {
     const { boardId } = useParams()
@@ -26,7 +28,9 @@ export function BoardDetails() {
 
     async function getBoard() {
         try {
+            store.dispatch({ type: LOADING_START })
             await loadBoard(boardId)
+            store.dispatch({ type: LOADING_DONE })
         }
         catch (err) {
             console.error(err)
@@ -108,7 +112,7 @@ export function BoardDetails() {
         }
     }
 
-    if (!board) return <div>loading</div>
+    if (!board) return
     return (<>
         <section className={`board-details ${rsbIsOpen ? 'rsb-open' : ''}`} style={{ backgroundImage: `url(${board.style?.backgroundImage})` }}>
             <BoardHeader setBoardFilter={setBoardFilter} board={board} setRsbIsOpen={setRsbIsOpen} setViewType={setViewType} viewType={viewType} />
