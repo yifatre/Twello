@@ -77,9 +77,9 @@ export function BoardHeader({ setBoardFilter, board, setRsbIsOpen, setViewType, 
             <span></span>
             {/* <button className="btn2">{rocket_icon}Power-Ups</button> */}
             {/* <button className="btn2">{flash_icon}Automation</button> */}
-            {!Filter && <button onClick={() => setFilter(true)} className="btn2">{filter_icon}Filters</button>}
+            {!Filter && <button onClick={() => setFilter(true)} className="btn2 filter">{filter_icon}Filters</button>}
             {Filter &&
-                <div className='flex justify-center input-container'>
+                <div className='flex justify-center input-container filter'>
                     <span className='svg-search'>{search_icon}</span>
                     <input onChange={handleChange} placeholder='Search' className='search-input' type="text" />
                 </div>}

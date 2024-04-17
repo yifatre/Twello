@@ -11,6 +11,12 @@
     grid-area: head;
     transition: margin 0.35s;
 
+  
+        @include for-mobile-layout {
+            grid-template-columns: repeat(2, max-content);
+        }
+    
+
     & .board-title {
         font-size: rem(18px);
         padding: 0 rem(10px);
@@ -50,6 +56,7 @@
         &:hover {
             transform: scale(1.2);
         }
+      
     }
 
     button {
@@ -73,7 +80,12 @@
                 background-color: var(--dynamic-button-highlighted-hovered);
             }
         }
+        &:not(.board-star) {
 
+            @include for-mobile-layout {
+                display: none;
+            }
+        }   
 
     }
 
@@ -104,6 +116,9 @@
         height: 16px;
         margin: 8px 4px 8px 4px;
         display: inherit;
+        @include for-mobile-layout {
+            display: none;
+        }
     }
 
     .users-avatars {
@@ -124,7 +139,11 @@
             border-radius: 50%;
 
         }
+        @include for-mobile-layout {
+            display: none;
+        }
     }
+
     & .input-container {
         position: relative;
 
@@ -133,7 +152,7 @@
             top: 8px;
             left: 8px;
             color: #fff;
-            
+
 
             & span {
                 @include svg-container(16px, 16px)
@@ -153,7 +172,7 @@
                 color: #fff;
             }
 
-            &:focus{
+            &:focus {
                 outline: white;
             }
 
