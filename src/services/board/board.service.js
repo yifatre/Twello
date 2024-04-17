@@ -44,7 +44,7 @@ async function save(board) {
 }
 
 async function addBoardMsg(boardId, txt) {
-    const savedMsg = await httpService.post(`board/${boardId}/msg`, {txt})
+    const savedMsg = await httpService.post(`board/${boardId}/msg`, { txt })
     return savedMsg
 }
 
@@ -122,17 +122,17 @@ function getActivity(txt, byMemberId, group, task) {
     const miniGroup = group ? { id: group.id, title: group.title } : {}
     const miniTask = task ? { id: task.id, title: task.title } : {}
     let byMember = userServiceHttp.getLoggedinUser()._id
-    if(!byMember){
+    if (!byMember) {
         byMember = 0
     }
     return {
         id: utilService.makeId('a'),
         createdAt: Date.now(),
         txt,
-        byMemberId:byMember,
+        byMemberId: byMember,
         group: miniGroup,
         task: miniTask,
-    } 
+    }
 }
 
 function getEmptyLabel() {
@@ -143,3 +143,12 @@ function getEmptyLabel() {
     }
 }
 
+export const gradients = ['https://res.cloudinary.com/dobrmrt0g/image/upload/v1713335505/ice_rsnbxk.svg',
+    'https://res.cloudinary.com/dobrmrt0g/image/upload/v1713335505/wave_xw5hqz.svg',
+    'https://res.cloudinary.com/dobrmrt0g/image/upload/v1713335506/magic_mzdtqi.svg',
+    'https://res.cloudinary.com/dobrmrt0g/image/upload/v1713335505/rainbow_qqs5to.svg',
+    'https://res.cloudinary.com/dobrmrt0g/image/upload/v1713335506/peach_wmp38h.svg', 
+    'https://res.cloudinary.com/dobrmrt0g/image/upload/v1713335505/flower_knqi1i.svg',
+    'https://res.cloudinary.com/dobrmrt0g/image/upload/v1713335505/earth_f3kb9g.svg',
+    'https://res.cloudinary.com/dobrmrt0g/image/upload/v1713335505/alien_qniwed.svg',
+    'https://res.cloudinary.com/dobrmrt0g/image/upload/v1713335506/lava_mik3vn.svg']
