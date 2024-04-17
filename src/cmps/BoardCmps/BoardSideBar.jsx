@@ -9,7 +9,7 @@ import { CREATE_BOARD, DynamicCmp } from "../TaskCmps/DynamicCmps/DynamicCmp"
 import { boardService } from "../../services/board/board.service"
 
 export function BoardSideBar({ setViewType }) {
-    const [isOpen, setIsOpen] = useState(true)
+    const [isOpen, setIsOpen] = useState(false)
     const [modalPosition, setModalPosition] = useState({ top: 0, left: 0 })
     const [isAddBoard, setIsAddBoard] = useState(false)
     const boards = useSelector(storeState => storeState.boardModule.miniBoards)
