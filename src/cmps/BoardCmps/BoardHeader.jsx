@@ -84,7 +84,7 @@ export function BoardHeader({ setBoardFilter, board, setRsbIsOpen, setViewType, 
                     <input onChange={handleChange} placeholder='Search' spellcheck="false" className='search-input' type="text" />
                 </div>}
             <span className="sep"></span>
-            <div className="users-avatars"><AvatarList users={userDemoData} maxUsers={5} /></div>
+            <div className="users-avatars"><AvatarList users={board.members} maxUsers={5} /></div>
             <button className="btn2 board-share active" onClick={onAddMember} ref={refTrigger}>{share_icon}Share</button>
             <button className="board-options" onClick={() => setRsbIsOpen(true)}>{ellipsis_icon}</button>
         </header >
