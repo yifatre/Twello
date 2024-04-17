@@ -62,6 +62,7 @@ export function TaskList({boardFilter, group, saveTask, removeTask, board, isLab
                             setIsLabelExtended={setIsLabelExtended}
                             setTaskQuickEdit={setTaskQuickEdit}
                             refTrigger={refTrigger}
+                            group={group}
                         />}
 
                         {/* {<div style={{ background: 'blue' }}> {provided.placeholder}</div>} */}

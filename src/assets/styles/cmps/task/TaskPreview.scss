@@ -153,6 +153,9 @@
         display: grid;
         place-items: center;
         margin-block-end: 0;
+        min-height: rem(36px);
+        width: 100%;
+        background-color: var(--accent-background);
 
         img {
             border-top-right-radius: rem(8px);
