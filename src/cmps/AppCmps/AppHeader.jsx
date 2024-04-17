@@ -31,7 +31,7 @@ export function AppHeader() {
             <section className='justify-space-between flex' >
                 <Link to='/board'>
                     <div className='logo'>
-                        <img src="/src/assets/img/logo-home.png" alt="" />
+                        <img src="./src/assets/img/logo-home.png" alt="" />
                         <h2>Twello</h2>
                     </div>
                 </Link>
