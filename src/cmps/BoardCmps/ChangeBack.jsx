@@ -1,24 +1,24 @@
 import { useState } from "react"
 
 import { plus_icon } from "../UtilCmps/SVGs"
-import gradIce from "../../assets/img/gradients/ice.svg"
-import gradWave from "../../assets/img/gradients/wave.svg"
-import gradMagic from "../../assets/img/gradients/magic.svg"
-import gradRainbow from "../../assets/img/gradients/rainbow.svg"
-import gradPeach from "../../assets/img/gradients/peach.svg"
-import gradAline from "../../assets/img/gradients/alien.svg"
-import gradEarth from "../../assets/img/gradients/earth.svg"
-import gradFlower from "../../assets/img/gradients/flower.svg"
-import gradLava from "../../assets/img/gradients/lava.svg"
+// import gradIce from "../../assets/img/gradients/ice.svg"
+// import gradWave from "../../assets/img/gradients/wave.svg"
+// import gradMagic from "../../assets/img/gradients/magic.svg"
+// import gradRainbow from "../../assets/img/gradients/rainbow.svg"
+// import gradPeach from "../../assets/img/gradients/peach.svg"
+// import gradAline from "../../assets/img/gradients/alien.svg"
+// import gradEarth from "../../assets/img/gradients/earth.svg"
+// import gradFlower from "../../assets/img/gradients/flower.svg"
+// import gradLava from "../../assets/img/gradients/lava.svg"
 import { updateBoardOptimistic } from "../../store/board/board.actions"
 import axios from "axios"
 import { utilService } from "../../services/util.service"
 import { uploadService } from "../../services/upload.service"
-import { boardService } from "../../services/board/board.service"
+import { boardService, gradients } from "../../services/board/board.service"
 
 export function ChangeBack({ setTopHead, board, setBackTo, topHead }) {
     const [search, setSearch] = useState('aurora')
-    const gradients = [gradIce, gradWave, gradMagic, gradRainbow, gradPeach, gradFlower, gradEarth, gradAline, gradLava]
+    // const gradients = [gradIce, gradWave, gradMagic, gradRainbow, gradPeach, gradFlower, gradEarth, gradAline, gradLava]
     const [images, setImages] = useState()
     const [boardImgs, setBoardImgs] = useState(board.style.images)
 

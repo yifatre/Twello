@@ -81,7 +81,7 @@ export function BoardHeader({ setBoardFilter, board, setRsbIsOpen, setViewType, 
             {Filter &&
                 <div className='flex justify-center input-container'>
                     <span className='svg-search'>{search_icon}</span>
-                    <input onChange={handleChange} placeholder='Search' className='search-input' type="text" />
+                    <input onChange={handleChange} placeholder='Search' spellcheck="false" className='search-input' type="text" />
                 </div>}
             <span className="sep"></span>
             <div className="users-avatars"><AvatarList users={userDemoData} maxUsers={5} /></div>
