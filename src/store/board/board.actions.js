@@ -81,6 +81,7 @@ export async function updateBoardOptimistic(board, isUpdateMiniBoard = false) {
         if (isUpdateMiniBoard) store.dispatch({ type: UPDATE_MINI_BOARD, board: { _id: board._id, title: board.title, style: { backgroundImage: board.style?.backgroundImage }, isStarred: board.isStarred } })
         const savedBoard = await boardService.save(board)
         console.log('Updated Board:', savedBoard)
+        socketService.emit('board-changed', savedBoard)
         return savedBoard
     }
     catch (err) {

@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useRef, useState } from "react"
 
 import { plus_icon } from "../UtilCmps/SVGs"
 // import gradIce from "../../assets/img/gradients/ice.svg"
@@ -18,9 +18,11 @@ import { boardService, gradients } from "../../services/board/board.service"
 
 export function ChangeBack({ setTopHead, board, setBackTo, topHead }) {
     const [search, setSearch] = useState('aurora')
+    const [searchToEdit, setSearchToEdit] = useState('aurora')
     // const gradients = [gradIce, gradWave, gradMagic, gradRainbow, gradPeach, gradFlower, gradEarth, gradAline, gradLava]
     const [images, setImages] = useState()
     const [boardImgs, setBoardImgs] = useState(board.style.images)
+    const onSetSearch = useRef(utilService.debounce(txt => setSearch(txt)))
 
     const [imgData, setImgData] = useState({
         imgUrl: null,
@@ -28,8 +30,16 @@ export function ChangeBack({ setTopHead, board, setBackTo, topHead }) {
         width: 500,
     })
 
-    const [isUploading, setIsUploading] = useState(false)
 
+    useEffect(() => {
+        onSetSearch.current(searchToEdit)
+    }, [searchToEdit])
+
+    useEffect(() => {
+        getPhotos(search)
+    }, [search])
+
+    const [isUploading, setIsUploading] = useState(false)
 
     const API_KEY = 'NS7cNlul1WLl2FqtjtKmtATTQSgqEdXUWKXkgIwfDP8'
     const url = `https://api.unsplash.com/photos/random?query=${search}&count=30&per_page=30&client_id=${API_KEY}`
@@ -53,10 +63,10 @@ export function ChangeBack({ setTopHead, board, setBackTo, topHead }) {
     function changeBgImg(grad, isUpload) {
         //todo add the member !!! now its 0 for development
         const activity = boardService.getActivity('change background of this board', 0)
-        const boardToChange = {...board,style:{...board.style, backgroundImage:grad}}
+        const boardToChange = { ...board, style: { ...board.style, backgroundImage: grad } }
         // boardToChange.style.backgroundImage = grad
         boardToChange.activities.unshift(activity)
-       
+
         if (isUpload) {
             boardToChange.style.images.push(grad)
         }
@@ -77,11 +87,10 @@ export function ChangeBack({ setTopHead, board, setBackTo, topHead }) {
         let { value, name: field, type } = ev.target
         if (type === 'number') value = +value
         console.log(value)
-        setSearch(value)
-        getPhotos()
+        setSearchToEdit(value)
     }
 
-    const debounceOnChange = utilService.debounce(handleChange, 300)
+    // const debounceOnChange = utilService.debounce(handleChange, 300)
 
     return (
         <section className="change-back-container flex column">
@@ -143,7 +152,7 @@ export function ChangeBack({ setTopHead, board, setBackTo, topHead }) {
                             name="search"
                             placeholder="Search photos"
 
-                            onChange={debounceOnChange}
+                            onChange={handleChange}
                         />
 
                         {images && <div className="images flex flex-warp">

@@ -12,6 +12,8 @@ import { BoardTable } from "./BaordTable"
 import { boardService } from "../../services/board/board.service"
 import { LOADING_DONE, LOADING_START } from "../../store/system.reducer"
 import { store } from "../../store/store"
+import { SET_BOARD } from "../../store/board/board.reducer"
+import { socketService } from "../../services/socket.service"
 
 export function BoardDetails() {
     const { boardId } = useParams()
@@ -20,11 +22,23 @@ export function BoardDetails() {
     const board = useSelector(storeState => storeState.boardModule.board)
     const [boardFilter, setBoardFilter] = useState('')
 
-
     useEffect(() => {
-        getBoard()
-    }, [boardId])
 
+        getBoard()
+        socketService.emit('board-set-id', boardId)
+
+        socketService.on('board-changed', _board => {
+            store.dispatch({
+                type: SET_BOARD,
+                board: _board
+            })
+            console.log('board22222', _board)
+        })
+
+        return () => {
+            socketService.off('board-changed', () => console.log('off'))
+        }
+    }, [boardId])
 
     async function getBoard() {
         try {
