@@ -22,13 +22,10 @@ export function BoardDetails() {
     const board = useSelector(storeState => storeState.boardModule.board)
     const [boardFilter, setBoardFilter] = useState('')
 
-
     useEffect(() => {
+
         getBoard()
-    }, [boardId])
-
-    useEffect(() => {
-        socketService.emit('board-set-id', board._id)
+        socketService.emit('board-set-id', boardId)
 
         socketService.on('board-changed', _board => {
             store.dispatch({
@@ -37,12 +34,12 @@ export function BoardDetails() {
             })
             console.log('board22222', _board)
         })
-        
 
         return () => {
             socketService.off('board-changed', () => console.log('off'))
         }
-    }, [])
+    }, [boardId])
+
     async function getBoard() {
         try {
             store.dispatch({ type: LOADING_START })
