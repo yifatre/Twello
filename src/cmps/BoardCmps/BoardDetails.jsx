@@ -32,7 +32,7 @@ export function BoardDetails() {
                 type: SET_BOARD,
                 board: _board
             })
-            console.log('board22222', _board)
+            // console.log('board22222', _board)
         })
 
         return () => {
