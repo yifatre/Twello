@@ -120,7 +120,7 @@ export function BoardSideBar({ setViewType }) {
                             }
                         </ul>
                     </section>
-                    <div className="board-sidebar-footer"></div>
+                    {/* <div className="board-sidebar-footer"></div> */}
                 </div>}
         </div>
         {isAddBoard && <ClickAwayListener onClickAway={onCloseAddModal}>
