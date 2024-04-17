@@ -44,12 +44,11 @@
 
 .activity-task {
     & .activity-container {
-
         display: grid;
         grid-template-columns: rem(40px) 1fr;
         grid-template-areas: "a d";
-
-
+        
+        
         & .avatar {
             grid-area: a;
             border-radius: 50%;
@@ -69,7 +68,8 @@
             font-size: rem(14px);
             line-height: 20px;
             padding: rem(8px) 0;
-
+            line-break: anywhere;
+            
             & h4 {
                 display: inline;
             }
