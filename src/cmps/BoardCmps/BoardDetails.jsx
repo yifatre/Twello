@@ -108,7 +108,7 @@ export function BoardDetails() {
         }
     }
 
-    if (!board) return <div>loading</div>
+    // if (!board) return <div>loading</div>
     return (<>
         <section className={`board-details ${rsbIsOpen ? 'rsb-open' : ''}`} style={{ backgroundImage: `url(${board.style?.backgroundImage})` }}>
             <BoardHeader setBoardFilter={setBoardFilter} board={board} setRsbIsOpen={setRsbIsOpen} setViewType={setViewType} viewType={viewType} />
