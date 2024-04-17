@@ -1,21 +1,34 @@
 .board-list-container {
     margin-block-start: rem(33px);
+    
+    @include for-mobile-layout {
+        margin-block-start: rem(16px);
+    }
 
     &>h3 {
         font-size: rem(16px);
         color: var(--ds-text);
-
+        @include for-mobile-layout {
+            margin-inline-start: 10vw;
+        }
         & span {
             @include svg-container(24px);
             margin-right: rem(8px);
         }
     }
 
-    & ul {
+    & ul.board-list {
         list-style: none;
         flex-wrap: wrap;
         margin-bottom: rem(50px);
         gap: rem(16px);
+        @include for-mobile-layout {
+            flex-direction: column;
+            justify-items: center;
+            align-items: center;
+            margin-bottom: rem(32px);
+        }
+
     }
 
     & .new-board {

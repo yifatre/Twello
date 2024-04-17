@@ -2,15 +2,13 @@ import { useRef, useState } from "react"
 import { ClickAwayListener } from '@mui/base/ClickAwayListener'
 
 import { CREATE_BOARD, DynamicCmp } from "../TaskCmps/DynamicCmps/DynamicCmp"
-import { loader, member_icon, star_outline } from "../UtilCmps/SVGs"
+import { member_icon, star_outline } from "../UtilCmps/SVGs"
 import { BoardPreview } from "./BoardPreview"
-import { utilService } from "../../services/util.service"
 import { store } from "../../store/store"
 import { LOADING_DONE, LOADING_START } from "../../store/system.reducer"
 import { loadBoard } from "../../store/board/board.actions"
 import { useNavigate } from "react-router"
-import { useSelector } from "react-redux"
-import { Loader } from "../UtilCmps/Loader"
+
 
 export function BoardList({ boards }) {
     const [isAddBoard, setIsAddBoard] = useState(false)

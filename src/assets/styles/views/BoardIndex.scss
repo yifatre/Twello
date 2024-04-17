@@ -12,10 +12,19 @@
         grid-auto-flow: column;
         grid-template-columns: rem(288px) rem(825px);
 
+        @include for-mobile-layout {
+            grid-template-columns: 100vw;
+        }
+
         & .all-boards {
             margin: rem(19px) rem(16px) 0;
             // max-width: 825px;
             width: 100%;
+
+            @include for-mobile-layout {
+                margin: 0;
+            }
+    
         }
     }
 }
