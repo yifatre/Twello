@@ -47,9 +47,7 @@ export function CreateBoard({ setIsAddBoard }) {
             store.dispatch({ type: LOADING_START })
             const savedBoard = await addBoard(boardToAdd)
             setIsAddBoard(false)
-            console.log('savedBoard', savedBoard)
             store.dispatch({ type: LOADING_DONE })
-
             navigate(`/board/${savedBoard._id}`)
         }
         catch (err) {

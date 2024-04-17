@@ -10,7 +10,6 @@ export function MemberPicker({ group, setActionType, members, task, saveTask, gr
     const [memberFilter, setMemberFilter] = useState(members)
     const [activity, setActivity] = useState()
     useEffect(() => {
-        console.log('members', memberIdsToUpdate)
         saveTask({ ...task, memberIds: memberIdsToUpdate }, groupId, activity)
     }, [memberIdsToUpdate])
 
@@ -19,18 +18,15 @@ export function MemberPicker({ group, setActionType, members, task, saveTask, gr
         const regex = new RegExp(filter, 'i')
         let _members = members.filter(member => regex.test(member.fullName))
         setMemberFilter(_members)
-        // console.log("filter", filter)
     }
 
     function onAddMember(memberId, name) {
-        //todo add the member !!! now its 0 for development
         setActivity(boardService.getActivity(`added ${name}`, 0, group, task))
         if (!task.memberIds) task.memberIds = []
         setMemberIdsToUpdate([...memberIdsToUpdate, memberId])
     }
 
     function onRemoveMember(memberId, name) {
-        //todo add the member !!! now its 0 for development
         setActivity(boardService.getActivity(`removed  ${name}`, 0, group, task))
         setMemberIdsToUpdate(prevMembers => prevMembers.filter(_memberId => _memberId !== memberId))
     }

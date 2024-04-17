@@ -108,7 +108,6 @@ export function TaskPreview({ task, groupId, removeTask, board, isLabelsExtended
 
                         {!!task.description && <span className="icon-container">{bars_icon}</span>}
                         {!!task.attachments && <div className="txt-and-icon icon-container">{paperclip_icon}{task.attachments.length}</div>}
-                        {/* {console.log(task.title, task.checklists)} */}
                         {!!task.checklists?.length && <div className={`txt-and-icon icon-container`} style={{borderRadius: '0.1875rem'}}
                             id={todosCount.done === todosCount.total && todosCount.total !== 0 ? 'done' : ''} >
                             {checked_icon}{`${todosCount.done}/${todosCount.total}`}

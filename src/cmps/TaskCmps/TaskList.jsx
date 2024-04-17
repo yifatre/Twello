@@ -52,7 +52,6 @@ export function TaskList({boardFilter, group, saveTask, removeTask, board, isLab
                                 }}
                             </Draggable>
                         )}
-                        {/* {console.log(taskQuickEdit)} */}
                         {taskQuickEdit && <TaskQuickEdit
                             taskQuickEdit={taskQuickEdit}
                             groupId={group.id}
@@ -70,9 +69,6 @@ export function TaskList({boardFilter, group, saveTask, removeTask, board, isLab
                         {/* <div style={{ marginBlock: '8px' }}> */}
                         {provided.placeholder}
                         {/* </div> */}
-                        {/* {console.log("provided.dragHandleProps", provided.dragHandleProps)} */}
-
-                        {/* {console.log("provided.placeholder", provided)} */}
                         {isAddMode && <DynEntityAdd setIsAddMode={setIsAddMode} saveEntity={saveTask} groupId={group.id} />}
                     </ul>
                 }

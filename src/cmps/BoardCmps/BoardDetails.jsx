@@ -63,8 +63,6 @@ export function BoardDetails() {
         } else {
             task.id = utilService.makeId('t')
             // group.tasks.push(task)
-
-            //todo add the member !!! now its 0 for development
             const newActivity = boardService.getActivity(`added ${task.title} to ${group.title}`, 0, group, task)
             return await saveGroup({ ...group, tasks: [...group.tasks, task] }, newActivity)
         }
@@ -73,9 +71,6 @@ export function BoardDetails() {
     function removeTask(taskId, groupId) {
         let group = board.groups.find(group => group.id === groupId)
         // group = group.tasks.filter(task => task.id !== taskId)
-        //todo when connected need to get group and task for the activity
-        //todo add the member !!! now its 0 for development
-        console.log('group', group)
         const activity = boardService.getActivity('deleted ', 0, group, taskId)
         saveGroup({ ...group, tasks: group.tasks.filter(task => task.id !== taskId) }, activity)
     }
@@ -90,7 +85,6 @@ export function BoardDetails() {
         } else {
             group.id = utilService.makeId('g')
             // board.groups.push(group)
-            //todo add the member !!! now its 0 for development
             board.activities.unshift(boardService.getActivity(`added ${group.title} to this board`, 0, group))
             return await updateBoardOptimistic({ ...board, groups: [...board.groups, group] })
         }
@@ -101,7 +95,6 @@ export function BoardDetails() {
     }
 
     function onDragEnd(result) {
-        // console.log('result', result)
         if (!result.destination) {
             return
         }

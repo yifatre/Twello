@@ -61,7 +61,6 @@ function getLoggedinUser() {
 }
 
 function _setLoggedinUser(user) {
-    console.log("user", user)
     const userToSave = {
         _id: user._id, fullName: user.fullName, imgUrl: user.
             imgUrl, isAdmin: user.isAdmin || ''
