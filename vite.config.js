@@ -9,5 +9,6 @@ export default defineConfig({
     outDir: '../twello-backend/public',
     emptyOutDir: true,
   },
+  assetsInclude:['**/*.svg'],
   base: '/'
 })

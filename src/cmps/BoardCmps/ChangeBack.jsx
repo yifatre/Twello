@@ -53,8 +53,8 @@ export function ChangeBack({ setTopHead, board, setBackTo, topHead }) {
     function changeBgImg(grad, isUpload) {
         //todo add the member !!! now its 0 for development
         const activity = boardService.getActivity('change background of this board', 0)
-        const boardToChange = board
-        boardToChange.style.backgroundImage = grad
+        const boardToChange = {...board,style:{...board.style, backgroundImage:grad}}
+        // boardToChange.style.backgroundImage = grad
         boardToChange.activities.unshift(activity)
        
         if (isUpload) {
