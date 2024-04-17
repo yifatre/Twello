@@ -60,14 +60,12 @@ export function SideBarLabels({onBack, topHead, board, setBackTo, setTopHead }) 
         const regex = new RegExp(filter, 'i')
         let _labels = labels.filter(label => regex.test(label.title))
         setLabelsFilter(_labels)
-        console.log("filter", filter)
     }
 
     function colorChange(color, index) {
         let result = [...dark].fill(false)
         result[index] = !result[index]
         setDark(result)
-        // console.log('dark', dark)
         setCurrentColor(color)
     }
 

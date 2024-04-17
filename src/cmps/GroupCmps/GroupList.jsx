@@ -12,38 +12,6 @@ export function GroupList({ boardFilter, board, saveGroup, removeGroup, saveTask
     const [isAddGroup, setIsAddGroup] = useState(false)
     const { groups } = board
 
-    // function onDragStart(abc) {
-    //     // console.log('abc', abc)
-    // }
-
-    // function onDragUpdate(ev) {
-    //     // console.log('ev', ev)
-    // }
-
-    // function onDragEnd(result) {
-    //     // console.log('result', result)
-    //     if (!result.destination) {
-    //         return
-    //     }
-
-    //     const startIdx = result.source.index
-    //     const endIdx = result.destination.index
-
-    //     if (result.type === 'group') {
-    //         const [group] = groups.splice(startIdx, 1)
-    //         groups.splice(endIdx, 0, group)
-    //         updateBoardOptimistic({ ...board, groups })
-    //     }
-
-    //     if (result.type === 'task') {
-    //         const groupStart = groups.find(group => group.id === result.source.droppableId)
-    //         const groupEnd = groups.find(group => group.id === result.destination.droppableId)
-    //         const [task] = groupStart.tasks.splice(startIdx, 1)
-    //         groupEnd.tasks.splice(endIdx, 0, task)
-    //         updateBoardOptimistic({ ...board, groups })
-    //     }
-    // }
-
     return (
         <DragDropContext
             // onBeforeCapture={onBeforeCapture}
@@ -77,8 +45,6 @@ export function GroupList({ boardFilter, board, saveGroup, removeGroup, saveTask
                                             saveTask={saveTask}
                                             removeTask={removeTask}
                                             board={board} />
-                                        {/* {console.log('ab', a, b)} */}
-                                        {/* <DropIndicator/> */}
                                     </li>}
                             </Draggable>
                         )}

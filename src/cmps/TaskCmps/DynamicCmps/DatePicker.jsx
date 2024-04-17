@@ -65,7 +65,6 @@ export function DatePicker({ group,groupId, setActionType, task, saveTask }) {
             setValue(item, 'date-time')
         } if (inputDateState & !inputDateTimeState) {
             setDate(item)
-            // console.log('setDateTime:', dateTime);
             setValue(item, 'date')
         } if (inputDateTimeState & inputDateState) {
             setState([item.selection])
@@ -91,7 +90,6 @@ export function DatePicker({ group,groupId, setActionType, task, saveTask }) {
             date.dueDate = item.selection.endDate.valueOf()
             dateValues.dueDate = utilService.getDateFormat(item.selection.endDate)
         }
-        // console.log(date);
         setTaskDate(date)
         setDateValues(dateValues)
     }
@@ -105,9 +103,7 @@ export function DatePicker({ group,groupId, setActionType, task, saveTask }) {
 
     function onSaveDate() {
         const date = taskDate
-        // console.log("date", date)
         time ? taskDate.time = time : ''
-         //todo add the member !!! now its 0 for development
         const activity = boardService.getActivity(`set ${task.title} due time`,0,group,task)
         saveTask({ ...task, date: taskDate }, groupId ,activity)
         setActionType(null)

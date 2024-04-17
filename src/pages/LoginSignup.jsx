@@ -18,7 +18,6 @@ export function LoginSignUp(props) {
     //todo delete on production
     async function loadUsers() {
         const users = await userServiceHttp.getUsers()
-        console.log(users);
         setUsers(users)
     }
 
@@ -156,73 +155,6 @@ export function LoginSignUp(props) {
                     {/* <ImgUploader onUploaded={onUploaded} /> */}
                     <button className='continue'>Signup</button>
                 </form>}
-{/* 
-                {!isSignup && <form className="login-form" onSubmit={onLogin}>
-                    <select
-                        name="username"
-                        value={credentials.username}
-                        onChange={handleChange}
-                    >
-                        <option value="">Select User</option>
-                        {users.map(user => <option key={user._id} value={user.username}>{user.fullName}</option>)} */}
-                    {/* </select> */}
-                    {/* <input
-                        type="text"
-                        name="username"
-                        value={username}
-                        placeholder="Username"
-                        onChange={handleChange}
-                        required
-                        autoFocus
-                    />
-                    <input
-                        type="password"
-                        name="password"
-                        value={password}
-                        placeholder="Password"
-                        onChange={handleChange}
-                        required
-                    /> */}
-                    {/* <button>Login!</button> */}
-                {/* </form>} */}
-                <div className="signup-section">
-                    {/* {isSignup && <form className="signup-form" onSubmit={onSignUp}>
-                        <input
-                            type="email"
-                            name="email"
-                            value={credentials.email}
-                            placeholder="Email"
-                            onChange={handleChange}
-                            required
-                        />
-                        <input
-                            type="text"
-                            name="fullName"
-                            value={credentials.fullName}
-                            placeholder="FullName"
-                            onChange={handleChange}
-                            required
-                        />
-                        <input
-                            type="text"
-                            name="username"
-                            value={credentials.username}
-                            placeholder="Username"
-                            onChange={handleChange}
-                            required
-                        />
-                        <input
-                            type="password"
-                            name="password"
-                            value={credentials.password}
-                            placeholder="Password"
-                            onChange={handleChange}
-                            required
-                        />
-                        <ImgUploader onUploaded={onUploaded} />
-                        <button >Signup!</button>
-                    </form>} */}
-                </div>
             </main>
         </section>
     )

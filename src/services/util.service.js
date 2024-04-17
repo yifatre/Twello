@@ -56,7 +56,6 @@ function debounce(func, timeout = 300) {
     return (...args) => {
         clearTimeout(timer)
         timer = setTimeout(() => { func.apply(this, args) }, timeout)
-        console.log('timer', timer)
     }
 }
 
@@ -81,9 +80,6 @@ function loadFromStorage(key) {
 function getModalPosition(target, offsetx = 0, offsety = 0) {
 
     const { bottom, top, left, right, height, width, x, y } = target.getBoundingClientRect()
-    console.log('x,y,left,top', x, y, left, top)
-    // const left = target.offsetLeft
-    // const top = target.offsetTop
     return { top: top + offsety, left: left + offsetx }
 }
 
@@ -136,7 +132,6 @@ function getDateFormat(dateLongForm) {
     const day = date.getDate()
 
     const formattedDate = `${month.toString().padStart(2, '0')}/${day.toString().padStart(2, '0')}/${year}`
-    console.log(formattedDate)
     return formattedDate
 }
 

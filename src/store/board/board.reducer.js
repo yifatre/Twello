@@ -28,7 +28,6 @@ export function boardReducer(state = initialState, action) {
             break
         case SET_BOARD:
             newState = { ...state, board: action.board }
-            console.log('set board');
             break
         case REMOVE_BOARD:
             const lastRemovedBoard = state.miniBoards.find(board => board._id === action.boardId)
@@ -40,10 +39,8 @@ export function boardReducer(state = initialState, action) {
             break
         case UPDATE_BOARD:
             const lastUpdatedBoard = structuredClone(state.board)
-            console.log('reducer',lastUpdatedBoard);
             board = { ...action.board }
             newState = { ...state, board, lastUpdatedBoard: {...lastUpdatedBoard} }
-            console.log('reducer',state.board, action.board);
             break
         case UPDATE_MINI_BOARD:
             const lastUpdatedMiniBoards = {...state.miniBoards}
@@ -53,7 +50,6 @@ export function boardReducer(state = initialState, action) {
 
         case UNDO_UPDATE_BOARD:
             if (state.lastUpdatedBoard) {
-                console.log('undo',state.lastUpdatedBoard);
                 newState = { ...state, board: state.lastUpdatedBoard }
             }
             break

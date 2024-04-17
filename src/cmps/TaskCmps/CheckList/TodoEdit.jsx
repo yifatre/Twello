@@ -14,7 +14,6 @@ export function TodoEdit({ todo, saveTodo, setIsAddTodo, isFirst }) {
 
     function handleTitleChange({ target }) {
         const { name, value } = target
-        console.log(name, value)
         setTodoToEdit((prevTodo) => ({ ...prevTodo, [name]: value }))
     }
 
@@ -30,8 +29,6 @@ export function TodoEdit({ todo, saveTodo, setIsAddTodo, isFirst }) {
         setTodoToEdit(boardService.getEmptyTodo())
         ev.target.scrollIntoView({inline: "center", behavior: "smooth"})
     }
-
-    console.log(todoToEdit.isDone)
 
     return (
         <ClickAwayListener onClickAway={() => setIsAddTodo(false)}>

@@ -54,7 +54,6 @@ export function BoardTable({ saveGroup, removeGroup, saveTask, removeTask }) {
     }
 
     function onSetActionType(ev, type, groupId, task) {
-        console.log(ev,);
         ev.preventDefault()
         ev.stopPropagation()
         refTrigger.current = ev.target.parentElement.parentElement.parentElement.parentElement
