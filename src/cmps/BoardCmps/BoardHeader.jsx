@@ -13,6 +13,7 @@ export function BoardHeader({ boardFilter, setBoardFilter, board, setRsbIsOpen, 
     // Filter
     const [Filter, setFilter] = useState(false)
     const refTrigger = useRef(null)
+    const refTriggerF = useRef(null)
 
     useEffect(() => {
         setTitleToEdit(board.title)
@@ -77,7 +78,7 @@ export function BoardHeader({ boardFilter, setBoardFilter, board, setRsbIsOpen, 
             <span></span>
             {/* <button className="btn2">{rocket_icon}Power-Ups</button> */}
             {/* <button className="btn2">{flash_icon}Automation</button> */}
-            <button onClick={() => setFilter(true)} className="btn2 filter">{filter_icon}Filters</button>
+            <button onClick={() => setFilter(true)} ref={refTriggerF} className="btn2 filter">{filter_icon}Filters</button>
             {/* {!Filter && <button onClick={() => setFilter(true)} className="btn2 filter">{filter_icon}Filters</button>} */}
            
             {/* {Filter &&
@@ -93,7 +94,7 @@ export function BoardHeader({ boardFilter, setBoardFilter, board, setRsbIsOpen, 
         {Filter && 
             <ClickAwayListener onClickAway={onCloseAddModal}>
             <div style={{ zIndex: 110 }}>
-                <DynamicCmp cmp={{ type:FILTER}} setActionType={setFilter} refTrigger={refTrigger}  FilterBy={boardFilter} setBoardFilter={setBoardFilter} board={board} offset={{ x: 0, y: refTrigger.current.getBoundingClientRect().height + 8 }} />
+                <DynamicCmp cmp={{ type:FILTER}} setActionType={setFilter} refTrigger={refTriggerF}  FilterBy={boardFilter} setFilterBY={setBoardFilter} board={board} offset={{ x: 0, y: refTrigger.current.getBoundingClientRect().height + 8 }} />
             </div>
         </ClickAwayListener>}
         {
