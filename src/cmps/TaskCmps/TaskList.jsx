@@ -17,7 +17,7 @@ export function TaskList({ boardFilter, group, saveTask, removeTask, board, isLa
     useEffect(() => {
         setTasks([...filterBy()])
         console.log('hi')
-    }, [boardFilter.filterBy,boardFilter.membersIds.length])
+    }, [boardFilter.filterBy,boardFilter.membersIds.length,board])
 
     function filterBy() {
         let tasks = [...group.tasks]
