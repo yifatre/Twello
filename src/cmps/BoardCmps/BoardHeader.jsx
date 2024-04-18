@@ -94,7 +94,7 @@ export function BoardHeader({ boardFilter, setBoardFilter, board, setRsbIsOpen, 
         {Filter && 
             <ClickAwayListener onClickAway={onCloseAddModal}>
             <div style={{ zIndex: 110 }}>
-                <DynamicCmp cmp={{ type:FILTER}} setActionType={setFilter} refTrigger={refTriggerF}  FilterBy={boardFilter} setFilterBY={setBoardFilter} board={board} offset={{ x: 0, y: refTrigger.current.getBoundingClientRect().height + 8 }} />
+                <DynamicCmp cmp={{ type:FILTER}} setActionType={setFilter} refTrigger={refTriggerF}  FilterBy={boardFilter} setBoardFilter={setBoardFilter} board={board} offset={{ x: 0, y: refTrigger.current.getBoundingClientRect().height + 8 }} />
             </div>
         </ClickAwayListener>}
         {
