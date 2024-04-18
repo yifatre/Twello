@@ -92,7 +92,7 @@ export function LoginSignUp(props) {
             <img className='right-login-img' src="https://id-frontend.prod-east.frontend.public.atl-paas.net/assets/trello-right.3ee60d6f.svg" alt="" />
             <main className='login-logout-container flex column'>
                 <div className='logo-login flex justify-center'>
-                    <img src="/src/assets/img/logo-home.png" alt="" />
+                    <img src="https://res.cloudinary.com/dobrmrt0g/image/upload/v1713335442/logo-home_ebiiyx.png" alt="" />
                     {logo_no_icon}</div>
                 {!isSignup && <div className='login'>
                     <h3>Log in to continue</h3>
