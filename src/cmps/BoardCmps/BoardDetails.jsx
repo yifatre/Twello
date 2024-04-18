@@ -20,7 +20,9 @@ export function BoardDetails() {
     const [rsbIsOpen, setRsbIsOpen] = useState(false)
     const [viewType, setViewType] = useState('board')
     const board = useSelector(storeState => storeState.boardModule.board)
-    const [boardFilter, setBoardFilter] = useState('')
+    const [boardFilter, setBoardFilter] = useState(boardService.getEmptyFilter())
+    console.log("boardFilterFAromD", boardFilter)
+
 
     useEffect(() => {
 
@@ -122,7 +124,7 @@ export function BoardDetails() {
     if (!board) return
     return (<>
         <section className={`board-details ${rsbIsOpen ? 'rsb-open' : ''}`} style={{ backgroundImage: `url(${board.style?.backgroundImage})` }}>
-            <BoardHeader setBoardFilter={setBoardFilter} board={board} setRsbIsOpen={setRsbIsOpen} setViewType={setViewType} viewType={viewType} />
+            <BoardHeader boardFilter={boardFilter} setBoardFilter={setBoardFilter} board={board} setRsbIsOpen={setRsbIsOpen} setViewType={setViewType} viewType={viewType} />
             <BoardSideBar setViewType={setViewType} />
             {viewType === 'board' && <GroupList boardFilter={boardFilter} board={board} saveGroup={saveGroup} removeGroup={removeGroup} saveTask={saveTask} removeTask={removeTask} onDragEnd={onDragEnd} />}
             {viewType === 'table' && <BoardTable board={board} saveGroup={saveGroup} removeGroup={removeGroup} saveTask={saveTask} removeTask={removeTask} onDragEnd={onDragEnd} />}

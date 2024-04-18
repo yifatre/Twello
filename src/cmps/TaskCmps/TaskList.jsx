@@ -2,15 +2,34 @@ import { Droppable, Draggable } from 'react-beautiful-dnd'
 import { TaskPreview } from "./TaskPreview"
 import { DynEntityAdd } from './DynEntityAdd'
 import { TaskQuickEdit } from './TaskQuickEdit'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router'
 
-export function TaskList({boardFilter, group, saveTask, removeTask, board, isLabelsExtended, setIsLabelExtended, isAddMode, setIsAddMode }) {
+export function TaskList({ boardFilter, group, saveTask, removeTask, board, isLabelsExtended, setIsLabelExtended, isAddMode, setIsAddMode }) {
     const [taskQuickEdit, setTaskQuickEdit] = useState(false)
     const refTrigger = useRef(null)
     const navigate = useNavigate()
-    const regex = new RegExp(boardFilter, 'i')
-    
+    const regex = new RegExp(boardFilter.filterBy, 'i')
+    // tasks
+    const [tasks, setTasks] = useState(filterBy())
+    console.log("boardFilter", boardFilter)
+
+    useEffect(() => {
+        setTasks([...filterBy()])
+        console.log('hi')
+    }, [boardFilter.filterBy,boardFilter.membersIds.length])
+
+    function filterBy() {
+        let tasks = [...group.tasks]
+        if (boardFilter.filterBy) {
+            tasks = group.tasks?.filter(task => regex.test(task.title) || regex.test(task.description))
+            console.log("tasks", tasks)
+        }
+        if (boardFilter.membersIds.length && group.tasks) {
+            tasks = tasks.filter(task => task.memberIds.length ? task.memberIds.some(id => boardFilter.membersIds.includes(id)) : false)
+        }
+        return tasks
+    }
 
     return (
         <>
@@ -19,7 +38,7 @@ export function TaskList({boardFilter, group, saveTask, removeTask, board, isLab
                 {(provided) =>
                     <ul className="task-list clean-list" {...provided.droppableProps} ref={provided.innerRef}>
 
-                        {group.tasks?.filter(task => regex.test(task.title) || regex.test(task.description)).map((task, idx) =>
+                        {tasks.map((task, idx) =>
                             <Draggable key={task.id} draggableId={task.id} index={idx} >
 
                                 {(provided, snapshot) => {

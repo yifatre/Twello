@@ -16,7 +16,8 @@ export const boardService = {
     getEmptyTask,
     getEmptyTodo,
     getActivity,
-    getEmptyLabel
+    getEmptyLabel,
+    getEmptyFilter
 }
 window.cs = boardService
 
@@ -140,6 +141,13 @@ function getEmptyLabel() {
         id: utilService.makeId('l'),
         title: '',
         color: 'green-subtle'
+    }
+}
+
+function getEmptyFilter() {
+    return {
+        filterBy: '',
+        membersIds: []
     }
 }
 

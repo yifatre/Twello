@@ -11,6 +11,7 @@ import { MemberPicker } from "./MemberPicker"
 import { utilService } from "../../../services/util.service"
 import { CopyMove } from "./CopyMove"
 import { AddBoardUsers } from "./AddBoardUsers"
+import { BoardFilter } from "./BoardFilter"
 
 export const LABELS = 'LABELS'
 export const MEMBERS = 'MEMBERS'
@@ -22,9 +23,10 @@ export const GROUP_ACTIONS = 'GROUP_ACTIONS'
 export const CHECKLIST = 'CHECKLIST'
 export const COPYMOVE = 'COPYMOVE'
 export const ADD_BOARD_USER = 'ADD_BOARD_USER'
+export const FILTER = 'FILTER'
 
 
-export function DynamicCmp({ setActionType, groupId, cmp, board, task, setIsAddBoard, saveTask, group, saveGroup, removeGroup, setIsActionsOpen, refTrigger, offset = { x: 0, y: 0 } }) {
+export function DynamicCmp({FilterBy,setBoardFilter, setActionType, groupId, cmp, board, task, setIsAddBoard, saveTask, group, saveGroup, removeGroup, setIsActionsOpen, refTrigger, offset = { x: 0, y: 0 } }) {
 
     const ref = useRef(null)
     const [pos, setPos] = useState(utilService.getModalPosition(refTrigger.current, offset.x, refTrigger.current.getBoundingClientRect().height + offset.y))
@@ -113,6 +115,14 @@ export function DynamicCmp({ setActionType, groupId, cmp, board, task, setIsAddB
                     setActionType={setActionType}
                     members={board.members}
                     board={board}
+                     />)
+                break
+            case FILTER:
+                setCmpType(<BoardFilter
+                    setActionType={setActionType}
+                    members={board.members}
+                    setBoardFilter={setBoardFilter}
+                    FilterBy={FilterBy}
                      />)
                 break
         }
