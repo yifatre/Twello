@@ -147,7 +147,8 @@ function getEmptyLabel() {
 function getEmptyFilter() {
     return {
         filterBy: '',
-        membersIds: []
+        membersIds: [],
+        labelsIds: []
     }
 }
 

@@ -78,7 +78,7 @@ export function BoardHeader({ boardFilter, setBoardFilter, board, setRsbIsOpen, 
             <span></span>
             {/* <button className="btn2">{rocket_icon}Power-Ups</button> */}
             {/* <button className="btn2">{flash_icon}Automation</button> */}
-            <button onClick={() => setFilter(true)} ref={refTriggerF} className="btn2 filter">{filter_icon}Filters</button>
+            <button onClick={() => setFilter(true)} ref={refTriggerF} className="btn2 filter-btn">{filter_icon}Filters</button>
             {/* {!Filter && <button onClick={() => setFilter(true)} className="btn2 filter">{filter_icon}Filters</button>} */}
            
             {/* {Filter &&

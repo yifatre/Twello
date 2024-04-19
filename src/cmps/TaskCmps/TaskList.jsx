@@ -12,21 +12,22 @@ export function TaskList({ boardFilter, group, saveTask, removeTask, board, isLa
     const regex = new RegExp(boardFilter.filterBy, 'i')
     // tasks
     const [tasks, setTasks] = useState(filterBy())
-    console.log("boardFilter", boardFilter)
 
     useEffect(() => {
         setTasks([...filterBy()])
-        console.log('hi')
-    }, [boardFilter.filterBy,boardFilter.membersIds.length,board])
+    }, [boardFilter.filterBy,boardFilter.membersIds.length,boardFilter.labelsIds.length,board])
 
     function filterBy() {
         let tasks = [...group.tasks]
         if (boardFilter.filterBy) {
             tasks = group.tasks?.filter(task => regex.test(task.title) || regex.test(task.description))
-            console.log("tasks", tasks)
         }
         if (boardFilter.membersIds.length && group.tasks) {
             tasks = tasks.filter(task => task.memberIds.length ? task.memberIds.some(id => boardFilter.membersIds.includes(id)) : false)
+        }
+        if (boardFilter.labelsIds.length && group.tasks) {
+            console.log('hi');
+            tasks = tasks.filter(task => task.labelIds.length ? task.labelIds.some(id => boardFilter.labelsIds.includes(id)) : false)
         }
         return tasks
     }

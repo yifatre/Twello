@@ -123,6 +123,7 @@ export function DynamicCmp({FilterBy,setBoardFilter, setActionType, groupId, cmp
                     members={board.members}
                     setBoardFilter={setBoardFilter}
                     FilterBy={FilterBy}
+                    labels = {board.labels}
                      />)
                 break
         }
@@ -164,7 +165,7 @@ export function DynamicCmp({FilterBy,setBoardFilter, setActionType, groupId, cmp
         updateBoardOptimistic(Board)
     }
 
-    return <div className={`dynamic-cmp ${cmp.type.toLowerCase()}`} style={{ top: pos.top, left: pos.left, zIndex: 150 }} ref={ref}>
+    return <div className={`dynamic-cmp ${cmp.type.toLowerCase()} ${cmp.type === 'FILTER'?'flex column':''}`} style={{ top: pos.top, left: pos.left, zIndex: 150 }} ref={ref}>
         {cmpType}
     </div>
 }

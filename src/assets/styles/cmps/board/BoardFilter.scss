@@ -1,0 +1,15 @@
+.filter {
+    width: 384px !important;
+    max-height: 74vh;
+
+    & .filter-picker-container{
+        overflow: auto;
+        scrollbar-color: var(--ds-background-neutral-hovered, rgba(9, 30, 66, 0.1411764706)) var(--ds-background-neutral, rgba(9, 30, 66, 0.0588235294));
+        scrollbar-width: thin;
+
+        & .label-filter-member{
+            margin-left: 12px;
+        }
+    }
+    
+}
