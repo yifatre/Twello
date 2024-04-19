@@ -108,6 +108,12 @@ export function DatePicker({ group,groupId, setActionType, task, saveTask }) {
         saveTask({ ...task, date: taskDate }, groupId ,activity)
         setActionType(null)
     }
+    
+    function onRemoveDate() {
+        const activity = boardService.getActivity(`remove ${task.title} due time`,0,group,task)
+        saveTask({ ...task, date: null }, groupId ,activity)
+        setActionType(null)
+    }
 
     return (<>
         <header className="dynamic-head-container">
@@ -156,7 +162,7 @@ export function DatePicker({ group,groupId, setActionType, task, saveTask }) {
 
 
             <button onClick={() => onSaveDate()} className="tasks-btn labels-btn save-date-btn">Save</button>
-            <button className="tasks-btn labels-btn enable-colorblind">Remove </button>
+            <button  onClick={() => onRemoveDate()} className="tasks-btn labels-btn enable-colorblind">Remove </button>
         </section>
     </>
 
