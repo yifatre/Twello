@@ -29,14 +29,15 @@ export function GroupList({ boardFilter, board, saveGroup, removeGroup, saveTask
 
                                     <li key={group.id}
                                         className="group-preview-container"
-                                        ref={provided.innerRef}
-                                        {...provided.draggableProps}
-                                        {...provided.dragHandleProps}
-                                        style={snapshot.isDragging && !snapshot.isDropAnimating ? { ...provided.draggableProps?.style, opacity: 0.6, rotate: '6deg' } : { ...provided.draggableProps?.style, cursor: 'pointer', transitionDuration: `0.4s` }}
+                                    // ref={provided.innerRef}
+                                    // {...provided.draggableProps}
+                                    // {...provided.dragHandleProps}
                                     >
                                         <GroupPreview
+                                            
                                             boardFilter={boardFilter}
                                             provided={provided}
+                                            snapshot={snapshot}
                                             group={group}
                                             isLabelsExtended={isLabelsExtended}
                                             setIsLabelExtended={setIsLabelExtended}

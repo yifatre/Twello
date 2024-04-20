@@ -109,13 +109,13 @@ export function DynamicCmp({FilterBy,setBoardFilter, setActionType, groupId, cmp
                     groupId={groupId}
                     task={task} saveTask={saveTask} />)
                 break
-                
+
             case ADD_BOARD_USER:
                 setCmpType(<AddBoardUsers
                     setActionType={setActionType}
                     members={board.members}
                     board={board}
-                     />)
+                />)
                 break
             case FILTER:
                 setCmpType(<BoardFilter

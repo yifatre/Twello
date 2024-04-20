@@ -11,7 +11,6 @@ const pallet = ['green', 'yellow', 'orange', 'red', 'purple',
     'blue-subtle', 'teal-subtle', 'lime-subtle', 'magenta-subtle', 'gray-subtle',
     'blue-bolder', 'teal-bolder', 'lime-bolder', 'magenta-bolder', 'gray-bolder']
 
-// todo connect btn's and add the on update 
 
 export function LabelPicker({ setActionType, SaveLabel, deleteLabel, onUpdateBoard, task, saveTask, groupId, updateSize }) {
     const labels = useSelector(storeState => storeState.boardModule.board.labels)
