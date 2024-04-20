@@ -4,15 +4,16 @@ import { updateBoard, updateBoardOptimistic } from "../../store/board/board.acti
 import { AvatarList } from "../UtilCmps/AvatarList"
 import { arrow_down, board_icon, ellipsis_icon, filter_icon, flash_icon, group_icon, rocket_icon, search_icon, share_icon, star, star_outline, table_icon } from "../UtilCmps/SVGs"
 import { ClickAwayListener } from "@mui/base"
-import { ADD_BOARD_USER, CREATE_BOARD, DynamicCmp } from "../TaskCmps/DynamicCmps/DynamicCmp"
+import { ADD_BOARD_USER, CREATE_BOARD, DynamicCmp, FILTER } from "../TaskCmps/DynamicCmps/DynamicCmp"
 
-export function BoardHeader({ setBoardFilter, board, setRsbIsOpen, setViewType, viewType }) {
+export function BoardHeader({ boardFilter, setBoardFilter, board, setRsbIsOpen, setViewType, viewType }) {
 
     const [titleToEdit, setTitleToEdit] = useState(board.title)
     const [isAddMember, setIsAddMember] = useState(false)
     // Filter
     const [Filter, setFilter] = useState(false)
     const refTrigger = useRef(null)
+    const refTriggerF = useRef(null)
 
     useEffect(() => {
         setTitleToEdit(board.title)
@@ -33,7 +34,6 @@ export function BoardHeader({ setBoardFilter, board, setRsbIsOpen, setViewType, 
 
     function handleChange(ev) {
         let { value, name: field, type } = ev.target
-        console.log('value', value)
         if (type === 'number') value = +value
         setBoardFilter(value)
     }
@@ -46,6 +46,7 @@ export function BoardHeader({ setBoardFilter, board, setRsbIsOpen, setViewType, 
 
     function onCloseAddModal() {
         setIsAddMember(false)
+        setFilter(false)
     }
 
 
@@ -77,17 +78,25 @@ export function BoardHeader({ setBoardFilter, board, setRsbIsOpen, setViewType, 
             <span></span>
             {/* <button className="btn2">{rocket_icon}Power-Ups</button> */}
             {/* <button className="btn2">{flash_icon}Automation</button> */}
-            {!Filter && <button onClick={() => setFilter(true)} className="btn2 filter">{filter_icon}Filters</button>}
-            {Filter &&
+            <button onClick={() => setFilter(true)} ref={refTriggerF} className="btn2 filter-btn">{filter_icon}Filters</button>
+            {/* {!Filter && <button onClick={() => setFilter(true)} className="btn2 filter">{filter_icon}Filters</button>} */}
+           
+            {/* {Filter &&
                 <div className='flex justify-center input-container filter'>
                     <span className='svg-search'>{search_icon}</span>
                     <input onChange={handleChange} placeholder='Search' spellcheck="false" className='search-input' type="text" />
-                </div>}
+                </div>} */}
             <span className="sep"></span>
             <div className="users-avatars"><AvatarList users={board.members} maxUsers={5} /></div>
             <button className="btn2 board-share active" onClick={onAddMember} ref={refTrigger}>{share_icon}Share</button>
             <button className="board-options" onClick={() => setRsbIsOpen(true)}>{ellipsis_icon}</button>
         </header >
+        {Filter && 
+            <ClickAwayListener onClickAway={onCloseAddModal}>
+            <div style={{ zIndex: 110 }}>
+                <DynamicCmp cmp={{ type:FILTER}} setActionType={setFilter} refTrigger={refTriggerF}  FilterBy={boardFilter} setBoardFilter={setBoardFilter} board={board} offset={{ x: 0, y: refTrigger.current.getBoundingClientRect().height + 8 }} />
+            </div>
+        </ClickAwayListener>}
         {
             isAddMember && <ClickAwayListener onClickAway={onCloseAddModal}>
                 <div style={{ zIndex: 110 }}>

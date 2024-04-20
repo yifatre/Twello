@@ -2,15 +2,35 @@ import { Droppable, Draggable } from 'react-beautiful-dnd'
 import { TaskPreview } from "./TaskPreview"
 import { DynEntityAdd } from './DynEntityAdd'
 import { TaskQuickEdit } from './TaskQuickEdit'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router'
 
-export function TaskList({boardFilter, group, saveTask, removeTask, board, isLabelsExtended, setIsLabelExtended, isAddMode, setIsAddMode }) {
+export function TaskList({ boardFilter, group, saveTask, removeTask, board, isLabelsExtended, setIsLabelExtended, isAddMode, setIsAddMode }) {
     const [taskQuickEdit, setTaskQuickEdit] = useState(false)
     const refTrigger = useRef(null)
     const navigate = useNavigate()
-    const regex = new RegExp(boardFilter, 'i')
-    
+    const regex = new RegExp(boardFilter.filterBy, 'i')
+    // tasks
+    const [tasks, setTasks] = useState(filterBy())
+
+    useEffect(() => {
+        setTasks([...filterBy()])
+    }, [boardFilter.filterBy,boardFilter.membersIds.length,boardFilter.labelsIds.length,board])
+
+    function filterBy() {
+        let tasks = [...group.tasks]
+        if (boardFilter.filterBy) {
+            tasks = group.tasks?.filter(task => regex.test(task.title) || regex.test(task.description))
+        }
+        if (boardFilter.membersIds.length && group.tasks) {
+            tasks = tasks.filter(task => task.memberIds.length ? task.memberIds.some(id => boardFilter.membersIds.includes(id)) : false)
+        }
+        if (boardFilter.labelsIds.length && group.tasks) {
+            console.log('hi');
+            tasks = tasks.filter(task => task.labelIds.length ? task.labelIds.some(id => boardFilter.labelsIds.includes(id)) : false)
+        }
+        return tasks
+    }
 
     return (
         <>
@@ -19,7 +39,7 @@ export function TaskList({boardFilter, group, saveTask, removeTask, board, isLab
                 {(provided) =>
                     <ul className="task-list clean-list" {...provided.droppableProps} ref={provided.innerRef}>
 
-                        {group.tasks?.filter(task => regex.test(task.title) || regex.test(task.description)).map((task, idx) =>
+                        {tasks.map((task, idx) =>
                             <Draggable key={task.id} draggableId={task.id} index={idx} >
 
                                 {(provided, snapshot) => {
@@ -52,7 +72,6 @@ export function TaskList({boardFilter, group, saveTask, removeTask, board, isLab
                                 }}
                             </Draggable>
                         )}
-                        {/* {console.log(taskQuickEdit)} */}
                         {taskQuickEdit && <TaskQuickEdit
                             taskQuickEdit={taskQuickEdit}
                             groupId={group.id}
@@ -70,9 +89,6 @@ export function TaskList({boardFilter, group, saveTask, removeTask, board, isLab
                         {/* <div style={{ marginBlock: '8px' }}> */}
                         {provided.placeholder}
                         {/* </div> */}
-                        {/* {console.log("provided.dragHandleProps", provided.dragHandleProps)} */}
-
-                        {/* {console.log("provided.placeholder", provided)} */}
                         {isAddMode && <DynEntityAdd setIsAddMode={setIsAddMode} saveEntity={saveTask} groupId={group.id} />}
                     </ul>
                 }

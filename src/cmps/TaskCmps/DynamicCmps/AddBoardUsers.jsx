@@ -9,7 +9,6 @@ import { useSelector } from "react-redux"
 export function AddBoardUsers({ board, setActionType}) {
     const members = useSelector(storeState => storeState.boardModule.board.members)
     const [users, setUsers] = useState(userServiceHttp.getUsers())
-    console.log("users", users)
 
     useEffect(() => {
         loadUsers()
@@ -38,13 +37,13 @@ export function AddBoardUsers({ board, setActionType}) {
         updateBoard(boardToUpdate)
     }
 
-    function onRemoveMember(memberId) {
-        const boardToUpdate = board
-        const membersToUpdate = members.filter(member=> member._id !== memberId)
-        boardToUpdate.members = membersToUpdate
-        updateBoard(boardToUpdate)
+    // function onRemoveMember(memberId) {
+    //     const boardToUpdate = board
+    //     const membersToUpdate = members.filter(member=> member._id !== memberId)
+    //     boardToUpdate.members = membersToUpdate
+    //     updateBoard(boardToUpdate)
 
-    }
+    // }
 
     return (<>
         <header className="dynamic-head-container">
@@ -56,7 +55,7 @@ export function AddBoardUsers({ board, setActionType}) {
                 <p>Board members</p>
                 <ul className="clean-list ul-labels">
                     {members.map(member => {
-                        return <li key={member._id} className="flex align-center member-li" onClick={()=>onRemoveMember(member._id)}>
+                        return <li key={member._id} className="flex align-center member-li" >
                             <AvatarPreview user={member} />
                             <div>{member.fullName}</div>
                         </li>
@@ -69,7 +68,6 @@ export function AddBoardUsers({ board, setActionType}) {
                     <ul className="clean-list ul-labels">
                         {users.filter(user => !members.find(member => member._id === user._id))
                         .map(user => {
-                            console.log("users", users)
                             return <li key={user._id} className="flex align-center member-li" onClick={() => onAddMember(user._id, user.fullName, user.imgUrl)}>
                                 <AvatarPreview user={user} />
                                 <div>{user.fullName}</div>

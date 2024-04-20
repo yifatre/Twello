@@ -17,7 +17,6 @@ export function TodoPreview({ todo, saveTodo, deleteTodo }) {
     return (
         <div className="todo-preview">
             <input type="checkbox" checked={isDone} onChange={handleChange} onClick={ev => ev.stopPropagation()} />
-            {console.log(todo.isDone)}
             <div className="todo-title" style={todo.isDone ? {textDecoration: 'line-through'} : {}}>
                 {todo.title}
                 <div className="todo-actions">

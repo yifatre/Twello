@@ -50,18 +50,15 @@ export function ChangeBack({ setTopHead, board, setBackTo, topHead }) {
     }
 
     async function getPhotos() {
-        console.log(url)
         try {
             const res = await axios.get(url)
             setImages(res.data)
-            console.log("get", res.data)
         } catch (error) {
             console.error(error)
         }
     }
 
     function changeBgImg(grad, isUpload) {
-        //todo add the member !!! now its 0 for development
         const activity = boardService.getActivity('change background of this board', 0)
         const boardToChange = { ...board, style: { ...board.style, backgroundImage: grad } }
         // boardToChange.style.backgroundImage = grad
@@ -74,9 +71,7 @@ export function ChangeBack({ setTopHead, board, setBackTo, topHead }) {
     }
 
     function onselect(name) {
-        console.log(name)
         if (name === 'Photos from Unsplash') {
-            console.log('hi')
             getPhotos()
         }
         setTopHead(name)
@@ -86,7 +81,6 @@ export function ChangeBack({ setTopHead, board, setBackTo, topHead }) {
     function handleChange(ev) {
         let { value, name: field, type } = ev.target
         if (type === 'number') value = +value
-        console.log(value)
         setSearchToEdit(value)
     }
 

@@ -20,7 +20,9 @@ export function BoardDetails() {
     const [rsbIsOpen, setRsbIsOpen] = useState(false)
     const [viewType, setViewType] = useState('board')
     const board = useSelector(storeState => storeState.boardModule.board)
-    const [boardFilter, setBoardFilter] = useState('')
+    const [boardFilter, setBoardFilter] = useState(boardService.getEmptyFilter())
+    console.log("boardFilterFAromD", boardFilter)
+
 
     useEffect(() => {
 
@@ -32,7 +34,7 @@ export function BoardDetails() {
                 type: SET_BOARD,
                 board: _board
             })
-            console.log('board22222', _board)
+            // console.log('board22222', _board)
         })
 
         return () => {
@@ -63,8 +65,6 @@ export function BoardDetails() {
         } else {
             task.id = utilService.makeId('t')
             // group.tasks.push(task)
-
-            //todo add the member !!! now its 0 for development
             const newActivity = boardService.getActivity(`added ${task.title} to ${group.title}`, 0, group, task)
             return await saveGroup({ ...group, tasks: [...group.tasks, task] }, newActivity)
         }
@@ -73,9 +73,6 @@ export function BoardDetails() {
     function removeTask(taskId, groupId) {
         let group = board.groups.find(group => group.id === groupId)
         // group = group.tasks.filter(task => task.id !== taskId)
-        //todo when connected need to get group and task for the activity
-        //todo add the member !!! now its 0 for development
-        console.log('group', group)
         const activity = boardService.getActivity('deleted ', 0, group, taskId)
         saveGroup({ ...group, tasks: group.tasks.filter(task => task.id !== taskId) }, activity)
     }
@@ -90,7 +87,6 @@ export function BoardDetails() {
         } else {
             group.id = utilService.makeId('g')
             // board.groups.push(group)
-            //todo add the member !!! now its 0 for development
             board.activities.unshift(boardService.getActivity(`added ${group.title} to this board`, 0, group))
             return await updateBoardOptimistic({ ...board, groups: [...board.groups, group] })
         }
@@ -101,7 +97,6 @@ export function BoardDetails() {
     }
 
     function onDragEnd(result) {
-        // console.log('result', result)
         if (!result.destination) {
             return
         }
@@ -129,7 +124,7 @@ export function BoardDetails() {
     if (!board) return
     return (<>
         <section className={`board-details ${rsbIsOpen ? 'rsb-open' : ''}`} style={{ backgroundImage: `url(${board.style?.backgroundImage})` }}>
-            <BoardHeader setBoardFilter={setBoardFilter} board={board} setRsbIsOpen={setRsbIsOpen} setViewType={setViewType} viewType={viewType} />
+            <BoardHeader boardFilter={boardFilter} setBoardFilter={setBoardFilter} board={board} setRsbIsOpen={setRsbIsOpen} setViewType={setViewType} viewType={viewType} />
             <BoardSideBar setViewType={setViewType} />
             {viewType === 'board' && <GroupList boardFilter={boardFilter} board={board} saveGroup={saveGroup} removeGroup={removeGroup} saveTask={saveTask} removeTask={removeTask} onDragEnd={onDragEnd} />}
             {viewType === 'table' && <BoardTable board={board} saveGroup={saveGroup} removeGroup={removeGroup} saveTask={saveTask} removeTask={removeTask} onDragEnd={onDragEnd} />}

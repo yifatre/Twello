@@ -61,7 +61,6 @@ function getLoggedinUser() {
 }
 
 function _setLoggedinUser(user) {
-    console.log("user", user)
     const userToSave = {
         _id: user._id, fullName: user.fullName, imgUrl: user.
             imgUrl, isAdmin: user.isAdmin || ''
@@ -86,8 +85,9 @@ async function getUsers() {
 
 function getGuestUser() {
     return {
-        _id: 'u107',
-        fullName: 'Guest',
-        imgUrl: 'https://res.cloudinary.com/dobrmrt0g/image/upload/v1713014057/png-clipart-orb-os-x-icon-man-s-profile-icon-inside-white-circle-thumbnail_simwdv.png'
+        fullName: "Gustavo Gesto",
+        imgUrl: 'https://randomuser.me/api/portraits/men/88.jpg',
+        isAdmin: "",
+        _id: "662224f7396ad00d506ec683"
     }
 }

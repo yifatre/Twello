@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { useNavigate } from "react-router"
 import { ClickAwayListener } from '@mui/base/ClickAwayListener'
-import { boardService } from "../../../services/board/board.service"
+import { boardService, gradients } from "../../../services/board/board.service"
 import { addBoard } from "../../../store/board/board.actions"
 import { check_icon, new_board_demo, x_icon } from "../../UtilCmps/SVGs"
 import gradIce from "../../../assets/img/gradients/ice.svg"
@@ -39,7 +39,7 @@ export function CreateBoard({ setIsAddBoard }) {
         'https://images.unsplash.com/photo-1711636418389-1ee93ebd56fb?'
     ]
 
-    const gradients = [gradEarth, gradIce, gradWave, gradMagic, gradRainbow, gradPeach]
+    // const gradients = [gradEarth, gradIce, gradWave, gradMagic, gradRainbow, gradPeach]
 
     async function onCreateBoard() {
         try {
@@ -47,9 +47,7 @@ export function CreateBoard({ setIsAddBoard }) {
             store.dispatch({ type: LOADING_START })
             const savedBoard = await addBoard(boardToAdd)
             setIsAddBoard(false)
-            console.log('savedBoard', savedBoard)
             store.dispatch({ type: LOADING_DONE })
-
             navigate(`/board/${savedBoard._id}`)
         }
         catch (err) {
@@ -75,7 +73,7 @@ export function CreateBoard({ setIsAddBoard }) {
                     {imgs.map((img, idx) => <div key={idx} onClick={() => changeBgImg(img + imageFull)} style={{ backgroundImage: `url(${img + imageThumbnail})` }}><span>{boardToAdd.style?.backgroundImage.slice(0, 61) === img ? check_icon : ''}</span></div>)}
                 </div>
                 <div className="gradients flex">
-                    {gradients.map((grad, idx) => <div key={idx} onClick={() => changeBgImg(grad)} style={{ backgroundImage: `url(${grad})` }}><span>{boardToAdd.style?.backgroundImage === grad ? check_icon : ''}</span></div>)}
+                    {gradients.slice(0, 6).map((grad, idx) => <div key={idx} onClick={() => changeBgImg(grad)} style={{ backgroundImage: `url(${grad})` }}><span>{boardToAdd.style?.backgroundImage === grad ? check_icon : ''}</span></div>)}
                 </div>
             </div>
             <div className="title-input">

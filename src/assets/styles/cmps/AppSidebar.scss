@@ -2,6 +2,10 @@
     padding: rem(40px) rem(24px) rem(40px) rem(8px);
     display: grid;
 
+    @include for-mobile-layout {
+        display: none;
+    }
+
     & .main-nav {
         border-block-end: 1px solid var(--ds-border, #091e4224);
         height: max-content;
@@ -29,12 +33,12 @@
                 background-color: var(--ds-background-neutral-hovered, #091e4224);
                 color: currentColor;
             }
-            
+
             &.active {
                 background-color: var(--ds-background-selected, #e9f2ff);
                 color: var(--ds-text-selected, #0c66e4);
             }
-            
+
             &:active {
                 background-color: var(--ds-background-neutral-pressed, #091e424f);
                 color: currentColor;

@@ -11,7 +11,6 @@ const pallet = ['green', 'yellow', 'orange', 'red', 'purple',
     'blue-subtle', 'teal-subtle', 'lime-subtle', 'magenta-subtle', 'gray-subtle',
     'blue-bolder', 'teal-bolder', 'lime-bolder', 'magenta-bolder', 'gray-bolder']
 
-// todo connect btn's and add the on update 
 
 export function LabelPicker({ setActionType, SaveLabel, deleteLabel, onUpdateBoard, task, saveTask, groupId, updateSize }) {
     const labels = useSelector(storeState => storeState.boardModule.board.labels)
@@ -27,7 +26,6 @@ export function LabelPicker({ setActionType, SaveLabel, deleteLabel, onUpdateBoa
     useEffect(() => {
         saveTask({ ...task, labelIds: labelsFromTask }, groupId)
         setLabelsFilter(labels)
-        console.log('im not good')
     }, [labelsFromTask,labels])
 
     useEffect(() => {
@@ -52,7 +50,6 @@ export function LabelPicker({ setActionType, SaveLabel, deleteLabel, onUpdateBoa
         let result = [...dark].fill(false)
         result[index] = !result[index]
         setDark(result)
-        // console.log('dark', dark)
         setCurrentColor(color)
     }
 
@@ -67,7 +64,6 @@ export function LabelPicker({ setActionType, SaveLabel, deleteLabel, onUpdateBoa
         const regex = new RegExp(filter, 'i')
         let _labels = labels.filter(label => regex.test(label.title))
         setLabelsFilter(_labels)
-        // console.log("filter", filter)
     }
 
     function removeColor() {
@@ -146,8 +142,6 @@ export function LabelPicker({ setActionType, SaveLabel, deleteLabel, onUpdateBoa
                 <button onClick={() => toggleBtn()} className="tasks-btn labels-btn">Create a new label</button>
                 {labels.length > value ? <button onClick={() => moreLabels()} className="tasks-btn labels-btn">Show more labels</button> : <></>}
 
-                {/* <hr className="between-btn" />
-                <button className="tasks-btn labels-btn enable-colorblind">Enable colorblind friendly mode </button> */}
             </section>
         </>
 

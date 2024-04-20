@@ -7,7 +7,7 @@ import { TextareaAutosize as MinTextArea } from '@mui/base/TextareaAutosize'
 import { DynamicCmp, GROUP_ACTIONS } from '../TaskCmps/DynamicCmps/DynamicCmp'
 import { utilService } from '../../services/util.service'
 
-export function GroupPreview({boardFilter, group, saveGroup, board, isLabelsExtended, setIsLabelExtended, saveTask, removeTask, removeGroup }) {
+export function GroupPreview({ boardFilter, group, saveGroup, board, isLabelsExtended, setIsLabelExtended, saveTask, removeTask, removeGroup, provided, snapshot }) {
     const [isAddMode, setIsAddMode] = useState(false)
     const [isEditTitle, setIsEditTitle] = useState(false)
     const [isExtended, setIsExtended] = useState(true)
@@ -42,7 +42,12 @@ export function GroupPreview({boardFilter, group, saveGroup, board, isLabelsExte
             <h4 className='tasks-number'>{group.tasks.length}</h4>
         </div>
         }
-        {isExtended && <div className={`group-preview ${group.style.themeColor || 'neutral'}`}>
+        {isExtended && <div className={`group-preview ${group.style.themeColor || 'neutral'}`}
+            ref={provided.innerRef}
+            {...provided.draggableProps}
+            {...provided.dragHandleProps}
+            style={snapshot.isDragging && !snapshot.isDropAnimating ? { ...provided.draggableProps?.style, opacity: 0.6, rotate: '6deg' } : { ...provided.draggableProps?.style, cursor: 'pointer', transitionDuration: `0.4s` }}
+        >
 
             <div className="group-header">
                 {!isEditTitle && <h2 className="group-title" onClick={() => setIsEditTitle(true)}>{group.title}</h2>}

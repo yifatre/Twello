@@ -16,7 +16,8 @@ export const boardService = {
     getEmptyTask,
     getEmptyTodo,
     getActivity,
-    getEmptyLabel
+    getEmptyLabel,
+    getEmptyFilter
 }
 window.cs = boardService
 
@@ -58,7 +59,11 @@ function getEmptyBoard() {
             background: null,
             backgroundImage: "https://images.unsplash.com/photo-1568607689150-17e625c1586e?q=80&w=3870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
         },
-        labels: [],
+        labels: [{
+            _id: "662224f7396ad00d506ec683",
+            fullName: "Gustavo Gesto",
+            imgUrl: 'https://randomuser.me/api/portraits/men/88.jpg'
+        }],
         members: [],
         groups: [
             {
@@ -143,11 +148,19 @@ function getEmptyLabel() {
     }
 }
 
+function getEmptyFilter() {
+    return {
+        filterBy: '',
+        membersIds: [],
+        labelsIds: []
+    }
+}
+
 export const gradients = ['https://res.cloudinary.com/dobrmrt0g/image/upload/v1713335505/ice_rsnbxk.svg',
     'https://res.cloudinary.com/dobrmrt0g/image/upload/v1713335505/wave_xw5hqz.svg',
     'https://res.cloudinary.com/dobrmrt0g/image/upload/v1713335506/magic_mzdtqi.svg',
     'https://res.cloudinary.com/dobrmrt0g/image/upload/v1713335505/rainbow_qqs5to.svg',
-    'https://res.cloudinary.com/dobrmrt0g/image/upload/v1713335506/peach_wmp38h.svg', 
+    'https://res.cloudinary.com/dobrmrt0g/image/upload/v1713335506/peach_wmp38h.svg',
     'https://res.cloudinary.com/dobrmrt0g/image/upload/v1713335505/flower_knqi1i.svg',
     'https://res.cloudinary.com/dobrmrt0g/image/upload/v1713335505/earth_f3kb9g.svg',
     'https://res.cloudinary.com/dobrmrt0g/image/upload/v1713335505/alien_qniwed.svg',

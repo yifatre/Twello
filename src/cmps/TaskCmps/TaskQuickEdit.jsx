@@ -58,7 +58,6 @@ export function TaskQuickEdit({ taskQuickEdit, groupId, removeTask, board, isLab
     }
 
     function onClickAway() {
-        console.log('quick away');
         if (!actionType) setTaskQuickEdit(null)
     }
 
