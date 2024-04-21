@@ -65,7 +65,7 @@ export function BoardTable({ saveGroup, removeGroup, saveTask, removeTask }) {
             <main className="board-table">
                 <div className="table-head table-row">
                     <div>Card</div>
-                    <div>list</div>
+                    <div>List</div>
                     <div>Labels</div>
                     <div>Members</div>
                     <div className="date-th">Due date {arrow_down}</div>

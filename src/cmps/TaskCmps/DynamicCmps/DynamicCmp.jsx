@@ -26,7 +26,8 @@ export const ADD_BOARD_USER = 'ADD_BOARD_USER'
 export const FILTER = 'FILTER'
 
 
-export function DynamicCmp({FilterBy,setBoardFilter, setActionType, groupId, cmp, board, task, setIsAddBoard, saveTask, group, saveGroup, removeGroup, setIsActionsOpen, refTrigger, offset = { x: 0, y: 0 } }) {
+export function DynamicCmp({ FilterBy, setBoardFilter, setActionType, groupId, cmp, board,
+    task, setIsAddBoard, saveTask, group, saveGroup, removeGroup, setIsActionsOpen, refTrigger, offset = { x: 0, y: 0 } }) {
 
     const ref = useRef(null)
     const [pos, setPos] = useState(utilService.getModalPosition(refTrigger.current, offset.x, refTrigger.current.getBoundingClientRect().height + offset.y))
@@ -123,8 +124,8 @@ export function DynamicCmp({FilterBy,setBoardFilter, setActionType, groupId, cmp
                     members={board.members}
                     setBoardFilter={setBoardFilter}
                     FilterBy={FilterBy}
-                    labels = {board.labels}
-                     />)
+                    labels={board.labels}
+                />)
                 break
         }
     }, [cmp])
@@ -165,7 +166,7 @@ export function DynamicCmp({FilterBy,setBoardFilter, setActionType, groupId, cmp
         updateBoardOptimistic(Board)
     }
 
-    return <div className={`dynamic-cmp ${cmp.type.toLowerCase()} ${cmp.type === 'FILTER'?'flex column':''}`} style={{ top: pos.top, left: pos.left, zIndex: 150 }} ref={ref}>
+    return <div className={`dynamic-cmp ${cmp.type.toLowerCase()} ${cmp.type === 'FILTER' ? 'flex column' : ''}`} style={{ top: pos.top, left: pos.left, zIndex: 150 }} ref={ref}>
         {cmpType}
     </div>
 }
