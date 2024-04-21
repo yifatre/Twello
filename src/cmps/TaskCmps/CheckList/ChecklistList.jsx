@@ -66,7 +66,7 @@ export function ChecklistList({ checklist, onRemoveList, onUpdateList, group, ta
     }
 
     function getProgress() {
-        if (checklist.todos?.length === 0) return '0%'
+        if (checklist.todos?.length === 0 || !checklist.todos) return '0%'
         const done = checklist.todos?.filter(todo => todo.isDone).length
         return Math.floor(done / checklist.todos?.length * 100) + '%'
     }
@@ -172,7 +172,7 @@ export function ChecklistList({ checklist, onRemoveList, onUpdateList, group, ta
                     todo={boardService.getEmptyTodo()}
                     setIsAddTodo={setIsAddTodo}
                     saveTodo={saveTodo}
-                    isFirst={checklist.todos.length <= 0}
+                    isFirst={checklist.todos?.length <= 0}
                 />
             )}
         </section>
