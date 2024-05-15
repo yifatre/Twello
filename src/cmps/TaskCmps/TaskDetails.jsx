@@ -8,6 +8,7 @@ import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react
 import { ATTACHMENT, CHECKLIST, COVER, DATES, DynamicCmp, LABELS, MEMBERS } from "./DynamicCmps/DynamicCmp"
 import { useSelector } from "react-redux"
 import { AvatarPreview } from "../UtilCmps/AvatarPreview"
+import { AvatarList } from "../UtilCmps/AvatarList"
 import { ChecklistIndex } from "./CheckList/ChecklistIndex"
 import { boardService } from "../../services/board/board.service"
 import { Activity } from "../BoardCmps/Activity"
@@ -28,7 +29,7 @@ export function TaskDetails() {
 
     useEffect(() => {
         setTask(board.groups.find(group => group.id === groupId).tasks.find(task => task.id === taskId))
-    }, [board,activities])
+    }, [board, activities])
 
     function onEditDescription(ev) {
         ev.preventDefault()
@@ -73,6 +74,10 @@ export function TaskDetails() {
         saveTask({ ...task, attach: attaches }, groupId, activity)
     }
 
+    function getMembers() {
+        return board.members.filter(member => task.memberIds.includes(member._id))
+    }
+
     const due = task.date?.isDone ? 'Complete' : task.date?.dueDate - Date.now() < 0 ? 'Overdue' : task.date?.dueDate - Date.now() <= 24 * 60 * 60 * 1000 ? 'Due soon' : ''
     return <div className="task-details-container">
 
@@ -98,8 +103,8 @@ export function TaskDetails() {
                     <section className="data">
                         {!!task.memberIds.length && <div className="members">
                             <h3>Members</h3>
-                            <div className="">
-                                {task.memberIds?.map(memberId => <div key={memberId} className="avatar" > <AvatarPreview user={board.members.find(_member => _member._id === memberId)} /> </div>)}
+                            <div className="at-c">
+                                {!!task.memberIds?.length && <AvatarList users={getMembers()} />}
                                 <button className="avatar neutral-label" onClick={(ev) => onSetActionType(ev, MEMBERS)}>{plus_icon}</button>
                             </div>
                         </div>}
