@@ -249,12 +249,12 @@
         .members {
             display: inline-block;
 
-            div {
+            .at-c {
                 display: inline-flex;
                 margin-left: rem(-0.5px);
                 gap: rem(4px);
 
-                .avatar {
+                & .avatar {
                     border-radius: 50%;
                     width: rem(32px);
                     height: rem(32px);
@@ -267,22 +267,31 @@
                     @include avatar(32px);
                 }
 
-                button {
-                    padding: rem(6px) rem(8px);
+            }
 
-                    span {
-                        color: #172b4d;
-                        margin-top: rem(4px);
-                        @include svg-container
-                    }
+            button {
+                padding: rem(6px) rem(8px);
+                border-radius: 50%;
+                width: rem(32px);
+                height: rem(32px);
+                border: none;
+                display: inline-block;
+                padding: 0;
+                margin: 0;
+                cursor: pointer;
 
-                    &:hover {
-                        background-color: var(--accent-background-hovered);
-                    }
+                span {
+                    color: #172b4d;
+                    margin-top: rem(6px);
+                    @include svg-container
+                }
 
-                    &:active {
-                        background-color: var(--accent-background-pressed);
-                    }
+                &:hover {
+                    background-color: var(--accent-background-hovered);
+                }
+
+                &:active {
+                    background-color: var(--accent-background-pressed);
                 }
             }
 

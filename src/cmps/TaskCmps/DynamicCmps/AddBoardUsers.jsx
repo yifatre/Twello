@@ -37,13 +37,13 @@ export function AddBoardUsers({ board, setActionType}) {
         updateBoard(boardToUpdate)
     }
 
-    // function onRemoveMember(memberId) {
-    //     const boardToUpdate = board
-    //     const membersToUpdate = members.filter(member=> member._id !== memberId)
-    //     boardToUpdate.members = membersToUpdate
-    //     updateBoard(boardToUpdate)
+    function onRemoveMember(memberId) {
+        const boardToUpdate = board
+        const membersToUpdate = members.filter(member=> member._id !== memberId)
+        boardToUpdate.members = membersToUpdate
+        updateBoard(boardToUpdate)
 
-    // }
+    }
 
     return (<>
         <header className="dynamic-head-container">
@@ -55,7 +55,7 @@ export function AddBoardUsers({ board, setActionType}) {
                 <p>Board members</p>
                 <ul className="clean-list ul-labels">
                     {members.map(member => {
-                        return <li key={member._id} className="flex align-center member-li" >
+                        return <li key={member._id} className="flex align-center member-li" onClick={() => onRemoveMember(member._id)}>
                             <AvatarPreview user={member} />
                             <div>{member.fullName}</div>
                         </li>

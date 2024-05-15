@@ -10,7 +10,7 @@ export function Activity({ taskId }) {
         <section className={taskId ? 'activity-task' : 'activities-container'} >
             {activities && (taskId ?  activities.filter(activity => (activity.task.id === taskId)): activities).map(activity => {
                 const user = members.find(member => member._id === activity.byMemberId)
-
+                if (!user) return
                 return <div key={activity.id} className="activity-container flex ">
                     <AvatarPreview user={user} />
                     <div className="activity  flex column" >
